@@ -39,12 +39,14 @@
 
   /* ---------- NAV ---------- */
   header.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .4s ease,border-color .4s ease,padding .4s ease;padding:22px 0;border-bottom:1px solid transparent}
+  header.nav:before{content:"";position:absolute;inset:0;bottom:auto;height:190%;background:linear-gradient(180deg,rgba(7,15,23,.78) 0%,rgba(7,15,23,.42) 45%,rgba(7,15,23,0) 100%);z-index:-1;pointer-events:none;transition:opacity .4s ease}
+  header.nav.scrolled:before{opacity:0}
   header.nav.scrolled{background:rgba(8,15,23,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-cool);padding:14px 0}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
   .nav-logo img{height:66px;width:auto;transition:height .4s ease}
   header.nav.scrolled .nav-logo img{height:52px}
   .nav-links{display:flex;align-items:center;gap:34px}
-  .nav-links a.link{font-size:.82rem;letter-spacing:.04em;color:var(--bone);opacity:.82;transition:opacity .25s,color .25s;position:relative}
+  .nav-links a.link{font-size:.82rem;letter-spacing:.04em;color:var(--bone);opacity:.94;text-shadow:0 1px 10px rgba(0,0,0,.55);transition:opacity .25s,color .25s;position:relative}
   .nav-links a.link:hover{opacity:1;color:var(--gold-bright)}
   .btn{display:inline-block;font-family:"Archivo",sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:13px 24px;border-radius:2px;transition:all .28s ease;cursor:pointer;border:1px solid transparent}
   .btn-gold{background:var(--gold);color:var(--night-3)}
@@ -55,7 +57,39 @@
 
   /* ---------- HERO ---------- */
   .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
-  .hero-media{position:absolute;inset:0;z-index:0}
+  .hero-media{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .hero-pan{position:absolute;inset:0;animation:heroFlight 20s ease-in-out infinite alternate;will-change:transform}
+  @keyframes heroFlight{
+    0%   {transform:scale(1.06) translate3d(2.2%,1.1%,0)}
+    100% {transform:scale(1.20) translate3d(-2.6%,-1.6%,0)}
+  }
+  /* clouds streaming past — the cue that reads as flight */
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;
+              z-index:1;opacity:0;transition:opacity .7s ease;pointer-events:none}
+  .hero-video.on{opacity:1}
+  .hero-media.video-on .sky-fx,.hero-media.video-on .sun-glow{opacity:0;transition:opacity .8s ease}
+  .sky-fx{position:absolute;inset:-12% -8%;z-index:1;pointer-events:none;overflow:hidden}
+  .wisp{position:absolute;display:block;border-radius:50%;
+        background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.95) 0%,rgba(255,255,255,.42) 40%,rgba(255,255,255,0) 70%);
+        filter:blur(13px);opacity:0;will-change:transform,opacity;
+        animation-name:drift;animation-timing-function:linear;animation-iteration-count:infinite}
+  @keyframes drift{
+    0%   {transform:translate3d(115vw,0,0) scaleX(.9);opacity:0}
+    10%  {opacity:var(--o,.4)}
+    90%  {opacity:var(--o,.4)}
+    100% {transform:translate3d(-40vw,0,0) scaleX(1.45);opacity:0}
+  }
+  .w1{width:26vw;height:7vh;top:12%;--o:.38;animation-duration:15s;animation-delay:-3s}
+  .w2{width:40vw;height:10vh;top:28%;--o:.30;animation-duration:23s;animation-delay:-11s}
+  .w3{width:18vw;height:5vh;top:45%;--o:.46;animation-duration:9s;animation-delay:-5s}
+  .w4{width:32vw;height:8vh;top:60%;--o:.34;animation-duration:19s;animation-delay:-14s}
+  .w5{width:13vw;height:4vh;top:21%;--o:.52;animation-duration:7s;animation-delay:-2s}
+  .w6{width:22vw;height:6vh;top:70%;--o:.40;animation-duration:12s;animation-delay:-8s}
+  /* sun breathes gently */
+  .sun-glow{position:absolute;right:6%;top:44%;width:44vw;height:44vw;transform:translate(18%,-50%);z-index:1;pointer-events:none;
+            background:radial-gradient(circle at 50% 50%,rgba(255,214,150,.34) 0%,rgba(255,190,110,.12) 34%,rgba(255,190,110,0) 66%);
+            animation:sunPulse 7s ease-in-out infinite alternate}
+  @keyframes sunPulse{0%{opacity:.42}100%{opacity:1}}
   .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 46%;transform:scale(1.06);will-change:transform}
   .hero-media:after{content:"";position:absolute;inset:0;background:
      linear-gradient(180deg,rgba(7,15,23,.60) 0%,rgba(7,15,23,.18) 26%,rgba(7,15,23,.55) 62%,rgba(7,15,23,.97) 100%);}
@@ -228,6 +262,9 @@
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
     .hero-media img,.rep .rep-media img,.closing-media img{transform:none}
+    .hero-pan,.wisp,.sun-glow{animation:none!important}
+    .hero-video{display:none}
+    .sky-fx{display:none}
     .readcard .rc-value:after{transform:scaleX(1)}
   }
 </style>
@@ -259,6 +296,7 @@
   .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
   .faq-a p{color:var(--muted);font-size:1.03rem;padding:0 40px 28px 0;max-width:70ch}
   .breadcrumb{position:relative;z-index:2;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-bright);text-shadow:0 2px 16px rgba(0,0,0,.85)}
+  .closing-media:after{background:linear-gradient(90deg,rgba(7,15,23,.95) 0%,rgba(7,15,23,.72) 45%,rgba(7,15,23,.40) 100%)!important}
   .subhero .hero-media:after{background:linear-gradient(180deg,rgba(7,15,23,.72) 0%,rgba(7,15,23,.30) 30%,rgba(7,15,23,.62) 65%,rgba(7,15,23,.97) 100%)!important}
   .subhero h1,.subhero .sub{text-shadow:0 2px 22px rgba(0,0,0,.6)}
 </style>
@@ -280,7 +318,7 @@
 </header>
 
 <section class="subhero hero" id="top">
-  <div class="hero-media"><img id="heroImg" src="/images/site/695d848194.jpg" alt="Challenger 605 over valley"></div>
+  <div class="hero-media"><img id="heroImg" src="/images/site/a4b67ead2b.jpg" alt="Bombardier Global 6000 in flight over the coast"></div>
   <div class="wrap hero-inner">
     <div class="breadcrumb reveal" data-rev>Acquisition Representation</div>
     <h1 id="heroTitle">The right aircraft, sourced quietly.</h1>
@@ -317,7 +355,7 @@
 </section>
 
 <section class="band">
-  <div class="band-media"><img class="bandImg" src="/images/site/f0088c7323.jpg" alt="Global 5000 at sunset"></div>
+  <div class="band-media"><img class="bandImg" src="/images/site/f05f98d352.jpg" alt="Bombardier Global 6000 in flight"></div>
   <div class="wrap band-inner">
     <div class="eyebrow reveal" data-rev>Backed by Market Intelligence</div>
     <h2 class="reveal" data-rev>You'll know the market before you make an offer.</h2>
@@ -343,7 +381,7 @@
 </section>
 
 <section class="closing" id="contact">
-  <div class="closing-media"><img id="closeImg" src="/images/site/68a21596f1.jpg" alt="Global 5000 at altitude"></div>
+  <div class="closing-media"><img id="closeImg" src="/images/site/f309e81293.jpg" alt="Business jet cabin interior"></div>
   <div class="wrap closing-inner">
     <div class="eyebrow reveal" data-rev>Start Here</div>
     <h2 class="reveal" data-rev>Tell us what you're looking for.</h2>
