@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: YOUR-GITHUB-USERNAME/vjs-site   # <-- change after you create the GitHub repo
+  repo: verticaljetsales/vjs-site
   branch: main
   # base_url: https://your-oauth-proxy.example.com   # <-- see README, step 4
 
