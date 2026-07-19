@@ -37,12 +37,14 @@
 
   /* ---------- NAV ---------- */
   header.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .4s ease,border-color .4s ease,padding .4s ease;padding:22px 0;border-bottom:1px solid transparent}
+  header.nav:before{content:"";position:absolute;inset:0;bottom:auto;height:190%;background:linear-gradient(180deg,rgba(7,15,23,.78) 0%,rgba(7,15,23,.42) 45%,rgba(7,15,23,0) 100%);z-index:-1;pointer-events:none;transition:opacity .4s ease}
+  header.nav.scrolled:before{opacity:0}
   header.nav.scrolled{background:rgba(8,15,23,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-cool);padding:14px 0}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
   .nav-logo img{height:66px;width:auto;transition:height .4s ease}
   header.nav.scrolled .nav-logo img{height:52px}
   .nav-links{display:flex;align-items:center;gap:34px}
-  .nav-links a.link{font-size:.82rem;letter-spacing:.04em;color:var(--bone);opacity:.82;transition:opacity .25s,color .25s;position:relative}
+  .nav-links a.link{font-size:.82rem;letter-spacing:.04em;color:var(--bone);opacity:.94;text-shadow:0 1px 10px rgba(0,0,0,.55);transition:opacity .25s,color .25s;position:relative}
   .nav-links a.link:hover{opacity:1;color:var(--gold-bright)}
   .btn{display:inline-block;font-family:"Archivo",sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:13px 24px;border-radius:2px;transition:all .28s ease;cursor:pointer;border:1px solid transparent}
   .btn-gold{background:var(--gold);color:var(--night-3)}
@@ -60,8 +62,8 @@
     100% {transform:scale(1.20) translate3d(-2.6%,-1.6%,0)}
   }
   /* clouds streaming past — the cue that reads as flight */
-  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 46%;
-              z-index:1;opacity:0;transition:opacity 1.4s ease;pointer-events:none}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;
+              z-index:1;opacity:0;transition:opacity .7s ease;pointer-events:none}
   .hero-video.on{opacity:1}
   .hero-media.video-on .sky-fx,.hero-media.video-on .sun-glow{opacity:0;transition:opacity .8s ease}
   .sky-fx{position:absolute;inset:-12% -8%;z-index:1;pointer-events:none;overflow:hidden}
@@ -377,7 +379,222 @@
   </div>
 </footer>
 <script>
-fetch('/data/aircraft.json').then(r=>r.json()).then(d=>{
+var INLINE_DATA={
+  "aircraft": [
+    {
+      "id": "n61gb-beechjet-400a",
+      "status": "For Sale",
+      "year": "2002",
+      "make_model": "Beechjet 400A",
+      "registration": "N61GB",
+      "serial": "RK-341",
+      "category": "Light Jet",
+      "total_time": "6,870 hrs",
+      "cycles": "5,456",
+      "passengers": "7",
+      "engines": "JT15D-5R",
+      "price": "Price on request",
+      "highlight": "Fresh 2022 paint & interior. Pro Line 4, Gogo AVANCE L3 Wi-Fi, thrust reversers.",
+      "overview": "This 2002 Beechjet 400A presents exceptionally well, with both paint and interior completed in 2022. Powered by Pratt & Whitney JT15D-5R engines on a TBO Extension STC, she carries a full Collins Pro Line 4 avionics suite and is equipped for modern operations — Gogo AVANCE L3 Wi-Fi, ADS-B, RVSM certification, TCAS-II with Change 7, and EGPWS.\n\nThe seven-passenger cabin is finished in custom brown slate leather with dual fold-out tables, a fully-enclosed lavatory with sink, and USB power at the cockpit and VIP seat. A clean, well-equipped, thrust-reverser-equipped light jet ready for its next owner.",
+      "photos": [
+        { "image": "/images/listings/n61gb-1-exterior.jpg" },
+        { "image": "/images/listings/n61gb-2-cockpit.jpg" },
+        { "image": "/images/listings/n61gb-3-cabin.jpg" },
+        { "image": "/images/listings/n61gb-4-cabin.jpg" }
+      ],
+      "spec_sheet": "/documents/n61gb-spec-sheet.pdf",
+      "status_report": "/documents/n61gb-status-report.pdf",
+      "due_list": "/documents/n61gb-due-list.pdf",
+      "spec_groups": [
+        {
+          "group": "Airframe",
+          "rows": [
+            { "label": "Total Time", "value": "6,870 hrs" },
+            { "label": "Total Cycles", "value": "5,456" }
+          ]
+        },
+        {
+          "group": "Engines — Pratt & Whitney JT15D-5R (TBO Extension STC)",
+          "rows": [
+            { "label": "Engine 1 · SN PCE-JA0457 — TTSN", "value": "6,675.9" },
+            { "label": "Engine 2 · SN PCE-JA0460 — TTSN", "value": "6,643.9" },
+            { "label": "Engine 1 · Cycles Since New", "value": "5,293" },
+            { "label": "Engine 2 · Cycles Since New", "value": "5,151" },
+            { "label": "Engine 1 · TSOH (5,400 TBO)", "value": "3,112.7" },
+            { "label": "Engine 2 · TSOH (5,400 TBO)", "value": "3,863.8" }
+          ]
+        }
+      ],
+      "avionics": [
+        { "item": "Collins Pro Line 4 Avionics Package" },
+        { "item": "Collins ADF-462" },
+        { "item": "Collins APS-4000 Autopilot" },
+        { "item": "Dual Collins VHF-422C" },
+        { "item": "Cockpit Voice Recorder" },
+        { "item": "Dual Collins DME-422" },
+        { "item": "Collins 3-Tube EFIS" },
+        { "item": "Dual Collins FMS-5000" },
+        { "item": "Collins GPS-4000" },
+        { "item": "Dual Collins VIR-432 Navigation Radios" },
+        { "item": "Collins ALT-55B Radar Altimeter" },
+        { "item": "Honeywell Mark V EGPWS" },
+        { "item": "Collins TCAS-II with Change 7" },
+        { "item": "Dual GTX-3000 Mode S Transponder" },
+        { "item": "Collins TWR-850 Weather Radar" },
+        { "item": "Garmin Flight Stream 110" }
+      ],
+      "features": [
+        { "item": "Windshield Temperature Control" },
+        { "item": "Gogo AVANCE L3 Wi-Fi" },
+        { "item": "Belted Aft Lav" },
+        { "item": "Freon Air Conditioning" },
+        { "item": "Dukane Seacom DK-120 Locator Beacon" },
+        { "item": "Dual Angle of Attack" },
+        { "item": "RVSM Certified" },
+        { "item": "Pneumatic Bleed Air & De-Ice" },
+        { "item": "Thrust Reversers" },
+        { "item": "ADS-B" },
+        { "item": "Standby & AHRS True Blue Battery STC" }
+      ],
+      "exterior": "Completed 2022. Overall Marathon White with lower base coat of Virga Blue Metallic and Medium Silver Metallic striping.",
+      "interior": "Completed 2022. Seven-passenger configuration in custom brown slate leather. Beige headliner with lower sidewalls in leather. Dual fold-out tables with leather inserts, fully-enclosed lavatory with sink, and USB outlets — two in the cockpit and two in the cabin at the VIP seat.",
+      "maintenance": "Maintenance tracked on Veryon. Current status report and 6-month due list available above."
+    },
+    {
+      "id": "global-express-xrs-9175",
+      "status": "For Sale",
+      "year": "2005",
+      "make_model": "Global Express XRS",
+      "registration": "",
+      "serial": "9175",
+      "category": "Large Cabin",
+      "total_time": "8,842.7 hrs",
+      "cycles": "4,672",
+      "passengers": "",
+      "engines": "",
+      "price": "Price on request",
+      "highlight": "Ultra-long-range. Engines enrolled on Rolls-Royce Corporate Care (RRCC).",
+      "overview": "",
+      "photos": [
+        { "image": "/images/listings/global-xrs-1.jpg" }
+      ],
+      "spec_sheet": "",
+      "status_report": "",
+      "due_list": "",
+      "spec_groups": [
+        {
+          "group": "Airframe",
+          "rows": [
+            { "label": "Total Time", "value": "8,842.7 hrs" },
+            { "label": "Landings", "value": "4,672" }
+          ]
+        }
+      ],
+      "avionics": [],
+      "features": [
+        { "item": "Engines enrolled on Rolls-Royce Corporate Care" }
+      ],
+      "exterior": "",
+      "interior": "",
+      "maintenance": ""
+    },
+    {
+      "id": "challenger-604",
+      "status": "For Sale",
+      "year": "1997",
+      "make_model": "Challenger 604",
+      "registration": "",
+      "serial": "",
+      "category": "Large Cabin",
+      "total_time": "8,695.1 hrs",
+      "cycles": "4,002",
+      "passengers": "",
+      "engines": "",
+      "price": "Price on request",
+      "highlight": "Wide-body capability. Enrolled on GE OnPoint & MSP.",
+      "overview": "",
+      "photos": [
+        { "image": "/images/listings/challenger-604-1.jpg" }
+      ],
+      "spec_sheet": "",
+      "status_report": "",
+      "due_list": "",
+      "spec_groups": [
+        {
+          "group": "Airframe",
+          "rows": [
+            { "label": "Total Time", "value": "8,695.1 hrs" },
+            { "label": "Landings", "value": "4,002" }
+          ]
+        }
+      ],
+      "avionics": [],
+      "features": [
+        { "item": "Enrolled on GE OnPoint & MSP" }
+      ],
+      "exterior": "",
+      "interior": "",
+      "maintenance": ""
+    },
+    {
+      "id": "lear-31a-232",
+      "status": "For Sale",
+      "year": "2001",
+      "make_model": "Lear 31A",
+      "registration": "",
+      "serial": "31A-232",
+      "category": "Light Jet",
+      "total_time": "5,923 hrs",
+      "cycles": "4,497",
+      "passengers": "",
+      "engines": "",
+      "price": "Price on request",
+      "highlight": "High-performance light jet. Engines enrolled on MSP Gold.",
+      "overview": "",
+      "photos": [],
+      "spec_sheet": "",
+      "status_report": "",
+      "due_list": "",
+      "spec_groups": [
+        {
+          "group": "Airframe",
+          "rows": [
+            { "label": "Total Time", "value": "5,923 hrs" },
+            { "label": "Landings", "value": "4,497" }
+          ]
+        }
+      ],
+      "avionics": [],
+      "features": [
+        { "item": "Engines enrolled on MSP Gold" }
+      ],
+      "exterior": "",
+      "interior": "",
+      "maintenance": ""
+    }
+  ]
+};
+function loadInventory(){
+  var urls=['/data/aircraft.json','data/aircraft.json','./data/aircraft.json'];
+  var i=0;
+  function tryNext(){
+    if(i>=urls.length){ render(INLINE_DATA); return; }
+    var u=urls[i++]+'?v='+Date.now();
+    fetch(u).then(function(r){
+      if(!r.ok) throw new Error('HTTP '+r.status+' for '+u);
+      return r.text();
+    }).then(function(txt){
+      var d; try{ d=JSON.parse(txt); }catch(e){ throw new Error('Bad JSON from '+u); }
+      render(d);
+    }).catch(function(e){ console.error(e); tryNext(); });
+  }
+  tryNext();
+}
+function showErr(msg){
+  var g=document.getElementById('grid');
+  if(g) g.innerHTML='<div class="empty">'+msg+'</div>';
+}
+function render(d){
   const all=d.aircraft||[];
   const active=all.filter(a=>a.status!=='Sold');
   const sold=all.filter(a=>a.status==='Sold');
@@ -423,7 +640,8 @@ fetch('/data/aircraft.json').then(r=>r.json()).then(d=>{
     document.getElementById('soldGrid').innerHTML=sold.map(a=>
       `<div class="sold-item rv"><span class="si-n">${a.year||''} ${a.make_model||''}</span><span class="si-t">Sold</span></div>`).join('');
   }
-}).catch(e=>{document.getElementById('grid').innerHTML='<div class="empty">Inventory is loading. Please refresh.</div>';});
+}
+loadInventory();
 
 <script>
 (function(){

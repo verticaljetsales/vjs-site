@@ -1,36 +1,16 @@
 # Netlify configuration for the Vertical Jet Sales website.
-# No build step: Netlify simply serves these files.
+# No build step: Netlify serves these static files as-is.
 
 [build]
   publish = "."
   command = ""
 
-# Nice URLs: /inventory instead of /inventory.html
-[[redirects]]
-  from = "/inventory"
-  to = "/inventory.html"
-  status = 200
-
-[[redirects]]
-  from = "/brokerage"
-  to = "/brokerage.html"
-  status = 200
-
-[[redirects]]
-  from = "/acquisition"
-  to = "/acquisition.html"
-  status = 200
-
-[[redirects]]
-  from = "/market-intelligence"
-  to = "/market-intelligence.html"
-  status = 200
-
-# Never cache the inventory data — new listings appear immediately.
+# Serve the data file as raw JSON, never cached, never redirected.
 [[headers]]
   for = "/data/*"
   [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Content-Type = "application/json"
+    Cache-Control = "no-store"
 
 [[headers]]
   for = "/images/*"
