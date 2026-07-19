@@ -29,7 +29,7 @@ collections:
               - { label: "Status", name: "status", widget: "select", options: ["For Sale", "Under Contract", "Sold"], default: "For Sale", hint: "Sold aircraft move to the Recently Transacted list automatically." }
               - { label: "Year", name: "year", widget: "string", hint: "e.g. 2002" }
               - { label: "Make & Model", name: "make_model", widget: "string", hint: "e.g. Beechjet 400A" }
-              - { label: "Page ID (URL)", name: "id", widget: "string", hint: "Lowercase, no spaces. e.g. n61gb-beechjet-400a" }
+              - { label: "Page ID (URL)", name: "id", widget: "string", hint: "The web address for this aircraft. Use lowercase letters and dashes only, no spaces. Example: premier-ia-rb-137" }
               - { label: "Registration / Tail #", name: "registration", widget: "string", required: false }
               - { label: "Serial Number", name: "serial", widget: "string", required: false }
               - { label: "Category", name: "category", widget: "select", options: ["Light Jet", "Mid-Size", "Super-Mid", "Large Cabin", "Long Range", "Turboprop"] }
@@ -60,25 +60,25 @@ collections:
                 summary: "{{fields.group}}"
                 hint: "e.g. Airframe, Engines. Each group holds rows of label/value."
                 fields:
-                  - { label: "Group Name", name: "group", widget: "string" }
+                  - { label: "Group Name", name: "group", widget: "string", required: false }
                   - label: "Rows"
                     name: "rows"
                     widget: "list"
                     fields:
-                      - { label: "Label", name: "label", widget: "string" }
-                      - { label: "Value", name: "value", widget: "string" }
+                      - { label: "Label", name: "label", widget: "string", required: false }
+                      - { label: "Value", name: "value", widget: "string", required: false }
 
               - label: "Avionics"
                 name: "avionics"
                 widget: "list"
                 required: false
-                field: { label: "Item", name: "item", widget: "string" }
+                field: { label: "Item", name: "item", widget: "string", required: false }
 
               - label: "Additional Features"
                 name: "features"
                 widget: "list"
                 required: false
-                field: { label: "Item", name: "item", widget: "string" }
+                field: { label: "Item", name: "item", widget: "string", required: false }
 
               - { label: "Exterior", name: "exterior", widget: "text", required: false }
               - { label: "Interior", name: "interior", widget: "text", required: false }
