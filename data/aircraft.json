@@ -108,16 +108,16 @@
       "year": "2005",
       "make_model": "Global Express XRS",
       "id": "global-express-xrs-9175",
-      "registration": "",
+      "registration": "N117TP",
       "serial": "9175",
       "category": "Large Cabin",
       "total_time": "8,842.7 hrs",
       "cycles": "4,672",
-      "passengers": "",
-      "engines": "",
+      "passengers": "15",
+      "engines": "BR700-710A2-20",
       "price": "Price on request",
-      "highlight": "Ultra-long-range. Engines enrolled on Rolls-Royce Corporate Care (RRCC).",
-      "overview": "",
+      "highlight": "Ultra-long-range. Engines enrolled on Rolls-Royce Corporate Care (RRCC), APU enrolled on MSP Gold.",
+      "overview": "This 2005 Global Express XRS is fully enrolled on Rolls-Royce Corporate Care, Smart Parts Plus, MSP Gold, and Collins CASP, with a major block of airframe and landing gear inspections completed in August 2025. She shows 8,842.7 hours and 4,672 landings, tracked on CAMP and operated Part 91.\n\nThe Honeywell Primus 2000XP flight deck features synthetic vision, HUD with EVS, and auto throttles, with FANS 1/A+, RNP-4, NAT HLA, RVSM, ADS-B Out, and increased MTOW. The 15-passenger cabin was refreshed in July 2020 and includes forward and aft lavatories, crew rest, and Starlink Wi-Fi.",
       "photos": [
         "/uploads/Twilight - 926.jpg",
         "/uploads/Cockpit - 737.jpg",
@@ -127,8 +127,8 @@
         "/uploads/Interior - 812.jpg",
         "/uploads/Exterior - 599.jpg"
       ],
-      "spec_sheet": "",
-      "status_report": "",
+      "spec_sheet": "/uploads/VJS Spec - N117TP - 042126.pdf",
+      "status_report": "/uploads/N117TP Status Report - 062526.pdf",
       "due_list": "",
       "spec_groups": [
         {
@@ -143,15 +143,68 @@
               "value": "4,672"
             }
           ]
+        },
+        {
+          "group": "Engines — Rolls Royce - BR700-710A2-20",
+          "rows": [
+            {
+              "label": "Engine 1- 12471 TTSN",
+              "value": "8,842.7"
+            },
+            {
+              "label": "Engine 2- 12472 TTSN",
+              "value": "8,842.7"
+            },
+            {
+              "label": "Engine 1- Cycles Since New",
+              "value": "4,672"
+            },
+            {
+              "label": "Engine 2- Cycles Since New",
+              "value": "4,672"
+            }
+          ]
         }
       ],
-      "avionics": [],
-      "features": [
-        "Engines enrolled on Rolls-Royce Corporate Care"
+      "avionics": [
+        "Honeywell FMZ, software NZ 6.1/Batch 3.4 FMS",
+        "Honeywell DU-875AF EFIS displays with Synthetic Vision (STC ST00299BO, July 2020)",
+        "Triple Honeywell IC-800 Integrated Avionics Computers (Batch 3.4)",
+        "Triple Honeywell HG2001GD03 Laser Ref IV IRUs",
+        "Triple Honeywell AZ-940 Micro Air Data Computers",
+        "Bombardier HUD Display System",
+        "Bombardier EVS Enhanced Vision System (displayed on HUD)",
+        "Honeywell Auto Throttle System",
+        "Honeywell RAAS Runway Awareness and Advisory System",
+        "Honeywell Primus 880 color weather radar with LP-860 lightning sensor",
+        "Triple Honeywell CD-830 FMS CDUs (STC ST00818DE, Feb 2023, Bombardier BAS/OPA)",
+        "Dual Honeywell HG2021GD04 GPS GNSSUs",
+        "Dual Honeywell RNZ-851 Integrated Navigation Units (FM immunity, 8.33 spacing)",
+        "Triple Honeywell RCZ-833 Integrated",
+        "Honeywell MK V EGPWS",
+        "ACSS RT-950 TCAS 2000 (Software Change 7.1)",
+        "Dual Rockwell Collins HF9031A",
+        "Teledyne Datalink ADLU",
+        "Coltech CSD 174 SELCAL",
+        "Honeywell SSFDR and SSCVR",
+        "Ingenio Aerospace cockpit iPad arms",
+        "Cockpit SKY printer",
+        "EICAS and CAIMS systems"
       ],
-      "exterior": "",
-      "interior": "",
-      "maintenance": ""
+      "features": [
+        "Engines enrolled on Rolls-Royce Corporate Care",
+        "Securaplane video camera system with vertical fin and belly 4-way cameras",
+        "Securaplane security system",
+        "Starlink Wi-Fi",
+        "Pulselite anti-collision light system",
+        "Tail logo light system",
+        "Forward and aft cabin Envirovac vacuum toilet system",
+        "B.F. Goodrich cabin pressure water system with galley/aft lavatory water heaters, 28.6-gal aft water tank",
+        "International Water-Guard water sterilizer system"
+      ],
+      "exterior": "Completed 2018.\nWater/Wave with PRC Desoto Aristo Blue",
+      "interior": "Completed 2014.\nInterior refresh: July 2020 — new Taiping carpet, new Techno Vinyl, minor cabin cabinetry, bulkheads, doors and surface refinish (Bombardier TUS)\n15 passengers, 2 crew, 1 crew jumpseat\nForward: 4-place club\nMid: (2) RH single club chairs opposite 4-place conference group\nAft: 3-place divan opposite 2-place club\nForward RH crew rest — 2-place 16G divan\nForward and aft lavatory\nCustom berthing cushions and bedding to berth the cabin for 6 passengers\nAdditional convertible seating included for installation: (1) forward LH 9G divan and (1) aft LH 9G divan, installable in multiple combinations per the original Bombardier completion STC",
+      "maintenance": "Airframe: Smart Parts Plus\nEngines: Rolls-Royce Corporate Care \nAPU: MSP Gold \nAvionics & Cabin: Rockwell Collins CASP\nAirframe 15/30/60/120/240 MO — c/w August 2025\nAirframe 180 MO — c/w June 2020\nAirframe 1000 HR — c/w August 2025\nAirframe 1500 HR — c/w June 2024\nAirframe 2250 HR — c/w June 2020\nAirframe 3000 HR — c/w August 2025\nAirframe 4,500 HR — c/w August 2025\nLanding Gear 120 MO & 240 MO — c/w August 2025\n450 LND — c/w 4366, due 4858\n900 LND — c/w 4124, due 5074\n1800 LND — c/w 3586, due 5400\n3750 LND — c/w 3586, due 7336\n7500 LND — due 7500"
     },
     {
       "status": "For Sale",
