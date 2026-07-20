@@ -1,10 +1,10 @@
 {
   "aircraft": [
     {
-      "id": "n61gb-beechjet-400a",
       "status": "For Sale",
       "year": "2002",
       "make_model": "Beechjet 400A",
+      "id": "n61gb-beechjet-400a",
       "registration": "N61GB",
       "serial": "RK-341",
       "category": "Light Jet",
@@ -15,12 +15,6 @@
       "price": "Price on request",
       "highlight": "Fresh 2022 paint & interior. Pro Line 4, Gogo AVANCE L3 Wi-Fi, thrust reversers.",
       "overview": "This 2002 Beechjet 400A presents exceptionally well, with both paint and interior completed in 2022. Powered by Pratt & Whitney JT15D-5R engines on a TBO Extension STC, she carries a full Collins Pro Line 4 avionics suite and is equipped for modern operations — Gogo AVANCE L3 Wi-Fi, ADS-B, RVSM certification, TCAS-II with Change 7, and EGPWS.\n\nThe seven-passenger cabin is finished in custom brown slate leather with dual fold-out tables, a fully-enclosed lavatory with sink, and USB power at the cockpit and VIP seat. A clean, well-equipped, thrust-reverser-equipped light jet ready for its next owner.",
-      "photos": [
-        { "image": "/images/listings/n61gb-1-exterior.jpg" },
-        { "image": "/images/listings/n61gb-2-cockpit.jpg" },
-        { "image": "/images/listings/n61gb-3-cabin.jpg" },
-        { "image": "/images/listings/n61gb-4-cabin.jpg" }
-      ],
       "spec_sheet": "/documents/n61gb-spec-sheet.pdf",
       "status_report": "/documents/n61gb-status-report.pdf",
       "due_list": "/documents/n61gb-due-list.pdf",
@@ -28,62 +22,100 @@
         {
           "group": "Airframe",
           "rows": [
-            { "label": "Total Time", "value": "6,870 hrs" },
-            { "label": "Total Cycles", "value": "5,456" }
+            {
+              "label": "Total Time",
+              "value": "6,870 hrs"
+            },
+            {
+              "label": "Total Cycles",
+              "value": "5,456"
+            }
           ]
         },
         {
           "group": "Engines — Pratt & Whitney JT15D-5R (TBO Extension STC)",
           "rows": [
-            { "label": "Engine 1 · SN PCE-JA0457 — TTSN", "value": "6,675.9" },
-            { "label": "Engine 2 · SN PCE-JA0460 — TTSN", "value": "6,643.9" },
-            { "label": "Engine 1 · Cycles Since New", "value": "5,293" },
-            { "label": "Engine 2 · Cycles Since New", "value": "5,151" },
-            { "label": "Engine 1 · TSOH (5,400 TBO)", "value": "3,112.7" },
-            { "label": "Engine 2 · TSOH (5,400 TBO)", "value": "3,863.8" }
+            {
+              "label": "Engine 1 · SN PCE-JA0457 — TTSN",
+              "value": "6,675.9"
+            },
+            {
+              "label": "Engine 2 · SN PCE-JA0460 — TTSN",
+              "value": "6,643.9"
+            },
+            {
+              "label": "Engine 1 · Cycles Since New",
+              "value": "5,293"
+            },
+            {
+              "label": "Engine 2 · Cycles Since New",
+              "value": "5,151"
+            },
+            {
+              "label": "Engine 1 · TSOH (5,400 TBO)",
+              "value": "3,112.7"
+            },
+            {
+              "label": "Engine 2 · TSOH (5,400 TBO)",
+              "value": "3,863.8"
+            }
           ]
         }
       ],
       "avionics": [
-        { "item": "Collins Pro Line 4 Avionics Package" },
-        { "item": "Collins ADF-462" },
-        { "item": "Collins APS-4000 Autopilot" },
-        { "item": "Dual Collins VHF-422C" },
-        { "item": "Cockpit Voice Recorder" },
-        { "item": "Dual Collins DME-422" },
-        { "item": "Collins 3-Tube EFIS" },
-        { "item": "Dual Collins FMS-5000" },
-        { "item": "Collins GPS-4000" },
-        { "item": "Dual Collins VIR-432 Navigation Radios" },
-        { "item": "Collins ALT-55B Radar Altimeter" },
-        { "item": "Honeywell Mark V EGPWS" },
-        { "item": "Collins TCAS-II with Change 7" },
-        { "item": "Dual GTX-3000 Mode S Transponder" },
-        { "item": "Collins TWR-850 Weather Radar" },
-        { "item": "Garmin Flight Stream 110" }
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
       ],
       "features": [
-        { "item": "Windshield Temperature Control" },
-        { "item": "Gogo AVANCE L3 Wi-Fi" },
-        { "item": "Belted Aft Lav" },
-        { "item": "Freon Air Conditioning" },
-        { "item": "Dukane Seacom DK-120 Locator Beacon" },
-        { "item": "Dual Angle of Attack" },
-        { "item": "RVSM Certified" },
-        { "item": "Pneumatic Bleed Air & De-Ice" },
-        { "item": "Thrust Reversers" },
-        { "item": "ADS-B" },
-        { "item": "Standby & AHRS True Blue Battery STC" }
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
       ],
       "exterior": "Completed 2022. Overall Marathon White with lower base coat of Virga Blue Metallic and Medium Silver Metallic striping.",
       "interior": "Completed 2022. Seven-passenger configuration in custom brown slate leather. Beige headliner with lower sidewalls in leather. Dual fold-out tables with leather inserts, fully-enclosed lavatory with sink, and USB outlets — two in the cockpit and two in the cabin at the VIP seat.",
-      "maintenance": "Maintenance tracked on Veryon. Current status report and 6-month due list available above."
+      "maintenance": "Maintenance tracked on Veryon. Current status report and 6-month due list available above.",
+      "photos": [
+        {
+          "image": "/images/listings/n61gb-1-exterior.jpg"
+        },
+        {
+          "image": "/images/listings/n61gb-2-cockpit.jpg"
+        },
+        {
+          "image": "/images/listings/n61gb-3-cabin.jpg"
+        },
+        {
+          "image": "/images/listings/n61gb-4-cabin.jpg"
+        }
+      ]
     },
     {
-      "id": "global-express-xrs-9175",
       "status": "For Sale",
       "year": "2005",
       "make_model": "Global Express XRS",
+      "id": "global-express-xrs-9175",
       "registration": "",
       "serial": "9175",
       "category": "Large Cabin",
@@ -94,9 +126,6 @@
       "price": "Price on request",
       "highlight": "Ultra-long-range. Engines enrolled on Rolls-Royce Corporate Care (RRCC).",
       "overview": "",
-      "photos": [
-        { "image": "/images/listings/global-xrs-1.jpg" }
-      ],
       "spec_sheet": "",
       "status_report": "",
       "due_list": "",
@@ -104,24 +133,37 @@
         {
           "group": "Airframe",
           "rows": [
-            { "label": "Total Time", "value": "8,842.7 hrs" },
-            { "label": "Landings", "value": "4,672" }
+            {
+              "label": "Total Time",
+              "value": "8,842.7 hrs"
+            },
+            {
+              "label": "Landings",
+              "value": "4,672"
+            }
           ]
         }
       ],
       "avionics": [],
-      "features": [
-        { "item": "Engines enrolled on Rolls-Royce Corporate Care" }
-      ],
       "exterior": "",
       "interior": "",
-      "maintenance": ""
+      "maintenance": "",
+      "features": [
+        {
+          "item": "Engines enrolled on Rolls-Royce Corporate Care"
+        }
+      ],
+      "photos": [
+        {
+          "image": "/images/listings/global-xrs-1.jpg"
+        }
+      ]
     },
     {
-      "id": "challenger-604",
       "status": "For Sale",
       "year": "1997",
       "make_model": "Challenger 604",
+      "id": "challenger-604",
       "registration": "",
       "serial": "",
       "category": "Large Cabin",
@@ -132,9 +174,6 @@
       "price": "Price on request",
       "highlight": "Wide-body capability. Enrolled on GE OnPoint & MSP.",
       "overview": "",
-      "photos": [
-        { "image": "/images/listings/challenger-604-1.jpg" }
-      ],
       "spec_sheet": "",
       "status_report": "",
       "due_list": "",
@@ -142,24 +181,37 @@
         {
           "group": "Airframe",
           "rows": [
-            { "label": "Total Time", "value": "8,695.1 hrs" },
-            { "label": "Landings", "value": "4,002" }
+            {
+              "label": "Total Time",
+              "value": "8,695.1 hrs"
+            },
+            {
+              "label": "Landings",
+              "value": "4,002"
+            }
           ]
         }
       ],
       "avionics": [],
-      "features": [
-        { "item": "Enrolled on GE OnPoint & MSP" }
-      ],
       "exterior": "",
       "interior": "",
-      "maintenance": ""
+      "maintenance": "",
+      "features": [
+        {
+          "item": "Enrolled on GE OnPoint & MSP"
+        }
+      ],
+      "photos": [
+        {
+          "image": "/images/listings/challenger-604-1.jpg"
+        }
+      ]
     },
     {
-      "id": "lear-31a-232",
       "status": "For Sale",
       "year": "2001",
       "make_model": "Lear 31A",
+      "id": "lear-31a-232",
       "registration": "",
       "serial": "31A-232",
       "category": "Light Jet",
@@ -178,18 +230,100 @@
         {
           "group": "Airframe",
           "rows": [
-            { "label": "Total Time", "value": "5,923 hrs" },
-            { "label": "Landings", "value": "4,497" }
+            {
+              "label": "Total Time",
+              "value": "5,923 hrs"
+            },
+            {
+              "label": "Landings",
+              "value": "4,497"
+            }
+          ]
+        }
+      ],
+      "avionics": [],
+      "exterior": "",
+      "interior": "",
+      "maintenance": "",
+      "features": [
+        {
+          "item": "Engines enrolled on MSP Gold"
+        }
+      ]
+    },
+    {
+      "status": "For Sale",
+      "year": "2005",
+      "make_model": "Premier IA",
+      "id": "premier-ia-rb-137",
+      "registration": "N707KP",
+      "serial": "RB-137",
+      "category": "Light Jet",
+      "total_time": "2,835",
+      "cycles": "2,412",
+      "passengers": "6",
+      "engines": "FJ44-24",
+      "price": "Price on request",
+      "highlight": "Low time, Pro Line 21 with IFIS, TAP Blue engines, fresh Check 3.",
+      "overview": "This 2005 Premier IA has just 2,835 total hours, with both Williams FJ44-2A engines enrolled on TAP Blue (fully paid, no deferrals) and avionics on CASP. Fresh off a Check 3 inspection at 2,468 hours, shows 308 hours since HSI on both engines, and complied with the 18-year inspection in September 2023. The Collins Pro Line 21 3-tube suite includes IFIS 5000 with electric charts and XM weather, FMS-3000 v4.0, TCAS II with Change 7, and RVSM, ADS-B Out, and WAAS/LPV certification.\n\nThe six-passenger executive cabin is finished in hazelnut leather with a mid-cabin club, bronze ribbon mahogany trim, aft lavatory, and 110-volt outlets. Matterhorn white with maroon stripes, both windshields recently replaced, CAMP tracking, based in Hoquiam, WA.",
+      "photos": [
+        "/uploads/N707KP - Image 2.png",
+        "/uploads/5BE9897C-2912-4315-8CD5-613E33ED0F73.jpeg",
+        "/uploads/00DA91C9-17F5-4DBC-B393-3C4EF9176DAB.png",
+        "/uploads/2AD0FF56-3BEA-47F6-9D1F-2FA01588935C.png",
+        "/uploads/3BB5112B-5D93-4AEB-B799-DFCF7B63389C.jpeg",
+        "/uploads/84533C6C-712C-4A89-8688-3E27C8ABE836.jpeg",
+        "/uploads/IMG_0052.jpeg"
+      ],
+      "spec_sheet": "/uploads/2005 Premier IA - SN RB-137 Spec Sheet.pdf",
+      "status_report": "/uploads/Jun 2026 Status report.pdf",
+      "due_list": "",
+      "spec_groups": [
+        {
+          "group": "Airframe",
+          "rows": [
+            {
+              "label": "Total Time",
+              "value": "2,835"
+            },
+            {
+              "label": "Total Cycles",
+              "value": "2,412"
+            }
+          ]
+        },
+        {
+          "group": "Engines - Williams - FJAA-2A - 5,000 Hour TBO",
+          "rows": [
+            {
+              "label": "Engine 1 - SN 105177 - TTSN",
+              "value": "2,776"
+            },
+            {
+              "label": "Engine 2 - SN 105186 - TTSN",
+              "value": "2,776"
+            },
+            {
+              "label": "Engine 1 - Hours Since HSI",
+              "value": "308"
+            },
+            {
+              "label": "Engine 2 - Hours Since HSI",
+              "value": "308"
+            }
           ]
         }
       ],
       "avionics": [],
       "features": [
-        { "item": "Engines enrolled on MSP Gold" }
+        "Collins WAAS Operational Solution (WOS)",
+        "SecuraPlane XL500/5 Emergency Battery",
+        "Upgraded USB database loader",
+        "CAMP Maintenance Tracking"
       ],
-      "exterior": "",
-      "interior": "",
-      "maintenance": ""
+      "exterior": "Matterhorn white with maroon stripes",
+      "interior": "Executive 6-passenger. Hazelnut leather seats, mid-cabin club with aft two single forward-facing. Rembrandt Freize patterned carpeting. Bronze ribbon mahogany wood trim on forward cabinetry, cabinetry, and sidewall armrest. Aft lavatory. 110-volt outlets.",
+      "maintenance": "B Inspection (1,200 hour) — due at 3,564 hours\nCheck 3 (2,500 hour) — C/W at 2,468 hours\n18-Year Inspection — C/W September 2023\nCAMP maintenance tracking\nPilot windshield replaced 2021, co-pilot 2024"
     }
   ]
 }
