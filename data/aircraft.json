@@ -15,6 +15,12 @@
       "price": "Price on request",
       "highlight": "Fresh 2022 paint & interior. Pro Line 4, Gogo AVANCE L3 Wi-Fi, thrust reversers.",
       "overview": "This 2002 Beechjet 400A presents exceptionally well, with both paint and interior completed in 2022. Powered by Pratt & Whitney JT15D-5R engines on a TBO Extension STC, she carries a full Collins Pro Line 4 avionics suite and is equipped for modern operations — Gogo AVANCE L3 Wi-Fi, ADS-B, RVSM certification, TCAS-II with Change 7, and EGPWS.\n\nThe seven-passenger cabin is finished in custom brown slate leather with dual fold-out tables, a fully-enclosed lavatory with sink, and USB power at the cockpit and VIP seat. A clean, well-equipped, thrust-reverser-equipped light jet ready for its next owner.",
+      "photos": [
+        "/images/listings/n61gb-1-exterior.jpg",
+        "/images/listings/n61gb-2-cockpit.jpg",
+        "/images/listings/n61gb-3-cabin.jpg",
+        "/images/listings/n61gb-4-cabin.jpg"
+      ],
       "spec_sheet": "/documents/n61gb-spec-sheet.pdf",
       "status_report": "/documents/n61gb-status-report.pdf",
       "due_list": "/documents/n61gb-due-list.pdf",
@@ -95,13 +101,7 @@
       ],
       "exterior": "Completed 2022. Overall Marathon White with lower base coat of Virga Blue Metallic and Medium Silver Metallic striping.",
       "interior": "Completed 2022. Seven-passenger configuration in custom brown slate leather. Beige headliner with lower sidewalls in leather. Dual fold-out tables with leather inserts, fully-enclosed lavatory with sink, and USB outlets — two in the cockpit and two in the cabin at the VIP seat.",
-      "maintenance": "Maintenance tracked on Veryon. Current status report and 6-month due list available above.",
-      "photos": [
-        "/images/listings/n61gb-1-exterior.jpg",
-        "/images/listings/n61gb-2-cockpit.jpg",
-        "/images/listings/n61gb-3-cabin.jpg",
-        "/images/listings/n61gb-4-cabin.jpg"
-      ]
+      "maintenance": "Maintenance tracked on Veryon. Current status report and 6-month due list available above."
     },
     {
       "status": "For Sale",
@@ -118,6 +118,9 @@
       "price": "Price on request",
       "highlight": "Ultra-long-range. Engines enrolled on Rolls-Royce Corporate Care (RRCC).",
       "overview": "",
+      "photos": [
+        "/images/listings/global-xrs-1.jpg"
+      ],
       "spec_sheet": "",
       "status_report": "",
       "due_list": "",
@@ -137,15 +140,12 @@
         }
       ],
       "avionics": [],
-      "exterior": "",
-      "interior": "",
-      "maintenance": "",
       "features": [
         "Engines enrolled on Rolls-Royce Corporate Care"
       ],
-      "photos": [
-        "/images/listings/global-xrs-1.jpg"
-      ]
+      "exterior": "",
+      "interior": "",
+      "maintenance": ""
     },
     {
       "status": "For Sale",
@@ -162,6 +162,9 @@
       "price": "Price on request",
       "highlight": "Wide-body capability. Enrolled on GE OnPoint & MSP.",
       "overview": "",
+      "photos": [
+        "/images/listings/challenger-604-1.jpg"
+      ],
       "spec_sheet": "",
       "status_report": "",
       "due_list": "",
@@ -181,15 +184,12 @@
         }
       ],
       "avionics": [],
-      "exterior": "",
-      "interior": "",
-      "maintenance": "",
       "features": [
         "Enrolled on GE OnPoint & MSP"
       ],
-      "photos": [
-        "/images/listings/challenger-604-1.jpg"
-      ]
+      "exterior": "",
+      "interior": "",
+      "maintenance": ""
     },
     {
       "status": "For Sale",
@@ -226,12 +226,12 @@
         }
       ],
       "avionics": [],
-      "exterior": "",
-      "interior": "",
-      "maintenance": "",
       "features": [
         "Engines enrolled on MSP Gold"
-      ]
+      ],
+      "exterior": "",
+      "interior": "",
+      "maintenance": ""
     },
     {
       "status": "For Sale",
@@ -296,7 +296,29 @@
           ]
         }
       ],
-      "avionics": [],
+      "avionics": [
+        "EFIS: Collins Pro Line 21 3-Tube",
+        "FMS: Collins FMS-3000 (v4.0)",
+        "IFIS: IFIS 5000 with electric charts & XM Weather",
+        "AP: Collins FGC-3000 IFCS",
+        "COM: Dual Collins VHF-4000",
+        "NAV: Collins NAV-4500",
+        "DME: Collins DME-4000",
+        "ADF: Collins ADF-4000",
+        "HF: Collins HF-9000",
+        "WX: Collins WXR-800",
+        "TCAS: Collins TCAS II 4000 w/ Change 7",
+        "EGPWS: Honeywell Mark V",
+        "XPDR: Dual Collins TDR-94 (ADS-B Out)",
+        "GPS: Collins GPS-4000S WAAS/LPV",
+        "RA: Collins ALT-4000",
+        "AHRS: Collins AHC-3000",
+        "ADC: Dual Collins ADC-3000",
+        "FGP: Collins FGP-3000",
+        "FSU: Collins FSU-5010",
+        "CVR: L3 FA2100",
+        "ELT: Artex C406-2"
+      ],
       "features": [
         "Collins WAAS Operational Solution (WOS)",
         "SecuraPlane XL500/5 Emergency Battery",
