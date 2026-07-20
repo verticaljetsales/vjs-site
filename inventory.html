@@ -412,7 +412,8 @@ function render(d){
   document.getElementById('chips').innerHTML=cats.map((c,i)=>`<button class="chip2 ${i===0?'active':''}" data-c="${c}">${c}</button>`).join('');
 
   function card(a){
-    const photoOf=p=>(typeof p==='string'?p:(p&&p.image)?p.image:'');
+    const enc=u=>u?encodeURI(u):u;
+    const photoOf=p=>enc(typeof p==='string'?p:(p&&p.image)?p.image:'');
     const photo=(a.photos&&a.photos[0])?photoOf(a.photos[0]):'';
     const badge=a.status==='Under Contract'?'<span class="ac-badge uc">Under Contract</span>':'<span class="ac-badge">For Sale</span>';
     const name=`${a.year||''} ${a.make_model||''}`.trim();

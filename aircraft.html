@@ -383,13 +383,14 @@ fetch('/data/aircraft.json').then(r=>r.json()).then(d=>{
   const app=document.getElementById('app');
   if(!a){app.innerHTML='<section class="wrap" style="padding:180px 32px 120px"><h1 style="font-family:Fraunces,serif;font-size:2.4rem">Aircraft not found</h1><p style="color:var(--muted);margin-top:16px">This listing may have sold or been removed. <a href="/inventory.html" style="color:var(--gold)">View current inventory &rarr;</a></p></section>';return;}
   document.title=`${a.year} ${a.make_model} | Vertical Jet Sales`;
-  photos=(a.photos||[]).map(p=>(typeof p==='string'?p:(p&&p.image)?p.image:'')).filter(Boolean);
+  const enc=u=>u?encodeURI(u):u;
+  photos=(a.photos||[]).map(p=>enc(typeof p==='string'?p:(p&&p.image)?p.image:'')).filter(Boolean);
   const name=`${a.year||''} ${a.make_model||''}`.trim();
   const hero=photos[0]||'';
   const stats=[['Year',a.year],['Total Time',a.total_time],['Cycles',a.cycles],['Passengers',a.passengers],['Engines',a.engines],['Price',a.price]]
     .filter(s=>s[1]).map(s=>`<div class="qstat"><div class="ql">${esc(s[0])}</div><div class="qv">${esc(s[1])}</div></div>`).join('');
   const overview=(a.overview||'').split(/\n\s*\n/).filter(Boolean).map(p=>`<p>${esc(p)}</p>`).join('');
-  const docs=[[a.spec_sheet,'Full Spec Sheet'],[a.status_report,'Maintenance Status Report'],[a.due_list,'6-Month Due List']]
+  const docs=[[enc(a.spec_sheet),'Full Spec Sheet'],[enc(a.status_report),'Maintenance Status Report'],[enc(a.due_list),'6-Month Due List']]
     .filter(x=>x[0]).map(x=>`<a class="doccard" href="${x[0]}" download>${DLIC}<span class="dc-t">${x[1]}</span><span class="dc-dl">Download &darr;</span></a>`).join('');
   const specBlocks=(a.spec_groups||[]).map(g=>`<div class="spec-block rv"><h3>${esc(g.group)}</h3><div class="spec-rows">${
     (g.rows||[]).map(r=>`<div class="sr"><span class="k">${esc(r.label)}</span><span class="v">${esc(r.value)}</span></div>`).join('')}</div></div>`).join('');

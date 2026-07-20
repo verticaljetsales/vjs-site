@@ -8,6 +8,20 @@ backend:
 media_folder: "uploads"
 public_folder: "/uploads"
 
+# Clean up uploaded filenames automatically (spaces -> hyphens, lowercase, strip odd characters)
+# so photos always load. Also caps size and optimizes large images.
+media_libraries:
+  default:
+    config:
+      slugify_filename: true
+      max_file_size: 10485760   # 10 MB per file
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          width: 2400
+          height: 2400
+
 # Show a "Publish" workflow with drafts (optional). Leave off for simple direct publishing.
 # publish_mode: editorial_workflow
 
