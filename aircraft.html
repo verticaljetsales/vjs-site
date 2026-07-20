@@ -37,12 +37,14 @@
 
   /* ---------- NAV ---------- */
   header.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .4s ease,border-color .4s ease,padding .4s ease;padding:22px 0;border-bottom:1px solid transparent}
+  header.nav:before{content:"";position:absolute;inset:0;bottom:auto;height:190%;background:linear-gradient(180deg,rgba(7,15,23,.78) 0%,rgba(7,15,23,.42) 45%,rgba(7,15,23,0) 100%);z-index:-1;pointer-events:none;transition:opacity .4s ease}
+  header.nav.scrolled:before{opacity:0}
   header.nav.scrolled{background:rgba(8,15,23,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-cool);padding:14px 0}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
   .nav-logo img{height:66px;width:auto;transition:height .4s ease}
   header.nav.scrolled .nav-logo img{height:52px}
   .nav-links{display:flex;align-items:center;gap:34px}
-  .nav-links a.link{font-size:.82rem;letter-spacing:.04em;color:var(--bone);opacity:.82;transition:opacity .25s,color .25s;position:relative}
+  .nav-links a.link{font-size:.82rem;letter-spacing:.04em;color:var(--bone);opacity:.94;text-shadow:0 1px 10px rgba(0,0,0,.55);transition:opacity .25s,color .25s;position:relative}
   .nav-links a.link:hover{opacity:1;color:var(--gold-bright)}
   .btn{display:inline-block;font-family:"Archivo",sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:13px 24px;border-radius:2px;transition:all .28s ease;cursor:pointer;border:1px solid transparent}
   .btn-gold{background:var(--gold);color:var(--night-3)}
@@ -60,8 +62,8 @@
     100% {transform:scale(1.20) translate3d(-2.6%,-1.6%,0)}
   }
   /* clouds streaming past — the cue that reads as flight */
-  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 46%;
-              z-index:1;opacity:0;transition:opacity 1.4s ease;pointer-events:none}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;
+              z-index:1;opacity:0;transition:opacity .7s ease;pointer-events:none}
   .hero-video.on{opacity:1}
   .hero-media.video-on .sky-fx,.hero-media.video-on .sun-glow{opacity:0;transition:opacity .8s ease}
   .sky-fx{position:absolute;inset:-12% -8%;z-index:1;pointer-events:none;overflow:hidden}
@@ -189,7 +191,7 @@
   .closing{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden}
   .closing-media{position:absolute;inset:0;z-index:0}
   .closing-media img{width:100%;height:100%;object-fit:cover;object-position:center 40%;transform:scale(1.06);will-change:transform}
-  .closing-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,15,23,.92) 0%,rgba(7,15,23,.6) 45%,rgba(7,15,23,.2) 100%)}
+  .closing-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,15,23,.95) 0%,rgba(7,15,23,.72) 45%,rgba(7,15,23,.42) 100%)}
   .closing-inner{position:relative;z-index:2}
   .closing h2{font-size:clamp(2.2rem,5vw,4.2rem);max-width:16ch;margin-bottom:26px}
   .closing p{max-width:42ch;color:var(--bone);opacity:.9;margin-bottom:34px;font-size:1.1rem}
@@ -219,7 +221,9 @@
   .m-photo img.off-right{object-position:57% top}   /* Eric — head sits right of centre in source */
   .m-body{padding:24px 26px 28px}
   .member .m-name{font-family:"Fraunces",serif;font-size:1.5rem;color:var(--bone);line-height:1.1}
-  .member .m-role{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:9px 0 18px}
+  .member .m-role{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:9px 0 6px}
+  .member .m-email{font-size:.82rem;letter-spacing:.01em;color:var(--muted);margin:0 0 16px;transition:color .25s}
+  .member .m-email:hover{color:var(--gold-bright)}
   .readbio{background:none;border:none;color:var(--bone);font-family:"Archivo",sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:0;display:inline-flex;align-items:center;gap:9px;opacity:.85;transition:color .25s,opacity .25s}
   .readbio:hover{color:var(--gold-bright);opacity:1}
   .readbio .pl{color:var(--gold);font-size:1rem;line-height:1}
@@ -379,7 +383,7 @@ fetch('/data/aircraft.json').then(r=>r.json()).then(d=>{
   const app=document.getElementById('app');
   if(!a){app.innerHTML='<section class="wrap" style="padding:180px 32px 120px"><h1 style="font-family:Fraunces,serif;font-size:2.4rem">Aircraft not found</h1><p style="color:var(--muted);margin-top:16px">This listing may have sold or been removed. <a href="/inventory.html" style="color:var(--gold)">View current inventory &rarr;</a></p></section>';return;}
   document.title=`${a.year} ${a.make_model} | Vertical Jet Sales`;
-  photos=(a.photos||[]).map(p=>p.image).filter(Boolean);
+  photos=(a.photos||[]).map(p=>(typeof p==='string'?p:(p&&p.image)?p.image:'')).filter(Boolean);
   const name=`${a.year||''} ${a.make_model||''}`.trim();
   const hero=photos[0]||'';
   const stats=[['Year',a.year],['Total Time',a.total_time],['Cycles',a.cycles],['Passengers',a.passengers],['Engines',a.engines],['Price',a.price]]
@@ -389,7 +393,8 @@ fetch('/data/aircraft.json').then(r=>r.json()).then(d=>{
     .filter(x=>x[0]).map(x=>`<a class="doccard" href="${x[0]}" download>${DLIC}<span class="dc-t">${x[1]}</span><span class="dc-dl">Download &darr;</span></a>`).join('');
   const specBlocks=(a.spec_groups||[]).map(g=>`<div class="spec-block rv"><h3>${esc(g.group)}</h3><div class="spec-rows">${
     (g.rows||[]).map(r=>`<div class="sr"><span class="k">${esc(r.label)}</span><span class="v">${esc(r.value)}</span></div>`).join('')}</div></div>`).join('');
-  const listBlock=(t,arr)=>arr&&arr.length?`<div class="spec-block rv"><h3>${t}</h3><div class="spec-list">${arr.map(i=>`<div class="li">${esc(i.item)}</div>`).join('')}</div></div>`:'';
+  const itemOf=i=>(typeof i==='string'?i:(i&&i.item)?i.item:'');
+  const listBlock=(t,arr)=>{const items=(arr||[]).map(itemOf).filter(Boolean);return items.length?`<div class="spec-block rv"><h3>${t}</h3><div class="spec-list">${items.map(v=>`<div class="li">${esc(v)}</div>`).join('')}</div></div>`:'';};
   const proseBlock=(t,v)=>v?`<div class="spec-block rv"><h3>${t}</h3><p class="prose-spec">${esc(v)}</p></div>`:'';
 
   app.innerHTML=`

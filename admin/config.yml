@@ -68,17 +68,9 @@ collections:
                       - { label: "Label", name: "label", widget: "string", required: false }
                       - { label: "Value", name: "value", widget: "string", required: false }
 
-              - label: "Avionics"
-                name: "avionics"
-                widget: "list"
-                required: false
-                field: { label: "Item", name: "item", widget: "string", required: false }
+              - { label: "Avionics", name: "avionics", widget: "list", required: false, hint: "One item per line. Click Add to add more." }
 
-              - label: "Additional Features"
-                name: "features"
-                widget: "list"
-                required: false
-                field: { label: "Item", name: "item", widget: "string", required: false }
+              - { label: "Additional Features", name: "features", widget: "list", required: false, hint: "One item per line. Click Add to add more." }
 
               - { label: "Exterior", name: "exterior", widget: "text", required: false }
               - { label: "Interior", name: "interior", widget: "text", required: false }

@@ -63,52 +63,44 @@
         }
       ],
       "avionics": [
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
+        "Collins Pro Line 4 Avionics Package",
+        "Collins ADF-462",
+        "Collins APS-4000 Autopilot",
+        "Dual Collins VHF-422C",
+        "Cockpit Voice Recorder",
+        "Dual Collins DME-422",
+        "Collins 3-Tube EFIS",
+        "Dual Collins FMS-5000",
+        "Collins GPS-4000",
+        "Dual Collins VIR-432 Navigation Radios",
+        "Collins ALT-55B Radar Altimeter",
+        "Honeywell Mark V EGPWS",
+        "Collins TCAS-II with Change 7",
+        "Dual GTX-3000 Mode S Transponder",
+        "Collins TWR-850 Weather Radar",
+        "Garmin Flight Stream 110"
       ],
       "features": [
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
+        "Windshield Temperature Control",
+        "Gogo AVANCE L3 Wi-Fi",
+        "Belted Aft Lav",
+        "Freon Air Conditioning",
+        "Dukane Seacom DK-120 Locator Beacon",
+        "Dual Angle of Attack",
+        "RVSM Certified",
+        "Pneumatic Bleed Air & De-Ice",
+        "Thrust Reversers",
+        "ADS-B",
+        "Standby & AHRS True Blue Battery STC"
       ],
       "exterior": "Completed 2022. Overall Marathon White with lower base coat of Virga Blue Metallic and Medium Silver Metallic striping.",
       "interior": "Completed 2022. Seven-passenger configuration in custom brown slate leather. Beige headliner with lower sidewalls in leather. Dual fold-out tables with leather inserts, fully-enclosed lavatory with sink, and USB outlets — two in the cockpit and two in the cabin at the VIP seat.",
       "maintenance": "Maintenance tracked on Veryon. Current status report and 6-month due list available above.",
       "photos": [
-        {
-          "image": "/images/listings/n61gb-1-exterior.jpg"
-        },
-        {
-          "image": "/images/listings/n61gb-2-cockpit.jpg"
-        },
-        {
-          "image": "/images/listings/n61gb-3-cabin.jpg"
-        },
-        {
-          "image": "/images/listings/n61gb-4-cabin.jpg"
-        }
+        "/images/listings/n61gb-1-exterior.jpg",
+        "/images/listings/n61gb-2-cockpit.jpg",
+        "/images/listings/n61gb-3-cabin.jpg",
+        "/images/listings/n61gb-4-cabin.jpg"
       ]
     },
     {
@@ -149,14 +141,10 @@
       "interior": "",
       "maintenance": "",
       "features": [
-        {
-          "item": "Engines enrolled on Rolls-Royce Corporate Care"
-        }
+        "Engines enrolled on Rolls-Royce Corporate Care"
       ],
       "photos": [
-        {
-          "image": "/images/listings/global-xrs-1.jpg"
-        }
+        "/images/listings/global-xrs-1.jpg"
       ]
     },
     {
@@ -197,14 +185,10 @@
       "interior": "",
       "maintenance": "",
       "features": [
-        {
-          "item": "Enrolled on GE OnPoint & MSP"
-        }
+        "Enrolled on GE OnPoint & MSP"
       ],
       "photos": [
-        {
-          "image": "/images/listings/challenger-604-1.jpg"
-        }
+        "/images/listings/challenger-604-1.jpg"
       ]
     },
     {
@@ -246,9 +230,7 @@
       "interior": "",
       "maintenance": "",
       "features": [
-        {
-          "item": "Engines enrolled on MSP Gold"
-        }
+        "Engines enrolled on MSP Gold"
       ]
     },
     {
