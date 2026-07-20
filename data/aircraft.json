@@ -315,6 +315,19 @@
               "value": "4,497"
             }
           ]
+        },
+        {
+          "group": "Engines — Honeywell - TFE731-2-3B",
+          "rows": [
+            {
+              "label": "Engine 1-P99591",
+              "value": "5,776"
+            },
+            {
+              "label": "Engine 2-P99590",
+              "value": "5,828"
+            }
+          ]
         }
       ],
       "avionics": [
