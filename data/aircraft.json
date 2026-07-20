@@ -211,22 +211,28 @@
       "year": "1997",
       "make_model": "Challenger 604",
       "id": "challenger-604",
-      "registration": "",
-      "serial": "",
+      "registration": "N530BD",
+      "serial": "5352",
       "category": "Large Cabin",
       "total_time": "8,695.1 hrs",
       "cycles": "4,002",
-      "passengers": "",
-      "engines": "",
+      "passengers": "10",
+      "engines": "CF34-3B",
       "price": "Price on request",
-      "highlight": "Wide-body capability. Enrolled on GE OnPoint & MSP.",
-      "overview": "",
+      "highlight": "Fresh 48-Month by Duncan, GE OnPoint, & MSP.",
+      "overview": "This 1997 Challenger 604 is fresh off a 48-month inspection completed in July 2025 by Duncan Aviation in Provo, with 6- and 12-month inspections complied with in May 2026. Both GE CF34-3B engines are enrolled on GE OnPoint and the Garrett APU on MSP. She shows 8,695.1 total hours and 4,002 landings, tracked on TRAXXALL and currently operated Part 135.\n\nThe Collins Pro Line 4 flight deck includes triple FMS-6000, TCAS II with Change 7.1, Honeywell Mark V EGPWS, dual HF, and AirCell ST-3100 Satcom. The 10-passenger cabin features a forward 4-place club with a 4-place divan opposite a 2-place club, right forward galley, Airshow 400, ATG-5000 Wi-Fi, and cockpit seats recovered in new leather and sheepskin in September 2025. Exterior refurbished in 2018 in Matterhorn white and royal blue.",
       "photos": [
-        "/images/listings/challenger-604-1.jpg"
+        "/uploads/Exterior - 944.jpg",
+        "/uploads/Cockpit - 810.jpg",
+        "/uploads/Interior - 874.jpg",
+        "/uploads/Interior - 827.jpg",
+        "/uploads/Interior - 834.jpg",
+        "/uploads/Interior - 863.jpg",
+        "/uploads/Exterior - 959.jpg"
       ],
-      "spec_sheet": "",
-      "status_report": "",
-      "due_list": "",
+      "spec_sheet": "/uploads/Challenger 604 5352.pdf",
+      "status_report": "/uploads/N530BD Status Report AD's - SB's- 06.01.26.pdf",
+      "due_list": "/uploads/N530BD Due List - 24MO - 600HR - 05.06.26.pdf",
       "spec_groups": [
         {
           "group": "Airframe",
@@ -242,13 +248,33 @@
           ]
         }
       ],
-      "avionics": [],
+      "avionics": [
+        "Collins Pro Line 4",
+        "EFIS: Collins 6-Tube 7x7 inch",
+        "FMS: Three Collins FMS-6000",
+        "DBU: DBU-5010E",
+        "IRS: Dual Litton 101",
+        "Weather Radar: Collins RTA-850",
+        "TCAS: Collins TTR-2100 TCAS II with Change 7.1",
+        "EGPWS: Honeywell Mark V",
+        "DME: Dual Collins DME-442",
+        "ADF: Dual Collins ADF-462",
+        "Radar Altimeter: Collins ALT 55B",
+        "Transponders: Dual Collins TDR 94D",
+        "VHF Comm/Nav: Dual Collins VHF-422C with 8.33 spacing",
+        "VOR Nav: Dual Collins VIR-432",
+        "HF: Dual Collins 9031A",
+        "ELT: Artex G406-1",
+        "CVR: L3 A100S",
+        "FDR: L3 F1000",
+        "Satcom: AirCell ST-3100"
+      ],
       "features": [
         "Enrolled on GE OnPoint & MSP"
       ],
       "exterior": "",
       "interior": "",
-      "maintenance": ""
+      "maintenance": "Fresh 48-Month completed 7/25 by Duncan Aviation (Provo)\n6 Month — c/w May 2026; next due Nov 2026\n12 Month — c/w May 2026; next due May 2027\n24 Month — c/w May 2025; next due May 2027\n36 Month — c/w May 2025; next due April 2028\n48 Month — c/w July 2025; next due April 2029\n96 Month — c/w July 2021; next due April 2029\nMLG Detailed Inspection — c/w July 2021; next due April 2029"
     },
     {
       "status": "For Sale",
