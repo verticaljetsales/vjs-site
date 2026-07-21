@@ -378,8 +378,8 @@ const id=new URLSearchParams(location.search).get('id');
 let photos=[],cur=0;
 function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 
-fetch('/data/aircraft.json').then(r=>r.json()).then(d=>{
-  const a=(d.aircraft||[]).find(x=>x.id===id);
+const encId=encodeURIComponent(id||'');
+fetch('/data/aircraft/'+encId+'.json').then(r=>{if(!r.ok)throw new Error('nf');return r.json();}).then(a=>{
   const app=document.getElementById('app');
   if(!a){app.innerHTML='<section class="wrap" style="padding:180px 32px 120px"><h1 style="font-family:Fraunces,serif;font-size:2.4rem">Aircraft not found</h1><p style="color:var(--muted);margin-top:16px">This listing may have sold or been removed. <a href="/inventory.html" style="color:var(--gold)">View current inventory &rarr;</a></p></section>';return;}
   document.title=`${a.year} ${a.make_model} | Vertical Jet Sales`;
@@ -467,6 +467,8 @@ fetch('/data/aircraft.json').then(r=>r.json()).then(d=>{
     cm.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
     cm.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)show(cur+(dx<0?1:-1));},{passive:true});
   }
+}).catch(function(){
+  document.getElementById('app').innerHTML='<section class="wrap" style="padding:180px 32px 120px"><h1 style="font-family:Fraunces,serif;font-size:2.4rem">Aircraft not found</h1><p style="color:var(--muted);margin-top:16px">This listing may have sold or been removed. <a href="/inventory.html" style="color:var(--gold)">View current inventory &rarr;</a></p></section>';
 });
 </script>
 <script>

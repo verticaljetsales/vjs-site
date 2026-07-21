@@ -1,11 +1,12 @@
 # Netlify configuration for the Vertical Jet Sales website.
-# No build step: Netlify serves these static files as-is.
+# Runs a tiny script on each deploy to rebuild the aircraft index from the
+# data/aircraft/ folder, so the inventory list is always in sync.
 
 [build]
   publish = "."
-  command = ""
+  command = "node build-index.js"
 
-# Serve the data file as raw JSON, never cached, never redirected.
+# Serve data files as raw JSON, never cached, never redirected.
 [[headers]]
   for = "/data/*"
   [headers.values]
