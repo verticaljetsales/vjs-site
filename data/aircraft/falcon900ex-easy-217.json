@@ -1,0 +1,94 @@
+{
+  "order": 6,
+  "status": "For Sale",
+  "year": "2008",
+  "make_model": "Falcon 900EX EASy",
+  "id": "falcon900ex-easy-217",
+  "registration": "N512KS",
+  "serial": "217",
+  "category": "Large Cabin",
+  "total_time": "2,633.8",
+  "cycles": "1,566",
+  "passengers": "14",
+  "engines": "TFE73160-1C",
+  "price": "Price on request",
+  "highlight": "Only 2,634 hours, MSP Gold, HUD, winglets, fresh Duncan inspections.",
+  "overview": "This 2008 Falcon 900EX EASy shows exceptionally low time at 2,633.8 hours and 1,566 landings, with all three TFE731-60-1C engines and the APU on MSP Gold. She's currently completing a major inspection package at Duncan Aviation Lincoln — 12M through 36M, 1C and 3C — all complied with January 2026. Tracked on TRAXXALL, operated Part 91/135.\n\nThe Honeywell EASy II Primus EPIC suite is Cert 4 with Collins HUD, WAAS/LPV, FANS 1/A, CPDLC, and TCAS 3000, plus Aviation Partners blended winglets. The 14-passenger cabin was completed by Duncan in July 2014 on a three-year refresh cycle, with forward club, mid conference group, and dual aft divans, Gogo AVANCE L3 Wi-Fi, Collins Venue CMS, and Rosen HD monitors. Snow white exterior with black velvet and ice silver.",
+  "photos": [
+    "/uploads/twilight-5315.webp"
+  ],
+  "spec_sheet": "/uploads/vjs-spec-n512ks-020526.pdf",
+  "status_report": "",
+  "due_list": "",
+  "spec_groups": [
+    {
+      "group": "Airframe",
+      "rows": [
+        {
+          "label": "Total Time",
+          "value": "6,870 hrs"
+        },
+        {
+          "label": "Total Cycles",
+          "value": "5,456"
+        }
+      ]
+    },
+    {
+      "group": "Engines — Honeywell TFE731 60-1C",
+      "rows": [
+        {
+          "label": "Engine 1 · SN P112840— TTSN",
+          "value": "2,633.8"
+        },
+        {
+          "label": "Engine 2 · SN P112841 — TTSN",
+          "value": "2,633.8"
+        },
+        {
+          "label": "Engine 1 · Cycles Since New",
+          "value": "1,566"
+        },
+        {
+          "label": "Engine 2 · Cycles Since New",
+          "value": "1,566"
+        },
+        {
+          "label": "Engine 3 · SN P112842 TTSN",
+          "value": "2,633.8"
+        },
+        {
+          "label": "Engine 3 · Cycles Since New",
+          "value": "1,566"
+        }
+      ]
+    }
+  ],
+  "avionics": [
+    "Push to Load function",
+    "WAAS / LPV",
+    "Future Air Navigation System (FANS 1/A)",
+    "Controller Pilot Data Link Communication (CPDLC)",
+    "Rockwell Collins Heads-Up Guidance System (HUD)",
+    "Aviation Partners blended winglets",
+    "Collins Venue CMS",
+    "Upgraded Rosen HD monitors throughout cabin",
+    "EMTEQ LED lighting upgrades",
+    "Aft/mid cabin divider with hard door",
+    "Gogo AVANCE L3 Wi-Fi",
+    "Securaplane video monitoring system"
+  ],
+  "features": [
+    "Gogo AVANCE L3 Wi-Fi",
+    "Airshow 4000",
+    "Collins Venue CMS",
+    "AC outlets",
+    "Rosen HD monitors at each seat",
+    "EMTEQ LED lighting",
+    "Aft/mid upgraded hard door",
+    "TIA microwave"
+  ],
+  "exterior": "Completed 2014. Overall Snow White with lower base coat of Black Velvet and Ice Silver & Snow White striping.",
+  "interior": "Completed 2014 by Duncan Aviation, refreshed every three years. Fourteen-passenger configuration with a forward 4-place club, mid conference group, and dual aft divans. Collins Venue CMS, Rosen HD monitors at each seat, LED lighting, and AVANCE L3 Wi-Fi.",
+  "maintenance": "Currently completing 12M, 12M/800hr, 24M, 24M/1600hr, 36M, 36M/2400hr, 1C & 3C inspections — Duncan Aviation Lincoln\n12MO / 24MO Inspections — c/w January 2026\n36MO Inspection — c/w January 2026\n1C Inspection (72MO) — c/w January 2026\n2C Inspection (144MO) — c/w March 2020\n3C Inspection (216MO) — c/w January 2026"
+}
