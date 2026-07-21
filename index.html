@@ -35,6 +35,13 @@
     overflow-x:hidden;
   }
   h1,h2,h3{font-family:"Fraunces","Georgia",serif;font-weight:400;line-height:1.05;letter-spacing:-0.01em}
+  /* Fraunces ships decorative ligatures/swashes that warp the lowercase "f" at display sizes.
+     Turn them off everywhere for clean, standard letterforms. */
+  h1,h2,h3,h4,h5,h6,.lede,.pillar p,.readcard .rc-model,.readcard .rc-row .v,.report .r-top .rt-title,.report .r-line .rl-v,.step .num,
+  [style*="Fraunces"], .ac-name,.ac-spec .sv,.d-hero h1,.qstat .qv,.car-count{
+    font-variant-ligatures:none;
+    font-feature-settings:"liga" 0,"dlig" 0,"swsh" 0,"calt" 0;
+  }
   a{color:inherit;text-decoration:none}
   img{display:block;max-width:100%}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
