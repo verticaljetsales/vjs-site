@@ -1,0 +1,96 @@
+backend:
+  name: github
+  repo: verticaljetsales/vjs-site
+  branch: main
+  # base_url: https://your-oauth-proxy.example.com   # <-- see README, step 4
+
+# Where photos and documents Kalene uploads are stored
+media_folder: "uploads"
+public_folder: "/uploads"
+
+# Clean up uploaded filenames automatically (spaces -> hyphens, lowercase, strip odd characters)
+# so photos always load. Also caps size and optimizes large images.
+media_libraries:
+  default:
+    config:
+      slugify_filename: true
+      max_file_size: 20971520   # reject any single source file over 20 MB (user gets a clear message)
+      transformations:
+        raster_image:
+          format: webp          # convert every photo to WebP (much smaller) BEFORE upload
+          quality: 80
+          width: 2200            # cap the longest edge so huge camera files shrink dramatically
+          height: 2200
+        svg:
+          optimize: true
+
+
+# Show a "Publish" workflow with drafts (optional). Leave off for simple direct publishing.
+# publish_mode: editorial_workflow
+
+collections:
+  - name: "aircraft"
+    label: "Aircraft Inventory"
+    label_singular: "Aircraft"
+    folder: "data/aircraft"
+    extension: "json"
+    format: "json"
+    create: true
+    duplicate: true
+    reorder: true
+    slug: "{{fields.id}}"
+    identifier_field: "make_model"
+    summary: "{{fields.year}} {{fields.make_model}} — {{fields.status}}"
+    sortable_fields: ["order", "make_model", "year", "status"]
+    description: "Each aircraft is its own listing. To add one similar to an existing jet, open it, click the ⋮ menu, and choose Duplicate — then just change the details and photos."
+    fields:
+      - { label: "Display Order", name: "order", widget: "number", default: 10, hint: "Lower numbers show first on the inventory page.", value_type: "int", required: false }
+      - { label: "Status", name: "status", widget: "select", options: ["For Sale", "Under Contract", "Sold"], default: "For Sale", hint: "Sold aircraft move to the Recently Transacted list automatically." }
+      - { label: "Year", name: "year", widget: "string", hint: "e.g. 2002" }
+      - { label: "Make & Model", name: "make_model", widget: "string", hint: "e.g. Beechjet 400A" }
+      - { label: "Page ID (URL)", name: "id", widget: "string", hint: "The web address for this aircraft. Lowercase letters and dashes only, no spaces. Example: premier-ia-rb-137. IMPORTANT: when duplicating, change this to something unique." }
+      - { label: "Registration / Tail #", name: "registration", widget: "string", required: false }
+      - { label: "Serial Number", name: "serial", widget: "string", required: false }
+      - { label: "Category", name: "category", widget: "select", options: ["Light Jet", "Mid-Size", "Super-Mid", "Large Cabin", "Long Range", "Turboprop"] }
+      - { label: "Total Time", name: "total_time", widget: "string", required: false, hint: "e.g. 6,870 hrs" }
+      - { label: "Cycles / Landings", name: "cycles", widget: "string", required: false }
+      - { label: "Passengers", name: "passengers", widget: "string", required: false }
+      - { label: "Engines", name: "engines", widget: "string", required: false, hint: "e.g. JT15D-5R" }
+      - { label: "Price", name: "price", widget: "string", default: "Price on request" }
+      - { label: "Highlight (one line on the card)", name: "highlight", widget: "text", required: false }
+      - { label: "Overview", name: "overview", widget: "text", required: false, hint: "The write-up on the aircraft page. Blank line = new paragraph." }
+
+      - label: "Photos"
+        name: "photos"
+        widget: "list"
+        required: false
+        hint: "First photo is the main/hero image. Drag to reorder. Tip: add a few, Save, then add more."
+        field: { label: "Photo", name: "image", widget: "image" }
+
+      - { label: "Spec Sheet (PDF)", name: "spec_sheet", widget: "file", required: false }
+      - { label: "Maintenance Status Report (PDF)", name: "status_report", widget: "file", required: false }
+      - { label: "6-Month Due List (PDF)", name: "due_list", widget: "file", required: false }
+
+      - label: "Specification Groups"
+        name: "spec_groups"
+        widget: "list"
+        required: false
+        label_singular: "Spec Group"
+        summary: "{{fields.group}}"
+        hint: "e.g. Airframe, Engines. Each group holds rows of label/value."
+        fields:
+          - { label: "Group Name", name: "group", widget: "string", required: false }
+          - label: "Rows"
+            name: "rows"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Label", name: "label", widget: "string", required: false }
+              - { label: "Value", name: "value", widget: "string", required: false }
+
+      - { label: "Avionics", name: "avionics", widget: "list", required: false, hint: "One item per line. Click Add to add more." }
+      - { label: "Additional Features", name: "features", widget: "list", required: false, hint: "One item per line. Click Add to add more." }
+
+      - { label: "Exterior", name: "exterior", widget: "text", required: false }
+      - { label: "Interior", name: "interior", widget: "text", required: false }
+      - { label: "Maintenance Notes", name: "maintenance", widget: "text", required: false }

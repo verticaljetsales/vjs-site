@@ -1,0 +1,19 @@
+# Netlify configuration for the Vertical Jet Sales website.
+# Runs a tiny script on each deploy to rebuild the aircraft index from the
+# data/aircraft/ folder, so the inventory list is always in sync.
+
+[build]
+  publish = "."
+  command = "node build-index.js"
+
+# Serve data files as raw JSON, never cached, never redirected.
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Content-Type = "application/json"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
