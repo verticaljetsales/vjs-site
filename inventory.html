@@ -419,7 +419,7 @@ function render(d){
     const name=`${a.year||''} ${a.make_model||''}`.trim();
     return `<div class="ac rv" data-c="${a.category||''}">
       <div class="ac-media">${badge}<span class="ac-cat">${a.category||''}</span>
-        ${photo?`<img src="${photo}" alt="${name}">`:'<span class="ac-ph">Photography coming soon</span>'}</div>
+        ${photo?`<img src="${photo}" alt="${name}" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span class=\\'ac-ph\\'>Photography coming soon</span>');">`:'<span class="ac-ph">Photography coming soon</span>'}</div>
       <div class="ac-body">
         <div class="ac-name">${name}</div>
         <div class="ac-sn">${a.serial?('SN '+a.serial):(a.registration||'')}</div>

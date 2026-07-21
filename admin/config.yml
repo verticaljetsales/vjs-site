@@ -36,6 +36,8 @@ collections:
     extension: "json"
     format: "json"
     create: true
+    duplicate: true
+    reorder: true
     slug: "{{fields.id}}"
     identifier_field: "make_model"
     summary: "{{fields.year}} {{fields.make_model}} — {{fields.status}}"
