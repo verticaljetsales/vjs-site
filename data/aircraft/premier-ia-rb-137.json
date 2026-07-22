@@ -1,4 +1,5 @@
 {
+  "order": 4,
   "status": "For Sale",
   "year": "2005",
   "make_model": "Premier IA",
@@ -92,6 +93,5 @@
   ],
   "exterior": "Matterhorn white with maroon stripes",
   "interior": "Executive 6-passenger. Hazelnut leather seats, mid-cabin club with aft two single forward-facing. Rembrandt Freize patterned carpeting. Bronze ribbon mahogany wood trim on forward cabinetry, cabinetry, and sidewall armrest. Aft lavatory. 110-volt outlets.",
-  "maintenance": "B Inspection (1,200 hour) — due at 3,564 hours\nCheck 3 (2,500 hour) — C/W at 2,468 hours\n18-Year Inspection — C/W September 2023\nCAMP maintenance tracking\nPilot windshield replaced 2021, co-pilot 2024",
-  "order": 5
+  "maintenance": "B Inspection (1,200 hour) — due at 3,564 hours\nCheck 3 (2,500 hour) — C/W at 2,468 hours\n18-Year Inspection — C/W September 2023\nCAMP maintenance tracking\nPilot windshield replaced 2021, co-pilot 2024"
 }
