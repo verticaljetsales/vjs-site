@@ -1,0 +1,88 @@
+{
+  "order": 6,
+  "status": "For Sale",
+  "year": "2001",
+  "make_model": "Lear 31A",
+  "id": "lear-31a-232",
+  "registration": "N68VP",
+  "serial": "31A-232",
+  "category": "Light Jet",
+  "total_time": "5,923 hrs",
+  "cycles": "4,497",
+  "passengers": "8",
+  "engines": "TFE731-2-3B",
+  "price": "Price on request",
+  "highlight": "Low time, fresh Phase A-D & 12-year, Engines enrolled on MSP Gold.",
+  "overview": "This 2001 Learjet 31A has 5,923 total hours and 4,497 cycles, with both Honeywell TFE731-2-3B engines on MSP Gold. She's fresh out of a Phase A–D and 12-year inspection completed December 2025 by Intercontinental Jet Services Corp.\n\nEquipped with Raisbeck ZR LITE, aft fuselage locker, winglets, and Dee Howard TR-4000 thrust reversers. The panel includes Universal UNS-1E FMS, 5-tube EFIS-50, dual Garmin GTX3000 transponders, GDL88 ADS-B Out, TCAS II, and RVSM. The eight-passenger cabin features grey leather with a mid-cabin club and aft 3-place divan, belted forward lavatory, and 110-volt outlets. Based in San Antonio, TX.",
+  "photos": [
+    "/uploads/sunset_cover_photo_web.webp",
+    "/uploads/1a0a6151-hdr_web.webp",
+    "/uploads/1a0a6211-hdr_web.webp",
+    "/uploads/1a0a6271_web.webp",
+    "/uploads/1a0a6126-hdr_web.webp",
+    "/uploads/1a0a6064_web.webp"
+  ],
+  "spec_sheet": "/uploads/2001-learjet-31a-sn-232-spec-sheet.pdf",
+  "status_report": "/uploads/cams-report-n68vp-july-26.pdf",
+  "due_list": "",
+  "spec_groups": [
+    {
+      "group": "Airframe",
+      "rows": [
+        {
+          "label": "Total Time",
+          "value": "5,923 hrs"
+        },
+        {
+          "label": "Landings",
+          "value": "4,497"
+        }
+      ]
+    },
+    {
+      "group": "Engines - Honeywell - TFE731-2-3B",
+      "rows": [
+        {
+          "label": "Engine 1 - S/N P99592",
+          "value": "5,776"
+        },
+        {
+          "label": "Engine 2 - S/N P99590",
+          "value": "5,828"
+        }
+      ]
+    }
+  ],
+  "avionics": [
+    "FMS: Universal UNS-1E with Solid State Data Transfer Unit (SSDTU)",
+    "EFIS: 5-Tube EFIS-50 System",
+    "Autopilot: KFC-3100",
+    "Comm Radios: Dual VC-401B with 8.33 kHz spacing",
+    "Nav Radios: Dual VN-411B",
+    "Nav Receiver: DF-431B ADF",
+    "DME: DM-441B",
+    "Radio Altimeter: KRA-405B",
+    "Weather Radar: RDR-2000",
+    "HF: KHF-950",
+    "EGPWS: Allied Signal MK-VII",
+    "TCAS II: CAS-67A",
+    "Transponder: Dual Garmin GTX3000 Mode-S",
+    "Datalink Transceiver: Garmin GDL88 ADS-B Out",
+    "CVR: Universal CVR-30A",
+    "ELT: Artex C406-2 MHz"
+  ],
+  "features": [
+    "Raisbeck ZR LITE Performance System",
+    "Raisbeck Aft Fuselage Locker",
+    "Winglets",
+    "36\" Cargo Door",
+    "Single Point Refueling",
+    "Dee Howard TR-4000 Thrust Reversers",
+    "Cabin Power Switch",
+    "Lopresti Boom Beam Landing & Recognition Lights",
+    "RVSM"
+  ],
+  "exterior": "Overall white with blue and yellow trim stripes",
+  "interior": "Executive, 8 passenger\nGrey leather seats, mid-cabin club, aft 3-place divan\nCustom dark grey patterned carpeting\nHigh gloss woodwork with dual foldout tables\nBelted forward lavatory\n110-volt outlets",
+  "maintenance": "12-Year Inspection — c/w December 2025, Intercontinental Jet Services Corp\nFresh Phase A–D Inspection — c/w December 2025"
+}
