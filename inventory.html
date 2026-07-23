@@ -314,8 +314,14 @@
   .ac-cta.ghost{background:transparent;color:var(--bone);border:1px solid var(--line-gold)}
   .ac-cta.ghost:hover{border-color:var(--gold);color:var(--gold-bright)}
   .sold{background:var(--night-3)}
-  .sold-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-cool);border:1px solid var(--line-cool)}
-  .sold-item{background:var(--night-3);padding:22px 24px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .sold-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .sold-item{background:var(--night-2);border:1px solid var(--line-cool);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;transition:border-color .3s,transform .3s}
+  .sold-item:hover{border-color:var(--line-gold);transform:translateY(-3px)}
+  .sold-thumb{aspect-ratio:16/10;background:var(--night-3);overflow:hidden;position:relative}
+  .sold-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(35%);transition:filter .5s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+  .sold-item:hover .sold-thumb img{filter:grayscale(0%);transform:scale(1.04)}
+  .sold-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .sold-foot{padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
   .sold-item .si-n{font-family:"Playfair Display",serif;font-size:1.08rem;color:var(--bone)}
   .sold-item .si-t{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line-gold);padding:4px 9px;border-radius:2px;white-space:nowrap}
   .empty{color:var(--muted);padding:60px 0;text-align:center}
@@ -454,8 +460,17 @@ function render(d){
 
   if(sold.length){
     document.getElementById('soldSec').style.display='';
-    document.getElementById('soldGrid').innerHTML=sold.map(a=>
-      `<div class="sold-item rv"><span class="si-n">${a.year||''} ${a.make_model||''}</span><span class="si-t">Sold</span></div>`).join('');
+    const encS=u=>u?encodeURI(u):u;
+    const photoOfS=p=>encS(typeof p==='string'?p:(p&&p.image)?p.image:'');
+    document.getElementById('soldGrid').innerHTML=sold.map(a=>{
+      const name=`${a.year||''} ${a.make_model||''}`.trim();
+      const ph=(a.photos&&a.photos[0])?photoOfS(a.photos[0]):'';
+      const img=ph?`<img src="${ph}" alt="${name}" onerror="this.remove()">`:'';
+      return `<a class="sold-item rv" href="/aircraft.html?id=${encodeURIComponent(a.id)}">
+        <div class="sold-thumb"><span class="sold-ph">View aircraft</span>${img}</div>
+        <div class="sold-foot"><span class="si-n">${name}</span><span class="si-t">Sold</span></div>
+      </a>`;
+    }).join('');
   }
 }
 loadInventory();
