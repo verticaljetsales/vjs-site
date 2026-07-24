@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vertical Jet Sales — Pre-Owned Business Jet Brokerage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0B1520;
+    --night-2:#0F1E2B;
+    --night-3:#070F17;
+    --gold:#C6A15B;
+    --gold-bright:#DcBd80;
+    --bone:#E9E5DC;
+    --muted:#8B98A6;
+    --paper:#EBEEF1;
+    --paper-2:#E1E5E9;
+    --ink:#0B1520;
+    --ink-soft:#3A4A57;
+    --line-gold:rgba(198,161,91,0.30);
+    --line-cool:rgba(233,229,220,0.12);
+    --maxw:1240px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;font-size:120%}
+  body{
+    background:var(--night);
+    color:var(--bone);
+    font-family:"Archivo",system-ui,-apple-system,sans-serif;
+    font-size:1.05rem;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:"Playfair Display","Georgia",serif;font-weight:400;line-height:1.05;letter-spacing:-0.01em}
+  /* Playfair Display ships decorative ligatures/swashes that warp the lowercase "f" at display sizes.
+     Turn them off everywhere for clean, standard letterforms. */
+  h1,h2,h3,h4,h5,h6,.lede,.pillar p,.readcard .rc-model,.readcard .rc-row .v,.report .r-top .rt-title,.report .r-line .rl-v,.step .num,
+  [style*="Playfair Display"], .ac-name,.ac-spec .sv,.d-hero h1,.qstat .qv,.car-count{
+    font-variant-ligatures:none;
+    font-feature-settings:"liga" 0,"dlig" 0,"swsh" 0,"calt" 0;
+  }
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+  .eyebrow{font-size:.76rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+
+  /* ---------- NAV ---------- */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .4s ease,border-color .4s ease,padding .4s ease;padding:22px 0;border-bottom:1px solid transparent}
+  header.nav:before{content:"";position:absolute;inset:0;bottom:auto;height:190%;background:linear-gradient(180deg,rgba(7,15,23,.78) 0%,rgba(7,15,23,.42) 45%,rgba(7,15,23,0) 100%);z-index:-1;pointer-events:none;transition:opacity .4s ease}
+  header.nav.scrolled:before{opacity:0}
+  header.nav.scrolled{background:rgba(8,15,23,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-cool);padding:14px 0}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .nav-logo img{height:74px;width:auto;transition:height .4s ease}
+  header.nav.scrolled .nav-logo img{height:58px}
+  .nav-links{display:flex;align-items:center;gap:34px}
+  .nav-links a.link{font-size:1rem;font-weight:600;letter-spacing:.04em;color:var(--bone);opacity:.94;text-shadow:0 1px 10px rgba(0,0,0,.55);transition:opacity .25s,color .25s;position:relative}
+  .nav-links a.link:hover{opacity:1;color:var(--gold-bright)}
+  .btn{display:inline-block;font-family:"Archivo",sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:13px 24px;border-radius:2px;transition:all .28s ease;cursor:pointer;border:1px solid transparent}
+  .btn-gold{background:var(--gold);color:var(--night-3)}
+  .btn-gold:hover{background:var(--gold-bright);transform:translateY(-1px)}
+  .btn-ghost{border:1px solid var(--line-gold);color:var(--bone)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold-bright)}
+  .nav-toggle{display:none}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
+  .hero-media{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .hero-pan{position:absolute;inset:0;animation:heroFlight 20s ease-in-out infinite alternate;will-change:transform}
+  @keyframes heroFlight{
+    0%   {transform:scale(1.06) translate3d(2.2%,1.1%,0)}
+    100% {transform:scale(1.20) translate3d(-2.6%,-1.6%,0)}
+  }
+  /* clouds streaming past — the cue that reads as flight */
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;
+              z-index:1;opacity:0;transition:opacity .7s ease;pointer-events:none}
+  .hero-video.on{opacity:1}
+  .hero-media.video-on .sky-fx,.hero-media.video-on .sun-glow{opacity:0;transition:opacity .8s ease}
+  .sky-fx{position:absolute;inset:-12% -8%;z-index:1;pointer-events:none;overflow:hidden}
+  .wisp{position:absolute;display:block;border-radius:50%;
+        background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.95) 0%,rgba(255,255,255,.42) 40%,rgba(255,255,255,0) 70%);
+        filter:blur(13px);opacity:0;will-change:transform,opacity;
+        animation-name:drift;animation-timing-function:linear;animation-iteration-count:infinite}
+  @keyframes drift{
+    0%   {transform:translate3d(115vw,0,0) scaleX(.9);opacity:0}
+    10%  {opacity:var(--o,.4)}
+    90%  {opacity:var(--o,.4)}
+    100% {transform:translate3d(-40vw,0,0) scaleX(1.45);opacity:0}
+  }
+  .w1{width:26vw;height:7vh;top:12%;--o:.38;animation-duration:15s;animation-delay:-3s}
+  .w2{width:40vw;height:10vh;top:28%;--o:.30;animation-duration:23s;animation-delay:-11s}
+  .w3{width:18vw;height:5vh;top:45%;--o:.46;animation-duration:9s;animation-delay:-5s}
+  .w4{width:32vw;height:8vh;top:60%;--o:.34;animation-duration:19s;animation-delay:-14s}
+  .w5{width:13vw;height:4vh;top:21%;--o:.52;animation-duration:7s;animation-delay:-2s}
+  .w6{width:22vw;height:6vh;top:70%;--o:.40;animation-duration:12s;animation-delay:-8s}
+  /* sun breathes gently */
+  .sun-glow{position:absolute;right:6%;top:44%;width:44vw;height:44vw;transform:translate(18%,-50%);z-index:1;pointer-events:none;
+            background:radial-gradient(circle at 50% 50%,rgba(255,214,150,.34) 0%,rgba(255,190,110,.12) 34%,rgba(255,190,110,0) 66%);
+            animation:sunPulse 7s ease-in-out infinite alternate}
+  @keyframes sunPulse{0%{opacity:.42}100%{opacity:1}}
+  .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 46%;transform:scale(1.06);will-change:transform}
+  .hero-media:after{content:"";position:absolute;inset:0;background:
+     linear-gradient(180deg,rgba(7,15,23,.60) 0%,rgba(7,15,23,.18) 26%,rgba(7,15,23,.55) 62%,rgba(7,15,23,.97) 100%);}
+  .hero-inner{position:relative;z-index:2;width:100%;padding-bottom:8vh;padding-top:120px}
+  .hero-inner .eyebrow{font-size:clamp(.82rem,1.15vw,.98rem);letter-spacing:.22em;font-weight:700;color:#F1DEA9;text-shadow:0 1px 2px rgba(0,0,0,.92),0 2px 20px rgba(0,0,0,.8)}
+  .hero-inner h1,.hero-inner .sub{text-shadow:0 2px 20px rgba(0,0,0,.55)}
+  .hero h1{font-size:clamp(2.7rem,7vw,6.1rem);max-width:16ch;margin:22px 0 26px;font-weight:400}
+  .hero h1 .word{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.16em;margin-bottom:-.16em}
+  .hero h1 .word span{display:inline-block}
+  .hero .sub{max-width:52ch;font-size:1.12rem;color:var(--bone);opacity:.94}
+  .hero .cta-row{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap}
+  .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:10px}
+  .scrollcue .bar{width:1px;height:46px;background:linear-gradient(var(--gold),transparent)}
+
+  /* ---------- PILLARS ---------- */
+  .pillars{border-top:1px solid var(--line-cool);border-bottom:1px solid var(--line-cool);background:var(--night-3)}
+  .pillars-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+  .pillar{padding:46px 40px;border-left:1px solid var(--line-cool)}
+  .pillar:first-child{border-left:none}
+  .pillar .n{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .pillar p{font-family:"Playfair Display",serif;font-size:1.32rem;line-height:1.28;color:var(--bone)}
+
+  /* ---------- SECTION BASICS ---------- */
+  section{position:relative}
+  .sec-pad{padding:120px 0}
+  .lede{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,4.2vw,3.5rem);line-height:1.12;max-width:20ch}
+  .thesis .lede em{font-style:italic;color:var(--gold)}
+  .thesis .body{max-width:46ch;margin-top:28px;color:var(--muted);font-size:1.08rem}
+  .thesis-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:end}
+
+  /* ---------- APPROACH ---------- */
+  .approach{background:var(--night-2)}
+  .approach .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:64px;flex-wrap:wrap}
+  .approach h2{font-size:clamp(1.9rem,4vw,3.2rem)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .step{padding:36px 34px 40px;border-top:1px solid var(--line-gold);position:relative}
+  .step .num{font-family:"Playfair Display",serif;font-size:2.4rem;color:var(--gold);opacity:.85;line-height:1}
+  .step h3{font-size:1.4rem;margin:20px 0 12px}
+  .step p{color:var(--muted);font-size:1rem}
+
+  /* market-read signature card */
+  .readcard{margin-top:70px;background:linear-gradient(160deg,#0d1a26,#0a141e);border:1px solid var(--line-gold);border-radius:4px;padding:38px 40px;max-width:640px;position:relative;overflow:hidden}
+  .readcard .rc-eye{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+  .readcard .rc-model{font-family:"Playfair Display",serif;font-size:1.7rem;margin:8px 0 26px;color:var(--bone)}
+  .readcard .rc-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-top:1px solid var(--line-cool)}
+  .readcard .rc-row .k{color:var(--muted);font-size:.92rem;letter-spacing:.02em}
+  .readcard .rc-row .v{font-family:"Playfair Display",serif;font-size:1.32rem;color:var(--bone)}
+  .readcard .rc-value{position:relative;display:inline-block}
+  .readcard .rc-value:after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.7,0,.2,1)}
+  .readcard.drawn .rc-value:after{transform:scaleX(1)}
+  .readcard .rc-actions{display:flex;gap:12px;margin-top:28px}
+  .chip{font-family:"Archivo",sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:9px 18px;border-radius:2px;border:1px solid var(--line-gold);color:var(--bone);background:transparent;cursor:pointer;transition:all .25s}
+  .chip.active{background:var(--gold);color:var(--night-3);border-color:var(--gold)}
+  .chip:hover{border-color:var(--gold)}
+  .rc-note{margin-top:20px;font-size:.86rem;color:var(--muted);min-height:1.2em;transition:opacity .3s}
+
+  /* ---------- MARKET INTELLIGENCE (light) ---------- */
+  .mint{background:var(--paper);color:var(--ink)}
+  .mint .eyebrow{color:#9A7C3A}
+  .mint-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  .mint h2{font-size:clamp(1.9rem,4vw,3.3rem);color:var(--ink);max-width:14ch}
+  .mint p{color:var(--ink-soft);max-width:44ch;margin-top:24px;font-size:1.08rem}
+  .mint .btn-gold{color:#fff;margin-top:34px;background:var(--ink)}
+  .mint .btn-gold:hover{background:#1a2c3a}
+  .report{background:#fff;border:1px solid var(--paper-2);border-radius:4px;padding:34px;box-shadow:0 30px 60px -30px rgba(11,21,32,.25)}
+  .report .r-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--paper-2);padding-bottom:16px;margin-bottom:8px}
+  .report .r-top .rt-title{font-family:"Playfair Display",serif;font-size:1.15rem;color:var(--ink)}
+  .report .r-top .rt-tag{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#9A7C3A;border:1px solid #d8c9a6;padding:4px 8px;border-radius:2px}
+  .report .r-line{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid #eef1f3;font-size:.95rem}
+  .report .r-line .rl-k{color:var(--ink-soft)}
+  .report .r-line .rl-v{font-family:"Playfair Display",serif;color:var(--ink);font-size:1.05rem}
+  .report .r-bar{height:6px;background:#eef1f3;border-radius:3px;margin-top:6px;overflow:hidden}
+  .report .r-bar i{display:block;height:100%;background:var(--gold);width:0;transition:width 1.2s cubic-bezier(.7,0,.2,1)}
+
+  /* ---------- REPRESENTATION SPLIT ---------- */
+  .rep .rep-item{display:grid;grid-template-columns:1fr 1fr;min-height:64vh}
+  .rep .rep-item.flip{direction:rtl}
+  .rep .rep-item.flip > *{direction:ltr}
+  .rep .rep-media{overflow:hidden;position:relative}
+  .rep .rep-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);will-change:transform}
+  .rep .rep-copy{display:flex;flex-direction:column;justify-content:center;padding:8vh 7vw;background:var(--night)}
+  .rep .rep-item.flip .rep-copy{background:var(--night-2)}
+  .rep .rep-copy h2{font-size:clamp(1.8rem,3.4vw,2.9rem);margin:18px 0 20px}
+  .rep .rep-copy p{color:var(--muted);max-width:40ch;font-size:1.06rem}
+  .rep .rep-copy .more{margin-top:28px;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:10px}
+  .rep .rep-copy .more .arw{transition:transform .3s}
+  .rep .rep-copy .more:hover .arw{transform:translateX(6px)}
+
+  /* ---------- RECENT ---------- */
+  .recent{background:var(--night-3)}
+  .recent .head{margin-bottom:44px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px}
+  .recent h2{font-size:clamp(1.7rem,3.4vw,2.7rem)}
+  .rlist{border-top:1px solid var(--line-cool)}
+  .rrow{display:grid;grid-template-columns:1.4fr 1fr 1fr 120px;gap:24px;align-items:center;padding:22px 6px;border-bottom:1px solid var(--line-cool);transition:background .3s,padding .3s}
+  .rrow:hover{background:rgba(198,161,91,.05);padding-left:16px}
+  .rrow .rm{font-family:"Playfair Display",serif;font-size:1.28rem;color:var(--bone)}
+  .rrow .rk{color:var(--muted);font-size:.92rem}
+  .rrow .rs{justify-self:end;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line-gold);padding:5px 12px;border-radius:2px}
+
+  /* ---------- CLOSING CTA ---------- */
+  .closing{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden}
+  .closing-media{position:absolute;inset:0;z-index:0}
+  .closing-media img{width:100%;height:100%;object-fit:cover;object-position:center 40%;transform:scale(1.06);will-change:transform}
+  .closing-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,15,23,.95) 0%,rgba(7,15,23,.72) 45%,rgba(7,15,23,.42) 100%)}
+  .closing-inner{position:relative;z-index:2}
+  .closing h2{font-size:clamp(2.2rem,5vw,4.2rem);max-width:16ch;margin-bottom:26px}
+  .closing p{max-width:42ch;color:var(--bone);opacity:.9;margin-bottom:34px;font-size:1.1rem}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--night-3);border-top:1px solid var(--line-cool);padding:70px 0 40px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:50px;border-bottom:1px solid var(--line-cool)}
+  .foot-logo img{height:58px;margin-bottom:22px}
+  .foot-grid p{color:var(--muted);font-size:.95rem;max-width:32ch}
+  .foot-col h4{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-family:"Archivo",sans-serif;font-weight:600}
+  .foot-col a{display:block;color:var(--bone);opacity:.78;font-size:.95rem;margin-bottom:12px;transition:opacity .25s,color .25s}
+  .foot-col a:hover{opacity:1;color:var(--gold-bright)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:14px}
+  .foot-bottom span{font-size:.82rem;color:var(--muted)}
+
+  /* ---------- TEAM ---------- */
+  .team{background:var(--night)}
+  .team .head{max-width:60ch;margin-bottom:56px}
+  .team h2{font-size:clamp(1.9rem,4vw,3.2rem);margin:16px 0 20px}
+  .team .head p{color:var(--muted);font-size:1.08rem;max-width:52ch}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .member{background:var(--night-2);border:1px solid var(--line-cool);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .35s,transform .35s}
+  .member:hover{border-color:var(--line-gold);transform:translateY(-3px)}
+  .m-photo{aspect-ratio:1/1;overflow:hidden;background:var(--night-3)}
+  .m-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%);transition:filter .6s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+  .member:hover .m-photo img{filter:grayscale(0%);transform:scale(1.035)}
+  .m-photo img.off-right{object-position:57% top}   /* Eric — head sits right of centre in source */
+  .m-body{padding:24px 26px 28px}
+  .member .m-name{font-family:"Playfair Display",serif;font-size:1.5rem;color:var(--bone);line-height:1.1}
+  .member .m-role{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:9px 0 6px}
+  .member .m-email{font-size:.82rem;letter-spacing:.01em;color:var(--muted);margin:0 0 16px;transition:color .25s}
+  .member .m-email:hover{color:var(--gold-bright)}
+  .readbio{background:none;border:none;color:var(--bone);font-family:"Archivo",sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:0;display:inline-flex;align-items:center;gap:9px;opacity:.85;transition:color .25s,opacity .25s}
+  .readbio:hover{color:var(--gold-bright);opacity:1}
+  .readbio .pl{color:var(--gold);font-size:1rem;line-height:1}
+  .team-note{margin-top:36px;font-size:.9rem;color:var(--muted)}
+  .m-full{display:none}
+
+  /* bio modal */
+  .modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+  .modal.open{display:flex}
+  .modal-bg{position:absolute;inset:0;background:rgba(4,9,14,.82);backdrop-filter:blur(6px)}
+  .modal-card{position:relative;z-index:2;background:var(--night-2);border:1px solid var(--line-gold);border-radius:6px;max-width:620px;width:100%;max-height:86vh;overflow-y:auto;padding:44px 46px}
+  .modal-card .mc-role{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:8px 0 22px}
+  .modal-card h3{font-family:"Playfair Display",serif;font-size:2rem;color:var(--bone);line-height:1.05}
+  .modal-card .mc-bio p{color:var(--muted);font-size:1.02rem;margin-bottom:16px}
+  .modal-close{position:absolute;top:18px;right:20px;background:none;border:none;color:var(--muted);font-size:1.7rem;line-height:1;cursor:pointer;transition:color .25s}
+  .modal-close:hover{color:var(--gold-bright)}
+  @media(max-width:900px){.team-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
+
+  /* reveal defaults: visible (progressive enhancement) */
+  .reveal{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:900px){
+    .nav-links{display:none}
+    .thesis-grid,.mint-grid{grid-template-columns:1fr;gap:36px}
+    .pillars-grid,.steps{grid-template-columns:1fr}
+    .pillar{border-left:none;border-top:1px solid var(--line-cool)}
+    .pillar:first-child{border-top:none}
+    .step{border-top:1px solid var(--line-gold)}
+    .rep .rep-item,.rep .rep-item.flip{grid-template-columns:1fr;direction:ltr}
+    .rep .rep-media{min-height:44vh}
+    .rrow{grid-template-columns:1fr auto;gap:8px}
+    .rrow .rk:nth-child(3){display:none}
+    .sec-pad{padding:84px 0}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .hero-media img,.rep .rep-media img,.closing-media img{transform:none}
+    .hero-pan,.wisp,.sun-glow{animation:none!important}
+    .hero-video{display:none}
+    .sky-fx{display:none}
+    .readcard .rc-value:after{transform:scaleX(1)}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="#top"><img src="/images/site/d32fc2ff2a.png" alt="Vertical Jet Sales"></a>
+    <nav class="nav-links">
+      <a class="link" href="/inventory.html">Inventory</a>
+      <a class="link" href="/brokerage.html">Brokerage</a>
+      <a class="link" href="/acquisition.html">Acquisition</a>
+      <a class="link" href="/market-intelligence.html">Market Intelligence</a>
+      <a class="link" href="#firm">The Firm</a>
+      <a class="btn btn-gold" href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-media">
+    <div class="hero-pan"><img id="heroImg" src="/images/site/84e8585540.jpg" alt="Private jet on the ramp at golden hour"></div>
+    <div class="sky-fx" aria-hidden="true">
+      <span class="wisp w1"></span><span class="wisp w2"></span><span class="wisp w3"></span>
+      <span class="wisp w4"></span><span class="wisp w5"></span><span class="wisp w6"></span>
+    </div>
+    <div class="sun-glow" aria-hidden="true"></div>
+    <video id="heroVid" class="hero-video" muted loop playsinline preload="none" poster="/images/site/hero-poster.jpg" aria-hidden="true"></video>
+  </div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow reveal" data-rev>Business Jet Brokerage &middot; Acquisition &middot; Consulting</div>
+    <h1 id="heroTitle">Clear guidance through every aircraft decision.</h1>
+    <p class="sub reveal" data-rev>Whether you're acquiring, selling, or rethinking how you operate, Vertical Jet Sales brings deep market expertise and honest, data-driven counsel to every side of the transaction.</p>
+    <div class="cta-row reveal" data-rev>
+      <a class="btn btn-gold" href="/inventory.html">Explore inventory</a>
+      <a class="btn btn-ghost" href="#contact">Talk to our team</a>
+    </div>
+  </div>
+  <div class="scrollcue"><span>Scroll</span><span class="bar"></span></div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="wrap"><div class="pillars-grid">
+    <div class="pillar reveal" data-rev><div class="n">Full-Service</div><p>Acquisition, brokerage, and consulting &mdash; the full arc of aircraft ownership, under one roof.</p></div>
+    <div class="pillar reveal" data-rev><div class="n">Evidence</div><p>Valuations built on real market data, not optimism or a listing pitch.</p></div>
+    <div class="pillar reveal" data-rev><div class="n">A Deep Team</div><p>Every client works directly with experienced, career aviation professionals &mdash; from first call to close.</p></div>
+  </div></div>
+</section>
+
+<!-- THESIS -->
+<section class="sec-pad thesis">
+  <div class="wrap thesis-grid">
+    <div class="lede reveal" data-rev>We simplify the complexity<br>of owning an aircraft.</div>
+    <div class="body reveal" data-rev>At Vertical Jet Sales, we bring clear, professional guidance to every stage of the process. Our aircraft experts pair deep industry expertise with actionable insight &mdash; empowering confident decisions and optimal outcomes, whether you're buying or selling. It's service tailored to your specific aviation needs, from first conversation to close.</div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec-pad approach" id="services">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <div class="eyebrow reveal" data-rev>What We Do</div>
+        <h2 class="reveal" data-rev>Representation on every side of the deal.</h2>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step reveal" data-rev><div class="num">01</div><h3>Brokerage</h3><p>Sell-side representation, built on evidence. We price your aircraft to the market, present it professionally, and manage the transaction end to end.</p><a class="more" href="/brokerage.html" style="margin-top:20px;display:inline-flex">Explore brokerage <span class="arw">&rarr;</span></a></div>
+      <div class="step reveal" data-rev><div class="num">02</div><h3>Acquisition</h3><p>Buy-side representation &mdash; including the off-market aircraft that never reach the listing sites. We source, vet, and negotiate with only your interests at the table.</p><a class="more" href="/acquisition.html" style="margin-top:20px;display:inline-flex">Explore acquisition <span class="arw">&rarr;</span></a></div>
+      <div class="step reveal" data-rev><div class="num">03</div><h3>Consulting</h3><p>Advisory for owners and operators &mdash; ownership structure, fleet strategy, charter and flight-department analysis, and the decisions in between.</p><a class="more" href="#contact" style="margin-top:20px;display:inline-flex">Talk to an advisor <span class="arw">&rarr;</span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET INTELLIGENCE -->
+<section class="sec-pad mint" id="intelligence">
+  <div class="wrap mint-grid">
+    <div class="reveal" data-rev>
+      <div class="eyebrow">Market Intelligence Report</div>
+      <h2>Know your position before you're asked to defend it.</h2>
+      <p>Every quarter, we publish a model-specific read on the market — inventory, pricing movement, and absorption for the aircraft you own or want. It's the same intelligence we bring to every deal we run, offered before there's ever a transaction on the table.</p>
+      <a class="btn btn-gold" href="#contact">Request the current report</a>
+    </div>
+    <div class="report reveal" data-rev>
+      <div class="r-top"><span class="rt-title">Super-Mid Market Snapshot</span><span class="rt-tag">Q2 · Sample</span></div>
+      <div class="r-line"><span class="rl-k">Active listings</span><span class="rl-v">41</span></div>
+      <div class="r-bar"><i data-bar="72"></i></div>
+      <div class="r-line"><span class="rl-k">Avg. days on market</span><span class="rl-v">214</span></div>
+      <div class="r-bar"><i data-bar="55"></i></div>
+      <div class="r-line" style="border-bottom:none"><span class="rl-k">Pricing trend, 12 mo.</span><span class="rl-v">&minus;6.3%</span></div>
+      <div class="r-bar"><i data-bar="38"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENT -->
+<section class="sec-pad recent">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <div class="eyebrow reveal" data-rev>Track Record</div>
+        <h2 class="reveal" data-rev>Both sides of the market.</h2>
+      </div>
+      <div class="reveal" data-rev style="color:var(--muted);max-width:30ch;font-size:.95rem">A representative sample. We don't publish every transaction — discretion is part of the service.</div>
+    </div>
+    <div class="rlist">
+      <div class="rrow reveal" data-rev><span class="rm">Falcon 900EX EASy</span><span class="rk">SN 217</span><span class="rk">Brokerage</span><span class="rs">Sold</span></div>
+      <div class="rrow reveal" data-rev><span class="rm">Global 6000</span><span class="rk">SN 9487</span><span class="rk">Acquisition</span><span class="rs">Acquired</span></div>
+      <div class="rrow reveal" data-rev><span class="rm">Citation X</span><span class="rk">SN 54</span><span class="rk">Brokerage</span><span class="rs">Sold</span></div>
+      <div class="rrow reveal" data-rev><span class="rm">Citation CJ4</span><span class="rk">SN 344</span><span class="rk">Acquisition</span><span class="rs">Acquired</span></div>
+      <div class="rrow reveal" data-rev><span class="rm">Pilatus PC-12 NG</span><span class="rk">SN 1064</span><span class="rk">Brokerage</span><span class="rs">Sold</span></div>
+      <div class="rrow reveal" data-rev><span class="rm">Citation Bravo</span><span class="rk">SN 1085</span><span class="rk">Acquisition</span><span class="rs">Acquired</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="sec-pad team" id="firm">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow reveal" data-rev>The Firm</div>
+      <h2 class="reveal" data-rev>A team of career aviation professionals.</h2>
+      <p class="reveal" data-rev>Every client works directly with people who have spent their careers in business aviation — across acquisition, brokerage, media, and operations. You get the full weight of the firm behind your transaction.</p>
+    </div>
+    <div class="team-grid">
+
+      <div class="member reveal" data-rev>
+        <div class="m-photo"><img src="/images/site/2e04b2719e.jpg" alt="Ben McPeak"></div>
+        <div class="m-body">
+          <div class="m-name">Ben McPeak</div>
+          <div class="m-role">President / CEO</div>
+          <a class="m-email" href="mailto:ben@verticaljetsales.com">ben@verticaljetsales.com</a>
+          <button class="readbio" data-name="Ben McPeak" data-role="President / CEO"><span class="pl">+</span> Read bio</button>
+          <div class="m-full"><p>Ben draws from over two decades of experience in corporate aviation, overseeing transactions and consulting in both domestic and international markets. Prior to joining the world of aviation, Ben held the position of Senior Vice President for a leading Global Wealth Management Group within US Trust. In this role, he focused on providing comprehensive wealth management solutions to ultra-high net worth individuals and families, with an emphasis on lending, investment planning, legacy and philanthropy issues, as well as complex tax strategies.</p><p>He brings the same breadth of knowledge and comprehensive planning into each of his aircraft transactions. Ben is also an active member of NBAA, AOPA, and CJP. When he isn't working, Ben enjoys spending time with his wife and their two children.</p></div>
+        </div>
+      </div>
+
+      <div class="member reveal" data-rev>
+        <div class="m-photo"><img src="/images/site/c650716b51.jpg" alt="Jay Vidlak"></div>
+        <div class="m-body">
+          <div class="m-name">Jay Vidlak</div>
+          <div class="m-role">Executive Vice President &ndash; Sales</div>
+          <a class="m-email" href="mailto:jay@verticaljetsales.com">jay@verticaljetsales.com</a>
+          <button class="readbio" data-name="Jay Vidlak" data-role="Executive Vice President &ndash; Sales"><span class="pl">+</span> Read bio</button>
+          <div class="m-full"><p>Jay has been around aviation his entire life, with both his grandfather and father being avid recreational pilots. After graduating in 1998 from the University of Nebraska at Omaha, Jay began his professional career in Aviation with Mayo Aviation in Denver, Colorado, where he quickly moved through the ranks.</p><p>In 2002, he returned to his home state of Nebraska to begin his career with Jet Linx Aviation, which spanned more than two decades, focusing on charter, business development, aircraft management, and most recently, SVP of Aircraft Acquisitions and Sales. He remained in that role until 2023 when he transitioned to Vertical Jet Sales, where his depth of knowledge is indispensable. Jay resides in Woodstock, Georgia, with his wife, Erin, and two little girls, Piper and Logan.</p></div>
+        </div>
+      </div>
+
+      <div class="member reveal" data-rev>
+        <div class="m-photo"><img src="/images/site/bc259bfbe9-v2.jpg" alt="John Schoenfeld"></div>
+        <div class="m-body">
+          <div class="m-name">John Schoenfeld</div>
+          <div class="m-role">Executive Vice President &ndash; Sales</div>
+          <a class="m-email" href="mailto:john@verticaljetsales.com">john@verticaljetsales.com</a>
+          <button class="readbio" data-name="John Schoenfeld" data-role="Executive Vice President &ndash; Sales"><span class="pl">+</span> Read bio</button>
+          <div class="m-full"><p>John brings 18 years of sales and leadership experience to his role at Vertical Jet Sales, where his lifelong passion for aviation complements his expertise in strategic sales planning, problem-solving, and continuous process improvement. Known for his strong negotiation skills, John excels at finding win-win solutions and navigating complex discussions to ensure both his clients' needs and business goals are met. John is a committed, trusted aviation advisor who ensures excellence at every step.</p><p>Based in his hometown of San Antonio, Texas, John enjoys the outdoors, spending time with his wife, Leah, and being a devoted father to his children, Jack and Stella.</p></div>
+        </div>
+      </div>
+
+      <div class="member reveal" data-rev>
+        <div class="m-photo"><img src="/images/site/6d0141f784.jpg" alt="Cash McPeak"></div>
+        <div class="m-body">
+          <div class="m-name">Cash McPeak</div>
+          <div class="m-role">Director of Sales</div>
+          <a class="m-email" href="mailto:cash@verticaljetsales.com">cash@verticaljetsales.com</a>
+          <button class="readbio" data-name="Cash McPeak" data-role="Director of Sales"><span class="pl">+</span> Read bio</button>
+          <div class="m-full"><p>Cash brings energy, discipline, and a relentless attention to detail to his role at Vertical Jet Sales, where he assists through the aircraft transaction process from first conversation to close. He pairs market knowledge with a research-driven approach &mdash; analyzing availability, pricing, and aircraft history to position VJS clients for confident, well-informed decisions in a fast-moving market.</p><p>Known for his work ethic and his commitment to getting the details right, Cash is dedicated to delivering the level of service and trust that defines the Vertical Jet Sales name. Based in Boerne, Texas, he enjoys playing golf, staying active in the gym, and spending time with his family.</p></div>
+        </div>
+      </div>
+
+      <div class="member reveal" data-rev>
+        <div class="m-photo"><img src="/images/site/41e5728c3c-v2.jpg" alt="Eric Lenington"></div>
+        <div class="m-body">
+          <div class="m-name">Eric Lenington</div>
+          <div class="m-role">Director of Media</div>
+          <a class="m-email" href="mailto:eric@verticaljetsales.com">eric@verticaljetsales.com</a>
+          <button class="readbio" data-name="Eric Lenington" data-role="Director of Media"><span class="pl">+</span> Read bio</button>
+          <div class="m-full"><p>Eric brings a wealth of experience and a keen eye for detail to our team. With over 15 years of expertise in photography, graphic design, and social media, he has a proven track record of delivering visually stunning and strategically impactful media.</p><p>A lifelong aviation enthusiast, Eric has enjoyed capturing aircraft nationwide, blending his passion for aviation with professional marketing skills. In his free time, he enjoys flying his (simulated) F-18C from CVN-75 Harry S. Truman.</p></div>
+        </div>
+      </div>
+
+      <div class="member reveal" data-rev>
+        <div class="m-photo"><img src="/images/site/4dcace827a.jpg" alt="Kalene Lambert"></div>
+        <div class="m-body">
+          <div class="m-name">Kalene Lambert</div>
+          <div class="m-role">Executive Assistant</div>
+          <a class="m-email" href="mailto:kalene@verticaljetsales.com">kalene@verticaljetsales.com</a>
+          <button class="readbio" data-name="Kalene Lambert" data-role="Executive Assistant"><span class="pl">+</span> Read bio</button>
+          <div class="m-full"><p>Kalene is a dedicated Executive Assistant with a passion for supporting leaders in the aviation industry. Known for being highly organized, adaptable, and dependable. Excels at keeping schedules on track, coordinating travel, and ensuring day-to-day operations run smoothly. With a proactive approach and ability to streamline operations, she serves as a trusted partner to senior leadership in a fast-paced aviation environment.</p><p>Kalene resides in Boerne, Texas. When she is not working, you can find her spending time with her family and black labrador retriever, Ranger.</p></div>
+        </div>
+      </div>
+
+    </div>
+    <p class="team-note reveal" data-rev>Questions for a specific member of the team? Reach us at <a href="mailto:sales@verticaljetsales.com" style="color:var(--gold);border-bottom:1px solid var(--line-gold);padding-bottom:1px">sales@verticaljetsales.com</a>.</p>
+  </div>
+
+  <!-- bio modal -->
+  <div class="modal" id="bioModal">
+    <div class="modal-bg" data-close></div>
+    <div class="modal-card">
+      <button class="modal-close" data-close aria-label="Close">&times;</button>
+      <h3 id="mcName"></h3>
+      <div class="mc-role" id="mcRole"></div>
+      <div class="mc-bio" id="mcBio"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing" id="contact">
+  <div class="closing-media"><img id="closeImg" src="/images/site/69c5162090.jpg" alt="Business jet cabin interior"></div>
+  <div class="wrap closing-inner">
+    <div class="eyebrow reveal" data-rev>Start Here</div>
+    <h2 class="reveal" data-rev>Wherever you are in the process, start here.</h2>
+    <p class="reveal" data-rev>Buying, selling, or weighing your options — tell us what you're working on, and we'll bring the market to the conversation.</p>
+    <div class="cta-row reveal" data-rev><a class="btn btn-gold" href="mailto:sales@verticaljetsales.com">Contact our team</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo"><img src="/images/site/d32fc2ff2a.png" alt="Vertical Jet Sales"></div>
+        <p>A boutique pre-owned business jet brokerage. Acquisition, brokerage, and consulting &mdash; built on market evidence.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="/inventory.html">Inventory</a>
+        <a href="/brokerage.html">Brokerage</a>
+        <a href="/acquisition.html">Acquisition</a>
+        <a href="/market-intelligence.html">Market intelligence</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:sales@verticaljetsales.com">sales@verticaljetsales.com</a>
+        <a href="tel:2108652475">(210) 865-2475</a>
+        <a href="#">1580 S. Main Street, Ste. 204</a>
+        <a href="#">Boerne, Texas 78006</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Vertical Jet Sales. All rights reserved.</span>
+      <span>Pre-owned business jet brokerage</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  // nav scroll state
+  var nav=document.getElementById('nav');
+  function onScroll(){ if(window.scrollY>40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  // bio modal
+  var modal=document.getElementById('bioModal'),
+      mcName=document.getElementById('mcName'),
+      mcRole=document.getElementById('mcRole'),
+      mcBio=document.getElementById('mcBio');
+  document.querySelectorAll('.readbio').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var full=btn.parentNode.querySelector('.m-full');
+      mcName.textContent=btn.getAttribute('data-name');
+      mcRole.innerHTML=btn.getAttribute('data-role');
+      mcBio.innerHTML=full.innerHTML;
+      modal.classList.add('open');document.body.style.overflow='hidden';
+    });
+  });
+  modal.querySelectorAll('[data-close]').forEach(function(el){
+    el.addEventListener('click',function(){modal.classList.remove('open');document.body.style.overflow='';});
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){modal.classList.remove('open');document.body.style.overflow='';}});
+
+  // Drop a file at /media/hero.webm (or hero.mp4) and it becomes the hero automatically.
+  (function(){
+    var v=document.getElementById('heroVid'); if(!v) return;
+    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    ['/media/hero.webm','/media/hero.mp4'].forEach(function(src){
+      var s=document.createElement('source');
+      s.src=src; s.type=src.indexOf('.webm')>-1?'video/webm':'video/mp4';
+      v.appendChild(s);
+    });
+    v.addEventListener('loadeddata',function(){
+      v.classList.add('on');
+      var m=document.querySelector('.hero-media'); if(m) m.classList.add('video-on');
+      var p=v.play(); if(p&&p.catch) p.catch(function(){});
+    });
+    v.preload='auto'; v.load();
+    if(v.readyState>=2){v.classList.add('on');var mm=document.querySelector('.hero-media');if(mm)mm.classList.add('video-on');var pp=v.play();if(pp&&pp.catch)pp.catch(function(){});}
+  })();
+
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce || typeof gsap==='undefined'){
+    // draw the bars for the static view
+    document.querySelectorAll('[data-bar]').forEach(function(b){b.style.width=b.getAttribute('data-bar')+'%';});
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // hero load sequence
+  var title=document.getElementById('heroTitle');
+  var words=title.textContent.trim().split(' ');
+  title.innerHTML=words.map(function(w){return '<span class="word"><span>'+w+'</span></span>';}).join(' ');
+  gsap.set(title.querySelectorAll('.word span'),{yPercent:110});
+  var tl=gsap.timeline({defaults:{ease:'power3.out'}});
+  tl.to(title.querySelectorAll('.word span'),{yPercent:0,duration:1,stagger:.06,delay:.15});
+
+  // hero eyebrow/sub/cta
+  gsap.utils.toArray('.hero [data-rev]').forEach(function(el,i){
+    gsap.from(el,{opacity:0,y:24,duration:.9,ease:'power3.out',delay:.5+i*0.12});
+  });
+  // hero image parallax + slow scale settle
+  gsap.to('#heroImg',{scale:1.0,duration:2.4,ease:'power2.out'});
+  gsap.to('#heroImg',{yPercent:12,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+
+  // generic reveals
+  gsap.utils.toArray('[data-rev]').forEach(function(el){
+    if(el.closest('.hero')) return;
+    gsap.from(el,{opacity:0,y:34,duration:.9,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 86%'}});
+  });
+
+  // report bars
+  document.querySelectorAll('[data-bar]').forEach(function(b){
+    ScrollTrigger.create({trigger:b,start:'top 90%',onEnter:function(){b.style.width=b.getAttribute('data-bar')+'%';}});
+  });
+
+  // representation image parallax
+  gsap.utils.toArray('.repImg').forEach(function(img){
+    gsap.fromTo(img,{yPercent:-6},{yPercent:6,ease:'none',
+      scrollTrigger:{trigger:img,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  // closing parallax
+  gsap.to('#closeImg',{yPercent:10,ease:'none',scrollTrigger:{trigger:'.closing',start:'top bottom',end:'bottom top',scrub:true}});
+})();
+</script>
+</body>
+</html>
