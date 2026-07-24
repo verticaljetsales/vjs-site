@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acquire an Aircraft | Vertical Jet Sales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0B1520;
+    --night-2:#0F1E2B;
+    --night-3:#070F17;
+    --gold:#C6A15B;
+    --gold-bright:#DcBd80;
+    --bone:#E9E5DC;
+    --muted:#8B98A6;
+    --paper:#EBEEF1;
+    --paper-2:#E1E5E9;
+    --ink:#0B1520;
+    --ink-soft:#3A4A57;
+    --line-gold:rgba(198,161,91,0.30);
+    --line-cool:rgba(233,229,220,0.12);
+    --maxw:1240px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;font-size:120%}
+  body{
+    background:var(--night);
+    color:var(--bone);
+    font-family:"Archivo",system-ui,-apple-system,sans-serif;
+    font-size:1.05rem;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:"Playfair Display","Georgia",serif;font-weight:400;line-height:1.05;letter-spacing:-0.01em}
+  /* Playfair Display ships decorative ligatures/swashes that warp the lowercase "f" at display sizes.
+     Turn them off everywhere for clean, standard letterforms. */
+  h1,h2,h3,h4,h5,h6,.lede,.pillar p,.readcard .rc-model,.readcard .rc-row .v,.report .r-top .rt-title,.report .r-line .rl-v,.step .num,
+  [style*="Playfair Display"], .ac-name,.ac-spec .sv,.d-hero h1,.qstat .qv,.car-count{
+    font-variant-ligatures:none;
+    font-feature-settings:"liga" 0,"dlig" 0,"swsh" 0,"calt" 0;
+  }
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+  .eyebrow{font-size:.76rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+
+  /* ---------- NAV ---------- */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .4s ease,border-color .4s ease,padding .4s ease;padding:22px 0;border-bottom:1px solid transparent}
+  header.nav:before{content:"";position:absolute;inset:0;bottom:auto;height:190%;background:linear-gradient(180deg,rgba(7,15,23,.78) 0%,rgba(7,15,23,.42) 45%,rgba(7,15,23,0) 100%);z-index:-1;pointer-events:none;transition:opacity .4s ease}
+  header.nav.scrolled:before{opacity:0}
+  header.nav.scrolled{background:rgba(8,15,23,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-cool);padding:14px 0}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .nav-logo img{height:74px;width:auto;transition:height .4s ease}
+  header.nav.scrolled .nav-logo img{height:58px}
+  .nav-links{display:flex;align-items:center;gap:34px}
+  .nav-links a.link{font-size:1rem;font-weight:600;letter-spacing:.04em;color:var(--bone);opacity:.94;text-shadow:0 1px 10px rgba(0,0,0,.55);transition:opacity .25s,color .25s;position:relative}
+  .nav-links a.link:hover{opacity:1;color:var(--gold-bright)}
+  .btn{display:inline-block;font-family:"Archivo",sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:13px 24px;border-radius:2px;transition:all .28s ease;cursor:pointer;border:1px solid transparent}
+  .btn-gold{background:var(--gold);color:var(--night-3)}
+  .btn-gold:hover{background:var(--gold-bright);transform:translateY(-1px)}
+  .btn-ghost{border:1px solid var(--line-gold);color:var(--bone)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold-bright)}
+  .nav-toggle{display:none}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
+  .hero-media{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .hero-pan{position:absolute;inset:0;animation:heroFlight 20s ease-in-out infinite alternate;will-change:transform}
+  @keyframes heroFlight{
+    0%   {transform:scale(1.06) translate3d(2.2%,1.1%,0)}
+    100% {transform:scale(1.20) translate3d(-2.6%,-1.6%,0)}
+  }
+  /* clouds streaming past — the cue that reads as flight */
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;
+              z-index:1;opacity:0;transition:opacity .7s ease;pointer-events:none}
+  .hero-video.on{opacity:1}
+  .hero-media.video-on .sky-fx,.hero-media.video-on .sun-glow{opacity:0;transition:opacity .8s ease}
+  .sky-fx{position:absolute;inset:-12% -8%;z-index:1;pointer-events:none;overflow:hidden}
+  .wisp{position:absolute;display:block;border-radius:50%;
+        background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.95) 0%,rgba(255,255,255,.42) 40%,rgba(255,255,255,0) 70%);
+        filter:blur(13px);opacity:0;will-change:transform,opacity;
+        animation-name:drift;animation-timing-function:linear;animation-iteration-count:infinite}
+  @keyframes drift{
+    0%   {transform:translate3d(115vw,0,0) scaleX(.9);opacity:0}
+    10%  {opacity:var(--o,.4)}
+    90%  {opacity:var(--o,.4)}
+    100% {transform:translate3d(-40vw,0,0) scaleX(1.45);opacity:0}
+  }
+  .w1{width:26vw;height:7vh;top:12%;--o:.38;animation-duration:15s;animation-delay:-3s}
+  .w2{width:40vw;height:10vh;top:28%;--o:.30;animation-duration:23s;animation-delay:-11s}
+  .w3{width:18vw;height:5vh;top:45%;--o:.46;animation-duration:9s;animation-delay:-5s}
+  .w4{width:32vw;height:8vh;top:60%;--o:.34;animation-duration:19s;animation-delay:-14s}
+  .w5{width:13vw;height:4vh;top:21%;--o:.52;animation-duration:7s;animation-delay:-2s}
+  .w6{width:22vw;height:6vh;top:70%;--o:.40;animation-duration:12s;animation-delay:-8s}
+  /* sun breathes gently */
+  .sun-glow{position:absolute;right:6%;top:44%;width:44vw;height:44vw;transform:translate(18%,-50%);z-index:1;pointer-events:none;
+            background:radial-gradient(circle at 50% 50%,rgba(255,214,150,.34) 0%,rgba(255,190,110,.12) 34%,rgba(255,190,110,0) 66%);
+            animation:sunPulse 7s ease-in-out infinite alternate}
+  @keyframes sunPulse{0%{opacity:.42}100%{opacity:1}}
+  .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 46%;transform:scale(1.06);will-change:transform}
+  .hero-media:after{content:"";position:absolute;inset:0;background:
+     linear-gradient(180deg,rgba(7,15,23,.60) 0%,rgba(7,15,23,.18) 26%,rgba(7,15,23,.55) 62%,rgba(7,15,23,.97) 100%);}
+  .hero-inner{position:relative;z-index:2;width:100%;padding-bottom:8vh;padding-top:120px}
+  .hero-inner .eyebrow{color:var(--gold-bright);text-shadow:0 2px 16px rgba(0,0,0,.75)}
+  .hero-inner h1,.hero-inner .sub{text-shadow:0 2px 20px rgba(0,0,0,.55)}
+  .hero h1{font-size:clamp(2.7rem,7vw,6.1rem);max-width:16ch;margin:22px 0 26px;font-weight:400}
+  .hero h1 .word{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.16em;margin-bottom:-.16em}
+  .hero h1 .word span{display:inline-block}
+  .hero .sub{max-width:52ch;font-size:1.12rem;color:var(--bone);opacity:.94}
+  .hero .cta-row{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap}
+  .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:10px}
+  .scrollcue .bar{width:1px;height:46px;background:linear-gradient(var(--gold),transparent)}
+
+  /* ---------- PILLARS ---------- */
+  .pillars{border-top:1px solid var(--line-cool);border-bottom:1px solid var(--line-cool);background:var(--night-3)}
+  .pillars-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+  .pillar{padding:46px 40px;border-left:1px solid var(--line-cool)}
+  .pillar:first-child{border-left:none}
+  .pillar .n{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .pillar p{font-family:"Playfair Display",serif;font-size:1.32rem;line-height:1.28;color:var(--bone)}
+
+  /* ---------- SECTION BASICS ---------- */
+  section{position:relative}
+  .sec-pad{padding:120px 0}
+  .lede{font-family:"Playfair Display",serif;font-size:clamp(1.9rem,4.2vw,3.5rem);line-height:1.12;max-width:20ch}
+  .thesis .lede em{font-style:italic;color:var(--gold)}
+  .thesis .body{max-width:46ch;margin-top:28px;color:var(--muted);font-size:1.08rem}
+  .thesis-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:end}
+
+  /* ---------- APPROACH ---------- */
+  .approach{background:var(--night-2)}
+  .approach .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:64px;flex-wrap:wrap}
+  .approach h2{font-size:clamp(1.9rem,4vw,3.2rem)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .step{padding:36px 34px 40px;border-top:1px solid var(--line-gold);position:relative}
+  .step .num{font-family:"Playfair Display",serif;font-size:2.4rem;color:var(--gold);opacity:.85;line-height:1}
+  .step h3{font-size:1.4rem;margin:20px 0 12px}
+  .step p{color:var(--muted);font-size:1rem}
+
+  /* market-read signature card */
+  .readcard{margin-top:70px;background:linear-gradient(160deg,#0d1a26,#0a141e);border:1px solid var(--line-gold);border-radius:4px;padding:38px 40px;max-width:640px;position:relative;overflow:hidden}
+  .readcard .rc-eye{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+  .readcard .rc-model{font-family:"Playfair Display",serif;font-size:1.7rem;margin:8px 0 26px;color:var(--bone)}
+  .readcard .rc-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-top:1px solid var(--line-cool)}
+  .readcard .rc-row .k{color:var(--muted);font-size:.92rem;letter-spacing:.02em}
+  .readcard .rc-row .v{font-family:"Playfair Display",serif;font-size:1.32rem;color:var(--bone)}
+  .readcard .rc-value{position:relative;display:inline-block}
+  .readcard .rc-value:after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.7,0,.2,1)}
+  .readcard.drawn .rc-value:after{transform:scaleX(1)}
+  .readcard .rc-actions{display:flex;gap:12px;margin-top:28px}
+  .chip{font-family:"Archivo",sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:9px 18px;border-radius:2px;border:1px solid var(--line-gold);color:var(--bone);background:transparent;cursor:pointer;transition:all .25s}
+  .chip.active{background:var(--gold);color:var(--night-3);border-color:var(--gold)}
+  .chip:hover{border-color:var(--gold)}
+  .rc-note{margin-top:20px;font-size:.86rem;color:var(--muted);min-height:1.2em;transition:opacity .3s}
+
+  /* ---------- MARKET INTELLIGENCE (light) ---------- */
+  .mint{background:var(--paper);color:var(--ink)}
+  .mint .eyebrow{color:#9A7C3A}
+  .mint-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  .mint h2{font-size:clamp(1.9rem,4vw,3.3rem);color:var(--ink);max-width:14ch}
+  .mint p{color:var(--ink-soft);max-width:44ch;margin-top:24px;font-size:1.08rem}
+  .mint .btn-gold{color:#fff;margin-top:34px;background:var(--ink)}
+  .mint .btn-gold:hover{background:#1a2c3a}
+  .report{background:#fff;border:1px solid var(--paper-2);border-radius:4px;padding:34px;box-shadow:0 30px 60px -30px rgba(11,21,32,.25)}
+  .report .r-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--paper-2);padding-bottom:16px;margin-bottom:8px}
+  .report .r-top .rt-title{font-family:"Playfair Display",serif;font-size:1.15rem;color:var(--ink)}
+  .report .r-top .rt-tag{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#9A7C3A;border:1px solid #d8c9a6;padding:4px 8px;border-radius:2px}
+  .report .r-line{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid #eef1f3;font-size:.95rem}
+  .report .r-line .rl-k{color:var(--ink-soft)}
+  .report .r-line .rl-v{font-family:"Playfair Display",serif;color:var(--ink);font-size:1.05rem}
+  .report .r-bar{height:6px;background:#eef1f3;border-radius:3px;margin-top:6px;overflow:hidden}
+  .report .r-bar i{display:block;height:100%;background:var(--gold);width:0;transition:width 1.2s cubic-bezier(.7,0,.2,1)}
+
+  /* ---------- REPRESENTATION SPLIT ---------- */
+  .rep .rep-item{display:grid;grid-template-columns:1fr 1fr;min-height:64vh}
+  .rep .rep-item.flip{direction:rtl}
+  .rep .rep-item.flip > *{direction:ltr}
+  .rep .rep-media{overflow:hidden;position:relative}
+  .rep .rep-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);will-change:transform}
+  .rep .rep-copy{display:flex;flex-direction:column;justify-content:center;padding:8vh 7vw;background:var(--night)}
+  .rep .rep-item.flip .rep-copy{background:var(--night-2)}
+  .rep .rep-copy h2{font-size:clamp(1.8rem,3.4vw,2.9rem);margin:18px 0 20px}
+  .rep .rep-copy p{color:var(--muted);max-width:40ch;font-size:1.06rem}
+  .rep .rep-copy .more{margin-top:28px;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:10px}
+  .rep .rep-copy .more .arw{transition:transform .3s}
+  .rep .rep-copy .more:hover .arw{transform:translateX(6px)}
+
+  /* ---------- RECENT ---------- */
+  .recent{background:var(--night-3)}
+  .recent .head{margin-bottom:44px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px}
+  .recent h2{font-size:clamp(1.7rem,3.4vw,2.7rem)}
+  .rlist{border-top:1px solid var(--line-cool)}
+  .rrow{display:grid;grid-template-columns:1.4fr 1fr 1fr auto;gap:24px;align-items:center;padding:22px 6px;border-bottom:1px solid var(--line-cool);transition:background .3s,padding .3s}
+  .rrow:hover{background:rgba(198,161,91,.05);padding-left:16px}
+  .rrow .rm{font-family:"Playfair Display",serif;font-size:1.28rem;color:var(--bone)}
+  .rrow .rk{color:var(--muted);font-size:.92rem}
+  .rrow .rs{justify-self:end;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line-gold);padding:5px 12px;border-radius:2px}
+
+  /* ---------- CLOSING CTA ---------- */
+  .closing{position:relative;min-height:78vh;display:flex;align-items:center;overflow:hidden}
+  .closing-media{position:absolute;inset:0;z-index:0}
+  .closing-media img{width:100%;height:100%;object-fit:cover;object-position:center 40%;transform:scale(1.06);will-change:transform}
+  .closing-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,15,23,.95) 0%,rgba(7,15,23,.72) 45%,rgba(7,15,23,.42) 100%)}
+  .closing-inner{position:relative;z-index:2}
+  .closing h2{font-size:clamp(2.2rem,5vw,4.2rem);max-width:16ch;margin-bottom:26px}
+  .closing p{max-width:42ch;color:var(--bone);opacity:.9;margin-bottom:34px;font-size:1.1rem}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--night-3);border-top:1px solid var(--line-cool);padding:70px 0 40px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:50px;border-bottom:1px solid var(--line-cool)}
+  .foot-logo img{height:58px;margin-bottom:22px}
+  .foot-grid p{color:var(--muted);font-size:.95rem;max-width:32ch}
+  .foot-col h4{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-family:"Archivo",sans-serif;font-weight:600}
+  .foot-col a{display:block;color:var(--bone);opacity:.78;font-size:.95rem;margin-bottom:12px;transition:opacity .25s,color .25s}
+  .foot-col a:hover{opacity:1;color:var(--gold-bright)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:14px}
+  .foot-bottom span{font-size:.82rem;color:var(--muted)}
+
+  /* ---------- TEAM ---------- */
+  .team{background:var(--night)}
+  .team .head{max-width:60ch;margin-bottom:56px}
+  .team h2{font-size:clamp(1.9rem,4vw,3.2rem);margin:16px 0 20px}
+  .team .head p{color:var(--muted);font-size:1.08rem;max-width:52ch}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .member{background:var(--night-2);border:1px solid var(--line-cool);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .35s,transform .35s}
+  .member:hover{border-color:var(--line-gold);transform:translateY(-3px)}
+  .m-photo{aspect-ratio:1/1;overflow:hidden;background:var(--night-3)}
+  .m-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%);transition:filter .6s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+  .member:hover .m-photo img{filter:grayscale(0%);transform:scale(1.035)}
+  .m-photo img.off-right{object-position:57% top}   /* Eric — head sits right of centre in source */
+  .m-body{padding:24px 26px 28px}
+  .member .m-name{font-family:"Playfair Display",serif;font-size:1.5rem;color:var(--bone);line-height:1.1}
+  .member .m-role{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:9px 0 6px}
+  .member .m-email{font-size:.82rem;letter-spacing:.01em;color:var(--muted);margin:0 0 16px;transition:color .25s}
+  .member .m-email:hover{color:var(--gold-bright)}
+  .readbio{background:none;border:none;color:var(--bone);font-family:"Archivo",sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:0;display:inline-flex;align-items:center;gap:9px;opacity:.85;transition:color .25s,opacity .25s}
+  .readbio:hover{color:var(--gold-bright);opacity:1}
+  .readbio .pl{color:var(--gold);font-size:1rem;line-height:1}
+  .team-note{margin-top:36px;font-size:.9rem;color:var(--muted)}
+  .m-full{display:none}
+
+  /* bio modal */
+  .modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+  .modal.open{display:flex}
+  .modal-bg{position:absolute;inset:0;background:rgba(4,9,14,.82);backdrop-filter:blur(6px)}
+  .modal-card{position:relative;z-index:2;background:var(--night-2);border:1px solid var(--line-gold);border-radius:6px;max-width:620px;width:100%;max-height:86vh;overflow-y:auto;padding:44px 46px}
+  .modal-card .mc-role{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:8px 0 22px}
+  .modal-card h3{font-family:"Playfair Display",serif;font-size:2rem;color:var(--bone);line-height:1.05}
+  .modal-card .mc-bio p{color:var(--muted);font-size:1.02rem;margin-bottom:16px}
+  .modal-close{position:absolute;top:18px;right:20px;background:none;border:none;color:var(--muted);font-size:1.7rem;line-height:1;cursor:pointer;transition:color .25s}
+  .modal-close:hover{color:var(--gold-bright)}
+  @media(max-width:900px){.team-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
+
+  /* reveal defaults: visible (progressive enhancement) */
+  .reveal{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:900px){
+    .nav-links{display:none}
+    .thesis-grid,.mint-grid{grid-template-columns:1fr;gap:36px}
+    .pillars-grid,.steps{grid-template-columns:1fr}
+    .pillar{border-left:none;border-top:1px solid var(--line-cool)}
+    .pillar:first-child{border-top:none}
+    .step{border-top:1px solid var(--line-gold)}
+    .rep .rep-item,.rep .rep-item.flip{grid-template-columns:1fr;direction:ltr}
+    .rep .rep-media{min-height:44vh}
+    .rrow{grid-template-columns:1fr auto;gap:8px}
+    .rrow .rk:nth-child(3){display:none}
+    .sec-pad{padding:84px 0}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .hero-media img,.rep .rep-media img,.closing-media img{transform:none}
+    .hero-pan,.wisp,.sun-glow{animation:none!important}
+    .hero-video{display:none}
+    .sky-fx{display:none}
+    .readcard .rc-value:after{transform:scaleX(1)}
+  }
+</style>
+
+<style>
+  .subhero{position:relative;min-height:82vh;display:flex;align-items:flex-end;overflow:hidden}
+  .subhero .hero-media img{object-position:center 45%}
+  .subhero .hero-inner{padding-bottom:9vh}
+  .subhero h1{font-size:clamp(2.5rem,6vw,5.4rem);max-width:15ch;margin:20px 0 24px}
+  .subhero .sub{max-width:50ch;font-size:1.12rem;color:var(--bone);opacity:.92}
+  .valuegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line-cool);border:1px solid var(--line-cool);margin-top:10px}
+  .vcell{background:var(--night);padding:44px 40px}
+  .vcell .vn{font-family:"Playfair Display",serif;font-size:2.1rem;color:var(--gold);line-height:1}
+  .vcell h3{font-size:1.32rem;margin:16px 0 12px}
+  .vcell p{color:var(--muted);font-size:1rem}
+  .band{position:relative;min-height:64vh;display:flex;align-items:center;overflow:hidden}
+  .band-media{position:absolute;inset:0;z-index:0}
+  .band-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);will-change:transform}
+  .band-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,15,23,.94),rgba(7,15,23,.5) 60%,rgba(7,15,23,.2))}
+  .band-inner{position:relative;z-index:2}
+  .band h2{font-size:clamp(1.9rem,4vw,3.2rem);max-width:16ch;margin-bottom:22px}
+  .band p{max-width:44ch;color:var(--bone);opacity:.9;font-size:1.08rem}
+  .faqs{background:var(--night-2)}
+  .faq{border-top:1px solid var(--line-cool)}
+  .faq:last-child{border-bottom:1px solid var(--line-cool)}
+  .faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;color:var(--bone);font-family:"Playfair Display",serif;font-size:1.3rem;padding:26px 40px 26px 0;display:flex;justify-content:space-between;align-items:center;gap:20px}
+  .faq-q .ic{color:var(--gold);font-size:1.5rem;flex-shrink:0;transition:transform .3s}
+  .faq.open .faq-q .ic{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .faq-a p{color:var(--muted);font-size:1.03rem;padding:0 40px 28px 0;max-width:70ch}
+  .breadcrumb{position:relative;z-index:2;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-bright);text-shadow:0 2px 16px rgba(0,0,0,.85)}
+  .closing-media:after{background:linear-gradient(90deg,rgba(7,15,23,.95) 0%,rgba(7,15,23,.72) 45%,rgba(7,15,23,.40) 100%)!important}
+  .subhero .hero-media:after{background:linear-gradient(180deg,rgba(7,15,23,.72) 0%,rgba(7,15,23,.30) 30%,rgba(7,15,23,.62) 65%,rgba(7,15,23,.97) 100%)!important}
+  .subhero h1,.subhero .sub{text-shadow:0 2px 22px rgba(0,0,0,.6)}
+</style>
+
+</head><body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="/"><img src="/images/site/d32fc2ff2a.png" alt="Vertical Jet Sales"></a>
+    <nav class="nav-links">
+      <a class="link" href="/inventory.html">Inventory</a>
+      <a class="link" href="/brokerage.html">Brokerage</a>
+      <a class="link" href="/acquisition.html">Acquisition</a>
+      <a class="link" href="/market-intelligence.html">Market Intelligence</a>
+      <a class="link" href="index.html#firm">The Firm</a>
+      <a class="btn btn-gold" href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="subhero hero" id="top">
+  <div class="hero-media"><img id="heroImg" src="/images/site/a4b67ead2b.jpg" alt="Bombardier Global 6000 in flight over the coast"></div>
+  <div class="wrap hero-inner">
+    <div class="breadcrumb reveal" data-rev>Acquisition Representation</div>
+    <h1 id="heroTitle">The right aircraft, sourced quietly.</h1>
+    <p class="sub reveal" data-rev>Buyers come to Vertical Jet Sales for the aircraft that never reaches the open market. We work the off-market channels, vet the logbooks, and represent one side of the table &mdash; yours.</p>
+    <div class="cta-row reveal" data-rev>
+      <a class="btn btn-gold" href="mailto:sales@verticaljetsales.com?subject=Aircraft%20Acquisition%20Inquiry">Tell us what you're looking for</a>
+      <a class="btn btn-ghost" href="#process">How we source</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec-pad thesis">
+  <div class="wrap thesis-grid">
+    <div class="lede reveal" data-rev>The best aircraft rarely<br>get <em>advertised.</em></div>
+    <div class="body reveal" data-rev>By the time a great airplane hits the listing sites, it's often already spoken for. Our value is in the quiet channels &mdash; owners we know, operators we talk to, advisors who call us first. We find the aircraft that fits your mission, then represent only your interests through inspection and close.</div>
+  </div>
+</section>
+
+<section class="sec-pad approach" id="process">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <div class="eyebrow reveal" data-rev>What Acquisition With VJS Gets You</div>
+        <h2 class="reveal" data-rev>Representation on one side of the table.</h2>
+      </div>
+    </div>
+    <div class="valuegrid">
+      <div class="vcell reveal" data-rev><div class="vn">01</div><h3>Mission-first search</h3><p>We start with how you'll actually fly &mdash; range, runway, cabin, budget, and timeline &mdash; and translate it into the specific make, model, and serial-number profile worth pursuing.</p></div>
+      <div class="vcell reveal" data-rev><div class="vn">02</div><h3>Off-market sourcing</h3><p>Beyond the listing sites, we work our direct network to surface aircraft before they're advertised &mdash; and to reach owners who'll sell to the right buyer without ever going public.</p></div>
+      <div class="vcell reveal" data-rev><div class="vn">03</div><h3>Logbooks vetted cold</h3><p>Damage history, maintenance status, upcoming inspections, upgrade paths. We read the records with a clear eye so you know exactly what you're buying &mdash; and what it'll cost to own.</p></div>
+      <div class="vcell reveal" data-rev><div class="vn">04</div><h3>Your advocate to close</h3><p>We represent the buyer, full stop. From offer through pre-buy inspection, title, and closing &mdash; including international compliance &mdash; your interests are the only ones on our side of the table.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="band-media"><img class="bandImg" src="/images/site/f05f98d352.jpg" alt="Bombardier Global 6000 in flight"></div>
+  <div class="wrap band-inner">
+    <div class="eyebrow reveal" data-rev>Backed by Market Intelligence</div>
+    <h2 class="reveal" data-rev>You'll know the market before you make an offer.</h2>
+    <p class="reveal" data-rev>Every acquisition is grounded in the same proprietary market data we bring to our listings &mdash; comparable inventory, pricing movement, and absorption &mdash; so your offer is built on evidence, not the seller's asking price.</p>
+    <div class="cta-row reveal" data-rev style="margin-top:30px"><a class="btn btn-gold" href="mailto:sales@verticaljetsales.com?subject=Aircraft%20Acquisition%20Inquiry">Start a search</a></div>
+  </div>
+</section>
+
+<section class="sec-pad faqs" id="faqs">
+  <div class="wrap">
+    <div class="head" style="margin-bottom:44px">
+      <div class="eyebrow reveal" data-rev>Buying, Answered</div>
+      <h2 class="reveal" data-rev style="font-size:clamp(1.8rem,3.6vw,2.9rem)">Questions buyers ask us.</h2>
+    </div>
+    <div class="faqlist">
+      <div class="faq reveal" data-rev><button class="faq-q">How do you find aircraft that aren't publicly listed?<span class="ic">+</span></button><div class="faq-a"><p>We maintain direct relationships with owners, operators, and advisors across the market. Combined with our proprietary market intelligence, that network lets us identify and approach aircraft before &mdash; or without &mdash; a public listing.</p></div></div>
+      <div class="faq reveal" data-rev><button class="faq-q">How do you decide what an aircraft is really worth?<span class="ic">+</span></button><div class="faq-a"><p>The same way we price a listing: a thorough market analysis of age, maintenance history, upgrades, and current conditions against live comparable inventory. You get a defensible number to build your offer on, not the seller's optimism.</p></div></div>
+      <div class="faq reveal" data-rev><button class="faq-q">Do you help with the pre-buy inspection and closing?<span class="ic">+</span></button><div class="faq-a"><p>Yes. We manage the transaction end to end &mdash; coordinating the pre-buy inspection, reviewing findings, negotiating remedies, and handling title and closing so the deal holds together and nothing is missed.</p></div></div>
+      <div class="faq reveal" data-rev><button class="faq-q">Can you handle international transactions?<span class="ic">+</span></button><div class="faq-a"><p>Yes. Buying and selling aircraft is a global endeavor, and Vertical Jet Sales specializes in transacting deals throughout the world, including all FAA and international compliance.</p></div></div>
+      <div class="faq reveal" data-rev><button class="faq-q">What does it cost to have you represent me as a buyer?<span class="ic">+</span></button><div class="faq-a"><p>We provide transparent, industry-standard fee structures tailored to each client's needs and the scope of the search. We'll walk you through it clearly before any engagement begins.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="closing" id="contact">
+  <div class="closing-media"><img id="closeImg" src="/images/site/f309e81293.jpg" alt="Business jet cabin interior"></div>
+  <div class="wrap closing-inner">
+    <div class="eyebrow reveal" data-rev>Start Here</div>
+    <h2 class="reveal" data-rev>Tell us what you're looking for.</h2>
+    <p class="reveal" data-rev>Give us your mission and your budget. We'll come back with the aircraft worth considering &mdash; including the ones you won't find advertised anywhere.</p>
+    <div class="cta-row reveal" data-rev><a class="btn btn-gold" href="mailto:sales@verticaljetsales.com?subject=Aircraft%20Acquisition%20Inquiry">Start a search</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo"><img src="/images/site/d32fc2ff2a.png" alt="Vertical Jet Sales"></div>
+        <p>A boutique pre-owned business jet brokerage. Acquisition, brokerage, and consulting &mdash; built on market evidence.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Firm</h4>
+        <a href="/brokerage.html">Brokerage</a>
+        <a href="/acquisition.html">Acquisition</a>
+        <a href="index.html#intelligence">Market intelligence</a>
+        <a href="index.html#firm">The team</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:sales@verticaljetsales.com">sales@verticaljetsales.com</a>
+        <a href="tel:2108652475">(210) 865-2475</a>
+        <a href="#">1580 S. Main Street, Ste. 204</a>
+        <a href="#">Boerne, Texas 78006</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Vertical Jet Sales. All rights reserved.</span>
+      <span>Pre-owned business jet brokerage</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  function onScroll(){ if(window.scrollY>40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var faq=q.parentNode, a=q.nextElementSibling, open=faq.classList.contains('open');
+      if(open){faq.classList.remove('open');a.style.maxHeight=null;}
+      else{faq.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+    });
+  });
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce || typeof gsap==='undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+  var title=document.getElementById('heroTitle');
+  var words=title.textContent.trim().split(' ');
+  title.innerHTML=words.map(function(w){return '<span class="word"><span>'+w+'</span></span>';}).join(' ');
+  gsap.set(title.querySelectorAll('.word span'),{yPercent:110});
+  gsap.timeline({defaults:{ease:'power3.out'}}).to(title.querySelectorAll('.word span'),{yPercent:0,duration:1,stagger:.06,delay:.15});
+  gsap.utils.toArray('.subhero [data-rev]').forEach(function(el,i){gsap.from(el,{opacity:0,y:24,duration:.9,ease:'power3.out',delay:.5+i*0.12});});
+  gsap.to('#heroImg',{scale:1.0,duration:2.4,ease:'power2.out'});
+  gsap.to('#heroImg',{yPercent:12,ease:'none',scrollTrigger:{trigger:'.subhero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.utils.toArray('[data-rev]').forEach(function(el){if(el.closest('.subhero'))return;gsap.from(el,{opacity:0,y:34,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});});
+  gsap.utils.toArray('.bandImg').forEach(function(img){gsap.fromTo(img,{yPercent:-6},{yPercent:6,ease:'none',scrollTrigger:{trigger:img,start:'top bottom',end:'bottom top',scrub:true}});});
+  gsap.to('#closeImg',{yPercent:10,ease:'none',scrollTrigger:{trigger:'.closing',start:'top bottom',end:'bottom top',scrub:true}});
+})();
+</script>
+
+</body></html>
