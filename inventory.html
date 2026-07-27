@@ -315,11 +315,9 @@
   .ac-cta.ghost:hover{border-color:var(--gold);color:var(--gold-bright)}
   .sold{background:var(--night-3)}
   .sold-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .sold-item{background:var(--night-2);border:1px solid var(--line-cool);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;transition:border-color .3s,transform .3s}
-  .sold-item:hover{border-color:var(--line-gold);transform:translateY(-3px)}
+  .sold-item{background:var(--night-2);border:1px solid var(--line-cool);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;cursor:default}
   .sold-thumb{aspect-ratio:16/10;background:var(--night-3);overflow:hidden;position:relative}
-  .sold-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(35%);transition:filter .5s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
-  .sold-item:hover .sold-thumb img{filter:grayscale(0%);transform:scale(1.04)}
+  .sold-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   .sold-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
   .sold-foot{padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
   .sold-item .si-n{font-family:"Playfair Display",serif;font-size:1.08rem;color:var(--bone)}
@@ -417,12 +415,26 @@ function showErr(msg){
 }
 function render(d){
   const all=d.aircraft||[];
-  const active=all.filter(a=>a.status!=='Sold');
-  const sold=all.filter(a=>a.status==='Sold');
+  const isTransacted=a=>a.status==='Sold'||a.status==='Acquired';
+  const active=all.filter(a=>!isTransacted(a));
+  const sold=all.filter(isTransacted);
   document.getElementById('cnt').textContent=active.filter(a=>a.status==='For Sale').length;
 
-  const cats=['All',...new Set(active.map(a=>a.category).filter(Boolean))];
+  // Fixed filter buttons. NOTE: strings must match the CMS "Category" values exactly.
+  const cats=['All','Light Jet','Mid-Size','Large Cabin'];
   document.getElementById('chips').innerHTML=cats.map((c,i)=>`<button class="chip2 ${i===0?'active':''}" data-c="${c}">${c}</button>`).join('');
+
+  // The CMS offers 6 categories; the filter shows 4. Map the extras into a bucket so no
+  // listing is ever unreachable. The card still shows its true category label.
+  const CAT_BUCKET={
+    'Light Jet':'Light Jet',
+    'Turboprop':'Light Jet',
+    'Mid-Size':'Mid-Size',
+    'Super-Mid':'Large Cabin',
+    'Large Cabin':'Large Cabin',
+    'Long Range':'Large Cabin'
+  };
+  const bucketOf=c=>CAT_BUCKET[c]||c||'';
 
   function card(a){
     const enc=u=>u?encodeURI(u):u;
@@ -430,7 +442,7 @@ function render(d){
     const photo=(a.photos&&a.photos[0])?photoOf(a.photos[0]):'';
     const badge=a.status==='Under Contract'?'<span class="ac-badge uc">Under Contract</span>':'<span class="ac-badge">For Sale</span>';
     const name=`${a.year||''} ${a.make_model||''}`.trim();
-    return `<div class="ac rv" data-c="${a.category||''}">
+    return `<div class="ac rv" data-c="${bucketOf(a.category)}">
       <div class="ac-media">${badge}<span class="ac-cat">${a.category||''}</span>
         ${photo?`<img src="${photo}" alt="${name}" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span class=\\'ac-ph\\'>Photography coming soon</span>');">`:'<span class="ac-ph">Photography coming soon</span>'}</div>
       <div class="ac-body">
@@ -451,11 +463,24 @@ function render(d){
   const grid=document.getElementById('grid');
   grid.innerHTML=active.length?active.map(card).join(''):'<div class="empty">No active listings at the moment. Please check back soon.</div>';
 
+  function applyFilter(f){
+    let shown=0;
+    document.querySelectorAll('.ac').forEach(c=>{
+      const vis=(f==='All'||c.dataset.c===f);
+      c.style.display=vis?'':'none'; if(vis) shown++;
+    });
+    let note=document.getElementById('noMatch');
+    if(!shown){
+      if(!note){ note=document.createElement('div'); note.id='noMatch'; note.className='empty';
+        document.getElementById('grid').appendChild(note); }
+      note.textContent='No '+f+' aircraft listed right now. Please check back soon.';
+      note.style.display='';
+    } else if(note){ note.style.display='none'; }
+  }
   document.getElementById('chips').addEventListener('click',e=>{
     const b=e.target.closest('.chip2'); if(!b)return;
     document.querySelectorAll('.chip2').forEach(x=>x.classList.remove('active')); b.classList.add('active');
-    const f=b.dataset.c;
-    document.querySelectorAll('.ac').forEach(c=>{c.style.display=(f==='All'||c.dataset.c===f)?'':'none';});
+    applyFilter(b.dataset.c);
   });
 
   if(sold.length){
@@ -466,10 +491,11 @@ function render(d){
       const name=`${a.year||''} ${a.make_model||''}`.trim();
       const ph=(a.photos&&a.photos[0])?photoOfS(a.photos[0]):'';
       const img=ph?`<img src="${ph}" alt="${name}" onerror="this.remove()">`:'';
-      return `<a class="sold-item rv" href="/aircraft.html?id=${encodeURIComponent(a.id)}">
-        <div class="sold-thumb"><span class="sold-ph">View aircraft</span>${img}</div>
-        <div class="sold-foot"><span class="si-n">${name}</span><span class="si-t">Sold</span></div>
-      </a>`;
+      const label=a.status==='Acquired'?'Acquired':'Sold';
+      return `<div class="sold-item rv">
+        <div class="sold-thumb">${img}</div>
+        <div class="sold-foot"><span class="si-n">${name}</span><span class="si-t">${label}</span></div>
+      </div>`;
     }).join('');
   }
 }

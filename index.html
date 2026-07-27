@@ -106,7 +106,7 @@
   .hero-inner{position:relative;z-index:2;width:100%;padding-bottom:8vh;padding-top:120px}
   .hero-inner .eyebrow{font-size:clamp(.82rem,1.15vw,.98rem);letter-spacing:.22em;font-weight:700;color:#F1DEA9;text-shadow:0 1px 2px rgba(0,0,0,.92),0 2px 20px rgba(0,0,0,.8)}
   .hero-inner h1,.hero-inner .sub{text-shadow:0 2px 20px rgba(0,0,0,.55)}
-  .hero h1{font-size:clamp(2.7rem,7vw,6.1rem);max-width:16ch;margin:22px 0 26px;font-weight:400}
+  .hero h1{font-size:clamp(2.6rem,7vw,6.1rem);line-height:1.06;max-width:16ch;margin:22px 0 26px;font-weight:400}
   .hero h1 .word{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.16em;margin-bottom:-.16em}
   .hero h1 .word span{display:inline-block}
   .hero .sub{max-width:52ch;font-size:1.12rem;color:var(--bone);opacity:.94}
@@ -270,6 +270,7 @@
     .rrow{grid-template-columns:1fr auto;gap:8px}
     .rrow .rk:nth-child(3){display:none}
     .sec-pad{padding:84px 0}
+    .hero h1 .word{overflow:visible;padding-bottom:0;margin-bottom:0}
   }
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -586,11 +587,17 @@
 
   // hero load sequence
   var title=document.getElementById('heroTitle');
-  var words=title.textContent.trim().split(' ');
-  title.innerHTML=words.map(function(w){return '<span class="word"><span>'+w+'</span></span>';}).join(' ');
-  gsap.set(title.querySelectorAll('.word span'),{yPercent:110});
-  var tl=gsap.timeline({defaults:{ease:'power3.out'}});
-  tl.to(title.querySelectorAll('.word span'),{yPercent:0,duration:1,stagger:.06,delay:.15});
+  if(window.innerWidth>=768){
+    // Desktop: per-word masked reveal
+    var words=title.textContent.trim().split(' ');
+    title.innerHTML=words.map(function(w){return '<span class="word"><span>'+w+'</span></span>';}).join(' ');
+    gsap.set(title.querySelectorAll('.word span'),{yPercent:110});
+    var tl=gsap.timeline({defaults:{ease:'power3.out'}});
+    tl.to(title.querySelectorAll('.word span'),{yPercent:0,duration:1,stagger:.06,delay:.15});
+  } else {
+    // Mobile: the per-word overflow mask overlaps/ghosts on small screens — use a plain fade instead
+    gsap.from(title,{opacity:0,y:20,duration:.9,ease:'power3.out',delay:.2});
+  }
 
   // hero eyebrow/sub/cta
   gsap.utils.toArray('.hero [data-rev]').forEach(function(el,i){
