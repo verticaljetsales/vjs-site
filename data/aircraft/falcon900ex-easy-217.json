@@ -17,78 +17,54 @@
   "photos": [
     "/uploads/twilight-5315.webp"
   ],
-  "spec_sheet": "/uploads/vjs-spec-n512ks-020526.pdf",
+  "spec_sheet": "",
   "status_report": "",
   "due_list": "",
   "spec_groups": [
     {
-      "group": "Airframe",
+      "group": "",
       "rows": [
         {
-          "label": "Total Time",
-          "value": "6,870 hrs"
+          "label": "",
+          "value": ""
         },
         {
-          "label": "Total Cycles",
-          "value": "5,456"
+          "label": "",
+          "value": ""
         }
       ]
     },
     {
-      "group": "Engines — Honeywell TFE731 60-1C",
+      "group": "",
       "rows": [
         {
-          "label": "Engine 1 · SN P112840— TTSN",
-          "value": "2,633.8"
+          "label": "",
+          "value": ""
         },
         {
-          "label": "Engine 2 · SN P112841 — TTSN",
-          "value": "2,633.8"
+          "label": "",
+          "value": ""
         },
         {
-          "label": "Engine 3 · SN P112842 TTSN",
-          "value": "2,633.8"
+          "label": "",
+          "value": ""
         },
         {
-          "label": "Engine 1 · Cycles Since New",
-          "value": "1,566"
+          "label": "",
+          "value": ""
         },
         {
-          "label": "Engine 2 · Cycles Since New",
-          "value": "1,566"
+          "label": "",
+          "value": ""
         },
         {
-          "label": "Engine 3 · Cycles Since New",
-          "value": "1,566"
+          "label": "",
+          "value": ""
         }
       ]
     }
   ],
-  "avionics": [
-    "Push to Load function",
-    "WAAS / LPV",
-    "Future Air Navigation System (FANS 1/A)",
-    "Controller Pilot Data Link Communication (CPDLC)",
-    "Rockwell Collins Heads-Up Guidance System (HUD)",
-    "Aviation Partners blended winglets",
-    "Collins Venue CMS",
-    "Upgraded Rosen HD monitors throughout cabin",
-    "EMTEQ LED lighting upgrades",
-    "Aft/mid cabin divider with hard door",
-    "Gogo AVANCE L3 Wi-Fi",
-    "Securaplane video monitoring system"
-  ],
-  "features": [
-    "Gogo AVANCE L3 Wi-Fi",
-    "Airshow 4000",
-    "Collins Venue CMS",
-    "AC outlets",
-    "Rosen HD monitors at each seat",
-    "EMTEQ LED lighting",
-    "Aft/mid upgraded hard door",
-    "TIA microwave"
-  ],
-  "exterior": "Completed 2014. Overall Snow White with lower base coat of Black Velvet and Ice Silver & Snow White striping.",
-  "interior": "Completed 2014 by Duncan Aviation, refreshed every three years. Fourteen-passenger configuration with a forward 4-place club, mid conference group, and dual aft divans. Collins Venue CMS, Rosen HD monitors at each seat, LED lighting, and AVANCE L3 Wi-Fi.",
-  "maintenance": "Currently completing 12M, 12M/800hr, 24M, 24M/1600hr, 36M, 36M/2400hr, 1C & 3C inspections — Duncan Aviation Lincoln\n12MO / 24MO Inspections — c/w January 2026\n36MO Inspection — c/w January 2026\n1C Inspection (72MO) — c/w January 2026\n2C Inspection (144MO) — c/w March 2020\n3C Inspection (216MO) — c/w January 2026"
+  "exterior": "",
+  "interior": "",
+  "maintenance": ""
 }
