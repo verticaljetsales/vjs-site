@@ -45,7 +45,7 @@ collections:
     description: "Each aircraft is its own listing. To add one similar to an existing jet, open it, click the ⋮ menu, and choose Duplicate — then just change the details and photos."
     fields:
       - { label: "Display Order", name: "order", widget: "number", default: 10, hint: "Lower numbers show first on the inventory page.", value_type: "int", required: false }
-      - { label: "Status", name: "status", widget: "select", options: ["For Sale", "Under Contract", "Sold"], default: "For Sale", hint: "Sold aircraft move to the Recently Transacted list automatically." }
+      - { label: "Status", name: "status", widget: "select", options: ["For Sale", "Under Contract", "Sold", "Acquired"], default: "For Sale", hint: "Sold aircraft move to the Recently Transacted list automatically." }
       - { label: "Year", name: "year", widget: "string", hint: "e.g. 2002" }
       - { label: "Make & Model", name: "make_model", widget: "string", hint: "e.g. Beechjet 400A" }
       - { label: "Page ID (URL)", name: "id", widget: "string", hint: "The web address for this aircraft. Lowercase letters and dashes only, no spaces. Example: premier-ia-rb-137. IMPORTANT: when duplicating, change this to something unique." }
