@@ -63,7 +63,11 @@
   .btn-gold:hover{background:var(--gold-bright);transform:translateY(-1px)}
   .btn-ghost{border:1px solid var(--line-gold);color:var(--bone)}
   .btn-ghost:hover{border-color:var(--gold);color:var(--gold-bright)}
-  .nav-toggle{display:none}
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:9px;background:transparent;border:0;cursor:pointer;z-index:60}
+  .nav-toggle span{display:block;width:100%;height:2px;border-radius:2px;background:var(--bone);transition:transform .3s ease,opacity .3s ease}
+  .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle.open span:nth-child(2){opacity:0}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
   /* ---------- HERO ---------- */
   .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
@@ -259,7 +263,19 @@
 
   /* ---------- RESPONSIVE ---------- */
   @media(max-width:900px){
-    .nav-links{display:none}
+    .nav-toggle{display:flex}
+    .nav-links{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+      position:fixed;inset:0;z-index:55;
+      background:rgba(6,12,19,.98);
+      opacity:0;pointer-events:none;transition:opacity .3s ease;
+    }
+    .nav-links.open{opacity:1;pointer-events:auto}
+    .nav-links a.link{font-size:1.5rem;opacity:1}
+    .nav-links a.btn-gold{margin-top:6px;padding:15px 34px}
+    .hero-media:after{background:linear-gradient(180deg,rgba(7,15,23,.74) 0%,rgba(7,15,23,.58) 34%,rgba(7,15,23,.66) 60%,rgba(7,15,23,.97) 100%)}
+    .hero h1{font-size:2.15rem;line-height:1.13}
+    .scrollcue{display:none}
     .thesis-grid,.mint-grid{grid-template-columns:1fr;gap:36px}
     .pillars-grid,.steps{grid-template-columns:1fr}
     .pillar{border-left:none;border-top:1px solid var(--line-cool)}
@@ -270,7 +286,6 @@
     .rrow{grid-template-columns:1fr auto;gap:8px}
     .rrow .rk:nth-child(3){display:none}
     .sec-pad{padding:84px 0}
-    .hero h1 .word{overflow:visible;padding-bottom:0;margin-bottom:0}
   }
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -295,6 +310,7 @@
       <a class="link" href="#firm">The Firm</a>
       <a class="btn btn-gold" href="#contact">Contact</a>
     </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -537,6 +553,20 @@
   // nav scroll state
   var nav=document.getElementById('nav');
   function onScroll(){ if(window.scrollY>40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); }
+
+  // mobile menu toggle
+  var navToggle=document.getElementById('navToggle');
+  var navLinks=document.querySelector('.nav-links');
+  function closeMenu(){ if(!navLinks)return; navLinks.classList.remove('open'); navToggle.classList.remove('open'); navToggle.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+  if(navToggle&&navLinks){
+    navToggle.addEventListener('click',function(){
+      var open=!navLinks.classList.contains('open');
+      navLinks.classList.toggle('open',open); navToggle.classList.toggle('open',open);
+      navToggle.setAttribute('aria-expanded',open?'true':'false');
+      document.body.style.overflow=open?'hidden':'';
+    });
+    navLinks.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',closeMenu); });
+  }
   window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
   // bio modal
@@ -585,19 +615,9 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // hero load sequence
+  // hero load sequence — plain, robust fade (no per-word mask; it ghosted on mobile)
   var title=document.getElementById('heroTitle');
-  if(window.innerWidth>=768){
-    // Desktop: per-word masked reveal
-    var words=title.textContent.trim().split(' ');
-    title.innerHTML=words.map(function(w){return '<span class="word"><span>'+w+'</span></span>';}).join(' ');
-    gsap.set(title.querySelectorAll('.word span'),{yPercent:110});
-    var tl=gsap.timeline({defaults:{ease:'power3.out'}});
-    tl.to(title.querySelectorAll('.word span'),{yPercent:0,duration:1,stagger:.06,delay:.15});
-  } else {
-    // Mobile: the per-word overflow mask overlaps/ghosts on small screens — use a plain fade instead
-    gsap.from(title,{opacity:0,y:20,duration:.9,ease:'power3.out',delay:.2});
-  }
+  gsap.from(title,{opacity:0,y:20,duration:.9,ease:'power3.out',delay:.2});
 
   // hero eyebrow/sub/cta
   gsap.utils.toArray('.hero [data-rev]').forEach(function(el,i){
