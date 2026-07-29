@@ -1,0 +1,70 @@
+{
+  "order": 6,
+  "status": "Acquired",
+  "year": "2013",
+  "make_model": "Bombardier Global 6000",
+  "id": "global-6000-9487",
+  "registration": "",
+  "serial": "9487",
+  "category": "Large Cabin",
+  "total_time": "",
+  "cycles": "",
+  "passengers": "",
+  "engines": "",
+  "price": "Sold",
+  "highlight": "",
+  "overview": "",
+  "photos": [
+    "/uploads/7403fd03-5cd3-488c-bb59-7f201852a024.webp"
+  ],
+  "spec_sheet": "",
+  "status_report": "",
+  "due_list": "",
+  "spec_groups": [
+    {
+      "group": "",
+      "rows": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "group": "",
+      "rows": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "exterior": "",
+  "interior": "",
+  "maintenance": ""
+}
