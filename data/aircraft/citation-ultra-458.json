@@ -1,0 +1,70 @@
+{
+  "order": 13,
+  "status": "Acquired",
+  "year": "1998",
+  "make_model": "Citation Ultra",
+  "id": "citation-ultra-458",
+  "registration": "",
+  "serial": "560-0458",
+  "category": "Light Jet",
+  "total_time": "",
+  "cycles": "",
+  "passengers": "",
+  "engines": "",
+  "price": "Acquired",
+  "highlight": "",
+  "overview": "",
+  "photos": [
+    "/uploads/0d77d908-b2f4-45be-8a37-0e96b75dd0b8.webp"
+  ],
+  "spec_sheet": "",
+  "status_report": "",
+  "due_list": "",
+  "spec_groups": [
+    {
+      "group": "",
+      "rows": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "group": "",
+      "rows": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "exterior": "",
+  "interior": "",
+  "maintenance": ""
+}
