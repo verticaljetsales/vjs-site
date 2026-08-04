@@ -1,0 +1,70 @@
+{
+  "order": 9,
+  "status": "Sold",
+  "year": "1998",
+  "make_model": "Cessna Citation X",
+  "id": "citation-x-54",
+  "registration": "",
+  "serial": "750-0054",
+  "category": "Light Jet",
+  "total_time": "",
+  "cycles": "",
+  "passengers": "",
+  "engines": "",
+  "price": "Sold",
+  "highlight": "",
+  "overview": "",
+  "photos": [
+    "/uploads/3aa1bb9f-78fe-4f4c-a74b-219019281312.webp"
+  ],
+  "spec_sheet": "",
+  "status_report": "",
+  "due_list": "",
+  "spec_groups": [
+    {
+      "group": "",
+      "rows": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "group": "",
+      "rows": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "exterior": "",
+  "interior": "",
+  "maintenance": ""
+}
