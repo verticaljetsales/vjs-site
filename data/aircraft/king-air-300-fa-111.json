@@ -1,0 +1,70 @@
+{
+  "order": 12,
+  "status": "Sold",
+  "year": "1986",
+  "make_model": "Beechcraft King Air 300",
+  "id": "king-air-300-fa-111",
+  "registration": "",
+  "serial": "FA-111",
+  "category": "Turboprop",
+  "total_time": "",
+  "cycles": "",
+  "passengers": "",
+  "engines": "",
+  "price": "Sold",
+  "highlight": "",
+  "overview": "",
+  "photos": [
+    "/uploads/king-air-300-25.webp"
+  ],
+  "spec_sheet": "",
+  "status_report": "",
+  "due_list": "",
+  "spec_groups": [
+    {
+      "group": "",
+      "rows": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "group": "",
+      "rows": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "exterior": "",
+  "interior": "",
+  "maintenance": ""
+}
