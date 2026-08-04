@@ -1,0 +1,70 @@
+{
+  "order": 11,
+  "status": "Sold",
+  "year": "1995",
+  "make_model": "Lear 31A",
+  "id": "lear-31a-104",
+  "registration": "",
+  "serial": "104",
+  "category": "Light Jet",
+  "total_time": "",
+  "cycles": "",
+  "passengers": "",
+  "engines": "",
+  "price": "Sold",
+  "highlight": "",
+  "overview": "",
+  "photos": [
+    "/uploads/night.webp"
+  ],
+  "spec_sheet": "",
+  "status_report": "",
+  "due_list": "",
+  "spec_groups": [
+    {
+      "group": "",
+      "rows": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "group": "",
+      "rows": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "exterior": "",
+  "interior": "",
+  "maintenance": ""
+}
