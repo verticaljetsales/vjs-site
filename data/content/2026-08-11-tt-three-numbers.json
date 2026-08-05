@@ -1,0 +1,70 @@
+{
+  "id": "2026-08-11-tt-three-numbers",
+  "status": "Draft",
+  "channel": "tiktok",
+  "format": "short_video",
+  "pillar": "buyer_seller_education",
+  "title": "TikTok — three numbers that matter more than price",
+  "aircraft_id": "challenger-604",
+  "scheduled_for": "2026-08-11",
+  "hook": "Three numbers matter more than the price on a used jet.",
+  "body": "Price gets the attention. These three decide what you actually pay.",
+  "script": [
+    {
+      "beat": "Hook (0-2s)",
+      "visual": "Fast cut, Challenger exterior",
+      "voiceover": "Everybody stares at the price. These three numbers matter more.",
+      "onscreen": "Price isn't THE number"
+    },
+    {
+      "beat": "One (2-7s)",
+      "visual": "Logbooks / inspection b-roll",
+      "voiceover": "One — time since the last major inspection. A fresh clock can be worth six figures.",
+      "onscreen": "1. Time since inspection"
+    },
+    {
+      "beat": "Two (7-12s)",
+      "visual": "Engine detail",
+      "voiceover": "Two — engine program status. On a program means predictable costs. Off it, you're the insurance.",
+      "onscreen": "2. Engine program"
+    },
+    {
+      "beat": "Three (12-16s)",
+      "visual": "Panel / hours readout",
+      "voiceover": "Three — total time and cycles for the type. Low time protects your resale.",
+      "onscreen": "3. Hours & cycles"
+    },
+    {
+      "beat": "CTA (16-20s)",
+      "visual": "VJS mark over exterior",
+      "voiceover": "Read those three before you ever talk price. Vertical Jet Sales.",
+      "onscreen": "Know your position first"
+    }
+  ],
+  "shot_list": [
+    "Challenger 604 exterior (have)",
+    "Cockpit / panel (have)",
+    "Generic logbook + engine b-roll (capture or license)"
+  ],
+  "hashtags": [
+    "#bizav",
+    "#privatejet",
+    "#aircraftbroker",
+    "#aviationtiktok",
+    "#businessaviation"
+  ],
+  "cta": "Questions on value? That's the conversation we love to have.",
+  "media": [
+    "/uploads/Exterior - 944.jpg",
+    "/uploads/Cockpit - 810.jpg",
+    "/uploads/Exterior - 959.jpg"
+  ],
+  "media_notes": "Educational — uses a real listing to illustrate; needs logbook/engine b-roll.",
+  "visual_headline": "3 numbers that matter more than price.",
+  "visual_subline": "Buying a used jet? Start here.",
+  "visual_kicker": "Buyer Insight",
+  "created_by": "vjs-content-studio",
+  "notes": "",
+  "visual": "/media/generated/2026-08-11-tt-three-numbers.jpg",
+  "video": "/media/generated/2026-08-11-tt-three-numbers.mp4"
+}

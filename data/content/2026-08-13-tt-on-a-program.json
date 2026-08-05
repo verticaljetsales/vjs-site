@@ -1,0 +1,65 @@
+{
+  "id": "2026-08-13-tt-on-a-program",
+  "status": "Draft",
+  "channel": "tiktok",
+  "format": "short_video",
+  "pillar": "market_intelligence",
+  "title": "TikTok — why 'on a program' moves the price",
+  "aircraft_id": "global-express-xrs-9175",
+  "scheduled_for": "2026-08-13",
+  "hook": "\"Enrolled on a program\" — why those four words move the price.",
+  "body": "The phrase that quietly protects your resale.",
+  "script": [
+    {
+      "beat": "Hook (0-2s)",
+      "visual": "Global XRS exterior, fast push-in",
+      "voiceover": "'Engines enrolled on a program.' Here's why that phrase moves the price.",
+      "onscreen": "On a program = ??"
+    },
+    {
+      "beat": "Problem (2-8s)",
+      "visual": "Engine detail / shop b-roll",
+      "voiceover": "Jet-engine overhauls run into seven figures, and they come due whether you're ready or not.",
+      "onscreen": "Overhauls: 7 figures"
+    },
+    {
+      "beat": "Payoff (8-15s)",
+      "visual": "Cockpit + exterior",
+      "voiceover": "A program like Corporate Care or MSP turns that surprise into a predictable hourly rate — and it transfers to the next owner. That's why a program jet sells faster and holds value.",
+      "onscreen": "Predictable + transferable"
+    },
+    {
+      "beat": "CTA (15-20s)",
+      "visual": "VJS mark over exterior",
+      "voiceover": "Always check program status before you fall in love. Vertical Jet Sales.",
+      "onscreen": "Know your position first"
+    }
+  ],
+  "shot_list": [
+    "Global Express XRS exterior (have)",
+    "Cockpit (have)",
+    "Generic engine / shop b-roll (capture or license)"
+  ],
+  "hashtags": [
+    "#bizav",
+    "#privatejet",
+    "#globalexpress",
+    "#businessaviation",
+    "#aircraftbroker",
+    "#aviationtiktok"
+  ],
+  "cta": "Thinking about this type? Let's talk market before you make a move.",
+  "media": [
+    "/uploads/Twilight - 926.jpg",
+    "/uploads/Cockpit - 737.jpg",
+    "/uploads/Exterior - 599.jpg"
+  ],
+  "media_notes": "Uses a real program-enrolled listing to illustrate; needs engine b-roll.",
+  "visual_headline": "Why 'on a program' moves the price.",
+  "visual_subline": "The four words that protect resale.",
+  "visual_kicker": "Market Intelligence",
+  "created_by": "vjs-content-studio",
+  "notes": "",
+  "visual": "/media/generated/2026-08-13-tt-on-a-program.jpg",
+  "video": "/media/generated/2026-08-13-tt-on-a-program.mp4"
+}
