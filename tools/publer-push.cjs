@@ -82,13 +82,66 @@ function networkType(item) {
   if (mediaUrl(item)) return 'photo';
   return 'status';
 }
-function buildPost(item, accountId) {
+// Poll a Publer async job until it finishes; return the final job object.
+async function pollJob(jobId, label) {
+  for (let i = 0; i < 20; i++) {
+    await new Promise(r => setTimeout(r, 2500));
+    try {
+      const s = await api('GET', `/job_status/${jobId}`);
+      const status = String(s.status || s.state || '').toLowerCase();
+      console.log(`  ${label || 'job'} ${jobId}: ${status || JSON.stringify(s).slice(0, 120)}`);
+      if (['complete', 'completed', 'success', 'failed', 'failure', 'error'].includes(status)) return s;
+    } catch (e) { console.log('  poll: ' + e.message); }
+  }
+  return null;
+}
+
+// Pull media ids out of whatever shape Publer returns.
+function extractMediaIds(obj) {
+  if (!obj) return [];
+  const arr = obj.media || (obj.payload && obj.payload.media) || obj.medias
+    || (obj.payload && obj.payload.medias) || (Array.isArray(obj) ? obj : null);
+  if (Array.isArray(arr)) {
+    const ids = arr.map(m => (m && (m.id || m._id))).filter(Boolean);
+    if (ids.length) return ids;
+  }
+  // fallback: deep-scan for mongo-style ids
+  const found = [];
+  (function walk(o) {
+    if (!o || typeof o !== 'object') return;
+    if (Array.isArray(o)) return o.forEach(walk);
+    for (const [k, v] of Object.entries(o)) {
+      if (k === 'id' && typeof v === 'string' && /^[a-f0-9]{24}$/i.test(v)) found.push(v);
+      else walk(v);
+    }
+  })(obj);
+  return [...new Set(found)];
+}
+
+// Upload a public media URL to Publer, return the resulting media id(s).
+async function uploadMediaIds(url) {
+  const resp = await api('POST', '/media/from-url', { media: [{ url }] });
+  console.log('  media resp: ' + JSON.stringify(resp).slice(0, 400));
+  let obj = resp;
+  if (resp && resp.job_id) {
+    const done = await pollJob(resp.job_id, 'media');
+    if (done) { console.log('  media job: ' + JSON.stringify(done).slice(0, 500)); obj = done; }
+  }
+  const ids = extractMediaIds(obj);
+  console.log('  media ids: ' + JSON.stringify(ids));
+  return ids;
+}
+
+async function buildPost(item, accountId) {
+  const url = mediaUrl(item);
+  const mtype = item.video ? 'video' : 'photo';
+  let media = [];
+  if (url) {
+    const ids = await uploadMediaIds(url);
+    media = ids.map(id => ({ id, type: mtype }));
+  }
   const net = {};
-  net[item.channel] = {
-    type: networkType(item),
-    text: caption(item),
-    media: mediaUrl(item) ? [{ path: mediaUrl(item) }] : [],
-  };
+  net[item.channel] = { type: url ? mtype : 'status', text: caption(item), media };
   return { networks: net, accounts: [{ id: accountId, scheduled_at: scheduledAt(item) }] };
 }
 
@@ -104,7 +157,8 @@ async function push({ dryRun }) {
     const acct = map[data.channel];
     if (!acct) { console.log(`skip ${data.id}: no account id mapped for "${data.channel}"`); continue; }
     if (!scheduledAt(data)) { console.log(`skip ${data.id}: no scheduled_for date`); continue; }
-    posts.push(buildPost(data, acct));
+    console.log(`preparing ${data.id} (${data.channel})`);
+    posts.push(await buildPost(data, acct));
     used.push({ file, data });
   }
   if (!posts.length) { console.log('Nothing to send after mapping/date checks.'); return; }
@@ -116,35 +170,23 @@ async function push({ dryRun }) {
   const jobId = job.job_id || job.id || job.jobId;
   console.log(`Submitted ${posts.length} post(s). Job: ${jobId}`);
 
-  // Publer processes async — poll the job so the logs show the real outcome.
-  let final = null;
-  if (jobId) {
-    for (let i = 0; i < 15; i++) {
-      await new Promise(r => setTimeout(r, 2500));
-      try {
-        const s = await api('GET', `/job_status/${jobId}`);
-        const status = String(s.status || s.state || '').toLowerCase();
-        console.log(`  job ${jobId}: ${status || JSON.stringify(s)}`);
-        if (['complete', 'completed', 'success', 'failed', 'failure', 'error'].includes(status)) {
-          console.log(JSON.stringify(s, null, 2));
-          final = status; break;
-        }
-      } catch (e) { console.log('  poll: ' + e.message); }
-    }
-  }
+  const final = jobId ? await pollJob(jobId, 'schedule') : null;
+  if (final) console.log(JSON.stringify(final, null, 2));
 
-  if (final && ['failed', 'failure', 'error'].includes(final)) {
-    console.log('Job reported failure — NOT marking items as Scheduled. See details above.');
+  // A job can be "complete" yet still contain per-post failures — check them.
+  const failures = final && final.payload && final.payload.failures;
+  const failCount = failures ? Object.values(failures).flat().length : 0;
+  if (failCount) {
+    console.log(`Publer rejected ${failCount} post(s) — NOT marking Scheduled. See failures above.`);
     return;
   }
 
-  // mark each pushed item as Scheduled so we don't re-send
   for (const { file, data } of used) {
     data.status = 'Scheduled';
     data.publer_job = jobId || true;
     fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
   }
-  console.log('Marked pushed items as Scheduled.');
+  console.log(`Success — scheduled ${used.length} post(s) in Publer.`);
 }
 
 (async () => {
