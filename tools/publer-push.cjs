@@ -47,14 +47,21 @@ async function api(method, endpoint, body) {
 
 // ---- discover: list workspaces + accounts so we can map channel -> account id ----
 async function discover() {
-  console.log('Workspaces:');
+  console.log('=== WORKSPACES (copy the id you want into the PUBLER_WORKSPACE_ID secret) ===');
   try { console.log(JSON.stringify(await api('GET', '/workspaces'), null, 2)); }
   catch (e) { console.log('  (workspaces) ' + e.message); }
-  console.log('\nAccounts (id · name · provider):');
-  const accts = await api('GET', '/accounts');
-  const list = Array.isArray(accts) ? accts : (accts.accounts || accts.data || []);
-  for (const a of list) console.log(`  ${a.id}  ·  ${a.name || a.username || ''}  ·  ${a.provider || a.type || ''}`);
-  console.log('\nPut the right ids into content/publer-accounts.json, then run without --discover.');
+
+  console.log('\n=== ACCOUNTS (id · name · provider) ===');
+  try {
+    const accts = await api('GET', '/accounts');
+    const list = Array.isArray(accts) ? accts : (accts.accounts || accts.data || []);
+    if (!list.length) console.log(JSON.stringify(accts, null, 2));
+    for (const a of list) console.log(`  ${a.id}  ·  ${a.name || a.username || ''}  ·  ${a.provider || a.type || ''}`);
+  } catch (e) {
+    console.log('  (accounts) ' + e.message);
+    console.log('  If this needs a workspace, add the PUBLER_WORKSPACE_ID secret and re-run discover.');
+  }
+  console.log('\nNext: I map these ids into content/publer-accounts.json, then you run mode=push.');
 }
 
 // ---- build one Publer post from a content item ----
