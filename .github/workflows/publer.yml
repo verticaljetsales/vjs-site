@@ -3,18 +3,18 @@ name: Publer — push approved posts
 # Sends Approved Content Studio posts to Publer via the Publer API.
 # Runs here (GitHub Actions) because it can reach Publer; the site itself can't.
 #
-# Setup (one time):
-#   Repo → Settings → Secrets and variables → Actions → New repository secret:
-#     PUBLER_API_KEY        (from Publer: Settings → Access & Login → API Keys)
-#     PUBLER_WORKSPACE_ID   (from the "Discover" run output below)
+# Two triggers:
+#   • schedule  — runs automatically every morning and pushes any newly-Approved
+#                 posts (no clicks needed).
+#   • manual    — Actions tab → Run workflow → pick discover | dry-run | push.
 #
-# Use:
-#   Actions tab → "Publer — push approved posts" → Run workflow →
-#     mode = discover  (first time: lists your accounts so we can map channels)
-#     mode = dry-run   (preview exactly what would be sent)
-#     mode = push      (schedule all Approved posts in Publer, mark them Scheduled)
+# Setup secrets (Repo → Settings → Secrets and variables → Actions):
+#   PUBLER_API_KEY        (Publer: Settings → Access & Login → API Keys)
+#   PUBLER_WORKSPACE_ID   (from the "discover" run output)
 
 on:
+  schedule:
+    - cron: "0 13 * * *"      # 13:00 UTC daily ≈ 8:00 AM US-Central — auto-push approved posts
   workflow_dispatch:
     inputs:
       mode:
@@ -36,19 +36,23 @@ jobs:
         with:
           node-version: "22"
 
+      # Scheduled runs have no input; default them to "push".
+      - name: Determine mode
+        run: echo "MODE=${{ github.event.inputs.mode || 'push' }}" >> "$GITHUB_ENV"
+
       - name: Run Publer tool
         env:
           PUBLER_API_KEY: ${{ secrets.PUBLER_API_KEY }}
           PUBLER_WORKSPACE_ID: ${{ secrets.PUBLER_WORKSPACE_ID }}
         run: |
-          case "${{ github.event.inputs.mode }}" in
+          case "$MODE" in
             discover) node tools/publer-push.cjs --discover ;;
             dry-run)  node tools/publer-push.cjs --dry-run ;;
-            push)     node tools/publer-push.cjs ;;
+            *)        node tools/publer-push.cjs ;;
           esac
 
       - name: Commit status changes (push mode only)
-        if: ${{ github.event.inputs.mode == 'push' }}
+        if: env.MODE == 'push'
         run: |
           if [ -n "$(git status --porcelain data/content)" ]; then
             git config user.name  "vjs-content-bot"
