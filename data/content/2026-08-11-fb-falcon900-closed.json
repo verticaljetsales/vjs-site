@@ -1,10 +1,10 @@
 {
-  "id": "2026-08-11-fb-falcon900-closed",
-  "status": "Draft",
+  "status": "Approved",
   "channel": "facebook",
   "format": "single_image",
   "pillar": "behind_the_deal",
   "title": "Facebook — recently closed Falcon 900EX EASy",
+  "id": "2026-08-11-fb-falcon900-closed",
   "aircraft_id": "falcon900ex-easy-217",
   "scheduled_for": "2026-08-11",
   "hook": "Another one across the finish line.",
@@ -24,10 +24,10 @@
     "/uploads/twilight-5315.webp"
   ],
   "media_notes": "Social proof. Discreet — no client named, no reason for the transaction.",
+  "visual": "/media/generated/2026-08-11-fb-falcon900-closed.jpg",
   "visual_headline": "Another one across the finish line.",
   "visual_subline": "2008 Falcon 900EX EASy · Large Cabin",
   "visual_kicker": "Recently Closed",
   "created_by": "vjs-content-studio",
-  "notes": "",
-  "visual": "/media/generated/2026-08-11-fb-falcon900-closed.jpg"
+  "notes": ""
 }
