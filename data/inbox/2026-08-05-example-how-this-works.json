@@ -1,0 +1,10 @@
+{
+  "status": "Archived",
+  "title": "Example — how the Inbox works (safe to delete)",
+  "kind": "idea",
+  "source_url": "",
+  "notes": "This is just a sample so the Inbox isn't empty. To use it: click 'New Idea / Article', paste an article link or your notes, set Status to 'New', and Save. Next time the content agent runs, it turns New items into finished drafts over in Content Studio. Then it flips this to 'Turned into posts'. You can delete this example anytime.",
+  "media": [],
+  "channels": "",
+  "submitted_by": "vjs-content-studio"
+}

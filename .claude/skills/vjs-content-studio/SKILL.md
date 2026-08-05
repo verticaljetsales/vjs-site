@@ -66,13 +66,24 @@ Keep it plain-English and confident — energetic, never cringe.
 ## Workflow
 
 1. Load `content/brand-voice.md` + `content/content-strategy.yml`.
-2. If the request is broad ("plan the week"), run **Strategist** first and show
+2. **Check the Inbox.** Read `data/inbox/*.json`. Any item with
+   `status: "New"` is raw material a human dropped in — an industry article
+   link, a market stat, a photo drop, or a one-line idea. Fold these into the
+   plan: turn each into one or more posts (respecting its `channels` hint if
+   set, and matching `kind` to the right pillar — `article`/`news_stat` →
+   market_intelligence, `photos_or_video`/`aircraft_update` →
+   inventory_spotlight, etc.). **Never republish an article's wording** — write
+   original VJS-voice posts *inspired by* the source, with our own take/CTA. If
+   an item has a `source_url` and you can fetch it, do so for accuracy. After
+   you've drafted posts from an inbox item, set that item's `status` to
+   `"Turned into posts"` (and note the new content ids in its `notes`).
+3. If the request is broad ("plan the week"), run **Strategist** first and show
    the idea list for a quick thumbs-up. If it's specific ("reel for the
    Global Express"), go straight to writing.
-3. Pull the relevant aircraft data from `data/aircraft/` (or market context).
-4. Write each item as a JSON file in `data/content/` using the schema below,
+4. Pull the relevant aircraft data from `data/aircraft/` (or market context).
+5. Write each item as a JSON file in `data/content/` using the schema below,
    with `status: "Draft"`.
-5. **Compose the finished visual.** Run
+6. **Compose the finished visual.** Run
    `node tools/compose-visuals.cjs <id>` (or with no args to (re)build all).
    This produces a branded, **logo'd** graphic at `media/generated/<id>.jpg`
    and writes its path back onto the item's `visual` field. **Every post gets
@@ -88,9 +99,9 @@ Keep it plain-English and confident — energetic, never cringe.
    logo + headline framed on top, crossfades, branded end card) at
    `media/generated/<id>.mp4` and records it on the item's `video` field.
    (Needs ffmpeg installed in the session.)
-6. Run `node build-content-index.js` so the Content Studio dashboard and CMS
+7. Run `node build-content-index.js` so the Content Studio dashboard and CMS
    pick up the new items and their visuals.
-7. Report back: what you made, for which channels, and remind the human they
+8. Report back: what you made, for which channels, and remind the human they
    review/approve in the Content Studio (`/content.html`) or the CMS `/admin`.
 
 ## Content item schema (`data/content/<id>.json`)

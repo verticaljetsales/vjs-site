@@ -154,3 +154,35 @@ collections:
       - { label: "Visual: Kicker / badge override", name: "visual_kicker", widget: "string", required: false, hint: "Optional. The little badge (e.g. 'For Sale') or eyebrow label." }
       - { label: "Created By", name: "created_by", widget: "string", required: false, default: "vjs-content-studio" }
       - { label: "Review Notes", name: "notes", widget: "text", required: false, hint: "Your edits/feedback for the agent or the team." }
+
+  # ---------------------------------------------------------------------------
+  # IDEAS & ARTICLE INBOX — where anyone (Ben or Kalene) drops raw material:
+  # an industry article link, a news item, a photo drop, a random idea. The
+  # content agent reads this queue and turns "New" items into finished drafts
+  # over in Content Studio. Nothing here ever posts on its own — it's raw feed.
+  # ---------------------------------------------------------------------------
+  - name: "inbox"
+    label: "Ideas & Article Inbox"
+    label_singular: "Idea / Article"
+    folder: "data/inbox"
+    extension: "json"
+    format: "json"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    identifier_field: "title"
+    summary: "[{{fields.status}}] {{fields.title}}"
+    sortable_fields: ["status", "submitted_by"]
+    description: "Drop anything you'd like turned into posts: an industry article link, a market stat, a photo shoot, a one-line idea. Set Status to 'New' and the content agent will pick it up next time it runs. This never posts on its own — it's just raw material."
+    fields:
+      - { label: "Status", name: "status", widget: "select", default: "New", options: ["New", "Being worked on", "Turned into posts", "Archived"], hint: "Leave on 'New' and the agent will turn it into drafts. It flips to 'Turned into posts' once done." }
+      - { label: "What is it?", name: "title", widget: "string", hint: "A short label, e.g. 'AIN article on Q3 bizjet pricing' or 'New photos of the Beechjet'." }
+      - { label: "Type", name: "kind", widget: "select", required: false, default: "article", options: ["article", "news_stat", "idea", "photos_or_video", "customer_question", "aircraft_update", "promotion"], hint: "Helps the agent know how to use it." }
+      - { label: "Link / URL", name: "source_url", widget: "string", required: false, hint: "Paste the article or source link here. Optional." }
+      - { label: "Paste text or notes here", name: "notes", widget: "text", required: false, hint: "Paste the article text, a stat, or describe the idea. The more you give, the better the posts. VJS never re-publishes an article's words — the agent writes original posts inspired by it." }
+      - label: "Attach photos / files (optional)"
+        name: "media"
+        widget: "list"
+        required: false
+        field: { label: "File", name: "file", widget: "image" }
+      - { label: "Suggested channels (optional)", name: "channels", widget: "string", required: false, hint: "e.g. 'LinkedIn + Instagram'. Blank = agent decides." }
+      - { label: "Submitted by", name: "submitted_by", widget: "string", required: false, hint: "Your name — Ben or Kalene." }
