@@ -14,15 +14,23 @@ feeds) using the real VJS typography and mark.
 - **verticaljetsales.com** is shown on every post; `@verticaljetsales` on photo
   posts.
 
-## Two templates (auto-selected)
-1. **Photo post** — a real aircraft photo, darkened toward the bottom, with a
-   status badge (top-left), the logo, a Playfair headline, a spec line
-   (`YEAR MODEL · CATEGORY`), and the handle/site strip. Used whenever the post
-   is tied to a listing with a usable photo.
+## Templates (auto-selected)
+1. **Photo post** — used whenever the post is tied to a listing with a usable
+   photo. Comes in two layouts, chosen per post via the `layout` field:
+   - **`framed`** *(default)* — the **whole aircraft** sits in a top panel
+     (nothing cropped), with a branded band beneath holding the logo, a Playfair
+     headline, the spec line (`YEAR MODEL · CATEGORY`), and the handle/site
+     strip. Best for a brokerage — the airplane is the product.
+   - **`full-bleed`** — the photo fills the entire frame with the branding
+     overlaid. More cinematic, but it crops the ends of the aircraft, so only
+     use it when a photo is loosely framed. Opt in with `"layout": "full-bleed"`.
 2. **Quote-card** — a night background with a soft gold glow, a pillar eyebrow
-   ("Market Intelligence", "From the Team", …), a large Playfair headline, an
-   optional subline, and the logo + site in the footer. Used for market,
-   education, and founder posts that aren't about one specific airplane.
+   ("Market Intelligence", "From the Team", …), a large Playfair headline, a
+   subline (defaults to the post's CTA), and the logo + site in the footer.
+   Used for market, education, and founder posts that aren't about one airplane.
+
+Headlines auto-size to the space, so a long hook shrinks to fit rather than
+overflowing. The logo is always rendered at its true 520×276 aspect.
 
 ## Steering the words on a graphic
 By default the headline is the post's `hook`. Override per post with:

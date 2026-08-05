@@ -92,14 +92,68 @@ const BASE = `
         font-family:'Archivo',system-ui,sans-serif;color:var(--bone)}
   .pf{font-family:'Playfair Display',Georgia,serif;font-weight:400}
   .eyebrow{font-size:23px;font-weight:700;letter-spacing:.30em;text-transform:uppercase;color:var(--gold)}
-  .logo{height:118px;width:auto;display:block}
+  .logo{display:block}
   .rule{height:2px;width:104px;background:linear-gradient(90deg,var(--gold),transparent)}`;
 
-function photoTemplate(item, photo, meta) {
-  const kicker = item.visual_kicker || (meta && meta.status) || 'For Sale';
-  const headline = item.visual_headline || item.hook || item.title || '';
-  const sub = item.visual_subline || (meta ? [meta.year, meta.model].filter(Boolean).join(' ') +
-    (meta.category ? '  ·  ' + meta.category : '') : '');
+// The VJS logo is 520x276 (aspect 1.884). ALWAYS give it a matching width so it
+// never distorts — a flex parent will otherwise stretch a width:auto image.
+const LOGO_ASPECT = 520 / 276;
+function logoBox(h) { return `height:${h}px;width:${Math.round(h * LOGO_ASPECT)}px`; }
+
+// Fit the headline to the space: fewer characters -> larger type.
+function headlineSize(text, big, mid, small, tiny) {
+  const n = (text || '').length;
+  if (n <= 42) return big;
+  if (n <= 68) return mid;
+  if (n <= 104) return small;
+  return tiny;
+}
+
+function photoFields(item, meta) {
+  return {
+    kicker: item.visual_kicker || (meta && meta.status) || 'For Sale',
+    headline: item.visual_headline || item.hook || item.title || '',
+    sub: item.visual_subline || (meta ? [meta.year, meta.model].filter(Boolean).join(' ') +
+      (meta.category ? '  ·  ' + meta.category : '') : ''),
+  };
+}
+
+// FRAMED (default): the whole aircraft shows in a top panel, branding beneath.
+function framedTemplate(item, photo, meta) {
+  const { kicker, headline, sub } = photoFields(item, meta);
+  const hs = headlineSize(headline, 64, 54, 46, 40);
+  return `<!doctype html><html><head><meta charset="utf-8"><style>${FONT_CSS}${BASE}
+    .pane{position:absolute;top:0;left:0;right:0;height:760px;background:#070F17;display:flex;align-items:center;justify-content:center}
+    .pane img{width:100%;height:100%;object-fit:contain}
+    .badge{position:absolute;top:40px;left:40px;z-index:3;font-size:20px;font-weight:700;letter-spacing:.14em;
+           text-transform:uppercase;color:var(--night);background:var(--gold);padding:10px 18px;border-radius:3px}
+    .divl{position:absolute;top:760px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),rgba(198,161,91,.15))}
+    .band{position:absolute;top:763px;left:0;right:0;bottom:0;padding:50px 60px 58px;display:flex;flex-direction:column}
+    .band .logo{${logoBox(102)};align-self:flex-start;margin-bottom:22px}
+    h1{font-size:${hs}px;line-height:1.05;letter-spacing:-.015em}
+    .sub{font-size:28px;color:var(--bone);opacity:.92;margin-top:18px}
+    .strip{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:25px;letter-spacing:.04em}
+    .strip .s{color:var(--gold-bright)}
+  </style></head><body>
+    <div class="post">
+      <div class="pane"><img src="${photo}"></div>
+      <div class="badge">${esc(kicker)}</div>
+      <div class="divl"></div>
+      <div class="band">
+        ${LOGO ? `<img class="logo" src="${LOGO}">` : ''}
+        <h1 class="pf">${esc(headline)}</h1>
+        ${sub ? `<div class="sub">${esc(sub)}</div>` : ''}
+        <div class="strip"><span>@verticaljetsales</span><span class="s">verticaljetsales.com</span></div>
+      </div>
+    </div>
+  </body></html>`;
+}
+
+// FULL-BLEED: photo fills the frame, branding overlaid. More cinematic; crops
+// the ends of the aircraft. Opt in per post with "layout": "full-bleed".
+function fullBleedTemplate(item, photo, meta) {
+  const { kicker, headline, sub } = photoFields(item, meta);
+  const hs = headlineSize(headline, 80, 66, 54, 46);
   return `<!doctype html><html><head><meta charset="utf-8"><style>${FONT_CSS}${BASE}
     .ph{position:absolute;inset:0;background:#050b12}
     .ph img{width:100%;height:100%;object-fit:cover;object-position:center 44%}
@@ -108,8 +162,8 @@ function photoTemplate(item, photo, meta) {
     .badge{position:absolute;top:54px;left:56px;z-index:3;font-size:21px;font-weight:700;letter-spacing:.14em;
            text-transform:uppercase;color:var(--night);background:var(--gold);padding:11px 20px;border-radius:3px}
     .content{position:absolute;left:60px;right:60px;bottom:66px;z-index:3}
-    .content .logo{margin-bottom:26px;filter:drop-shadow(0 3px 16px rgba(0,0,0,.6))}
-    h1{font-size:80px;line-height:1.03;letter-spacing:-.015em;text-shadow:0 2px 26px rgba(0,0,0,.55)}
+    .content .logo{${logoBox(116)};margin-bottom:26px;filter:drop-shadow(0 3px 16px rgba(0,0,0,.6))}
+    h1{font-size:${hs}px;line-height:1.03;letter-spacing:-.015em;text-shadow:0 2px 26px rgba(0,0,0,.55)}
     .sub{font-size:29px;color:var(--bone);opacity:.95;margin-top:22px;text-shadow:0 2px 16px rgba(0,0,0,.6)}
     .rule{margin:26px 0 0}
     .strip{display:flex;justify-content:space-between;align-items:center;margin-top:26px;font-size:25px;letter-spacing:.04em}
@@ -133,16 +187,18 @@ function photoTemplate(item, photo, meta) {
 function quoteTemplate(item) {
   const eyebrow = item.visual_kicker || PILLAR_LABEL[item.pillar] || 'Vertical Jet Sales';
   const headline = item.visual_headline || item.hook || item.title || '';
-  const sub = item.visual_subline || '';
+  const sub = item.visual_subline || item.cta || '';
+  const hs = headlineSize(headline, 86, 74, 62, 52);
   return `<!doctype html><html><head><meta charset="utf-8"><style>${FONT_CSS}${BASE}
     .card{position:absolute;inset:0;padding:96px 84px;display:flex;flex-direction:column;justify-content:space-between}
     .glow{position:absolute;width:1000px;height:1000px;right:-300px;top:-280px;border-radius:50%;
       background:radial-gradient(circle,rgba(198,161,91,.20) 0%,rgba(198,161,91,.05) 42%,rgba(198,161,91,0) 70%)}
     .top{position:relative;z-index:2}
-    h1{font-size:86px;line-height:1.05;letter-spacing:-.015em;margin-top:32px;max-width:15ch}
+    h1{font-size:${hs}px;line-height:1.05;letter-spacing:-.015em;margin-top:32px;max-width:15ch}
     .sub{position:relative;z-index:2;font-size:33px;line-height:1.5;color:var(--bone);opacity:.9;max-width:24ch;margin-top:36px}
     .foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;
           border-top:1px solid rgba(233,229,220,.16);padding-top:36px}
+    .foot .logo{${logoBox(112)};align-self:flex-end}
     .foot .site{font-size:27px;color:var(--gold-bright);letter-spacing:.05em;padding-bottom:10px}
   </style></head><body>
     <div class="post">
@@ -180,7 +236,12 @@ async function main() {
     const meta = aircraftMeta(item);
     const photo = resolvePhoto(item);
     const useQuote = item.format === 'text_post' || !photo;
-    const html = useQuote ? quoteTemplate(item) : photoTemplate(item, photo, meta);
+    // Per-post layout: framed (default) or full-bleed. Quote cards ignore it.
+    const layout = (item.layout === 'full-bleed') ? 'full-bleed' : 'framed';
+    const html = useQuote ? quoteTemplate(item)
+      : layout === 'full-bleed' ? fullBleedTemplate(item, photo, meta)
+      : framedTemplate(item, photo, meta);
+    const kind = useQuote ? 'quote' : layout;
 
     await page.setContent(html, { waitUntil: 'networkidle' });
     await page.waitForTimeout(150);
@@ -190,7 +251,7 @@ async function main() {
 
     item.visual = outRel;
     fs.writeFileSync(p, JSON.stringify(item, null, 2) + '\n');
-    console.log(`${useQuote ? 'quote' : 'photo'}  ${item.id}  ->  ${outRel}`);
+    console.log(`${kind.padEnd(10)} ${item.id}  ->  ${outRel}`);
   }
 
   await browser.close();

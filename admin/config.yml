@@ -117,6 +117,7 @@ collections:
       - { label: "Status", name: "status", widget: "select", default: "Draft", options: ["Idea", "Draft", "Needs Edit", "Approved", "Scheduled", "Posted", "Archived"], hint: "Draft = agent wrote it, waiting on you. Approved = cleared to post. Nothing goes live until Approved." }
       - { label: "Channel", name: "channel", widget: "select", options: ["instagram", "linkedin", "facebook", "tiktok"] }
       - { label: "Format", name: "format", widget: "select", required: false, options: ["reel", "carousel", "single_image", "text_post", "document_carousel", "short_video", "link_post"] }
+      - { label: "Visual Layout", name: "layout", widget: "select", required: false, default: "framed", options: ["framed", "full-bleed"], hint: "framed = whole aircraft shown with a branded band (default). full-bleed = photo fills the frame, more cinematic but crops the ends. (Text posts always use the quote-card.)" }
       - { label: "Pillar", name: "pillar", widget: "select", required: false, options: ["inventory_spotlight", "market_intelligence", "buyer_seller_education", "founder_team_pov", "behind_the_deal"] }
       - { label: "Title (internal label)", name: "title", widget: "string", hint: "Just for the queue — never posted." }
       - { label: "ID (URL-safe, unique)", name: "id", widget: "string", hint: "e.g. 2026-08-05-ig-globalxrs-reach. Lowercase, dashes, no spaces." }

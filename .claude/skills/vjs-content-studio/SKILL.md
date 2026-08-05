@@ -77,9 +77,11 @@ Keep it plain-English and confident — energetic, never cringe.
    This produces a branded, **logo'd** graphic at `media/generated/<id>.jpg`
    and writes its path back onto the item's `visual` field. **Every post gets
    the VJS logo — no exceptions.** Photo posts use a real aircraft photo;
-   market/education/founder posts get a text "quote-card". Tune the on-graphic
-   words with the optional `visual_headline` / `visual_subline` /
-   `visual_kicker` fields before composing.
+   market/education/founder posts get a text "quote-card". Photo posts default
+   to the **framed** layout (whole aircraft shown); set
+   `"layout": "full-bleed"` on a post for the cinematic, edge-to-edge look.
+   Tune the on-graphic words with the optional `visual_headline` /
+   `visual_subline` / `visual_kicker` fields before composing.
 6. Run `node build-content-index.js` so the Content Studio dashboard and CMS
    pick up the new items and their visuals.
 7. Report back: what you made, for which channels, and remind the human they
