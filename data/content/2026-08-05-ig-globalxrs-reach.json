@@ -1,10 +1,10 @@
 {
-  "id": "2026-08-05-ig-globalxrs-reach",
-  "status": "Draft",
+  "status": "Approved",
   "channel": "instagram",
   "format": "reel",
   "pillar": "inventory_spotlight",
   "title": "Global Express XRS — ultra-long-range reel",
+  "id": "2026-08-05-ig-globalxrs-reach",
   "aircraft_id": "global-express-xrs-9175",
   "scheduled_for": "",
   "hook": "Range that turns a continent into a commute.",
@@ -59,8 +59,8 @@
     "/uploads/Exterior - 599.jpg"
   ],
   "media_notes": "Reel can be assembled from existing listing photos as a Ken Burns pan; a short live twilight clip would elevate it.",
-  "created_by": "vjs-content-studio",
-  "notes": "",
   "visual": "/media/generated/2026-08-05-ig-globalxrs-reach.jpg",
-  "video": "/media/generated/2026-08-05-ig-globalxrs-reach.mp4"
+  "video": "/media/generated/2026-08-05-ig-globalxrs-reach.mp4",
+  "created_by": "vjs-content-studio",
+  "notes": ""
 }
