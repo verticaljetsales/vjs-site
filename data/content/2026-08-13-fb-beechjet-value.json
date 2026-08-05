@@ -1,6 +1,6 @@
 {
   "id": "2026-08-13-fb-beechjet-value",
-  "status": "Approved",
+  "status": "Scheduled",
   "channel": "facebook",
   "format": "single_image",
   "pillar": "inventory_spotlight",
@@ -29,5 +29,6 @@
   "visual_kicker": "For Sale",
   "created_by": "vjs-content-studio",
   "notes": "",
-  "visual": "/media/generated/2026-08-13-fb-beechjet-value.jpg"
+  "visual": "/media/generated/2026-08-13-fb-beechjet-value.jpg",
+  "publer_job": "6a73a15d10b62a094917b648"
 }
