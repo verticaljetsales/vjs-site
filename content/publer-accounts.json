@@ -1,7 +1,7 @@
 {
-  "_comment": "Map each channel to its Publer account id. Fill these in from the `--discover` run output, then commit.",
-  "instagram": "",
-  "facebook": "",
-  "linkedin": "",
+  "_comment": "Channel -> Publer account id. From the --discover run. TikTok not connected in Publer yet.",
+  "instagram": "681a151ef27e568680544791",
+  "facebook": "681a147d69a107199661afe1",
+  "linkedin": "681a154769a107199661b0b7",
   "tiktok": ""
 }

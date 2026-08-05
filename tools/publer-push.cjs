@@ -116,6 +116,28 @@ async function push({ dryRun }) {
   const jobId = job.job_id || job.id || job.jobId;
   console.log(`Submitted ${posts.length} post(s). Job: ${jobId}`);
 
+  // Publer processes async — poll the job so the logs show the real outcome.
+  let final = null;
+  if (jobId) {
+    for (let i = 0; i < 15; i++) {
+      await new Promise(r => setTimeout(r, 2500));
+      try {
+        const s = await api('GET', `/job_status/${jobId}`);
+        const status = String(s.status || s.state || '').toLowerCase();
+        console.log(`  job ${jobId}: ${status || JSON.stringify(s)}`);
+        if (['complete', 'completed', 'success', 'failed', 'failure', 'error'].includes(status)) {
+          console.log(JSON.stringify(s, null, 2));
+          final = status; break;
+        }
+      } catch (e) { console.log('  poll: ' + e.message); }
+    }
+  }
+
+  if (final && ['failed', 'failure', 'error'].includes(final)) {
+    console.log('Job reported failure — NOT marking items as Scheduled. See details above.');
+    return;
+  }
+
   // mark each pushed item as Scheduled so we don't re-send
   for (const { file, data } of used) {
     data.status = 'Scheduled';
