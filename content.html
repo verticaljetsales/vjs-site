@@ -116,6 +116,26 @@
   Questions? <a href="mailto:ben@verticaljetsales.com">ben@verticaljetsales.com</a> · (210) 865-2475</div>
 </footer>
 
+<!-- Finished-post preview -->
+<div class="pv-modal" id="modal"><button class="pv-x" id="pvx" aria-label="Close">✕</button><div class="pv-sheet" id="sheet"></div></div>
+<style>
+  .card{cursor:pointer;font:inherit;color:inherit;text-align:left;width:100%;border:1px solid var(--line-cool);border-left:3px solid var(--muted);border-radius:5px;background:rgba(255,255,255,.02);padding:13px 14px;display:block}
+  .pv-modal{position:fixed;inset:0;z-index:80;background:rgba(4,9,15,.82);backdrop-filter:blur(5px);display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;overflow-y:auto}
+  .pv-modal.on{display:flex}
+  .pv-sheet{max-width:600px;width:100%;background:var(--night-2);border:1px solid var(--line-gold);border-radius:10px;overflow:hidden}
+  .pv-hero{width:100%;max-height:62vh;object-fit:contain;display:block;background:var(--night-3)}
+  .pv-body{padding:20px 22px 24px}
+  .pv-badges{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+  .pv-badges .badge.when2{background:rgba(198,161,91,.16);color:var(--gold-bright)}
+  .pv-cap{white-space:normal;color:var(--bone);font-size:1rem;line-height:1.6}
+  .pv-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+  .pv-tag{font-size:.8rem;color:#8CC0F5;background:rgba(10,102,194,.14);border-radius:4px;padding:3px 8px}
+  .pv-cta{margin-top:16px;font-size:.85rem;color:var(--muted);border-top:1px solid var(--line-cool);padding-top:12px}
+  .pv-foot{margin-top:18px}
+  .pv-x{position:fixed;top:calc(5vh + 8px);right:calc(50% - 300px + 6px);z-index:90;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.55);border:1px solid var(--line-gold);color:var(--bone);font-size:1.1rem;cursor:pointer}
+  @media(max-width:660px){ .pv-x{top:14px;right:14px} }
+</style>
+
 <script>
 (function(){
   var STATUS_ORDER = ["Idea","Draft","Needs Edit","Approved","Scheduled","Posted"];
@@ -180,16 +200,19 @@
         '<div class="col-h"><span class="name">'+status+'</span><span class="ct">'+col.length+'</span></div>'+
         '<div class="col-body">'+cards+'</div></div>';
     }).join('');
+
+    board.querySelectorAll('.card').forEach(function(el){
+      el.onclick = function(){ openModal(el.getAttribute('data-id')); };
+    });
   }
 
   function cardHTML(c){
     var chClass = c.channel==='instagram' ? 'ig' : c.channel;
-    var editUrl = '/admin/#/collections/content/entries/'+encodeURIComponent(c.id);
     var thumbSrc = c.visual || (c.media && c.media[0]) || '';
     var playBadge = c.video ? '<span class="playbadge">▶ Video</span>' : '';
     var thumb = thumbSrc ? '<div class="thumbwrap"><img class="thumb" src="'+esc(thumbSrc)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">'+playBadge+'</div>' : '';
     var when = c.scheduled_for ? '<span class="when">'+esc(c.scheduled_for)+'</span>' : '<span></span>';
-    return '<a class="card '+chClass+'" href="'+editUrl+'">'+
+    return '<button class="card '+chClass+'" data-id="'+esc(c.id)+'">'+
       '<div class="card-top">'+
         '<span class="badge ch-'+c.channel+'">'+(CH[c.channel]||c.channel)+'</span>'+
         (c.format?'<span class="badge fmt'+(c.is_video?' vid':'')+'">'+esc(c.format.replace(/_/g,' '))+'</span>':'')+
@@ -198,8 +221,39 @@
       (c.hook?'<div class="hook">'+esc(c.hook)+'</div>':'')+
       '<h3>'+esc(c.title||c.id)+'</h3>'+
       '<div class="meta"><span class="pillar">'+esc(cap(c.pillar))+'</span>'+when+'</div>'+
-    '</a>';
+    '</button>';
   }
+
+  // Click a card -> show the finished post preview (image/video + caption).
+  function openModal(id){
+    var c = DATA.filter(function(x){ return x.id===id; })[0]; if(!c) return;
+    var editUrl = '/admin/#/collections/content/entries/'+encodeURIComponent(id);
+    var visual = c.visual || (c.media && c.media[0]) || '';
+    var hero = c.video
+      ? '<video class="pv-hero" src="'+esc(c.video)+'" controls playsinline poster="'+esc(visual)+'"></video>'
+      : (visual ? '<img class="pv-hero" src="'+esc(visual)+'" alt="">' : '');
+    var tags = (c.hashtags||[]).map(function(t){ return '<span class="pv-tag">'+esc(t)+'</span>'; }).join(' ');
+    var body = c.body ? esc(c.body).replace(/\n/g,'<br>') : '';
+    document.getElementById('sheet').innerHTML =
+      hero +
+      '<div class="pv-body">'+
+        '<div class="pv-badges">'+
+          '<span class="badge ch-'+c.channel+'">'+(CH[c.channel]||c.channel)+'</span>'+
+          (c.format?'<span class="badge fmt">'+esc(c.format.replace(/_/g,' '))+'</span>':'')+
+          '<span class="badge">'+esc(c.status)+'</span>'+
+          (c.scheduled_for?'<span class="badge when2">'+esc(c.scheduled_for)+'</span>':'')+
+        '</div>'+
+        (body?'<div class="pv-cap">'+body+'</div>':'')+
+        (tags?'<div class="pv-tags">'+tags+'</div>':'')+
+        (c.cta?'<div class="pv-cta">CTA · '+esc(c.cta)+'</div>':'')+
+        '<div class="pv-foot"><a class="btn btn-gold" href="'+editUrl+'">Edit this post →</a></div>'+
+      '</div>';
+    document.getElementById('modal').classList.add('on');
+  }
+  function closeModal(){ document.getElementById('modal').classList.remove('on'); }
+  document.getElementById('pvx').onclick = closeModal;
+  document.getElementById('modal').onclick = function(e){ if(e.target.id==='modal') closeModal(); };
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
 })();
 </script>
 </body></html>
