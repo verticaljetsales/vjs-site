@@ -45,6 +45,42 @@ function caption(item) {
   return [item.body || '', tags].filter(Boolean).join('\n\n');
 }
 
+// Publer's exact bulk-import template header (12 columns, in order).
+const HEADER_FIELDS = [
+  'Date - Intl. format or prompt',
+  'Text',
+  'Link(s) - Separated by comma for FB carousels',
+  'Media URL(s) - Separated by comma',
+  'Title - For the video, pin, PDF ..',
+  'Label(s) - Separated by comma',
+  'Alt text(s) - Separated by ||',
+  'Comment(s) - Separated by ||',
+  'Pin board, FB album, or Google category',
+  'Post subtype - I.e. story, reel, PDF ..',
+  'CTA - For Facebook links or Google',
+  'Reminder - For stories, reels, shorts, and TikToks',
+];
+
+// Build one Publer row (array of 12 fields, in template order) for an item.
+function publerRow(item) {
+  const subtype = item.format === 'reel' ? 'reel' : '';          // IG Reels
+  const altText = item.visual_headline || item.hook || '';
+  return [
+    toPublerDate(item.scheduled_for),   // Date
+    caption(item),                      // Text
+    '',                                 // Link(s)
+    mediaUrl(item),                     // Media URL(s)
+    '',                                 // Title
+    'VJS',                              // Label(s)
+    altText,                            // Alt text(s)
+    '',                                 // Comment(s)
+    '',                                 // Pin board / FB album / Google category
+    subtype,                            // Post subtype
+    '',                                 // CTA
+    '',                                 // Reminder
+  ];
+}
+
 function mediaUrl(item) {
   const rel = item.video || item.visual || (item.media && item.media[0]) || '';
   return rel ? SITE + rel : '';
@@ -70,7 +106,7 @@ function main() {
   }
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
-  const header = ['Date', 'Message', 'Link', 'Media URLs'];
+  const headerLine = HEADER_FIELDS.map(csv).join(',');
   let total = 0;
   const summary = [];
 
@@ -79,14 +115,9 @@ function main() {
       (a.scheduled_for || '') < (b.scheduled_for || '') ? -1 : 1);
     if (!rows.length) continue;
 
-    const lines = [header.join(',')];
+    const lines = [headerLine];
     for (const c of rows) {
-      lines.push([
-        csv(toPublerDate(c.scheduled_for)),
-        csv(caption(c)),
-        csv(''),                      // Link: leave blank (media post)
-        csv(mediaUrl(c)),
-      ].join(','));
+      lines.push(publerRow(c).map(csv).join(','));
     }
     const out = path.join(OUT_DIR, `publer-${ch}.csv`);
     fs.writeFileSync(out, lines.join('\r\n') + '\r\n');
