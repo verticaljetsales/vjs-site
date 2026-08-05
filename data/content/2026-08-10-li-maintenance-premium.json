@@ -1,14 +1,14 @@
 {
-  "id": "2026-08-10-li-maintenance-premium",
   "status": "Draft",
   "channel": "linkedin",
   "format": "text_post",
   "pillar": "market_intelligence",
   "title": "LinkedIn — fresh maintenance is repricing the market",
+  "id": "2026-08-10-li-maintenance-premium",
   "aircraft_id": "",
   "scheduled_for": "2026-08-10",
   "hook": "Fresh maintenance is quietly repricing the used-jet market.",
-  "body": "Fresh maintenance is quietly repricing the used-jet market.\n\nFor years, buyers chased the lowest sticker. That's changing. With shop slots backed up and inspection costs climbing, a jet that's already had its big-ticket work done — fresh inspections, engines on a program — is trading at a real premium and selling faster.\n\nThe reason is simple: the next owner isn't buying an airplane, they're buying a position. A clean, current logbook means predictable costs and no six-figure surprise in year one.\n\nIf you're weighing two similar jets, look past the asking price to what's already been paid for. That gap is where the value hides.\n\nThinking about a purchase this year? Let's talk market first.",
+  "body": "Fresh maintenance is quietly repricing the used-jet market.\n\nFor years, buyers chased the lowest sticker. That's changing. With shop slots backed up and inspection costs climbing, a jet that's already had its big-ticket work done — fresh inspections, engines on a program — is trading at a real premium and selling faster.\n\nThe reason is simple: the next owner isn't buying an airplane, they're buying a position. A clean, current maintenance outlook means predictable costs and no six-figure surprise in year one.\n\nIf you're weighing two similar jets, look past the asking price to what's already been paid for. That gap is where the value hides.\n\nThinking about a purchase this year? Let's talk market first.",
   "script": [],
   "shot_list": [],
   "hashtags": [
@@ -19,8 +19,10 @@
   "cta": "Thinking about this type? Let's talk market before you make a move.",
   "media": [],
   "media_notes": "Quote-card (text-first). No aircraft photo required.",
+  "visual": "/media/generated/2026-08-10-li-maintenance-premium.jpg",
+  "visual_headline": "",
+  "visual_subline": "",
   "visual_kicker": "Market Intelligence",
   "created_by": "vjs-content-studio",
-  "notes": "",
-  "visual": "/media/generated/2026-08-10-li-maintenance-premium.jpg"
+  "notes": ""
 }
