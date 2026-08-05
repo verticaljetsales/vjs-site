@@ -1,10 +1,10 @@
 {
-  "id": "2026-08-07-fb-beechjet-spotlight",
-  "status": "Draft",
+  "status": "Approved",
   "channel": "facebook",
   "format": "single_image",
   "pillar": "inventory_spotlight",
   "title": "Facebook — Beechjet 400A fresh paint & interior",
+  "id": "2026-08-07-fb-beechjet-spotlight",
   "aircraft_id": "n61gb-beechjet-400a",
   "scheduled_for": "",
   "hook": "A 2002 Beechjet 400A that presents like a much newer airplane.",
@@ -25,7 +25,7 @@
     "/images/listings/n61gb-3-cabin.jpg"
   ],
   "media_notes": "Lead with the exterior; cabin shot as the second image if posting a small gallery.",
+  "visual": "/media/generated/2026-08-07-fb-beechjet-spotlight.jpg",
   "created_by": "vjs-content-studio",
-  "notes": "",
-  "visual": "/media/generated/2026-08-07-fb-beechjet-spotlight.jpg"
+  "notes": ""
 }
