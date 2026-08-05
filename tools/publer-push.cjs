@@ -1,0 +1,127 @@
+// VJS Content Studio — push approved posts to Publer via the Publer API.
+// Runs in GitHub Actions (this sandbox can't reach Publer). Reads Approved
+// content items and schedules them on the matching social account in Publer.
+//
+// Env (from GitHub secrets):
+//   PUBLER_API_KEY        - Publer API key (Business plan). Sent as "Bearer-API <key>".
+//   PUBLER_WORKSPACE_ID   - the Publer workspace id (from --discover output).
+//
+// Usage:
+//   node tools/publer-push.cjs --discover   # list workspaces + accounts (to map channels)
+//   node tools/publer-push.cjs              # schedule all Approved items, then mark them Scheduled
+//   node tools/publer-push.cjs --dry-run    # build payloads and print them; do not call Publer
+
+const fs = require('fs');
+const path = require('path');
+
+const ROOT = path.join(__dirname, '..');
+const CONTENT_DIR = path.join(ROOT, 'data', 'content');
+const ACCOUNTS_MAP = path.join(ROOT, 'content', 'publer-accounts.json');
+const SITE = 'https://verticaljetsales.com';
+const API = 'https://app.publer.com/api/v1';
+const DEFAULT_TIME = 'T14:00:00Z';      // 09:00 US-Central ≈ 14:00 UTC (adjust if needed)
+
+const KEY = process.env.PUBLER_API_KEY || '';
+const WORKSPACE = process.env.PUBLER_WORKSPACE_ID || '';
+
+function headers() {
+  const h = { 'Authorization': `Bearer-API ${KEY}`, 'Content-Type': 'application/json' };
+  if (WORKSPACE) h['Publer-Workspace-Id'] = WORKSPACE;
+  return h;
+}
+function readJSON(p) { return JSON.parse(fs.readFileSync(p, 'utf8')); }
+function items() {
+  return fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.json'))
+    .map(f => ({ file: path.join(CONTENT_DIR, f), data: readJSON(path.join(CONTENT_DIR, f)) }));
+}
+
+async function api(method, endpoint, body) {
+  const res = await fetch(API + endpoint, {
+    method, headers: headers(), body: body ? JSON.stringify(body) : undefined,
+  });
+  const text = await res.text();
+  let json; try { json = JSON.parse(text); } catch { json = text; }
+  if (!res.ok) throw new Error(`${method} ${endpoint} -> ${res.status}: ${text.slice(0, 500)}`);
+  return json;
+}
+
+// ---- discover: list workspaces + accounts so we can map channel -> account id ----
+async function discover() {
+  console.log('Workspaces:');
+  try { console.log(JSON.stringify(await api('GET', '/workspaces'), null, 2)); }
+  catch (e) { console.log('  (workspaces) ' + e.message); }
+  console.log('\nAccounts (id · name · provider):');
+  const accts = await api('GET', '/accounts');
+  const list = Array.isArray(accts) ? accts : (accts.accounts || accts.data || []);
+  for (const a of list) console.log(`  ${a.id}  ·  ${a.name || a.username || ''}  ·  ${a.provider || a.type || ''}`);
+  console.log('\nPut the right ids into content/publer-accounts.json, then run without --discover.');
+}
+
+// ---- build one Publer post from a content item ----
+function scheduledAt(item) {
+  const day = (item.scheduled_for || '').slice(0, 10);
+  if (!day) return null;
+  return day + DEFAULT_TIME;                     // ISO 8601
+}
+function mediaUrl(item) {
+  const rel = item.video || item.visual || (item.media && item.media[0]) || '';
+  return rel ? SITE + rel : '';
+}
+function caption(item) {
+  return [item.body || '', (item.hashtags || []).join(' ')].filter(Boolean).join('\n\n');
+}
+function networkType(item) {
+  if (item.video) return 'video';
+  if (mediaUrl(item)) return 'photo';
+  return 'status';
+}
+function buildPost(item, accountId) {
+  const net = {};
+  net[item.channel] = {
+    type: networkType(item),
+    text: caption(item),
+    media: mediaUrl(item) ? [{ path: mediaUrl(item) }] : [],
+  };
+  return { networks: net, accounts: [{ id: accountId, scheduled_at: scheduledAt(item) }] };
+}
+
+async function push({ dryRun }) {
+  if (!KEY) throw new Error('PUBLER_API_KEY is not set.');
+  const map = fs.existsSync(ACCOUNTS_MAP) ? readJSON(ACCOUNTS_MAP) : {};
+  const approved = items().filter(x => x.data.status === 'Approved' && !x.data.publer_job);
+  if (!approved.length) { console.log('No Approved posts to push (or all already pushed).'); return; }
+
+  const posts = [];
+  const used = [];
+  for (const { file, data } of approved) {
+    const acct = map[data.channel];
+    if (!acct) { console.log(`skip ${data.id}: no account id mapped for "${data.channel}"`); continue; }
+    if (!scheduledAt(data)) { console.log(`skip ${data.id}: no scheduled_for date`); continue; }
+    posts.push(buildPost(data, acct));
+    used.push({ file, data });
+  }
+  if (!posts.length) { console.log('Nothing to send after mapping/date checks.'); return; }
+
+  const payload = { bulk: { state: 'scheduled', posts } };
+  if (dryRun) { console.log(JSON.stringify(payload, null, 2)); return; }
+
+  const job = await api('POST', '/posts/schedule', payload);
+  const jobId = job.job_id || job.id || job.jobId;
+  console.log(`Submitted ${posts.length} post(s). Job: ${jobId}`);
+
+  // mark each pushed item as Scheduled so we don't re-send
+  for (const { file, data } of used) {
+    data.status = 'Scheduled';
+    data.publer_job = jobId || true;
+    fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
+  }
+  console.log('Marked pushed items as Scheduled.');
+}
+
+(async () => {
+  const args = process.argv.slice(2);
+  try {
+    if (args.includes('--discover')) await discover();
+    else await push({ dryRun: args.includes('--dry-run') });
+  } catch (e) { console.error('ERROR:', e.message); process.exit(1); }
+})();

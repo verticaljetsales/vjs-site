@@ -1,0 +1,7 @@
+{
+  "_comment": "Map each channel to its Publer account id. Fill these in from the `--discover` run output, then commit.",
+  "instagram": "",
+  "facebook": "",
+  "linkedin": "",
+  "tiktok": ""
+}

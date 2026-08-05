@@ -1,0 +1,61 @@
+name: Publer — push approved posts
+
+# Sends Approved Content Studio posts to Publer via the Publer API.
+# Runs here (GitHub Actions) because it can reach Publer; the site itself can't.
+#
+# Setup (one time):
+#   Repo → Settings → Secrets and variables → Actions → New repository secret:
+#     PUBLER_API_KEY        (from Publer: Settings → Access & Login → API Keys)
+#     PUBLER_WORKSPACE_ID   (from the "Discover" run output below)
+#
+# Use:
+#   Actions tab → "Publer — push approved posts" → Run workflow →
+#     mode = discover  (first time: lists your accounts so we can map channels)
+#     mode = dry-run   (preview exactly what would be sent)
+#     mode = push      (schedule all Approved posts in Publer, mark them Scheduled)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "discover | dry-run | push"
+        required: true
+        default: "discover"
+        type: choice
+        options: [discover, dry-run, push]
+
+permissions:
+  contents: write        # so "push" can mark items Scheduled and commit
+
+jobs:
+  publer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run Publer tool
+        env:
+          PUBLER_API_KEY: ${{ secrets.PUBLER_API_KEY }}
+          PUBLER_WORKSPACE_ID: ${{ secrets.PUBLER_WORKSPACE_ID }}
+        run: |
+          case "${{ github.event.inputs.mode }}" in
+            discover) node tools/publer-push.cjs --discover ;;
+            dry-run)  node tools/publer-push.cjs --dry-run ;;
+            push)     node tools/publer-push.cjs ;;
+          esac
+
+      - name: Commit status changes (push mode only)
+        if: ${{ github.event.inputs.mode == 'push' }}
+        run: |
+          if [ -n "$(git status --porcelain data/content)" ]; then
+            git config user.name  "vjs-content-bot"
+            git config user.email "bot@verticaljetsales.com"
+            git add data/content
+            git commit -m "Publer: mark pushed posts as Scheduled"
+            git push
+          else
+            echo "No status changes to commit."
+          fi
