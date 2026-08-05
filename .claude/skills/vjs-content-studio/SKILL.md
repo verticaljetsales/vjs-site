@@ -72,9 +72,17 @@ Keep it plain-English and confident — energetic, never cringe.
 3. Pull the relevant aircraft data from `data/aircraft/` (or market context).
 4. Write each item as a JSON file in `data/content/` using the schema below,
    with `status: "Draft"`.
-5. Run `node build-content-index.js` so the Content Studio dashboard and CMS
-   pick up the new items.
-6. Report back: what you made, for which channels, and remind the human they
+5. **Compose the finished visual.** Run
+   `node tools/compose-visuals.cjs <id>` (or with no args to (re)build all).
+   This produces a branded, **logo'd** graphic at `media/generated/<id>.jpg`
+   and writes its path back onto the item's `visual` field. **Every post gets
+   the VJS logo — no exceptions.** Photo posts use a real aircraft photo;
+   market/education/founder posts get a text "quote-card". Tune the on-graphic
+   words with the optional `visual_headline` / `visual_subline` /
+   `visual_kicker` fields before composing.
+6. Run `node build-content-index.js` so the Content Studio dashboard and CMS
+   pick up the new items and their visuals.
+7. Report back: what you made, for which channels, and remind the human they
    review/approve in the Content Studio (`/content.html`) or the CMS `/admin`.
 
 ## Content item schema (`data/content/<id>.json`)
@@ -99,6 +107,10 @@ Keep it plain-English and confident — energetic, never cringe.
   "cta": "DM us for the full spec and status reports.",
   "media": ["/uploads/Twilight - 926.jpg"],      // listing photos to use, or [] if custom needed
   "media_notes": "",                             // e.g. "needs a vertical cockpit clip"
+  "visual": "/media/generated/<id>.jpg",         // set by compose-visuals.cjs — the finished branded graphic
+  "visual_headline": "",                          // optional override of the on-graphic headline (defaults to hook)
+  "visual_subline": "",                           // optional small line under the headline
+  "visual_kicker": "",                            // optional badge/eyebrow (defaults to status or pillar)
   "created_by": "vjs-content-studio",
   "notes": ""                                     // human review notes land here
 }

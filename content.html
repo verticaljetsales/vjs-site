@@ -183,7 +183,8 @@
   function cardHTML(c){
     var chClass = c.channel==='instagram' ? 'ig' : c.channel;
     var editUrl = '/admin/#/collections/content/entries/'+encodeURIComponent(c.id);
-    var thumb = (c.media && c.media[0]) ? '<img class="thumb" src="'+esc(c.media[0])+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '';
+    var thumbSrc = c.visual || (c.media && c.media[0]) || '';
+    var thumb = thumbSrc ? '<img class="thumb" src="'+esc(thumbSrc)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '';
     var when = c.scheduled_for ? '<span class="when">'+esc(c.scheduled_for)+'</span>' : '<span></span>';
     return '<a class="card '+chClass+'" href="'+editUrl+'">'+
       '<div class="card-top">'+

@@ -33,6 +33,7 @@ for (const f of files) {
       hashtags: c.hashtags || [],
       cta: c.cta || '',
       media: c.media || [],
+      visual: c.visual || '',
       is_video: Array.isArray(c.script) && c.script.length > 0,
     });
   } catch (e) {
