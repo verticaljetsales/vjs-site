@@ -1,0 +1,35 @@
+{
+  "id": "2026-08-05-ig-globalxrs-reach",
+  "status": "Draft",
+  "channel": "instagram",
+  "format": "reel",
+  "pillar": "inventory_spotlight",
+  "title": "Global Express XRS — ultra-long-range reel",
+  "aircraft_id": "global-express-xrs-9175",
+  "scheduled_for": "",
+  "hook": "Range that turns a continent into a commute.",
+  "body": "The Global Express XRS was built for the missions most jets can't finish in one leg. This 2005 airframe carries the coverage buyers actually care about: engines enrolled on Rolls-Royce Corporate Care, APU on MSP Gold — the programs that protect the number when it's time to sell.\n\nUltra-long-range, large cabin, and a maintenance story you can defend. That's a position, not just an airplane.\n\nFull spec and status reports available on request.",
+  "script": [
+    { "beat": "Hook", "visual": "Twilight ramp shot, slow push-in on the nose", "voiceover": "Range that turns a continent into a commute.", "onscreen": "Global Express XRS" },
+    { "beat": "Cabin", "visual": "Slow pan through the large cabin", "voiceover": "Large cabin. Ultra-long-range.", "onscreen": "2005 · Large Cabin" },
+    { "beat": "Value", "visual": "Cockpit detail, then exterior", "voiceover": "Engines on Rolls-Royce Corporate Care. APU on MSP Gold.", "onscreen": "Program-covered" },
+    { "beat": "CTA", "visual": "Exterior hero, VJS mark", "voiceover": "Vertical Jet Sales. Clear guidance through every aircraft decision.", "onscreen": "DM for spec + status" }
+  ],
+  "shot_list": [
+    "Twilight exterior push-in (have: /uploads/Twilight - 926.jpg)",
+    "Cabin pan (have: /uploads/Interior - 785.jpg)",
+    "Cockpit detail (have: /uploads/Cockpit - 737.jpg)",
+    "Exterior hero (have: /uploads/Exterior - 599.jpg)"
+  ],
+  "hashtags": ["#globalexpress", "#bombardier", "#privatejet", "#bizav", "#businessaviation", "#ultralongrange", "#jetforsale", "#privateaviation"],
+  "cta": "DM us for the full spec and status reports.",
+  "media": [
+    "/uploads/Twilight - 926.jpg",
+    "/uploads/Interior - 785.jpg",
+    "/uploads/Cockpit - 737.jpg",
+    "/uploads/Exterior - 599.jpg"
+  ],
+  "media_notes": "Reel can be assembled from existing listing photos as a Ken Burns pan; a short live twilight clip would elevate it.",
+  "created_by": "vjs-content-studio",
+  "notes": ""
+}

@@ -94,3 +94,57 @@ collections:
       - { label: "Exterior", name: "exterior", widget: "text", required: false }
       - { label: "Interior", name: "interior", widget: "text", required: false }
       - { label: "Maintenance Notes", name: "maintenance", widget: "text", required: false }
+
+  # ---------------------------------------------------------------------------
+  # CONTENT STUDIO — the review + approval queue for social media content.
+  # The content-studio agent writes drafts here; a human reviews, edits, and
+  # sets Status to "Approved". Nothing is cleared to post until then.
+  # ---------------------------------------------------------------------------
+  - name: "content"
+    label: "Content Studio"
+    label_singular: "Content Item"
+    folder: "data/content"
+    extension: "json"
+    format: "json"
+    create: true
+    duplicate: true
+    slug: "{{fields.id}}"
+    identifier_field: "title"
+    summary: "[{{fields.status}}] {{fields.channel}} — {{fields.title}}"
+    sortable_fields: ["scheduled_for", "status", "channel", "pillar"]
+    description: "Review social posts the content agent drafted. Read it, edit anything, then set Status to Approved when it's cleared to post. Set a date in Scheduled For to slot it on the calendar."
+    fields:
+      - { label: "Status", name: "status", widget: "select", default: "Draft", options: ["Idea", "Draft", "Needs Edit", "Approved", "Scheduled", "Posted", "Archived"], hint: "Draft = agent wrote it, waiting on you. Approved = cleared to post. Nothing goes live until Approved." }
+      - { label: "Channel", name: "channel", widget: "select", options: ["instagram", "linkedin", "facebook", "tiktok"] }
+      - { label: "Format", name: "format", widget: "select", required: false, options: ["reel", "carousel", "single_image", "text_post", "document_carousel", "short_video", "link_post"] }
+      - { label: "Pillar", name: "pillar", widget: "select", required: false, options: ["inventory_spotlight", "market_intelligence", "buyer_seller_education", "founder_team_pov", "behind_the_deal"] }
+      - { label: "Title (internal label)", name: "title", widget: "string", hint: "Just for the queue — never posted." }
+      - { label: "ID (URL-safe, unique)", name: "id", widget: "string", hint: "e.g. 2026-08-05-ig-globalxrs-reach. Lowercase, dashes, no spaces." }
+      - { label: "Linked Aircraft ID", name: "aircraft_id", widget: "string", required: false, hint: "The listing this is about, e.g. global-express-xrs-9175. Blank if none." }
+      - { label: "Scheduled For", name: "scheduled_for", widget: "datetime", required: false, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", picker_utc: true, hint: "The day this should post. Leave blank until you've approved it." }
+      - { label: "Hook (first line)", name: "hook", widget: "text", required: false, hint: "The scroll-stopper. Must earn the second line." }
+      - { label: "Body / Caption", name: "body", widget: "text", required: false, hint: "The post copy. This is what gets published." }
+      - label: "Video Script"
+        name: "script"
+        widget: "list"
+        required: false
+        label_singular: "Beat"
+        summary: "{{fields.beat}} — {{fields.onscreen}}"
+        hint: "Only for reels / TikToks. One row per beat."
+        fields:
+          - { label: "Beat", name: "beat", widget: "string", required: false }
+          - { label: "Visual direction", name: "visual", widget: "text", required: false }
+          - { label: "Voiceover", name: "voiceover", widget: "text", required: false }
+          - { label: "On-screen text", name: "onscreen", widget: "string", required: false }
+      - { label: "Shot List", name: "shot_list", widget: "list", required: false, hint: "For video: what footage the team needs to capture." }
+      - { label: "Hashtags", name: "hashtags", widget: "list", required: false, hint: "One per line. Include the #." }
+      - { label: "Call to Action", name: "cta", widget: "string", required: false }
+      - label: "Media"
+        name: "media"
+        widget: "list"
+        required: false
+        hint: "Photos/clips to use. Drag to reorder — first is the lead image."
+        field: { label: "File", name: "file", widget: "image" }
+      - { label: "Media Notes", name: "media_notes", widget: "text", required: false, hint: "e.g. 'needs a vertical cockpit clip'." }
+      - { label: "Created By", name: "created_by", widget: "string", required: false, default: "vjs-content-studio" }
+      - { label: "Review Notes", name: "notes", widget: "text", required: false, hint: "Your edits/feedback for the agent or the team." }

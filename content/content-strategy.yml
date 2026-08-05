@@ -1,0 +1,90 @@
+# Vertical Jet Sales — Content Strategy
+# The machine-readable playbook. The content-studio agent reads this to decide
+# WHAT to make, for WHICH channel, HOW OFTEN, and WHAT the goal is.
+# Edit these numbers/lists to steer the whole platform — no code changes needed.
+
+goals:
+  # Ranked. Drives how the Strategist weights the calendar.
+  - promote_inventory        # turn listings into demand
+  - lead_generation          # capture buyer/seller leads (-> HubSpot)
+  - market_authority         # own the "trusted expert" position
+  - founder_brand            # build Ben / the team as a recognized voice
+
+channels:
+  instagram:
+    active: true
+    primary_formats: [reel, carousel, single_image]
+    tone: aspirational-cinematic
+    ideal_cadence_per_week: 4
+    hashtag_count: [8, 12]
+    notes: "Aircraft is the hero. Strictest posting API (see Phase 2 docs)."
+  linkedin:
+    active: true
+    primary_formats: [text_post, single_image, document_carousel]
+    tone: authority-peer
+    ideal_cadence_per_week: 3
+    hashtag_count: [3, 5]
+    notes: "Flagship for B2B. Authority first, aircraft second."
+  facebook:
+    active: true
+    primary_formats: [single_image, reel, link_post]
+    tone: warm-expert
+    ideal_cadence_per_week: 3
+    hashtag_count: [3, 6]
+    notes: "Older owner-operator audience + aviation groups."
+  tiktok:
+    active: true
+    primary_formats: [short_video]
+    tone: energetic-educational
+    ideal_cadence_per_week: 3
+    hashtag_count: [4, 8]
+    notes: "Hook in 2 seconds. Educate to earn the follow."
+
+# Content pillars and roughly how much of the calendar each should fill.
+# Must sum to ~100. Change these to shift the mix.
+pillar_mix:
+  inventory_spotlight: 35
+  market_intelligence: 25
+  buyer_seller_education: 20
+  founder_team_pov: 12
+  behind_the_deal: 8
+
+# The pipeline every content item moves through. This IS the approval loop.
+# Nothing is publishable until a human sets status to "Approved".
+statuses:
+  - Idea          # strategist queued it, not written yet
+  - Draft         # agent wrote it, awaiting human review
+  - Needs Edit    # human sent it back with notes
+  - Approved      # human signed off — cleared to post
+  - Scheduled     # slotted to a date (Phase 2 auto-post picks these up)
+  - Posted        # live
+  - Archived      # not used
+
+# Weekly rhythm the Strategist aims for when asked to "plan the week".
+# Total ≈ 13 posts/week across 4 channels. Tune to your capacity.
+weekly_plan_target:
+  instagram: 4
+  linkedin: 3
+  facebook: 3
+  tiktok: 3
+
+# Guardrails the agent enforces on every draft (mirrors brand-voice.md).
+guardrails:
+  never_invent_specs: true
+  never_publish_price_unless_numeric: true
+  never_name_clients: true
+  no_investment_return_claims: true
+  human_approval_required_before_post: true
+
+cta_bank:
+  - "DM us for the full spec and status reports."
+  - "Full maintenance summary available on request."
+  - "Thinking about this type? Let's talk market before you make a move."
+  - "Considering a sale? Know your position first — link in bio."
+  - "Questions on value? That's the conversation we love to have."
+
+contact:
+  name: Vertical Jet Sales
+  email: ben@verticaljetsales.com
+  phone: "(210) 865-2475"
+  site: https://verticaljetsales.com

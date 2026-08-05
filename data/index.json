@@ -13,7 +13,7 @@
       "price": "Price on request",
       "highlight": "Fresh 2022 paint & interior. Pro Line 4, Gogo AVANCE L3 Wi-Fi, thrust reversers.",
       "photos": [
-        "/images/listings/n61gb-1-exterior.jpg",
+        "/uploads/n61gb-121.webp",
         "/images/listings/n61gb-2-cockpit.jpg",
         "/images/listings/n61gb-3-cabin.jpg",
         "/images/listings/n61gb-4-cabin.jpg"
@@ -79,12 +79,12 @@
       "price": "Price on request",
       "highlight": "Low time, fresh Phase A-D & 12-year, Engines enrolled on MSP Gold.",
       "photos": [
-        "/uploads/Sunset Cover Photo.jpg",
-        "/uploads/1A0A6151-HDR.jpg",
-        "/uploads/1A0A6211-HDR.jpg",
-        "/uploads/1A0A6231-HDR.jpg",
-        "/uploads/1A0A6373.jpg",
-        "/uploads/1A0A6064.jpg"
+        "/uploads/sunset_cover_photo_web.webp",
+        "/uploads/1a0a6151-hdr_web.webp",
+        "/uploads/1a0a6211-hdr_web.webp",
+        "/uploads/1a0a6271_web.webp",
+        "/uploads/1a0a6126-hdr_web.webp",
+        "/uploads/1a0a6064_web.webp"
       ],
       "order": 4
     },
@@ -109,7 +109,160 @@
         "/uploads/84533C6C-712C-4A89-8688-3E27C8ABE836.jpeg",
         "/uploads/IMG_0052.jpeg"
       ],
+      "order": 4
+    },
+    {
+      "id": "falcon900ex-easy-217",
+      "status": "Sold",
+      "year": "2008",
+      "make_model": "Falcon 900EX EASy",
+      "registration": "",
+      "serial": "",
+      "category": "Large Cabin",
+      "total_time": "",
+      "cycles": "",
+      "price": "Sold",
+      "highlight": "",
+      "photos": [
+        "/uploads/twilight-5315.webp"
+      ],
       "order": 5
+    },
+    {
+      "id": "global-6000-9487",
+      "status": "Acquired",
+      "year": "2013",
+      "make_model": "Bombardier Global 6000",
+      "registration": "",
+      "serial": "9487",
+      "category": "Large Cabin",
+      "total_time": "",
+      "cycles": "",
+      "price": "Sold",
+      "highlight": "",
+      "photos": [
+        "/uploads/7403fd03-5cd3-488c-bb59-7f201852a024.webp"
+      ],
+      "order": 6
+    },
+    {
+      "id": "pilatus-pc12ng-1064",
+      "status": "Sold",
+      "year": "2008",
+      "make_model": "Pilatus PC-12NG",
+      "registration": "",
+      "serial": "1064",
+      "category": "Turboprop",
+      "total_time": "",
+      "cycles": "",
+      "price": "Sold",
+      "highlight": "",
+      "photos": [
+        "/uploads/n401se-147.webp"
+      ],
+      "order": 7
+    },
+    {
+      "id": "citation-bravo-1085",
+      "status": "Acquired",
+      "year": "2004",
+      "make_model": "Cessna Citation Bravo",
+      "registration": "",
+      "serial": "1085",
+      "category": "Light Jet",
+      "total_time": "",
+      "cycles": "",
+      "price": "Sold",
+      "highlight": "",
+      "photos": [
+        "/uploads/25bca5bb-91e9-4e9d-bbf8-16944a8af3d3.webp"
+      ],
+      "order": 8
+    },
+    {
+      "id": "citation-x-54",
+      "status": "Sold",
+      "year": "1998",
+      "make_model": "Cessna Citation X",
+      "registration": "",
+      "serial": "750-0054",
+      "category": "Light Jet",
+      "total_time": "",
+      "cycles": "",
+      "price": "Sold",
+      "highlight": "",
+      "photos": [
+        "/uploads/3aa1bb9f-78fe-4f4c-a74b-219019281312.webp"
+      ],
+      "order": 9
+    },
+    {
+      "id": "nextant-400xti-rk-391",
+      "status": "Sold",
+      "year": "2015",
+      "make_model": "Netant 400XTi",
+      "registration": "",
+      "serial": "RK-391",
+      "category": "Light Jet",
+      "total_time": "",
+      "cycles": "",
+      "price": "Sold",
+      "highlight": "",
+      "photos": [
+        "/uploads/n68gs-16.webp"
+      ],
+      "order": 10
+    },
+    {
+      "id": "lear-31a-104",
+      "status": "Sold",
+      "year": "1995",
+      "make_model": "Lear 31A",
+      "registration": "",
+      "serial": "104",
+      "category": "Light Jet",
+      "total_time": "",
+      "cycles": "",
+      "price": "Sold",
+      "highlight": "",
+      "photos": [
+        "/uploads/night.webp"
+      ],
+      "order": 11
+    },
+    {
+      "id": "king-air-300-fa-111",
+      "status": "Sold",
+      "year": "1986",
+      "make_model": "Beechcraft King Air 300",
+      "registration": "",
+      "serial": "FA-111",
+      "category": "Turboprop",
+      "total_time": "",
+      "cycles": "",
+      "price": "Sold",
+      "highlight": "",
+      "photos": [
+        "/uploads/king-air-300-25.webp"
+      ],
+      "order": 12
+    },
+    {
+      "id": "citation-ultra-458",
+      "status": "Acquired",
+      "year": "1998",
+      "make_model": "Citation Ultra",
+      "registration": "",
+      "serial": "560-0458",
+      "category": "Light Jet",
+      "total_time": "",
+      "cycles": "",
+      "price": "Acquired",
+      "highlight": "",
+      "photos": [
+        "/uploads/0d77d908-b2f4-45be-8a37-0e96b75dd0b8.webp"
+      ],
+      "order": 13
     }
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "id": "2026-08-07-tt-fresh-inspection",
+  "status": "Draft",
+  "channel": "tiktok",
+  "format": "short_video",
+  "pillar": "buyer_seller_education",
+  "title": "TikTok — why 'fresh inspection' actually matters",
+  "aircraft_id": "challenger-604",
+  "scheduled_for": "",
+  "hook": "\"Fresh 48-month\" — here's why that phrase can be worth six figures.",
+  "body": "Quick one: what a 'fresh inspection' really does to the price of a jet.",
+  "script": [
+    { "beat": "Hook (0-2s)", "visual": "Talking head or exterior of the Challenger, fast cut", "voiceover": "You see 'fresh 48-month inspection' on a jet listing — here's why that phrase can be worth six figures.", "onscreen": "Fresh 48-month = ??" },
+    { "beat": "Problem (2-7s)", "visual": "B-roll: maintenance hangar / logbooks", "voiceover": "Big inspections are due on a calendar, whether you fly the airplane or not. Miss where one falls and you inherit the bill.", "onscreen": "Due by calendar, not just hours" },
+    { "beat": "Payoff (7-15s)", "visual": "Challenger 604 exterior + cockpit", "voiceover": "This Challenger 604 had its 48-month done by Duncan, plus engines on GE OnPoint and MSP. That's a fresh clock and program coverage — the two things that protect your number at resale.", "onscreen": "Fresh clock + program coverage" },
+    { "beat": "CTA (15-20s)", "visual": "VJS mark over exterior", "voiceover": "That's the stuff we read before you ever make an offer. Vertical Jet Sales.", "onscreen": "Know your position first" }
+  ],
+  "shot_list": [
+    "Challenger 604 exterior (have: /uploads/Exterior - 944.jpg)",
+    "Cockpit detail (have: /uploads/Cockpit - 810.jpg)",
+    "Generic maintenance/logbook b-roll (need to capture or license)"
+  ],
+  "hashtags": ["#bizav", "#privatejet", "#challenger", "#aviationtiktok", "#aircraftbroker", "#businessaviation"],
+  "cta": "Considering a sale? Know your position first — link in bio.",
+  "media": [
+    "/uploads/Exterior - 944.jpg",
+    "/uploads/Cockpit - 810.jpg"
+  ],
+  "media_notes": "Needs a short logbook/hangar b-roll clip for the 'problem' beat; rest can use listing photos.",
+  "created_by": "vjs-content-studio",
+  "notes": ""
+}

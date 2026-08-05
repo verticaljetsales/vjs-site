@@ -27,11 +27,36 @@ nothing can break.
 | `aircraft.html` | The aircraft detail page template — one page serves every listing |
 | `brokerage.html` / `acquisition.html` / `market-intelligence.html` | The other pages |
 | `data/aircraft.json` | **All listing content lives here.** The editor writes to this. |
-| `admin/` | Kalene's editor (Sveltia CMS) |
+| `admin/` | Kalene's editor (Sveltia CMS) — now also holds the **Content Studio** |
+| `content.html` | **Content Studio dashboard** — the social-content pipeline (see below) |
+| `content/` | Brand voice + content strategy the AI agents read |
+| `data/content/` | The social posts/reels/scripts the agents draft |
+| `docs/CONTENT-PLATFORM.md` | Full guide to the content platform + auto-posting roadmap |
 | `images/` | Photos |
 | `documents/` | Spec sheets, status reports, due lists |
 | `uploads/` | Where new photos/PDFs land when Kalene uploads them |
 | `netlify.toml` | Netlify settings |
+
+---
+
+## The Content Platform (social media agents)
+
+There's now a content engine that plans, writes, and scripts social posts for
+Instagram, LinkedIn, Facebook, and TikTok — grounded in your real inventory and
+brand voice. **AI agents create the drafts; a human approves everything before
+it posts.**
+
+- **Make content:** ask the assistant things like *"plan this week's posts"* or
+  *"make an Instagram reel for the Global Express."*
+- **Review & approve:** open `/content.html` (the pipeline dashboard) or
+  `/admin` → **Content Studio**. Nothing goes live until you set it to
+  **Approved**.
+- **Steer it:** edit `content/brand-voice.md` (tone) or
+  `content/content-strategy.yml` (channels, cadence, mix).
+
+Auto-posting (the backend that actually publishes on a schedule) is Phase 2 and
+needs your social business accounts — the full plan is in
+**`docs/CONTENT-PLATFORM.md`**.
 
 ---
 
