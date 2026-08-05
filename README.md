@@ -54,6 +54,10 @@ it posts.**
 - **Steer it:** edit `content/brand-voice.md` (tone) or
   `content/content-strategy.yml` (channels, cadence, mix).
 
+**New to this? Start with the plain-English guide: `docs/HOW-TO-USE.md`** — it
+explains everything (including what a "branch" is) with no tech background
+needed.
+
 Auto-posting (the backend that actually publishes on a schedule) is Phase 2 and
 needs your social business accounts — the full plan is in
 **`docs/CONTENT-PLATFORM.md`**.

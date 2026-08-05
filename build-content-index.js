@@ -34,6 +34,7 @@ for (const f of files) {
       cta: c.cta || '',
       media: c.media || [],
       visual: c.visual || '',
+      video: c.video || '',
       is_video: Array.isArray(c.script) && c.script.length > 0,
     });
   } catch (e) {

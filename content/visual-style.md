@@ -40,10 +40,16 @@ By default the headline is the post's `hook`. Override per post with:
 
 Then re-run `node tools/compose-visuals.cjs <id>` to rebuild just that one.
 
+## Video (motion-from-photo)
+For reels / TikToks, `tools/compose-video.cjs` builds a vertical **1080×1920**
+video from the listing photos: a slow Ken Burns zoom/pan over each photo, the
+logo + headline framed on top, gentle crossfades between shots, and a branded
+end card with the call-to-action. Silent by default (music can be added later).
+Output is `media/generated/<id>.mp4`, recorded on the item's `video` field.
+Requires **ffmpeg** in the session.
+
 ## What this does NOT do
-- It does not produce finished **video**. For Reels/TikTok the composer makes a
-  branded **cover frame**; the moving cut still needs production (film to the
-  shot list, an editor, or a motion-from-photos / AI-video step — a choice
-  captured in `docs/CONTENT-PLATFORM.md`).
+- No live filming or AI-generated footage — video is built from the photos you
+  already have. For a hero film, shoot to the post's shot list instead.
 - Carousels: the composer makes the lead slide; extra slides are the listing
   photos in `media`.

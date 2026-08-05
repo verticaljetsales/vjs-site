@@ -77,7 +77,9 @@
   .card .meta{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.7rem;color:var(--muted);border-top:1px solid var(--line-cool);padding-top:8px;margin-top:4px}
   .card .pillar{text-transform:capitalize}
   .card .when{color:var(--gold-bright)}
-  .thumb{width:100%;height:118px;object-fit:cover;border-radius:4px;margin-bottom:10px;background:var(--night-3)}
+  .thumbwrap{position:relative;margin-bottom:10px}
+  .thumb{width:100%;height:118px;object-fit:cover;border-radius:4px;background:var(--night-3);display:block}
+  .playbadge{position:absolute;left:8px;bottom:8px;font-size:.62rem;font-weight:700;letter-spacing:.06em;color:var(--night);background:var(--gold);padding:3px 8px;border-radius:3px}
 
   .foot{border-top:1px solid var(--line-cool);color:var(--muted);font-size:.8rem;padding:26px 0 60px;text-align:center}
   .foot a{color:var(--gold-bright)}
@@ -184,7 +186,8 @@
     var chClass = c.channel==='instagram' ? 'ig' : c.channel;
     var editUrl = '/admin/#/collections/content/entries/'+encodeURIComponent(c.id);
     var thumbSrc = c.visual || (c.media && c.media[0]) || '';
-    var thumb = thumbSrc ? '<img class="thumb" src="'+esc(thumbSrc)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '';
+    var playBadge = c.video ? '<span class="playbadge">▶ Video</span>' : '';
+    var thumb = thumbSrc ? '<div class="thumbwrap"><img class="thumb" src="'+esc(thumbSrc)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">'+playBadge+'</div>' : '';
     var when = c.scheduled_for ? '<span class="when">'+esc(c.scheduled_for)+'</span>' : '<span></span>';
     return '<a class="card '+chClass+'" href="'+editUrl+'">'+
       '<div class="card-top">'+

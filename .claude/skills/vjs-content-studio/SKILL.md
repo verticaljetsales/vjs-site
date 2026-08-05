@@ -82,6 +82,12 @@ Keep it plain-English and confident — energetic, never cringe.
    `"layout": "full-bleed"` on a post for the cinematic, edge-to-edge look.
    Tune the on-graphic words with the optional `visual_headline` /
    `visual_subline` / `visual_kicker` fields before composing.
+   For **reels / TikToks** (format `reel` or `short_video`), also compose the
+   motion video: `node tools/compose-video.cjs <id>`. This builds a vertical
+   1080×1920 "motion-from-photo" clip (slow zoom/pan over the listing photos,
+   logo + headline framed on top, crossfades, branded end card) at
+   `media/generated/<id>.mp4` and records it on the item's `video` field.
+   (Needs ffmpeg installed in the session.)
 6. Run `node build-content-index.js` so the Content Studio dashboard and CMS
    pick up the new items and their visuals.
 7. Report back: what you made, for which channels, and remind the human they
