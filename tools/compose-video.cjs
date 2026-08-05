@@ -133,8 +133,9 @@ function endClip(endcard, outFile){
   const dur=3, fps=30;
   ff(['-loop','1','-t',String(dur),'-i',endcard,'-filter_complex',`[0:v]scale=1080:1920,fps=${fps},format=yuv420p[v]`,'-map','[v]','-t',String(dur),'-c:v','libx264','-preset','veryfast','-pix_fmt','yuv420p',outFile]);
 }
+const MUSIC_BED = path.join(__dirname, 'audio', 'vjs-bed.m4a');  // original, royalty-free
 function xfadeConcat(clips, durs, outFile){
-  const XF=0.5, fps=30;
+  const XF=0.5;
   const inputs=[]; clips.forEach(c=>{inputs.push('-i',c);});
   let filover='', last='0:v', running=durs[0];
   for(let k=1;k<clips.length;k++){
@@ -144,9 +145,22 @@ function xfadeConcat(clips, durs, outFile){
     last=lbl; running=running - XF + durs[k];
   }
   filover=filover.replace(/;$/,'');
-  ff([...inputs,'-f','lavfi','-t',running.toFixed(3),'-i','anullsrc=r=44100:cl=stereo',
-      '-filter_complex',filover,'-map','[v]','-map',`${clips.length}:a`,
-      '-c:v','libx264','-preset','veryfast','-pix_fmt','yuv420p','-c:a','aac','-shortest','-movflags','+faststart',outFile]);
+  const dur = running.toFixed(3);
+  const enc=['-c:v','libx264','-preset','veryfast','-pix_fmt','yuv420p','-c:a','aac','-b:a','192k','-shortest','-movflags','+faststart'];
+
+  if (fs.existsSync(MUSIC_BED)) {
+    // mix the original music bed under the video, looped to length, with fades
+    const mi = clips.length;
+    const fadeOut = Math.max(0, running - 2.2).toFixed(3);
+    const fc = `${filover};[${mi}:a]atrim=0:${dur},asetpts=N/SR/TB,volume=0.8,`+
+               `afade=t=in:st=0:d=1.2,afade=t=out:st=${fadeOut}:d=2.2[a]`;
+    ff([...inputs, '-stream_loop','-1','-i',MUSIC_BED,
+        '-filter_complex',fc,'-map','[v]','-map','[a]',...enc,outFile]);
+  } else {
+    // no bed available -> silent track (keeps a valid audio stream)
+    ff([...inputs,'-f','lavfi','-t',dur,'-i','anullsrc=r=44100:cl=stereo',
+        '-filter_complex',filover,'-map','[v]','-map',`${clips.length}:a`,...enc,outFile]);
+  }
 }
 
 async function main(){

@@ -44,7 +44,9 @@ Then re-run `node tools/compose-visuals.cjs <id>` to rebuild just that one.
 For reels / TikToks, `tools/compose-video.cjs` builds a vertical **1080×1920**
 video from the listing photos: a slow Ken Burns zoom/pan over each photo, the
 logo + headline framed on top, gentle crossfades between shots, and a branded
-end card with the call-to-action. Silent by default (music can be added later).
+end card with the call-to-action. An **original, royalty-free music bed**
+(`tools/audio/vjs-bed.m4a`) is mixed in automatically with a fade in/out — safe
+to post with no copyright claims. To change the music, replace that one file.
 Output is `media/generated/<id>.mp4`, recorded on the item's `video` field.
 Requires **ffmpeg** in the session.
 
