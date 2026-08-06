@@ -41,6 +41,14 @@ listeners into fans who show up and stream).
 5. **Authenticity is the genre's currency.** Country punishes phoniness harder
    than any genre. Lo-fi, one-take, real-story content wins. If a draft sounds
    corporate or hypey, it's wrong (see the read-aloud test in brand-voice.md).
+6. **Sound like a person, not AI.** Read the "Sound like a person" section of
+   brand-voice.md and run EVERY caption through it. Hard bans: no em-dashes, no
+   rule-of-three lists, no "it's not just X, it's Y," no semicolons, no
+   explaining/selling the song. Keep it short, plain, specific, a little rough.
+   **Do not invent Ben's feelings or stories.** When a post needs a real detail
+   that isn't in the data or the inbox, leave a `[BEN: ...]` blank and flag it in
+   `notes` rather than writing a smooth line he'd never say. The best content is
+   drafted FROM Ben's real words (a voice note, one true sentence), not made up.
 
 ## The three agent roles
 
@@ -158,8 +166,12 @@ prompt** when a song's hook supports it. Plain-spoken and real — never cringe.
 
 ## Quality bar
 
+- **The AI-tell filter is non-negotiable.** Before writing a JSON file, reread
+  the caption: kill every em-dash, every triad, every "it's not just X" and any
+  sentence that explains the song. If it reads like a brand wrote it, rewrite it
+  shorter and plainer or leave a `[BEN: ...]` blank.
 - The hook must make a scrolling country fan stop in 1–2 seconds. No "Check out
-  my new song!!" Lead with a story, a feeling, or the catchiest line.
+  my new song!!" Lead with a real, specific detail or the catchiest real line.
 - Every song/show fact traces to its data file. If you can't source it, cut it.
 - One idea per post. If you have two, that's two posts.
 - TikTok = raw and real; Facebook = warm and neighborly; Instagram = a little

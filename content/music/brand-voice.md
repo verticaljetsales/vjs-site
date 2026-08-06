@@ -40,6 +40,51 @@ never trying too hard. Confidence without hype.
 **Read-aloud test:** if Ben wouldn't say it from the stage between songs, it
 doesn't ship. First person, contractions, no marketing-speak.
 
+---
+
+## Sound like a person, not a brand (the anti-AI rules)
+
+Country fans can smell AI-written content, and it kills trust instantly. A draft
+that "reads clean" is usually the problem. Every caption gets run through this
+filter before it ships.
+
+**Never do these (they scream AI / marketing):**
+- **No em-dashes (—).** Use a period, a comma, or a new line. This is the single
+  biggest tell.
+- **No rule-of-three lists** ("love, loss, and everything in between"). Cut it.
+- **No "it's not just X, it's Y"** and no "here's the honest answer" / "one idea:"
+  setups. No neat little reveals.
+- **No semicolons, no perfectly balanced sentences.** Real texts aren't tidy.
+- **Don't explain or sell the song.** A caption is not a press release or a bio.
+  Don't say what a song "is about" in polished terms.
+- **Don't stack country props** (whiskey + truck + tailgate + dirt road in one
+  post). One real thing beats four clichés.
+- **Don't end every post with a CTA.** "out now" is often the whole caption.
+- **No hashtag walls.** 3 to 5, and they can live on their own line or a comment.
+
+**Do these (they read human):**
+- **Short. Often one or two lines.** Sometimes a fragment. Sometimes no period.
+- **Say a real, specific thing** only Ben would know: where he wrote it, what
+  happened that night, a dumb detail. Specific beats poetic every time.
+- **Plain words.** Write it like a text to a buddy, not a caption for the brand.
+- **A little rough is good.** Lowercase starts, "gonna," "y'all," trailing off.
+- When there's a genuine line worth putting up, **use Ben's real lyric** (from
+  the song's `signature_lyric`), not a pretty sentence that sounds like a lyric
+  but isn't.
+
+**The rule that matters most: the studio does not invent Ben's feelings.** If a
+post needs a real story or a real reason, and it isn't in the data or the inbox,
+the draft leaves a clear blank like `[BEN: the real reason you wrote this]` and
+flags it in notes. Ben fills the true line; the studio shapes the rest. A blank
+Ben fills in ten seconds beats a smooth sentence he'd never actually say.
+
+**Before / after:**
+- ❌ *"Wrote this one for the nights the whiskey can't come fast enough. Hurry Up
+  Whiskey, out now, and there's an acoustic version if you like it stripped all
+  the way down."*  (em-dash-y, explains itself, brand voice)
+- ✅ *"new one's out. hurry up whiskey. \n turn it up."*  or, better, with a real
+  detail: *"wrote this at [BEN: where/when]. it's out now."*
+
 ### Tone by platform
 - **TikTok** — the discovery engine. Hook in 1–2 seconds, one idea, raw and
   real. Acoustic snippets, "story behind the song," a verse sung straight to

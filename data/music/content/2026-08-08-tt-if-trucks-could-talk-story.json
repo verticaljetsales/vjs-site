@@ -8,54 +8,51 @@
   "show_id": "",
   "title": "Story behind If Trucks Could Talk",
   "scheduled_for": "",
-  "hook": "That old truck saw everything before I ever wrote a word about it.",
-  "body": "Every dent's got a night attached to it. If Trucks Could Talk is off the We're All Here record — here's where it came from.",
+  "hook": "[BEN: the real reason you wrote this one]",
+  "body": "if trucks could talk. [BEN: the true story, even one sentence, is the whole post here]\n\nit's on the record.",
   "script": [
     {
-      "beat": "Hook (0–3s)",
-      "visual": "Standing by/leaning on a truck, talking to camera",
-      "line": "That old truck saw everything before I ever wrote a word about it.",
-      "onscreen": "story behind the song"
+      "beat": "Hook (0 to 3s)",
+      "visual": "by the truck, talking to camera",
+      "line": "[BEN: open with the real detail. do not make one up.]",
+      "onscreen": "story behind it"
     },
     {
-      "beat": "Story (3–14s)",
-      "visual": "Keep it conversational, a couple details",
-      "line": "Tell the REAL detail that started the song — keep it honest and specific",
+      "beat": "Story (3 to 14s)",
+      "visual": "keep it plain, like telling a buddy",
+      "line": "[BEN: the rest of the real story]",
       "onscreen": "If Trucks Could Talk"
     },
     {
-      "beat": "Pay off into the hook (14–22s)",
-      "visual": "Pick up the guitar, drop into the chorus",
-      "line": "Sing the chorus hook — real voice",
-      "onscreen": "We're All Here (2024)"
+      "beat": "Into the hook (14 to 22s)",
+      "visual": "pick up the guitar, drop into the chorus",
+      "line": "sing the chorus hook",
+      "onscreen": ""
     },
     {
-      "beat": "CTA (22–25s)",
-      "visual": "Nod to camera",
-      "line": "It's on the record — link in bio.",
-      "onscreen": "link in bio"
+      "beat": "End (22 to 25s)",
+      "visual": "nod",
+      "line": "'out now' or nothing",
+      "onscreen": ""
     }
   ],
   "shot_list": [
-    "Talk-to-camera by the truck for the story (confirm the real detail you want to tell)",
-    "Then a guitar drop into the chorus of If Trucks Could Talk, one take",
-    "Golden hour if you can — trucks + light over-index in country"
+    "talk to camera by the truck for the story. confirm the real detail first, do not invent it",
+    "then a guitar drop into the chorus of If Trucks Could Talk, one take"
   ],
   "hashtags": [
     "#texascountry",
     "#storybehindthesong",
     "#countrymusic",
-    "#iftruckscouldtalk",
-    "#singersongwriter",
-    "#countrytiktok"
+    "#iftruckscouldtalk"
   ],
-  "cta": "It's on the We're All Here record — link in bio.",
+  "cta": "",
   "media": [],
-  "media_notes": "Ben films the story + chorus. Confirm the true origin detail before posting — do not invent it.",
-  "visual_kicker": "Story",
-  "visual_headline": "That old truck saw everything before I ever wrote a word about it.",
+  "media_notes": "This post is built around Ben's real story. It should NOT be posted with a made-up origin. Fill the [BEN] blanks.",
+  "visual_kicker": "story behind it",
+  "visual_headline": "If Trucks Could Talk",
   "layout": "",
   "created_by": "music-content-studio",
-  "notes": "Studio left the origin detail to Ben — fill the real story, then approve.",
+  "notes": "Held the origin for Ben on purpose. Needs his real story before posting.",
   "visual": "/media/music/generated/2026-08-08-tt-if-trucks-could-talk-story.jpg"
 }

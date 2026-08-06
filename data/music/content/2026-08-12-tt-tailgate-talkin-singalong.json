@@ -6,47 +6,45 @@
   "pillar": "personality_and_fans",
   "song_id": "tailgate-talkin",
   "show_id": "",
-  "title": "Tailgate Talkin' — singalong / participation prompt",
+  "title": "Tailgate Talkin', duet the hook",
   "scheduled_for": "",
-  "hook": "If you know the tailgate part, this one's a duet.",
-  "body": "Tailgate Talkin' is made for a parking lot and a cooler. Duet this and sing the hook back at me — best ones get reposted.",
+  "hook": "you sing the tailgate part.",
+  "body": "duet this and sing it back at me. best ones get reposted.",
   "script": [
     {
-      "beat": "Hook (0–2s)",
-      "visual": "Truck bed, a couple friends, phone propped up",
-      "line": "If you know the tailgate part, this one's a duet.",
-      "onscreen": "duet this 👇"
+      "beat": "Hook (0 to 2s)",
+      "visual": "truck bed, phone propped, a buddy or two around",
+      "line": "you sing the tailgate part",
+      "onscreen": "duet this"
     },
     {
-      "beat": "The bit (2–12s)",
-      "visual": "Sing the call line of the hook, leave a beat for the response",
-      "line": "Sing the \"call\" half of the hook, then point at camera for the \"response\"",
+      "beat": "The bit (2 to 12s)",
+      "visual": "sing the call line, leave a beat, point at camera",
+      "line": "sing your half of the hook, then point for their half",
       "onscreen": "Tailgate Talkin'"
     },
     {
-      "beat": "CTA (12–16s)",
-      "visual": "Grin, gesture \"your turn\"",
-      "line": "Your turn — best duets get reposted.",
-      "onscreen": "best ones get reposted"
+      "beat": "End (12 to 15s)",
+      "visual": "grin, your turn gesture",
+      "line": "best ones get reposted",
+      "onscreen": ""
     }
   ],
   "shot_list": [
-    "Film the 'call' half of Tailgate Talkin' hook with a clear pause for the fan's 'response' (leave headroom in frame)",
-    "Tailgate/parking-lot setting, a friend or two in shot reads as real"
+    "film the 'call' half of the Tailgate Talkin' hook with a clear pause for the fan's half. leave headroom in frame for the duet",
+    "tailgate or parking lot, a friend or two in shot reads real"
   ],
   "hashtags": [
     "#texascountry",
     "#tailgatetalkin",
     "#countrytiktok",
-    "#duet",
-    "#countrymusic",
-    "#linedance"
+    "#duet"
   ],
-  "cta": "Duet it and sing the hook back — best ones get reposted.",
+  "cta": "",
   "media": [],
-  "media_notes": "Participation format — the pause for the duet response is the whole trick. Consider a simple 2-step boot-scoot if the tempo fits.",
-  "visual_kicker": "Sing It Back",
-  "visual_headline": "If you know the tailgate part, this one's a duet.",
+  "media_notes": "The pause for the duet response is the whole trick.",
+  "visual_kicker": "sing it back",
+  "visual_headline": "you sing the tailgate part",
   "layout": "",
   "created_by": "music-content-studio",
   "notes": "",

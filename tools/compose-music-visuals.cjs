@@ -215,7 +215,9 @@ function lyricTemplate(item, sMeta, shMeta) {
     else eyebrow = PILLAR_LABEL[item.pillar] || 'Ben McPeak';
   }
   const headline = item.visual_headline || item.hook || item.title || '';
-  const sub = item.visual_subline || item.cta || '';
+  const metaLine = sMeta ? [sMeta.typeLabel, sMeta.year].filter(Boolean).join(' ')
+    : (shMeta ? [shMeta.venue, shMeta.city].filter(Boolean).join(', ') : '');
+  const sub = item.visual_subline || item.cta || metaLine || '';
   const hs = headlineSize(headline, 84, 72, 60, 50);
   return `<!doctype html><html><head><meta charset="utf-8"><style>${FONT_CSS}${BASE}
     .card{position:absolute;inset:0;padding:92px 84px;display:flex;flex-direction:column;justify-content:space-between}
@@ -235,7 +237,7 @@ function lyricTemplate(item, sMeta, shMeta) {
         <div class="grain"></div>
         <div class="top">
           <div class="eyebrow">${esc(eyebrow)}</div>
-          <div class="qmark pf">&ldquo;</div>
+          ${item.is_real_lyric ? '<div class="qmark pf">&ldquo;</div>' : ''}
           <h1 class="pf">${esc(headline)}</h1>
         </div>
         ${sub ? `<div class="sub">${esc(sub)}</div>` : '<div></div>'}

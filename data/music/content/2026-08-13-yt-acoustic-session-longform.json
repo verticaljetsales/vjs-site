@@ -6,47 +6,46 @@
   "pillar": "live_and_road",
   "song_id": "were-all-here",
   "show_id": "",
-  "title": "Acoustic session — 3 songs, one take (long-form)",
+  "title": "Acoustic session, one take (long-form)",
   "scheduled_for": "",
-  "hook": "Three songs off the record, just me and the guitar.",
-  "body": "Sat down and played three off We're All Here the way they got written — one guitar, one take, no click. If you've only heard the studio versions, this is the other half of the story.\n\nChapters below. Full record's linked in the description.",
+  "hook": "three songs, one guitar, one take.",
+  "body": "sat down and played a few off the record the way they got written. no click, no fixing it.\n\n[BEN: which three songs, and any real note about them]\n\nfull record's in the description.",
   "script": [
     {
       "beat": "Cold open",
-      "visual": "Start mid-song, 10 seconds of the best chorus, then title card",
-      "line": "Open on the strongest chorus of the three",
+      "visual": "start mid-song on the best chorus, ~10s, then title card",
+      "line": "open on the strongest chorus",
       "onscreen": "Acoustic Session"
     },
     {
-      "beat": "Song 1–3",
-      "visual": "Single warm setup, maybe two angles cut together",
-      "line": "Play three songs, short honest sentence between each about where it came from",
-      "onscreen": "song titles as lower-thirds"
+      "beat": "Songs",
+      "visual": "one warm setup, maybe a second angle",
+      "line": "[BEN: one honest sentence between songs about where each came from]",
+      "onscreen": "song titles lower-third"
     },
     {
       "beat": "Outro",
-      "visual": "Set the guitar down, thank them",
-      "line": "Thanks for listening — full record's in the description.",
-      "onscreen": "Subscribe · full album linked"
+      "visual": "set the guitar down",
+      "line": "'thanks for listening'",
+      "onscreen": "full album in description"
     }
   ],
   "shot_list": [
-    "One warm room, guitar + vocal, ideally a second angle for cutaways",
-    "Record clean audio if you can (even a single mic beats phone audio for long-form)",
-    "Three songs; note which between-song stories are true before filming"
+    "one warm room, guitar and vocal, second angle for cutaways if you can",
+    "record clean audio, even a single mic beats phone audio for long-form",
+    "note which between-song stories are true before filming"
   ],
   "hashtags": [
     "#texascountry",
     "#acoustic",
     "#countrymusic",
-    "#livemusic",
-    "#singersongwriter"
+    "#livemusic"
   ],
-  "cta": "Full record's linked in the description — hit subscribe for more sessions.",
+  "cta": "full record's in the description.",
   "media": [],
-  "media_notes": "Evergreen long-form — feeds YouTube search + Spotify discovery. Slice 4–6 Shorts out of it afterward.",
-  "visual_kicker": "Acoustic Session",
-  "visual_headline": "Three songs, one guitar, one take.",
+  "media_notes": "Evergreen long-form. Slice 4 to 6 Shorts out of it after.",
+  "visual_kicker": "acoustic session",
+  "visual_headline": "three songs, one take",
   "layout": "",
   "created_by": "music-content-studio",
   "notes": "",
