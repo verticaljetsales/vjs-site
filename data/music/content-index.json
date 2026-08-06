@@ -107,7 +107,7 @@
       "show_id": "",
       "scheduled_for": "",
       "hook": "people ask what kind of country i play.",
-      "body": "grew up on waylon and merle. mostly i just try to write true ones and sing em like i mean it.\n\n[BEN: one line in your own words about your sound, if you want]\n\nglad you're here.",
+      "body": "grew up on waylon and merle. baritone, neo-traditional, that 90s sound. i just try to write true ones and sing em like i mean it.\n\nsan antonio based, out on the road most weekends. texas music's a welcoming place. feels like a brotherhood.\n\nglad you're here.",
       "hashtags": [
         "#texascountry",
         "#neotraditionalcountry",
@@ -116,7 +116,9 @@
         "#singersongwriter"
       ],
       "cta": "",
-      "media": [],
+      "media": [
+        "/media/music/uploads/press-portrait.jpg"
+      ],
       "visual": "/media/music/generated/2026-08-11-ig-neo-traditional-carousel.jpg",
       "video": "",
       "is_video": false
@@ -132,7 +134,7 @@
       "show_id": "",
       "scheduled_for": "",
       "hook": "you sing the tailgate part.",
-      "body": "duet this and sing it back at me. best ones get reposted.",
+      "body": "tailgate talkin' is about the best memories happening right there on a tailgate. some folks' glory days were on a field or a stage. this one's for the tailgate crowd.\n\nduet this and sing it back at me. best ones get reposted.",
       "hashtags": [
         "#texascountry",
         "#tailgatetalkin",
@@ -190,6 +192,59 @@
       "cta": "",
       "media": [],
       "visual": "/media/music/generated/2026-08-14-ig-better-off-origin.jpg",
+      "video": "",
+      "is_video": false
+    },
+    {
+      "id": "2026-08-15-tt-songwriter-cowrites",
+      "status": "Draft",
+      "channel": "tiktok",
+      "format": "short_video",
+      "pillar": "story_and_songwriter",
+      "title": "Songwriter POV — the cuts you didn’t know were mine",
+      "song_id": "",
+      "show_id": "",
+      "scheduled_for": "",
+      "hook": "you've probably heard one of my songs without knowing it.",
+      "body": "been writing for other folks a while. co-wrote cuts for kyle park and michael salgado. now i'm putting out my own.\n\n[BEN: name one line or song you're proudest of writing, if you want]",
+      "hashtags": [
+        "#texascountry",
+        "#songwriter",
+        "#countrymusic",
+        "#nashville"
+      ],
+      "cta": "",
+      "media": [
+        "/media/music/uploads/press-portrait.jpg"
+      ],
+      "visual": "/media/music/generated/2026-08-15-tt-songwriter-cowrites.jpg",
+      "video": "",
+      "is_video": true
+    },
+    {
+      "id": "2026-08-16-ig-boat-single",
+      "status": "Draft",
+      "channel": "instagram",
+      "format": "single_image",
+      "pillar": "new_music_and_teasers",
+      "title": "Boat — the single",
+      "song_id": "boat",
+      "show_id": "",
+      "scheduled_for": "",
+      "hook": "wrote a fun one.",
+      "body": "boat. me and steven nix wrote it to be a good time. uptempo, windows down, that 90s country sound.\n\nturn it up on the water this weekend.",
+      "hashtags": [
+        "#texascountry",
+        "#countrymusic",
+        "#boat",
+        "#90scountry",
+        "#newmusic"
+      ],
+      "cta": "",
+      "media": [
+        "/media/music/uploads/boat-cover.jpg"
+      ],
+      "visual": "/media/music/generated/2026-08-16-ig-boat-single.jpg",
       "video": "",
       "is_video": false
     }

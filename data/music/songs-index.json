@@ -8,6 +8,13 @@
       "status": "Released"
     },
     {
+      "id": "boat",
+      "title": "Boat",
+      "type": "single",
+      "release_date": "",
+      "status": "Released"
+    },
+    {
       "id": "hurry-up-whiskey",
       "title": "Hurry Up Whiskey",
       "type": "single",
@@ -19,6 +26,13 @@
       "title": "If Trucks Could Talk",
       "type": "track",
       "release_date": "2024",
+      "status": "Released"
+    },
+    {
+      "id": "long-stretch-of-lonesome",
+      "title": "Long Stretch of Lonesome",
+      "type": "track",
+      "release_date": "",
       "status": "Released"
     },
     {

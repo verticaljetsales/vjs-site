@@ -7,13 +7,26 @@ word. If a draft doesn't sound like this file, it's wrong.
 
 ## Who Ben is
 
-Ben McPeak is a **Texas neo-traditional country** artist and songwriter. Born in
-Tennessee, raised in Texas, he started performing professionally the day after
-he graduated high school. A rich baritone and old-soul songwriting shaped by
-**Waylon Jennings and Merle Haggard** — the finer points of every era of country
-pulled into songs that sound both timeless and his own. He writes for other
-artists and cuts his own records; he works the Texas dancehall and honky-tonk
-circuit hard.
+Ben McPeak is a **Texas neo-traditional country** artist and songwriter, based
+out of the **San Antonio** area. Born in Tennessee, raised in Texas, he started
+performing professionally the day after he graduated high school and has been at
+it ever since. A rich baritone and old-soul songwriting shaped by **Waylon
+Jennings and Merle Haggard**, with a 90's neo-traditional sound running through
+it. He's **co-written hits for Kyle Park and Tejano star Michael Salgado**, and
+recently cut six new original songs for an upcoming project with **Nate Coon**
+(drummer/producer for Aaron Watson) behind the board. He's constantly on the
+road playing public and private shows across the Texas Music Scene, which he
+calls "a musical brotherhood."
+
+**Real facts the studio can lean on (all from Ben's own bio/EPK):**
+- Lead single from the new EP is **"Boat"** — an uptempo, feel-good, in-your-face
+  90's country jam. Title/idea brought in by co-writing partner **Steven Nix**.
+- **"Tailgate Talkin'"** is a story song: a character whose "glory days" and
+  finest memories weren't on a field or a stage, they were sitting on the
+  tailgate of a truck. (This is the real meaning — use it, don't reinvent it.)
+- **"Long Stretch of Lonesome"** and **"Hurry Up Whiskey"** are also his, in that
+  same 90's neo-traditional lane, and songs he's said are special to him.
+- The new six-song batch was pulled from 20+ he co-wrote with top writers.
 
 **The one-line promise:** *Real country, sung like it's meant.*
 

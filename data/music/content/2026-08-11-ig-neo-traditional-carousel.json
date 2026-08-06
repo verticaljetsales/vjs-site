@@ -9,7 +9,7 @@
   "title": "What kind of country (identity carousel)",
   "scheduled_for": "",
   "hook": "people ask what kind of country i play.",
-  "body": "grew up on waylon and merle. mostly i just try to write true ones and sing em like i mean it.\n\n[BEN: one line in your own words about your sound, if you want]\n\nglad you're here.",
+  "body": "grew up on waylon and merle. baritone, neo-traditional, that 90s sound. i just try to write true ones and sing em like i mean it.\n\nsan antonio based, out on the road most weekends. texas music's a welcoming place. feels like a brotherhood.\n\nglad you're here.",
   "script": [],
   "shot_list": [],
   "hashtags": [
@@ -20,12 +20,14 @@
     "#singersongwriter"
   ],
   "cta": "",
-  "media": [],
-  "media_notes": "Lead slide is the card. Add 2 to 4 photos (portrait, on stage, the band) as the rest of the carousel.",
+  "media": [
+    "/media/music/uploads/press-portrait.jpg"
+  ],
+  "media_notes": "Lead slide uses a real press portrait; add more photos as extra carousel slides.",
   "visual_kicker": "who i am",
   "visual_headline": "what kind of country i play",
   "layout": "",
   "created_by": "music-content-studio",
-  "notes": "Left a [BEN] line so it's his words, not a genre lecture.",
+  "notes": "Now uses Ben's real framing from his bio (San Antonio, 'musical brotherhood'). No blank left.",
   "visual": "/media/music/generated/2026-08-11-ig-neo-traditional-carousel.jpg"
 }
