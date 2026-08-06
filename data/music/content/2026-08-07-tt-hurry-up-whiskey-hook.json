@@ -1,0 +1,61 @@
+{
+  "id": "2026-08-07-tt-hurry-up-whiskey-hook",
+  "status": "Draft",
+  "channel": "tiktok",
+  "format": "short_video",
+  "pillar": "new_music_and_teasers",
+  "song_id": "hurry-up-whiskey",
+  "show_id": "",
+  "title": "Hurry Up Whiskey — acoustic hook to camera",
+  "scheduled_for": "",
+  "hook": "Some nights the whiskey can't come fast enough.",
+  "body": "Wrote this one for the nights you're trying to catch up to a feeling. Hurry Up Whiskey — out now, and there's an acoustic version if you like it stripped all the way down.",
+  "script": [
+    {
+      "beat": "Hook (0–2s)",
+      "visual": "Truck tailgate, golden hour, guitar in lap, straight to camera",
+      "line": "Some nights the whiskey can't come fast enough…",
+      "onscreen": "Hurry Up Whiskey"
+    },
+    {
+      "beat": "Chorus (2–12s)",
+      "visual": "Hold the shot, sing the hook line of the chorus",
+      "line": "Sing the catchiest line of the chorus — real voice, no backing track",
+      "onscreen": "acoustic"
+    },
+    {
+      "beat": "Turn (12–15s)",
+      "visual": "Small smile, look off then back",
+      "line": "Full song's out now — wrote it about exactly what it sounds like.",
+      "onscreen": ""
+    },
+    {
+      "beat": "CTA (15–18s)",
+      "visual": "Set the guitar down, nod",
+      "line": "Wherever you stream.",
+      "onscreen": "Spotify · Apple · link in bio"
+    }
+  ],
+  "shot_list": [
+    "Verse-to-chorus of Hurry Up Whiskey, ONE take, straight to camera, tailgate at golden hour",
+    "Optional B-roll: pour a glass, close on the guitar (cutaway)",
+    "Vertical 9:16, phone is fine — raw beats polished here"
+  ],
+  "hashtags": [
+    "#texascountry",
+    "#countrymusic",
+    "#hurryupwhiskey",
+    "#acoustic",
+    "#singersongwriter",
+    "#countrytiktok"
+  ],
+  "cta": "Full song out now — wherever you stream.",
+  "media": [],
+  "media_notes": "Needs Ben to film the one-take hook (see shot list). Studio renders a lyric card as the placeholder graphic until then.",
+  "visual_kicker": "New Single",
+  "visual_headline": "Some nights the whiskey can't come fast enough.",
+  "layout": "",
+  "created_by": "music-content-studio",
+  "notes": "",
+  "visual": "/media/music/generated/2026-08-07-tt-hurry-up-whiskey-hook.jpg"
+}

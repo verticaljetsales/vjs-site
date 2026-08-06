@@ -1,0 +1,46 @@
+{
+  "songs": [
+    {
+      "id": "better-off",
+      "title": "Better Off",
+      "type": "album",
+      "release_date": "",
+      "status": "Released"
+    },
+    {
+      "id": "hurry-up-whiskey",
+      "title": "Hurry Up Whiskey",
+      "type": "single",
+      "release_date": "2024",
+      "status": "Released"
+    },
+    {
+      "id": "if-trucks-could-talk",
+      "title": "If Trucks Could Talk",
+      "type": "track",
+      "release_date": "2024",
+      "status": "Released"
+    },
+    {
+      "id": "tailgate-talkin",
+      "title": "Tailgate Talkin'",
+      "type": "track",
+      "release_date": "",
+      "status": "Released"
+    },
+    {
+      "id": "were-all-here",
+      "title": "We're All Here",
+      "type": "album",
+      "release_date": "2024-06-14",
+      "status": "Released"
+    },
+    {
+      "id": "you-me-and-god",
+      "title": "You, Me and God",
+      "type": "track",
+      "release_date": "2024",
+      "status": "Released"
+    }
+  ]
+}

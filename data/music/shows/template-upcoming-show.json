@@ -1,0 +1,12 @@
+{
+  "id": "template-upcoming-show",
+  "venue": "",
+  "city": "",
+  "state": "TX",
+  "date": "",
+  "time": "",
+  "ticket_url": "",
+  "with_acts": "",
+  "confirmed": false,
+  "notes": "Copy this to add a real, confirmed date. The studio will not announce a show unless confirmed:true."
+}

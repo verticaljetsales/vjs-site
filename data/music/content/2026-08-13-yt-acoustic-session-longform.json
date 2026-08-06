@@ -1,0 +1,54 @@
+{
+  "id": "2026-08-13-yt-acoustic-session-longform",
+  "status": "Draft",
+  "channel": "youtube",
+  "format": "long_form",
+  "pillar": "live_and_road",
+  "song_id": "were-all-here",
+  "show_id": "",
+  "title": "Acoustic session — 3 songs, one take (long-form)",
+  "scheduled_for": "",
+  "hook": "Three songs off the record, just me and the guitar.",
+  "body": "Sat down and played three off We're All Here the way they got written — one guitar, one take, no click. If you've only heard the studio versions, this is the other half of the story.\n\nChapters below. Full record's linked in the description.",
+  "script": [
+    {
+      "beat": "Cold open",
+      "visual": "Start mid-song, 10 seconds of the best chorus, then title card",
+      "line": "Open on the strongest chorus of the three",
+      "onscreen": "Acoustic Session"
+    },
+    {
+      "beat": "Song 1–3",
+      "visual": "Single warm setup, maybe two angles cut together",
+      "line": "Play three songs, short honest sentence between each about where it came from",
+      "onscreen": "song titles as lower-thirds"
+    },
+    {
+      "beat": "Outro",
+      "visual": "Set the guitar down, thank them",
+      "line": "Thanks for listening — full record's in the description.",
+      "onscreen": "Subscribe · full album linked"
+    }
+  ],
+  "shot_list": [
+    "One warm room, guitar + vocal, ideally a second angle for cutaways",
+    "Record clean audio if you can (even a single mic beats phone audio for long-form)",
+    "Three songs; note which between-song stories are true before filming"
+  ],
+  "hashtags": [
+    "#texascountry",
+    "#acoustic",
+    "#countrymusic",
+    "#livemusic",
+    "#singersongwriter"
+  ],
+  "cta": "Full record's linked in the description — hit subscribe for more sessions.",
+  "media": [],
+  "media_notes": "Evergreen long-form — feeds YouTube search + Spotify discovery. Slice 4–6 Shorts out of it afterward.",
+  "visual_kicker": "Acoustic Session",
+  "visual_headline": "Three songs, one guitar, one take.",
+  "layout": "",
+  "created_by": "music-content-studio",
+  "notes": "",
+  "visual": "/media/music/generated/2026-08-13-yt-acoustic-session-longform.jpg"
+}

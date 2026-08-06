@@ -1,0 +1,28 @@
+{
+  "shows": [
+    {
+      "id": "circuit-11th-street-cowboy-bar",
+      "venue": "11th Street Cowboy Bar",
+      "city": "Bandera",
+      "state": "TX",
+      "date": "",
+      "confirmed": false
+    },
+    {
+      "id": "circuit-freiheit-country-store",
+      "venue": "Freiheit Country Store",
+      "city": "New Braunfels",
+      "state": "TX",
+      "date": "",
+      "confirmed": false
+    },
+    {
+      "id": "circuit-house-pasture",
+      "venue": "House Pasture Cattle Company",
+      "city": "Concan",
+      "state": "TX",
+      "date": "",
+      "confirmed": false
+    }
+  ]
+}

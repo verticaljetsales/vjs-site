@@ -1,0 +1,54 @@
+{
+  "id": "2026-08-12-tt-tailgate-talkin-singalong",
+  "status": "Draft",
+  "channel": "tiktok",
+  "format": "short_video",
+  "pillar": "personality_and_fans",
+  "song_id": "tailgate-talkin",
+  "show_id": "",
+  "title": "Tailgate Talkin' — singalong / participation prompt",
+  "scheduled_for": "",
+  "hook": "If you know the tailgate part, this one's a duet.",
+  "body": "Tailgate Talkin' is made for a parking lot and a cooler. Duet this and sing the hook back at me — best ones get reposted.",
+  "script": [
+    {
+      "beat": "Hook (0–2s)",
+      "visual": "Truck bed, a couple friends, phone propped up",
+      "line": "If you know the tailgate part, this one's a duet.",
+      "onscreen": "duet this 👇"
+    },
+    {
+      "beat": "The bit (2–12s)",
+      "visual": "Sing the call line of the hook, leave a beat for the response",
+      "line": "Sing the \"call\" half of the hook, then point at camera for the \"response\"",
+      "onscreen": "Tailgate Talkin'"
+    },
+    {
+      "beat": "CTA (12–16s)",
+      "visual": "Grin, gesture \"your turn\"",
+      "line": "Your turn — best duets get reposted.",
+      "onscreen": "best ones get reposted"
+    }
+  ],
+  "shot_list": [
+    "Film the 'call' half of Tailgate Talkin' hook with a clear pause for the fan's 'response' (leave headroom in frame)",
+    "Tailgate/parking-lot setting, a friend or two in shot reads as real"
+  ],
+  "hashtags": [
+    "#texascountry",
+    "#tailgatetalkin",
+    "#countrytiktok",
+    "#duet",
+    "#countrymusic",
+    "#linedance"
+  ],
+  "cta": "Duet it and sing the hook back — best ones get reposted.",
+  "media": [],
+  "media_notes": "Participation format — the pause for the duet response is the whole trick. Consider a simple 2-step boot-scoot if the tempo fits.",
+  "visual_kicker": "Sing It Back",
+  "visual_headline": "If you know the tailgate part, this one's a duet.",
+  "layout": "",
+  "created_by": "music-content-studio",
+  "notes": "",
+  "visual": "/media/music/generated/2026-08-12-tt-tailgate-talkin-singalong.jpg"
+}

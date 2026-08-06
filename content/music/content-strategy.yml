@@ -1,0 +1,141 @@
+# Ben McPeak — Content Strategy
+# The machine-readable playbook. The content-studio agent reads this to decide
+# WHAT to make, for WHICH channel, HOW OFTEN, and WHAT the goal is.
+# Grounded in 2026 country-artist trend research (see docs/MUSIC-CONTENT-PLATFORM.md).
+# Edit these numbers/lists to steer the whole platform — no code changes needed.
+
+goals:
+  # Ranked. Drives how the Strategist weights the calendar.
+  - grow_discovery          # new ears via TikTok/Reels/Shorts virality
+  - drive_streams           # convert reach into Spotify/Apple listens + pre-saves
+  - build_owned_audience    # capture email/SMS — the relationship you own
+  - fill_the_room           # turn fans into ticket buyers at the Texas shows
+  - deepen_superfans        # merch, memberships, the "1,000 true fans" core
+
+channels:
+  tiktok:
+    active: true
+    role: discovery              # the breakout engine — ~84% of viral songs start here
+    primary_formats: [short_video]
+    tone: raw-authentic-one-take
+    ideal_cadence_per_week: 6    # 1–2/day is the ceiling; never below 4/wk
+    hashtag_count: [4, 6]
+    best_times: "Tue–Thu, 2–6 PM and 6–9 PM (local)"
+    notes: "Post the MOST here. Lo-fi beats polished. One idea, hook in 1–2 sec."
+  instagram:
+    active: true
+    role: community              # convert viral moments into relationships
+    primary_formats: [reel, carousel, single_image]
+    tone: warm-polished
+    ideal_cadence_per_week: 5
+    hashtag_count: [5, 8]
+    best_times: "Mon–Thu, 11 AM–1 PM and 7–9 PM (local)"
+    notes: "Reels for reach; feed + Stories for the fans already here. Repurpose top TikToks."
+  youtube:
+    active: true
+    role: depth                  # long-tail, evergreen, feeds Spotify discovery
+    primary_formats: [short_video, long_form]
+    tone: authentic-performance
+    ideal_cadence_per_week: 4    # Shorts 3–5/wk + long-form when there's a full performance
+    hashtag_count: [3, 6]
+    best_times: "Shorts mirror TikTok; long-form drops Fri/Sat"
+    notes: "Shorts = repurposed verticals. Long-form = full live cuts, acoustic sessions, videos."
+  facebook:
+    active: true
+    role: retention              # the 35+ country loyalists + local show turnout
+    primary_formats: [single_image, reel, link_post]
+    tone: warm-neighborly
+    ideal_cadence_per_week: 4
+    hashtag_count: [2, 4]
+    best_times: "Weekdays late morning + early evening"
+    notes: "Full songs, show announcements, family/faith/hometown. Talk to them like neighbors."
+
+# Content pillars and roughly how much of the calendar each should fill.
+# Must sum to ~100. Weights derived from 2026 trend research:
+#   ~60% discovery (pillars 1–2–3), ~30% retention (4–5), ~10% conversion (folded into 1 & 2).
+# Keep overt promo (pre-save / tickets / merch) to ~1 in 6 posts — see guardrails.
+pillar_mix:
+  new_music_and_teasers: 30    # acoustic hooks, "story behind the song", snippets, pre-save, release day
+  live_and_road: 18            # honky-tonk/tailgate clips, singalongs, show announcements
+  story_and_songwriter: 22     # where the song came from, the craft, writing for others, studio
+  faith_family_hometown: 10    # the values lane country rewards — sincere, never preachy
+  personality_and_fans: 20     # humor, covers, duets, comment-reply videos, bring fans in
+
+# The pipeline every content item moves through. This IS the approval loop.
+# Nothing is publishable until a human sets status to "Approved".
+statuses:
+  - Idea          # strategist queued it, not written yet
+  - Draft         # agent wrote it, awaiting human review
+  - Needs Edit    # human sent it back with notes
+  - Approved      # human signed off — cleared to post
+  - Scheduled     # slotted to a date (Phase 2 auto-post picks these up)
+  - Posted        # live
+  - Archived
+
+# Weekly rhythm the Strategist aims for when asked to "plan the week".
+# Total ≈ 19 posts/week across 4 channels, most on TikTok. Tune to real capacity —
+# 3 good-enough posts beat 1 perfect one, and consistency is the whole game.
+weekly_plan_target:
+  tiktok: 7
+  instagram: 5
+  youtube: 4
+  facebook: 4
+
+# Guardrails the agent enforces on every draft (mirrors brand-voice.md).
+guardrails:
+  never_invent_facts: true           # no fake streams/charts/dates/awards
+  never_fabricate_lyrics: true       # only real, confirmed signature_lyric goes on a lyric card
+  only_post_confirmed_shows: true    # a show needs confirmed:true in its data file
+  no_hit_guarantees: true
+  no_competitor_bashing: true
+  faith_family_stays_sincere: true   # never preachy or political
+  promo_cap_one_in_six: true         # overt pre-save/ticket/merch asks ≤ ~1 of every 6 posts
+  human_approval_required_before_post: true
+
+# The playbook for launching a single or album. The Strategist uses this when
+# asked to "build a release plan for <song>". Window: Day −14 → Day +21.
+release_playbook:
+  window_days: [-14, 21]
+  pre_release:                        # Day −14 to −1
+    - "Film ONE real vertical performance/music-video capture, then slice 8–12 short cuts (different hooks/angles)."
+    - "Post 4–7 short teasers/week: the hook snippet (6–15s), the 'story behind the song', a studio/BTS clip."
+    - "Launch a pre-save (Spotify/Apple/YouTube Music) via a landing page; every clip points to it. Target 500–2,000+."
+    - "Seed the sound to peers/fans to duet or lip-sync; line up a dance/participation hook if the song supports one."
+  release_day:                        # Day 0
+    - "Double post: 9–10 AM and again in the evening. Announce on all four platforms at once."
+    - "Facebook gets the full song for the 35+ base. Push the participation prompt so UGC starts day one."
+  post_release:                       # Day +1 to +21
+    - "Sustain 4–7 posts/week — most artists quit too early. Keep feeding new angles and repost fan UGC."
+    - "Let organic pick the winner, then put paid amplification behind the best-performing cut."
+
+cta_bank:
+  - "New one out now — link in bio."
+  - "Pre-save it so it lands in your library the second it drops."
+  - "Full song's on Spotify, Apple, wherever you stream."
+  - "Turn it up and tag somebody who needs to hear it."
+  - "Which line hit you? Drop it below."
+  - "Come see us — dates and tickets in bio."   # confirmed shows only
+  - "Want the acoustic version next? Say the word."
+
+# Core hashtag set (≤6 per post; always add the song's branded tag). Full palette
+# lives in brand-voice.md.
+hashtag_core:
+  - "#countrymusic"
+  - "#texascountry"
+  - "#newcountry"
+  - "#countrytiktok"
+  - "#singersongwriter"
+  - "#originalsong"
+
+# The owned-audience funnel: get fans OFF rented platforms. An email/SMS list
+# beats pre-saves because you own it. Every bio/link points here eventually.
+owned_audience:
+  priority: high
+  tactic: "Spotify bio / link-in-bio -> landing page offering a free track or early access in exchange for email/SMS."
+  note: "Build from day one. A few thousand true fans on an owned list beat 100K passive followers."
+
+contact:
+  name: Ben McPeak
+  site: https://benmcpeakmusic.com
+  handle: "@benmcpeakmusic"
+  spotify_artist: https://open.spotify.com/artist/7ly5T1xTU0IzHygu5IC2CY
