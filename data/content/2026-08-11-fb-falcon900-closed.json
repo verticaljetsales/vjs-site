@@ -1,5 +1,5 @@
 {
-  "status": "Approved",
+  "status": "Scheduled",
   "channel": "facebook",
   "format": "single_image",
   "pillar": "behind_the_deal",
@@ -29,5 +29,6 @@
   "visual_subline": "2008 Falcon 900EX EASy · Large Cabin",
   "visual_kicker": "Recently Closed",
   "created_by": "vjs-content-studio",
-  "notes": ""
+  "notes": "",
+  "publer_job": "6a74a32aad368d3847d63ef8"
 }
