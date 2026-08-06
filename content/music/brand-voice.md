@@ -115,6 +115,28 @@ Ben fills in ten seconds beats a smooth sentence he'd never actually say.
 
 ---
 
+## The Texas scene (post the floor, not the face)
+
+Texas / Red Dirt country works differently from Nashville: it sells **belonging
+to a circuit**, not a personal brand. Lean into it.
+- **The dance floor is the star.** Film the crowd doing the two-step from the
+  stage. The couples dancing are the proof and the hook — not Ben's face.
+- **Name the venue like it's the headliner.** Gruene Hall, Cheatham Street,
+  11th Street Cowboy Bar, Freiheit, House Pasture. Fans follow rooms.
+- **Lineage earns belonging.** Cover a Texas legend (George Strait, Robert Earl
+  Keen, Pat Green, Randy Rogers) and let the crowd carry the chorus.
+- **The scene is collaborative.** Guest/collab teases with other Texas artists
+  borrow their fans. Ben's Kyle Park and Michael Salgado co-writes are a real in.
+- **Texas radio is a scoreboard.** Thank stations by name for adds; post Texas
+  Regional Radio Report / Texas Music Chart movement — fans track it like sports.
+- **Independence is a virtue here.** "Own it direct from me" (fan club, merch,
+  email) beats "stream it on Spotify." The scene roots for the DIY underdog.
+- **San Antonio is an edge.** Ben bridges Texas country and the Tejano/regional
+  world (Michael Salgado). Own that lane; nobody else has exactly it.
+
+The machine-readable version (content moves + growth ladder) lives in
+`content-strategy.yml` under `texas_scene`.
+
 ## Content pillars (what we talk about)
 
 1. **New music & teasers** — snippets, pre-save pushes, release-day posts,

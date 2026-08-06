@@ -55,11 +55,11 @@ channels:
 #   ~60% discovery (pillars 1–2–3), ~30% retention (4–5), ~10% conversion (folded into 1 & 2).
 # Keep overt promo (pre-save / tickets / merch) to ~1 in 6 posts — see guardrails.
 pillar_mix:
-  new_music_and_teasers: 30    # acoustic hooks, "story behind the song", snippets, pre-save, release day
-  live_and_road: 18            # honky-tonk/tailgate clips, singalongs, show announcements
-  story_and_songwriter: 22     # where the song came from, the craft, writing for others, studio
+  new_music_and_teasers: 28    # acoustic hooks, "story behind the song", snippets, pre-save, release day
+  live_and_road: 24            # THE Texas engine: dancehall/two-step floors, singalongs, venue drops, radio wins
+  story_and_songwriter: 20     # where the song came from, the craft, the co-writes, studio
   faith_family_hometown: 10    # the values lane country rewards — sincere, never preachy
-  personality_and_fans: 20     # humor, covers, duets, comment-reply videos, bring fans in
+  personality_and_fans: 18     # humor, covers of Texas legends, collab teases, comment replies
 
 # The pipeline every content item moves through. This IS the approval loop.
 # Nothing is publishable until a human sets status to "Approved".
@@ -133,6 +133,30 @@ owned_audience:
   priority: high
   tactic: "Spotify bio / link-in-bio -> landing page offering a free track or early access in exchange for email/SMS."
   note: "Build from day one. A few thousand true fans on an owned list beat 100K passive followers."
+
+# The Texas / Red Dirt scene plays by its own rules. This is the layer that makes
+# the studio sound like the circuit, not like Nashville. The Strategist weighs
+# these when planning, especially for the live_and_road pillar.
+texas_scene:
+  core_truth: "The scene sells belonging to a circuit, not a personal brand. Post the dance floor, not the face."
+  content_moves:
+    - "Film the packed floor doing the two-step from the stage. The couples are the hook, not Ben."
+    - "Name the VENUE like it's the headliner (Gruene Hall, Cheatham Street, 11th Street Cowboy Bar, Freiheit, House Pasture). Fans follow rooms."
+    - "Cover a Texas legend (George Strait, Robert Earl Keen, Pat Green, Randy Rogers) and let the crowd carry the chorus — signals lineage + belonging."
+    - "Two-step tutorials to Ben's own song ride a huge existing Texas search audience."
+    - "Collab/guest teases with other Texas artists borrow their fanbase (the Hold My Beer / Panhandlers model). Ben's Kyle Park + Michael Salgado co-writes are a real in."
+    - "Celebrate Texas radio adds BY STATION NAME and screenshot Texas Regional Radio Report / Texas Music Chart movement — fans track it like a scoreboard."
+    - "Van/load-in 'grind' content leans into the independent, own-your-audience ethos the scene roots for (the Aaron Watson model)."
+    - "Festival/backstage-with-peers content taps the 'fans became family' energy (MusicFest at Steamboat, Larry Joe Taylor's)."
+    - "San Antonio identity: Ben bridges Texas country + the Tejano/regional world (Michael Salgado) — own that lane."
+  growth_ladder:   # how an artist at Ben's level actually climbs, in scene order
+    - "Texas country radio adds -> climb the Texas Regional Radio Report (T3R) / Texas Music Chart"
+    - "Opening slots on the dancehall circuit (Randy Rogers / Josh Abbott / Wade Bowen tier rooms)"
+    - "Iconic-venue plays as milestones (Gruene Hall, Cheatham Street, Luckenbach)"
+    - "Collaborations / co-writes to borrow interconnected fanbases"
+    - "Festival plays (initiation into the 'family')"
+    - "Own the audience: fan club + text/email + direct merch, independent of any label"
+  site_priorities: "A Texas artist site is a storefront, not a press kit: (1) next shows front-and-center with the venue names, (2) buy tickets/merch direct, (3) join a named fan/family club (real perk: early ticket presale)."
 
 contact:
   name: Ben McPeak
