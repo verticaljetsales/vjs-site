@@ -1,27 +1,56 @@
 {
-  "status": "Idea",
-  "song_id": "",
-  "show_id": "",
-  "scheduled_for": "",
-  "body": "",
-  "script": [],
-  "shot_list": [],
-  "hashtags": [],
-  "cta": "",
-  "media": [],
-  "visual": "",
-  "video": "",
-  "visual_headline": "",
-  "visual_subline": "",
-  "visual_kicker": "",
-  "layout": "",
   "created_by": "music-content-studio",
   "id": "idea-two-step-tutorial",
+  "status": "Draft",
   "channel": "tiktok",
   "format": "short_video",
   "pillar": "personality_and_fans",
-  "title": "Two-step tutorial to your own song (Boat)",
+  "song_id": "boat",
+  "show_id": "",
+  "scheduled_for": "",
+  "title": "Two-step to Boat (learn it before the show)",
   "hook": "learn it before the show.",
-  "notes": "Teach the basic Texas two-step over Boat. Rides a huge existing Texas two-step search audience and gives fans a reason to come dance.",
-  "media_notes": "You + a partner, simple overhead/side angle on the feet, count it out."
+  "body": "boat's made for a two-step. here's the basic step so you're ready on the floor.\n\nquick quick, slow slow. that's the whole thing.",
+  "script": [
+    {
+      "beat": "Hook (0 to 3s)",
+      "visual": "you and a partner on a dance floor",
+      "line": "here's the two-step to boat.",
+      "onscreen": "two-step 101"
+    },
+    {
+      "beat": "Teach it (3 to 12s)",
+      "visual": "side or overhead angle on the feet, Boat playing",
+      "line": "quick quick, slow slow. that’s it.",
+      "onscreen": "quick quick · slow slow"
+    },
+    {
+      "beat": "End (12 to 16s)",
+      "visual": "the couple spins, smile",
+      "line": "now come do it live.",
+      "onscreen": "come dance"
+    }
+  ],
+  "shot_list": [
+    "you + a partner, clear side or overhead angle on the feet",
+    "Boat as the audio, count the step out loud so it’s easy to follow"
+  ],
+  "hashtags": [
+    "#texascountry",
+    "#twostep",
+    "#countrymusic",
+    "#boat"
+  ],
+  "cta": "",
+  "media": [
+    "/media/music/uploads/boat-cover.jpg"
+  ],
+  "layout": "framed",
+  "media_notes": "Placeholder uses the Boat cover art; the clip is you + a partner filmed to the shot list.",
+  "visual": "/media/music/generated/idea-two-step-tutorial.jpg",
+  "video": "",
+  "visual_headline": "learn it before the show",
+  "visual_subline": "",
+  "visual_kicker": "Two-Step",
+  "notes": "Rides the huge Texas two-step search audience; tied to the Boat single."
 }
