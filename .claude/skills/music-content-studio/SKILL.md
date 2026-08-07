@@ -187,7 +187,17 @@ prompt** when a song's hook supports it. Plain-spoken and real — never cringe.
 
 ## What this skill does NOT do (yet)
 
-It does not post to any platform, and it does not generate music, vocals, or
-performance footage. Auto-posting is Phase 2 — a backend that watches for
-`status: "Approved"` + `scheduled_for` items and publishes via the TikTok /
-Meta / YouTube APIs. See `docs/MUSIC-CONTENT-PLATFORM.md`.
+It does not generate music, vocals, or performance footage. Posting goes through
+**Publer** (same as the jets): once a human sets a post to `Approved` with a
+`scheduled_for` date, it's sent to Publer to post on TikTok / Instagram /
+YouTube / Facebook. Two ways:
+- **CSV export** (no setup): `node tools/build-music-publer-csv.cjs` → upload the
+  `exports/music-publer-<channel>.csv` files in Publer → Bulk Schedule.
+- **Auto-push** (hands-off): the `music-publer.yml` GitHub Action runs
+  `tools/music-publer-push.cjs` on schedule and pushes Approved posts via the
+  Publer API. Needs `PUBLER_API_KEY` + account ids in
+  `content/music/publer-accounts.json`.
+Publer pulls the media from the post's public URL, so **a video reel needs its
+clip hosted in the studio** (upload it on the post in `/admin` — Netlify handles
+big files — and the reel's video URL fills in). See
+`docs/MUSIC-CONTENT-PLATFORM.md`.
