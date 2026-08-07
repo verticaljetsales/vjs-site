@@ -49,7 +49,7 @@
   ],
   "layout": "framed",
   "audio": "",
-  "media_notes": "Uses the real Cowboy cover art. The actual music video + lyric video are in Ben's Drive (Videos) and on YouTube — attach/link when posting.",
+  "media_notes": "THE REEL = Ben's 8-second 'Reel 8_Cowboy Chorus.mov' (in Drive: Ben McPeak Promo). This cover art is the cover frame. Clip is 14MB (over the 10MB pull limit) — attach it via the CMS uploader or drop a <10MB export in Drive and I'll embed it.",
   "visual": "/media/music/generated/2026-08-07-ig-dont-tell-her-cowboy.jpg",
   "video": "",
   "is_real_lyric": true,
@@ -57,5 +57,6 @@
   "visual_subline": "",
   "visual_kicker": "Music Video",
   "created_by": "music-content-studio",
-  "notes": "Real single, real lyric, real cover art. Built around Ben's existing music video."
+  "notes": "Real single, real lyric, real cover art. The performance reel is Ben's Reel 8 Cowboy Chorus clip (linked in video_source).",
+  "video_source": "https://drive.google.com/file/d/11HXQ1ntqNAC3gls9d6FtKZ2jV7689tPs/view (Reel 8_Cowboy Chorus.mov, 8s)"
 }
