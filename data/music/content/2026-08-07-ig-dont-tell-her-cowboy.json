@@ -1,0 +1,61 @@
+{
+  "id": "2026-08-07-ig-dont-tell-her-cowboy",
+  "status": "Draft",
+  "channel": "instagram",
+  "format": "reel",
+  "pillar": "new_music_and_teasers",
+  "song_id": "dont-tell-her-im-a-cowboy",
+  "show_id": "",
+  "scheduled_for": "",
+  "title": "Don't Tell Her I'm a Cowboy — music video",
+  "hook": "there's a difference in this cowboy life.",
+  "body": "don't tell her i'm a cowboy. the video's out.\n\nthere's a difference in this cowboy life. watch the whole thing.\n\n[BEN: one true line about what this song's really about, if you want]",
+  "script": [
+    {
+      "beat": "Hook (0 to 2s)",
+      "visual": "open on the strongest shot from the music video",
+      "line": "there's a difference in this cowboy life",
+      "onscreen": "Don't Tell Her I'm a Cowboy"
+    },
+    {
+      "beat": "Body (2 to 20s)",
+      "visual": "cut the catchiest 15-20s of the music video",
+      "line": "let the song carry it",
+      "onscreen": "music video"
+    },
+    {
+      "beat": "End (20 to 25s)",
+      "visual": "end on the cover art / title card",
+      "line": "out now",
+      "onscreen": "watch the full video — link in bio"
+    }
+  ],
+  "shot_list": [
+    "Cut a 20–30s vertical reel from the existing Don't Tell Her I'm a Cowboy MUSIC VIDEO (in Drive: Ben McPeak Promo/Videos/Music Video)",
+    "Open on the hook line 'there's a difference in this cowboy life'",
+    "End on the cover art title card",
+    "Post the full music/lyric video to YouTube + link it in bio"
+  ],
+  "hashtags": [
+    "#texascountry",
+    "#countrymusic",
+    "#donttellherimacowboy",
+    "#90scountry",
+    "#newmusic"
+  ],
+  "cta": "watch the full video — link in bio.",
+  "media": [
+    "/media/music/uploads/cowboy-cover.png"
+  ],
+  "layout": "framed",
+  "audio": "",
+  "media_notes": "Uses the real Cowboy cover art. The actual music video + lyric video are in Ben's Drive (Videos) and on YouTube — attach/link when posting.",
+  "visual": "/media/music/generated/2026-08-07-ig-dont-tell-her-cowboy.jpg",
+  "video": "",
+  "is_real_lyric": true,
+  "visual_headline": "there's a difference in this cowboy life",
+  "visual_subline": "",
+  "visual_kicker": "Music Video",
+  "created_by": "music-content-studio",
+  "notes": "Real single, real lyric, real cover art. Built around Ben's existing music video."
+}

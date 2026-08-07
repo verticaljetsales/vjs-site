@@ -1,6 +1,33 @@
 {
   "content": [
     {
+      "id": "2026-08-07-ig-dont-tell-her-cowboy",
+      "status": "Draft",
+      "channel": "instagram",
+      "format": "reel",
+      "pillar": "new_music_and_teasers",
+      "title": "Don't Tell Her I'm a Cowboy — music video",
+      "song_id": "dont-tell-her-im-a-cowboy",
+      "show_id": "",
+      "scheduled_for": "",
+      "hook": "there's a difference in this cowboy life.",
+      "body": "don't tell her i'm a cowboy. the video's out.\n\nthere's a difference in this cowboy life. watch the whole thing.\n\n[BEN: one true line about what this song's really about, if you want]",
+      "hashtags": [
+        "#texascountry",
+        "#countrymusic",
+        "#donttellherimacowboy",
+        "#90scountry",
+        "#newmusic"
+      ],
+      "cta": "watch the full video — link in bio.",
+      "media": [
+        "/media/music/uploads/cowboy-cover.png"
+      ],
+      "visual": "/media/music/generated/2026-08-07-ig-dont-tell-her-cowboy.jpg",
+      "video": "",
+      "is_video": true
+    },
+    {
       "id": "2026-08-07-tt-hurry-up-whiskey-hook",
       "status": "Draft",
       "channel": "tiktok",
