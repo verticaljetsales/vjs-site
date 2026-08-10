@@ -228,6 +228,31 @@ h1,h2,h3,.eyebrow{font-family:'Playfair',serif}
   <div class="foot"><span>Vertical Jet Sales — Content Studio Guide</span><span>Page 4</span></div>
 </div>
 
+<!-- ============ PAGE 5 ============ -->
+<div class="page">
+  <div class="section" style="margin-top:0">
+    <span class="eyebrow">Making It Live</span>
+    <h2>How your changes show up</h2>
+    <p class="lead">To keep our costs down, the website refreshes on a schedule — about <b>twice a day</b> (morning and afternoon) — instead of the second you save. Your saves are always safe in the meantime. So if the board looks like it “didn’t update,” it usually just hasn’t refreshed yet.</p>
+  </div>
+
+  <div class="job"><span class="chip">Publish Now</span><div><h2>Want your changes live right away?</h2><small>Use this after approving posts when you don’t want to wait for the next refresh.</small></div></div>
+  ${step(1, 'Open GitHub → the “Actions” tab', 'Go to <b>github.com/verticaljetsales/vjs-site</b> and click <b>Actions</b> along the top.')}
+  ${step(2, 'Click “Publish site (batched deploys)”', 'It’s in the list on the left side.')}
+  ${step(3, 'Click “Run workflow,” then the green “Run workflow”', 'A little box drops down on the right — click the green button inside it.')}
+  ${step(4, 'Wait about a minute, then refresh your page', 'Your changes — approvals, edits, sold jets — now show up live on the site and the board.')}
+
+  <div class="rulebox">
+    <div class="star">📅</div>
+    <div>
+      <h3>Approving is not the same as posting</h3>
+      <p>Approving a post just clears it to go. It posts <b>by itself on its scheduled date</b> (the date in “Scheduled For”), each morning — not the moment you approve. So don’t worry if it doesn’t go out right away. That’s exactly how it’s meant to work.</p>
+    </div>
+  </div>
+
+  <div class="foot"><span>Vertical Jet Sales — Content Studio Guide</span><span>Page 5</span></div>
+</div>
+
 </body></html>`;
 
 (async () => {
