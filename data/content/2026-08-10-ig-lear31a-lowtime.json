@@ -1,5 +1,5 @@
 {
-  "status": "Scheduled",
+  "status": "Approved",
   "channel": "instagram",
   "format": "reel",
   "pillar": "inventory_spotlight",
@@ -61,6 +61,7 @@
   "visual": "/media/generated/2026-08-10-ig-lear31a-lowtime.jpg",
   "video": "/media/generated/2026-08-10-ig-lear31a-lowtime.mp4",
   "visual_headline": "Low time is a light jet's best-kept secret.",
+  "visual_subline": "",
   "visual_kicker": "For Sale",
   "created_by": "vjs-content-studio",
   "notes": ""
