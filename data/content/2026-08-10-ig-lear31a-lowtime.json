@@ -1,12 +1,12 @@
 {
-  "id": "2026-08-10-ig-lear31a-lowtime",
-  "status": "Draft",
+  "status": "Scheduled",
   "channel": "instagram",
   "format": "reel",
   "pillar": "inventory_spotlight",
   "title": "Lear 31A — low-time light jet reel",
+  "id": "2026-08-10-ig-lear31a-lowtime",
   "aircraft_id": "lear-31a-232",
-  "scheduled_for": "2026-08-10",
+  "scheduled_for": "2026-08-13",
   "hook": "Low time is a light jet's best-kept secret.",
   "body": "This 2001 Learjet 31A carries just 5,923 hours on the airframe — genuinely low time for the type — and the maintenance to match: a fresh Phase A–D, the 12-year complete, and engines enrolled on MSP Gold.\n\nThe 31A still climbs like a rocket and cruises with airplanes that cost far more to feed. When the logbook is this clean, the airplane makes its own case.\n\nFull spec and status reports on request.",
   "script": [
@@ -58,10 +58,10 @@
     "/uploads/1a0a6211-hdr_web.webp"
   ],
   "media_notes": "Reel from existing listing photos; a short live ramp clip would elevate it.",
+  "visual": "/media/generated/2026-08-10-ig-lear31a-lowtime.jpg",
+  "video": "/media/generated/2026-08-10-ig-lear31a-lowtime.mp4",
   "visual_headline": "Low time is a light jet's best-kept secret.",
   "visual_kicker": "For Sale",
   "created_by": "vjs-content-studio",
-  "notes": "",
-  "visual": "/media/generated/2026-08-10-ig-lear31a-lowtime.jpg",
-  "video": "/media/generated/2026-08-10-ig-lear31a-lowtime.mp4"
+  "notes": ""
 }
