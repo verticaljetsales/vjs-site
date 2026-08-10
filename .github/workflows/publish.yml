@@ -1,0 +1,42 @@
+name: Publish site (batched deploys)
+
+# Rebuilds the live VJS site on a schedule instead of on every single save.
+#
+# Why: the CMS commits to GitHub every time you hit "Save" (mark a jet Sold,
+# approve a post, etc.). Normally Netlify rebuilds on every one of those, which
+# burns credits. With Netlify's automatic Git builds PAUSED, saves just pile up
+# safely in GitHub, and THIS workflow tells Netlify to rebuild in batches:
+#   • twice a day on a schedule (morning + afternoon), and
+#   • on demand whenever you click "Run workflow" (your "Publish Now" button).
+#
+# One-time setup (see docs/PUBLISHING.md):
+#   1. In Netlify, create a Build hook and copy its URL.
+#   2. In Netlify, pause automatic builds (so saves stop triggering rebuilds).
+#   3. In GitHub, add the hook URL as a secret named NETLIFY_BUILD_HOOK.
+
+on:
+  schedule:
+    - cron: "0 12 * * *"     # 12:00 UTC ≈ 7:00 AM US-Central — morning publish
+    - cron: "0 20 * * *"     # 20:00 UTC ≈ 3:00 PM US-Central — afternoon publish
+  workflow_dispatch:          # the "Publish Now" button (Actions tab → Run workflow)
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger a Netlify rebuild
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::error::NETLIFY_BUILD_HOOK secret is not set. Add it in"
+            echo "GitHub → Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          echo "Asking Netlify to rebuild and publish the current site…"
+          code=$(curl -sS -o /dev/null -w "%{http_code}" -X POST -d '{}' "$HOOK")
+          echo "Netlify build hook responded: HTTP $code"
+          case "$code" in
+            2*) echo "Publish triggered. The site will be live in a minute or two." ;;
+            *)  echo "::error::Build hook did not accept the request (HTTP $code). Check the hook URL."; exit 1 ;;
+          esac
