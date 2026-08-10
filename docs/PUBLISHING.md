@@ -2,46 +2,39 @@
 
 **Goal:** stop rebuilding the whole website every time someone hits *Save* in the
 CMS, so we don't burn Netlify credits. Saves still happen instantly and safely —
-we just rebuild the *live* site in batches (twice a day) or on demand.
+we just publish the *live* site in batches (twice a day) or on demand.
 
 You keep using the CMS exactly as before. Nothing about editing changes.
 
+**How it works:** Netlify's own build system is turned **off** ("builds stopped"),
+so saving in the CMS costs nothing. Instead, GitHub (free) rebuilds the site and
+uploads the finished files to Netlify twice a day — and whenever you click
+**Publish Now**.
+
 ---
 
-## One-time setup (about 5 minutes)
+## One-time setup (about 3 minutes)
 
-Do these three steps once. After that it runs itself.
+You've already done most of this. The only piece the current method needs is a
+Netlify **access token** so GitHub is allowed to publish.
 
-### Step 1 — Create a Netlify "Build hook"
-A build hook is just a web link that means "rebuild the site now."
+### Step 1 — Create a Netlify access token
+1. Go to **app.netlify.com** → click your avatar (top right) → **User settings**.
+2. Go to **Applications → Personal access tokens** → **New access token**.
+3. Name it `GitHub publisher`, leave the expiration long, click **Generate**.
+4. **Copy the token** (you only see it once).
 
-1. Go to **app.netlify.com** and open the **verticaljetsales.com** project.
-2. Go to **Project configuration → Build & deploy → Build hooks**.
-3. Click **Add build hook**.
-4. Name it `Scheduled publish`, leave the branch as **main**, click **Save**.
-5. **Copy the link it gives you** (it looks like `https://api.netlify.com/build_hooks/xxxxxxxx`). You'll paste it in Step 3.
-
-### Step 2 — Pause automatic rebuilds
-This is the switch that stops "every Save = a rebuild."
-
-1. Still in **Build & deploy → Continuous deployment**, find **Build settings**.
-2. Click **Stop builds** (sometimes labeled "Pause builds").
-3. Confirm. From now on, saving in the CMS no longer rebuilds the site by itself —
-   our schedule (and your Publish Now button) does it instead.
-
-> Don't worry: this only pauses *automatic* rebuilds. The build hook and the
-> Publish Now button still work fine.
-
-### Step 3 — Give GitHub the build-hook link
-(Exactly like when you added the Publer key.)
-
+### Step 2 — Add it to GitHub
 1. Go to **github.com/verticaljetsales/vjs-site → Settings → Secrets and variables → Actions**.
 2. Click **New repository secret**.
-3. Name: `NETLIFY_BUILD_HOOK`
-4. Secret: **paste the link from Step 1.**
+3. Name: `NETLIFY_AUTH_TOKEN`
+4. Secret: **paste the token from Step 1.**
 5. Click **Add secret**.
 
-Done. The site now rebuilds automatically at ~7 AM and ~3 PM Central.
+Done. The site now publishes automatically at ~7 AM and ~3 PM Central.
+
+> The older `NETLIFY_BUILD_HOOK` secret and the build hook you made aren't used by
+> this method. They're harmless — you can leave them or delete them, your choice.
 
 ---
 
@@ -52,12 +45,18 @@ When you want a change live immediately instead of waiting for the next batch:
 1. Go to **github.com/verticaljetsales/vjs-site → Actions**.
 2. Click **"Publish site (batched deploys)"** on the left.
 3. Click **Run workflow → Run workflow** (green button).
-4. Your site rebuilds within a minute or two.
+4. Your site is live within a minute or two.
 
-That's it. Use it after you've made a batch of edits and want them live.
+Use it after you've made a batch of edits (marked jets sold, approved posts) and
+want them live.
 
 ---
 
 ## Changing the schedule
 The times live in `.github/workflows/publish.yml` (the two `cron` lines). Ask
-Claude to change them to whatever times you like, or to add/remove a daily publish.
+Claude to change them, or to add/remove a daily publish.
+
+## Why builds are "stopped" in Netlify
+That setting is what makes saving in the CMS free — Netlify never auto-builds.
+Leave it stopped. Publishing happens through GitHub (this workflow) instead, which
+runs on free minutes and uses no Netlify build credits.

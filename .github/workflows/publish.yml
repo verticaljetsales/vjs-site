@@ -1,18 +1,17 @@
 name: Publish site (batched deploys)
 
-# Rebuilds the live VJS site on a schedule instead of on every single save.
+# Publishes the live VJS site WITHOUT using Netlify's build system (which is
+# intentionally "stopped" so that saving in the CMS no longer burns credits).
 #
-# Why: the CMS commits to GitHub every time you hit "Save" (mark a jet Sold,
-# approve a post, etc.). Normally Netlify rebuilds on every one of those, which
-# burns credits. With Netlify's automatic Git builds PAUSED, saves just pile up
-# safely in GitHub, and THIS workflow tells Netlify to rebuild in batches:
-#   • twice a day on a schedule (morning + afternoon), and
-#   • on demand whenever you click "Run workflow" (your "Publish Now" button).
+# How it works: GitHub Actions (free minutes) rebuilds the two data indexes and
+# uploads the finished files straight to Netlify with the Netlify CLI — the
+# "build locally + publish manually" path Netlify recommends when builds are
+# stopped. Runs on a schedule (batched) and on demand (your "Publish Now" button).
 #
 # One-time setup (see docs/PUBLISHING.md):
-#   1. In Netlify, create a Build hook and copy its URL.
-#   2. In Netlify, pause automatic builds (so saves stop triggering rebuilds).
-#   3. In GitHub, add the hook URL as a secret named NETLIFY_BUILD_HOOK.
+#   • In Netlify: create a Personal Access Token (User settings → Applications).
+#   • In GitHub: add it as a secret named NETLIFY_AUTH_TOKEN.
+# The site ID below is public (it's in your Netlify URL) so it's fine in the file.
 
 on:
   schedule:
@@ -23,20 +22,35 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      NETLIFY_SITE_ID: ef3c44e4-de53-4c24-a1a3-c9e334727a51
     steps:
-      - name: Trigger a Netlify rebuild
-        env:
-          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # Same two scripts Netlify used to run — regenerate the inventory and
+      # content indexes so listings and the Content Studio stay in sync.
+      - name: Rebuild data indexes
         run: |
-          if [ -z "$HOOK" ]; then
-            echo "::error::NETLIFY_BUILD_HOOK secret is not set. Add it in"
-            echo "GitHub → Settings → Secrets and variables → Actions."
+          node build-index.js
+          node build-content-index.js
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
+            echo "::error::NETLIFY_AUTH_TOKEN secret is not set. Add it in GitHub →"
+            echo "Settings → Secrets and variables → Actions (see docs/PUBLISHING.md)."
             exit 1
           fi
-          echo "Asking Netlify to rebuild and publish the current site…"
-          code=$(curl -sS -o /dev/null -w "%{http_code}" -X POST -d '{}' "$HOOK")
-          echo "Netlify build hook responded: HTTP $code"
-          case "$code" in
-            2*) echo "Publish triggered. The site will be live in a minute or two." ;;
-            *)  echo "::error::Build hook did not accept the request (HTTP $code). Check the hook URL."; exit 1 ;;
-          esac
+          echo "Uploading the finished site to Netlify…"
+          npx --yes netlify-cli@17 deploy \
+            --prod \
+            --dir "." \
+            --site "$NETLIFY_SITE_ID" \
+            --message "Batched publish (${GITHUB_EVENT_NAME})"
+          echo "Published. The site will be live in a minute or two."
