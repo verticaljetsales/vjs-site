@@ -1,5 +1,5 @@
 {
-  "status": "Approved",
+  "status": "Scheduled",
   "channel": "instagram",
   "format": "reel",
   "pillar": "inventory_spotlight",
@@ -64,5 +64,6 @@
   "visual_subline": "",
   "visual_kicker": "For Sale",
   "created_by": "vjs-content-studio",
-  "notes": ""
+  "notes": "",
+  "publer_job": "6a7b2e04af3d3f971ed3d547"
 }
