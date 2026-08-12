@@ -1,14 +1,14 @@
 {
-  "id": "2026-08-09-ig-premier-carousel",
-  "status": "Draft",
+  "status": "Approved",
   "channel": "instagram",
   "format": "carousel",
   "pillar": "inventory_spotlight",
   "title": "Instagram carousel — Premier IA low-time light jet",
+  "id": "2026-08-09-ig-premier-carousel",
   "aircraft_id": "premier-ia-rb-137",
-  "scheduled_for": "",
+  "scheduled_for": "2026-08-18",
   "hook": "Low time. Big cabin for the class. Fresh Check 3.",
-  "body": "Some light jets ask you to compromise. This 2005 Premier IA asks a lot less.\n\nAround 2,835 hours total — genuinely low time for the type. Pro Line 21 with IFIS, TAP Blue engines, and a fresh Check 3, so the maintenance runway is open. And the Premier's cabin cross-section is one of the widest in the light-jet class, which you feel the moment you step in.\n\nCapable, clean, and ready. Swipe through, then message us for the full spec.",
+  "body": "Some light jets require compromise. This 2005 Premier IA offers a different experience.\n\nWith approximately 2,835 hours total time, this aircraft is exceptionally low time for the type. It features Pro Line 21 with IFIS, TAP Blue engine coverage, and a recently completed Check 3. The Premier IA also offers one of the widest cabin cross sections in the light jet class, delivering noticeable comfort from the moment you step aboard.\n\nWell equipped, well maintained, and ready for its next owner. Swipe through and contact us for the full specifications.",
   "script": [],
   "shot_list": [],
   "hashtags": [
@@ -28,7 +28,7 @@
     "/uploads/00DA91C9-17F5-4DBC-B393-3C4EF9176DAB.png"
   ],
   "media_notes": "Carousel order: exterior hero, cabin, cockpit. Keep to 3-5 strongest frames.",
+  "visual": "/media/generated/2026-08-09-ig-premier-carousel.jpg",
   "created_by": "vjs-content-studio",
-  "notes": "",
-  "visual": "/media/generated/2026-08-09-ig-premier-carousel.jpg"
+  "notes": ""
 }
