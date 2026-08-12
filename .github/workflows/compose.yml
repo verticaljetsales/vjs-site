@@ -1,0 +1,67 @@
+name: Compose branded visuals
+
+# Automatically generates the finished, logo'd graphic (and reel video) for any
+# post that doesn't have one yet — so a post created by hand in the CMS looks
+# finished on its own, with no manual step.
+#
+# Triggers:
+#   • whenever content changes on main (a new/edited post)
+#   • manually (Actions → Run workflow), optionally forcing specific ids
+#
+# Runs on GitHub's free servers. The composed files are committed back to the
+# repo; they go live at the next site publish.
+
+on:
+  push:
+    branches: [main]
+    paths: ["data/content/**"]
+  workflow_dispatch:
+    inputs:
+      ids:
+        description: "Optional: space-separated post ids to (re)build. Blank = only missing ones."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+# Don't pile up runs; let the latest content win.
+concurrency:
+  group: compose-visuals
+  cancel-in-progress: true
+
+jobs:
+  compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install ffmpeg (for reel videos)
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Install Playwright + Chromium
+        run: |
+          npm init -y >/dev/null 2>&1 || true
+          npm install playwright@1
+          npx playwright install --with-deps chromium
+
+      - name: Compose missing visuals & videos
+        env:
+          FORCE_IDS: ${{ github.event.inputs.ids }}
+        run: node tools/compose-missing.cjs
+
+      - name: Commit generated media
+        run: |
+          if [ -n "$(git status --porcelain data/content media/generated)" ]; then
+            git config user.name  "vjs-content-bot"
+            git config user.email "bot@verticaljetsales.com"
+            git add data/content media/generated
+            git commit -m "Auto-compose branded visuals/videos for new posts"
+            git push
+          else
+            echo "No new media to commit."
+          fi

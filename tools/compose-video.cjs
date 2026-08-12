@@ -15,7 +15,14 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const { execFileSync } = require('child_process');
-const { chromium } = require('/opt/node22/lib/node_modules/playwright');
+// Load Playwright from the sandbox's global install if present, else the local
+// dependency (GitHub Actions installs it with `npm i playwright`).
+const chromium = (() => {
+  for (const p of ['/opt/node22/lib/node_modules/playwright', 'playwright']) {
+    try { return require(p).chromium; } catch (e) {}
+  }
+  throw new Error('Playwright not found (run: npm i playwright && npx playwright install chromium)');
+})();
 
 const ROOT = path.join(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'data', 'content');
@@ -176,7 +183,10 @@ async function main(){
   if(!files.length){console.log('No matching posts.');return;}
   fs.mkdirSync(OUT_DIR,{recursive:true});
   const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'vjsvid-'));
-  const browser=await chromium.launch({executablePath:process.env.PW_CHROMIUM||'/opt/pw-browsers/chromium'});
+  const exe=process.env.PW_CHROMIUM||'/opt/pw-browsers/chromium';
+  const launchOpts={args:['--no-sandbox']};
+  if(fs.existsSync(exe)) launchOpts.executablePath=exe;   // else use Playwright's own chromium (CI)
+  const browser=await chromium.launch(launchOpts);
   const page=await browser.newPage();
 
   for(const f of files){
