@@ -74,6 +74,24 @@ function mediaUrl(item) {
   const rel = item.video || item.visual || (item.media && item.media[0]) || '';
   return rel ? SITE + rel : '';
 }
+// All media URLs to send, in slide order. Carousels send every photo (branded
+// cover first, then each photo in the Media block); single posts send one.
+function mediaUrls(item) {
+  if (item.video) return [SITE + item.video];                 // reels/videos: the clip
+  const photos = Array.isArray(item.media) ? item.media : [];
+  const isCarousel = item.format === 'carousel' || photos.length > 1;
+  const rels = [];
+  if (isCarousel) {
+    if (item.visual) rels.push(item.visual);                  // branded cover slide first
+    for (const m of photos) rels.push(m);                     // then every photo in the block
+  } else {
+    const one = item.visual || photos[0];
+    if (one) rels.push(one);
+  }
+  // de-dupe, drop blanks, cap at Instagram's 10-slide carousel limit.
+  // encodeURI so filenames with spaces (e.g. "N707KP - Image 2.png") upload cleanly.
+  return [...new Set(rels.filter(Boolean))].slice(0, 10).map(r => encodeURI(SITE + r));
+}
 function caption(item) {
   return [item.body || '', (item.hashtags || []).join(' ')].filter(Boolean).join('\n\n');
 }
@@ -133,15 +151,15 @@ async function uploadMediaIds(url) {
 }
 
 async function buildPost(item, accountId) {
-  const url = mediaUrl(item);
+  const urls = mediaUrls(item);
   const mtype = item.video ? 'video' : 'photo';
-  let media = [];
-  if (url) {
+  const media = [];
+  for (const url of urls) {                       // upload EACH image/clip, keep slide order
     const ids = await uploadMediaIds(url);
-    media = ids.map(id => ({ id, type: mtype }));
+    for (const id of ids) media.push({ id, type: mtype });
   }
   const net = {};
-  net[item.channel] = { type: url ? mtype : 'status', text: caption(item), media };
+  net[item.channel] = { type: media.length ? mtype : 'status', text: caption(item), media };
   return { networks: net, accounts: [{ id: accountId, scheduled_at: scheduledAt(item) }] };
 }
 
