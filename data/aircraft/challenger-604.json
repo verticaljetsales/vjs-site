@@ -39,6 +39,27 @@
           "value": "4,002"
         }
       ]
+    },
+    {
+      "group": "Engines - General Electric CF34-3B",
+      "rows": [
+        {
+          "label": "Engine 1 - SN 872215 - TTSN",
+          "value": "8,695.1"
+        },
+        {
+          "label": "Engine 2 - SN 872216 - TTSN",
+          "value": "8,695.1"
+        },
+        {
+          "label": "Engine 1 - Cycles Since New",
+          "value": "4,003"
+        },
+        {
+          "label": "Engine 2 - Cycles Since New",
+          "value": "4,003"
+        }
+      ]
     }
   ],
   "avionics": [
