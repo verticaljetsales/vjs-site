@@ -1,10 +1,11 @@
 {
-  "id": "2026-08-13-fb-cabin-value",
   "status": "Draft",
   "channel": "facebook",
   "format": "single_image",
+  "layout": "framed",
   "pillar": "buyer_seller_education",
   "title": "Facebook — the value is in the cabin (concept)",
+  "id": "2026-08-13-fb-cabin-value",
   "aircraft_id": "",
   "scheduled_for": "",
   "hook": "Most people picture a private jet from the outside. The difference is on the inside.",
@@ -22,10 +23,11 @@
     "/uploads/1003.webp"
   ],
   "media_notes": "Concept post — NOT VJS inventory. No availability, price, or tail number. Lead cabin photo only.",
+  "visual": "/media/generated/2026-08-13-fb-cabin-value.jpg",
+  "video": "",
   "visual_headline": "The value is on the inside.",
-  "visual_subline": "Where you actually spend the four hours.",
+  "visual_subline": "Where you actually spend the most time.",
   "visual_kicker": "Inside the Cabin",
   "created_by": "vjs-content-studio",
-  "notes": "From Inbox item 'Luxury Cabin' (Kalene). Facebook cut — warmer/longer than the IG carousel. Not a listing.",
-  "visual": "/media/generated/2026-08-13-fb-cabin-value.jpg"
+  "notes": "From Inbox item 'Luxury Cabin' (Kalene). Facebook cut — warmer/longer than the IG carousel. Not a listing."
 }
