@@ -1,0 +1,81 @@
+{
+  "id": "2026-08-13-ig-lear31a-inspections",
+  "status": "Draft",
+  "channel": "instagram",
+  "format": "reel",
+  "pillar": "inventory_spotlight",
+  "title": "Instagram Reel — Lear 31A fresh inspections (turnkey)",
+  "aircraft_id": "lear-31a-232",
+  "scheduled_for": "",
+  "hook": "Fresh inspections. Not a maintenance bill waiting to happen.",
+  "body": "A Learjet 31A that's turnkey right now.\n\nFresh 12-Year Inspection and Phase A–D, complete. Engines enrolled on MSP Gold. Low time.\n\nThat's the difference between a jet you fly and a jet you fund. Accepting offers.\n\nContact VJS for the full spec sheet and logs.",
+  "script": [
+    {
+      "beat": "Hook",
+      "visual": "Exterior ramp shot, slow push-in",
+      "voiceover": "This one's already done.",
+      "onscreen": "Fresh inspections."
+    },
+    {
+      "beat": "Proof 1",
+      "visual": "Exterior detail / walk-around",
+      "voiceover": "12-Year Inspection and Phase A through D, complete.",
+      "onscreen": "12-Yr + Phase A–D ✓"
+    },
+    {
+      "beat": "Proof 2",
+      "visual": "Engine nacelle",
+      "voiceover": "Engines enrolled on MSP Gold.",
+      "onscreen": "Engines on MSP Gold"
+    },
+    {
+      "beat": "Proof 3",
+      "visual": "Exterior profile",
+      "voiceover": "Low time.",
+      "onscreen": "Low time"
+    },
+    {
+      "beat": "Payoff",
+      "visual": "Hold on clean exterior",
+      "voiceover": "The difference between a jet you fly and a jet you fund.",
+      "onscreen": "Fly it — don't fund it."
+    },
+    {
+      "beat": "CTA",
+      "visual": "Branded end card",
+      "voiceover": "Accepting offers. Contact VJS for the full spec and logs.",
+      "onscreen": "Accepting offers — VJS"
+    }
+  ],
+  "shot_list": [
+    "Pan the 4 provided exterior photos, slow zoom on each",
+    "Optional: real engine/nacelle clip if available"
+  ],
+  "hashtags": [
+    "#learjet",
+    "#learjet31a",
+    "#lightjet",
+    "#privatejet",
+    "#bizav",
+    "#businessaviation",
+    "#jetforsale",
+    "#aircraftforsale",
+    "#privateaviation",
+    "#flyprivate"
+  ],
+  "cta": "Contact VJS for the full spec sheet and logs.",
+  "media": [
+    "/uploads/1a0a6104.webp",
+    "/uploads/1a0a6071.webp",
+    "/uploads/1a0a6006.webp",
+    "/uploads/1a0a6117.webp"
+  ],
+  "media_notes": "Year left off intentionally: listing lists 2001, inbox brief said 2002 — confirm before adding a year. Facts limited to those Kalene supplied.",
+  "visual_headline": "Fresh inspections.",
+  "visual_subline": "12-Year + Phase A–D complete.",
+  "visual_kicker": "Accepting Offers",
+  "created_by": "vjs-content-studio",
+  "notes": "From Inbox item 'Lear 31A SN 232' (Kalene). Straight, factual, no hype per brief. No spec/time/program figure beyond what was supplied.",
+  "visual": "/media/generated/2026-08-13-ig-lear31a-inspections.jpg",
+  "video": "/media/generated/2026-08-13-ig-lear31a-inspections.mp4"
+}

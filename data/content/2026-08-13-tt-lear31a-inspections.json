@@ -1,0 +1,71 @@
+{
+  "id": "2026-08-13-tt-lear31a-inspections",
+  "status": "Draft",
+  "channel": "tiktok",
+  "format": "short_video",
+  "pillar": "inventory_spotlight",
+  "title": "TikTok — Lear 31A fresh inspections (turnkey)",
+  "aircraft_id": "lear-31a-232",
+  "scheduled_for": "",
+  "hook": "There are two kinds of used jets: the ones you fly, and the ones you fund.",
+  "body": "This Learjet 31A is the first kind. Fresh 12-Year Inspection and Phase A–D. Engines on MSP Gold. Low time. Turnkey, and accepting offers.\n\nContact VJS for the full spec sheet and logs.",
+  "script": [
+    {
+      "beat": "Hook",
+      "visual": "Exterior push-in",
+      "voiceover": "Two kinds of used jets: the ones you fly, and the ones you fund.",
+      "onscreen": "Which one are you buying?"
+    },
+    {
+      "beat": "Turn",
+      "visual": "Walk-around",
+      "voiceover": "This 31A is the first kind — the work's already done.",
+      "onscreen": "Already done:"
+    },
+    {
+      "beat": "Proof",
+      "visual": "Cut between the exterior photos",
+      "voiceover": "Fresh 12-Year and Phase A through D. Engines on MSP Gold. Low time.",
+      "onscreen": "12-Yr + Phase A–D · MSP Gold · Low time"
+    },
+    {
+      "beat": "Payoff",
+      "visual": "Clean profile hold",
+      "voiceover": "You're buying flight time, not a maintenance bill.",
+      "onscreen": "Turnkey."
+    },
+    {
+      "beat": "CTA",
+      "visual": "Branded end card",
+      "voiceover": "Accepting offers. Contact VJS for the full spec and logs.",
+      "onscreen": "Accepting offers — VJS"
+    }
+  ],
+  "shot_list": [
+    "Pan the 4 provided exterior photos, quick cuts on the proof beat",
+    "Optional: real engine/nacelle clip if available"
+  ],
+  "hashtags": [
+    "#learjet",
+    "#privatejet",
+    "#bizav",
+    "#aviationtok",
+    "#jetforsale",
+    "#businessaviation"
+  ],
+  "cta": "Contact VJS for the full spec sheet and logs.",
+  "media": [
+    "/uploads/1a0a6104.webp",
+    "/uploads/1a0a6071.webp",
+    "/uploads/1a0a6006.webp",
+    "/uploads/1a0a6117.webp"
+  ],
+  "media_notes": "Same asset as the Instagram reel; year omitted (2001 vs 2002 discrepancy). Factual only.",
+  "visual_headline": "Fly it — don't fund it.",
+  "visual_subline": "Fresh 12-Yr + Phase A–D · MSP Gold · Low time.",
+  "visual_kicker": "Accepting Offers",
+  "created_by": "vjs-content-studio",
+  "notes": "From Inbox item 'Lear 31A SN 232' (Kalene). TikTok cut of the same story — factual, no hype per brief.",
+  "visual": "/media/generated/2026-08-13-tt-lear31a-inspections.jpg",
+  "video": "/media/generated/2026-08-13-tt-lear31a-inspections.mp4"
+}
