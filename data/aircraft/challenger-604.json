@@ -1,4 +1,5 @@
 {
+  "order": 3,
   "status": "For Sale",
   "year": "1997",
   "make_model": "Challenger 604",
@@ -14,17 +15,17 @@
   "highlight": "Fresh 48-Month by Duncan, GE OnPoint, & MSP.",
   "overview": "This 1997 Challenger 604 is fresh off a 48-month inspection completed in July 2025 by Duncan Aviation in Provo, with 6- and 12-month inspections complied with in May 2026. Both GE CF34-3B engines are enrolled on GE OnPoint and the Garrett APU on MSP. She shows 8,695.1 total hours and 4,002 landings, tracked on TRAXXALL and currently operated Part 135.\n\nThe Collins Pro Line 4 flight deck includes triple FMS-6000, TCAS II with Change 7.1, Honeywell Mark V EGPWS, dual HF, and AirCell ST-3100 Satcom. The 10-passenger cabin features a forward 4-place club with a 4-place divan opposite a 2-place club, right forward galley, Airshow 400, ATG-5000 Wi-Fi, and cockpit seats recovered in new leather and sheepskin in September 2025. Exterior refurbished in 2018 in Matterhorn white and royal blue.",
   "photos": [
-    "/uploads/Exterior - 944.jpg",
+    "/uploads/02dc2e06-c099-4bd2-a031-83859fe8642c.webp",
     "/uploads/Cockpit - 810.jpg",
     "/uploads/Interior - 874.jpg",
     "/uploads/Interior - 827.jpg",
     "/uploads/Interior - 834.jpg",
     "/uploads/Interior - 863.jpg",
-    "/uploads/Exterior - 959.jpg"
+    "/uploads/a2387264-7c67-48cb-8c05-da01ed006213.webp"
   ],
   "spec_sheet": "/uploads/Challenger 604 5352.pdf",
-  "status_report": "/uploads/N530BD Status Report AD's - SB's- 06.01.26.pdf",
-  "due_list": "/uploads/N530BD Due List - 24MO - 600HR - 05.06.26.pdf",
+  "status_report": "/uploads/n530bd-status-report-ad-s-sb-s-08.13.26.pdf",
+  "due_list": "/uploads/n530bd-due-list-12mo-300hr-08.13.26.pdf",
   "spec_groups": [
     {
       "group": "Airframe",
@@ -66,6 +67,5 @@
   ],
   "exterior": "",
   "interior": "",
-  "maintenance": "Fresh 48-Month completed 7/25 by Duncan Aviation (Provo)\n6 Month — c/w May 2026; next due Nov 2026\n12 Month — c/w May 2026; next due May 2027\n24 Month — c/w May 2025; next due May 2027\n36 Month — c/w May 2025; next due April 2028\n48 Month — c/w July 2025; next due April 2029\n96 Month — c/w July 2021; next due April 2029\nMLG Detailed Inspection — c/w July 2021; next due April 2029",
-  "order": 3
+  "maintenance": "Fresh 48-Month completed 7/25 by Duncan Aviation (Provo)\n6 Month — c/w May 2026; next due Nov 2026\n12 Month — c/w May 2026; next due May 2027\n24 Month — c/w May 2025; next due May 2027\n36 Month — c/w May 2025; next due April 2028\n48 Month — c/w July 2025; next due April 2029\n96 Month — c/w July 2021; next due April 2029\nMLG Detailed Inspection — c/w July 2021; next due April 2029"
 }
