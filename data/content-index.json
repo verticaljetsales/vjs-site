@@ -267,6 +267,61 @@
       "is_video": true
     },
     {
+      "id": "2026-08-13-fb-fresh-48-month-inspection",
+      "status": "Draft",
+      "channel": "facebook",
+      "format": "single_image",
+      "pillar": "buyer_seller_education",
+      "title": "What a Fresh 48-Month Inspection Really Means",
+      "aircraft_id": "",
+      "scheduled_for": "",
+      "hook": "It comes due whether the aircraft flew 400 hours or 40.",
+      "body": "Some of the biggest inspections on business jets aren't triggered by hours flown — they're triggered by the calendar. The 48-month is one of those. It's scheduled, it's expensive, and time keeps moving toward it no matter how the aircraft was operated.\n\nThat means real downtime at a shop, on top of whatever the invoice runs. When you see a listing with a fresh 48-month, the buyer is inheriting a clean slate instead of that bill — typically around four years before it comes due again.\n\nHere's the part that trips people up: the asking price is only part of the true cost. Where an aircraft sits in its inspection cycle is the other part. Two aircraft priced almost identically can be worlds apart once you factor in what's coming due.\n\nBefore you compare listings side by side, ask where each one sits in its maintenance cycle. It's one of the first things we look at for every client, buyer or seller.",
+      "hashtags": [
+        "#privatejet",
+        "#businessaviation",
+        "#aircraftsales",
+        "#aviation",
+        "#privateaviation"
+      ],
+      "cta": "Talk to Vertical Jet Sales before you compare listings — we'll tell you what's actually due.",
+      "media": [
+        "/uploads/02dc2e06-c099-4bd2-a031-83859fe8642c.webp"
+      ],
+      "visual": "",
+      "video": "",
+      "is_video": false
+    },
+    {
+      "id": "2026-08-13-ig-fresh-48-month-inspection",
+      "status": "Draft",
+      "channel": "instagram",
+      "format": "single_image",
+      "pillar": "buyer_seller_education",
+      "title": "What a Fresh 48-Month Inspection Really Means",
+      "aircraft_id": "",
+      "scheduled_for": "",
+      "hook": "The calendar doesn't care how much you flew.",
+      "body": "A lot of major inspections on business jets are calendar-driven, not hours-driven. The 48-month is one of the big ones — it comes due whether the aircraft flew 400 hours or 40. That means real downtime at a shop, on top of the invoice.\n\nWhen a listing shows a fresh 48-month, the next owner is inheriting a clean slate instead of a bill — roughly four years before that clock resets again.\n\nThe purchase price is only half the number. Where the aircraft sits in its inspection cycle is the other half. Two similar aircraft at similar asking prices can be very far apart in true cost depending on what's due.\n\nAsk where an aircraft sits in its maintenance cycle before you compare prices. It's one of the first things we look at for a client.",
+      "hashtags": [
+        "#privatejet",
+        "#bizav",
+        "#businessaviation",
+        "#aircraftsales",
+        "#aviation",
+        "#aircraftacquisition",
+        "#privateaviation",
+        "#aircraftbroker"
+      ],
+      "cta": "Thinking about this type? Let's talk market before you make a move.",
+      "media": [
+        "/uploads/02dc2e06-c099-4bd2-a031-83859fe8642c.webp"
+      ],
+      "visual": "",
+      "video": "",
+      "is_video": false
+    },
+    {
       "id": "2026-08-13-ig-lear31a-inspections",
       "status": "Draft",
       "channel": "instagram",
