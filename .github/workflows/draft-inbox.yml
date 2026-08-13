@@ -1,0 +1,77 @@
+name: Draft from Inbox
+
+# Turns NEW ideas/articles in the CMS Inbox into finished DRAFT posts — writer +
+# branded graphics, in one job — so Kalene never needs the chat. She drops an
+# idea in the Inbox, clicks "Run workflow" here, and drafts land on the Content
+# Studio board for her to review and Approve.
+#
+# Two ways it runs:
+#   • the "Run workflow" button (Actions → Draft from Inbox → Run workflow)
+#   • every weekday morning, so anything left in the Inbox gets drafted for her
+#
+# One-time setup (see docs/DRAFTING.md):
+#   • Create an Anthropic API key at console.anthropic.com.
+#   • In GitHub: add it as a secret named ANTHROPIC_API_KEY.
+#
+# Note: GITHUB_TOKEN pushes don't trigger other workflows, so this job composes
+# the branded visuals itself (compose-missing) instead of relying on compose.yml.
+
+on:
+  workflow_dispatch:          # the "Draft from Inbox" button
+  schedule:
+    - cron: "0 13 * * 1-5"    # 13:00 UTC ≈ 8:00 AM US-Central, weekday mornings
+
+permissions:
+  contents: write
+
+concurrency:
+  group: draft-from-inbox
+  cancel-in-progress: false
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Write drafts from the Inbox
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MODEL: ${{ vars.DRAFT_MODEL }}   # optional override, e.g. claude-opus-5
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error::ANTHROPIC_API_KEY secret is not set. Add it in GitHub →"
+            echo "Settings → Secrets and variables → Actions (see docs/DRAFTING.md)."
+            exit 1
+          fi
+          node tools/draft-from-inbox.cjs
+
+      - name: Install ffmpeg (for reel videos)
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Install Playwright + Chromium
+        run: |
+          npm init -y >/dev/null 2>&1 || true
+          npm install playwright@1
+          npx playwright install --with-deps chromium
+
+      - name: Rebuild content index & compose branded media
+        run: |
+          node build-content-index.js
+          node tools/compose-missing.cjs
+
+      - name: Commit drafts & media
+        run: |
+          if [ -n "$(git status --porcelain data/content data/inbox data/content-index.json media/generated)" ]; then
+            git config user.name  "vjs-content-bot"
+            git config user.email "bot@verticaljetsales.com"
+            git add data/content data/inbox data/content-index.json media/generated
+            git commit -m "Draft from Inbox: new drafts + branded visuals"
+            git push
+          else
+            echo "Nothing new to commit — Inbox was clear."
+          fi
