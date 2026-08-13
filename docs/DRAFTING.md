@@ -10,16 +10,22 @@ already made. No AI chat, no Ben in the loop.
 
 ## How it works (the short version)
 
+Kalene never touches GitHub. She works entirely in the CMS she already uses.
+
 1. **Kalene adds an idea** in the CMS → *Ideas & Article Inbox* → status **New**.
-   She can paste an article, describe a post, and attach photos.
-2. She goes to **GitHub → Actions → "Draft from Inbox" → Run workflow**.
-   (It also runs by itself every weekday morning, so anything left in the Inbox
-   gets drafted automatically.)
+   She can paste an article, describe a post, and attach photos. She clicks
+   **Save** (Publish) — the same save she already does.
+2. **That's it.** Saving a New idea automatically kicks off the writer — no
+   button, no GitHub, no waiting on Ben or the chat.
 3. The robot reads the Inbox, writes the drafts using `content/brand-voice.md`
    and `content/content-strategy.yml`, makes the branded cover graphic (and reel
    video), and marks each handled Inbox item **"Turned into posts."**
-4. New **Draft** cards show up on the Content Studio board. Kalene reviews,
-   edits if needed, and sets status to **Approved** — same as she does today.
+4. A few minutes later, new **Draft** cards appear on the Content Studio board.
+   Kalene reviews, edits if needed, and sets status to **Approved** — same as
+   she does today.
+
+There are two backups if ever needed: it also runs on its own every weekday
+morning, and Ben has a manual "Run workflow" button in GitHub → Actions.
 
 Nothing is ever auto-approved or auto-posted. The robot only writes drafts.
 

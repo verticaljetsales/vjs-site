@@ -17,9 +17,15 @@ name: Draft from Inbox
 # the branded visuals itself (compose-missing) instead of relying on compose.yml.
 
 on:
-  workflow_dispatch:          # the "Draft from Inbox" button
+  # PRIMARY path — fires automatically when Kalene saves a New idea in the CMS
+  # Inbox (that save is a commit to data/inbox). She never touches GitHub. The
+  # writer no-ops in seconds if nothing is marked "New", so edits are cheap.
+  push:
+    branches: [main]
+    paths: ["data/inbox/**"]
+  workflow_dispatch:          # optional manual "Run workflow" button (Ben)
   schedule:
-    - cron: "0 13 * * 1-5"    # 13:00 UTC ≈ 8:00 AM US-Central, weekday mornings
+    - cron: "0 13 * * 1-5"    # 13:00 UTC ≈ 8:00 AM US-Central — weekday backstop
 
 permissions:
   contents: write
