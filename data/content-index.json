@@ -267,64 +267,6 @@
       "is_video": true
     },
     {
-      "id": "2026-08-13-fb-cabin-value",
-      "status": "Draft",
-      "channel": "facebook",
-      "format": "single_image",
-      "pillar": "buyer_seller_education",
-      "title": "Facebook — the value is in the cabin (concept)",
-      "aircraft_id": "",
-      "scheduled_for": "",
-      "hook": "Most people picture a private jet from the outside. The difference is on the inside.",
-      "body": "It's easy to judge an aircraft by the ramp shot. But the part that changes your day is the cabin — the four hours you actually spend in it.\n\nA true stand-up cabin means you're not folding yourself into a seat. A quiet cabin means a real conversation, or a call that doesn't fall apart. Room to spread out means you can work, eat, or sleep without negotiating for the space.\n\nHere's the honest part: cabins vary enormously between models. The right aircraft depends on how far you fly, how many people travel with you, and what you need to get done onboard. That's the conversation we have with every client — before anyone talks about a specific airplane.\n\nTell us how you fly and we'll help you find the fit.",
-      "hashtags": [
-        "#privatejet",
-        "#businessaviation",
-        "#bizav",
-        "#privateaviation"
-      ],
-      "cta": "Tell us how you fly and we'll help you find the fit.",
-      "media": [
-        "/uploads/1003.webp"
-      ],
-      "visual": "/media/generated/2026-08-13-fb-cabin-value.jpg",
-      "video": "",
-      "is_video": false
-    },
-    {
-      "id": "2026-08-13-ig-cabin-value",
-      "status": "Draft",
-      "channel": "instagram",
-      "format": "carousel",
-      "pillar": "buyer_seller_education",
-      "title": "Instagram Carousel — the value is in the cabin (concept)",
-      "aircraft_id": "",
-      "scheduled_for": "",
-      "hook": "Most people picture a private jet from the outside. The value is on the inside.",
-      "body": "You notice a jet from the ramp. You feel the difference in the four hours you spend inside it.\n\nStand-up cabin height, so you're not folding yourself into a seat. Quiet enough for a real conversation or a call. Room to work, eat, or sleep without negotiating for the space.\n\nCabins vary enormously between models. The right aircraft depends on how far you fly, how many people travel with you, and what you need to do onboard.\n\nTell us how you fly and we'll help you find the fit.",
-      "hashtags": [
-        "#privatejet",
-        "#privateaviation",
-        "#bizav",
-        "#businessaviation",
-        "#businessjet",
-        "#flyprivate",
-        "#privatejetlife",
-        "#aircraftbroker",
-        "#jetbrokerage",
-        "#cabincomfort"
-      ],
-      "cta": "Tell us how you fly and we'll help you find the fit.",
-      "media": [
-        "/uploads/1003.webp",
-        "/uploads/0990.webp",
-        "/uploads/4150.webp"
-      ],
-      "visual": "/media/generated/2026-08-13-ig-cabin-value.jpg",
-      "video": "",
-      "is_video": false
-    },
-    {
       "id": "2026-08-13-ig-lear31a-inspections",
       "status": "Draft",
       "channel": "instagram",
@@ -357,6 +299,30 @@
       "visual": "/media/generated/2026-08-13-ig-lear31a-inspections.jpg",
       "video": "/media/generated/2026-08-13-ig-lear31a-inspections.mp4",
       "is_video": true
+    },
+    {
+      "id": "2026-08-13-li-prebuy-protects-position",
+      "status": "Draft",
+      "channel": "linkedin",
+      "format": "text_post",
+      "pillar": "buyer_seller_education",
+      "title": "Why a Fresh Pre-Buy Protects a Buyer's Position",
+      "aircraft_id": "",
+      "scheduled_for": "",
+      "hook": "A pre-buy inspection isn't a formality. It's leverage.",
+      "body": "Most negotiating power in an aircraft transaction shifts the moment the pre-buy findings come back. A thorough, independent inspection gives a buyer an accurate picture of the aircraft's true condition — not the seller's version of it, not the logbook summary, the actual state of the airframe, engines, and systems.\n\nThat picture is what lets you negotiate from fact instead of assumption. Discrepancies found during a pre-buy aren't obstacles — they're information. They tell you what to fix, what to price in, and what to walk away from.\n\nSkipping or shortcutting this step to move faster almost always costs more later, in unplanned maintenance, in resale value, or in disputes that could have been settled before closing.\n\nKnow the aircraft's condition before you're asked to defend your offer — or your exit.",
+      "hashtags": [
+        "#privatejet",
+        "#bizav",
+        "#businessaviation",
+        "#aircraftacquisition",
+        "#aircraftbroker"
+      ],
+      "cta": "Thinking about this type? Let's talk market before you make a move.",
+      "media": [],
+      "visual": "",
+      "video": "",
+      "is_video": false
     },
     {
       "id": "2026-08-13-tt-lear31a-inspections",
@@ -421,7 +387,7 @@
     },
     {
       "id": "2026-08-11-tt-three-numbers",
-      "status": "Approved",
+      "status": "Needs Edit",
       "channel": "tiktok",
       "format": "short_video",
       "pillar": "buyer_seller_education",
@@ -479,6 +445,64 @@
       "is_video": false
     },
     {
+      "id": "2026-08-13-fb-cabin-value",
+      "status": "Approved",
+      "channel": "facebook",
+      "format": "single_image",
+      "pillar": "buyer_seller_education",
+      "title": "Facebook — the value is in the cabin (concept)",
+      "aircraft_id": "",
+      "scheduled_for": "2026-08-21",
+      "hook": "Most people picture a private jet from the outside. The difference is on the inside.",
+      "body": "It's easy to judge an aircraft by the ramp shot. But the part that changes your day is the cabin — the four hours you actually spend in it.\n\nA true stand-up cabin means you're not folding yourself into a seat. A quiet cabin means a real conversation, or a call that doesn't fall apart. Room to spread out means you can work, eat, or sleep without negotiating for the space.\n\nHere's the honest part: cabins vary enormously between models. The right aircraft depends on how far you fly, how many people travel with you, and what you need to get done onboard. That's the conversation we have with every client — before anyone talks about a specific airplane.\n\nTell us how you fly and we'll help you find the fit.",
+      "hashtags": [
+        "#privatejet",
+        "#businessaviation",
+        "#bizav",
+        "#privateaviation"
+      ],
+      "cta": "Tell us how you fly and we'll help you find the fit.",
+      "media": [
+        "/uploads/1003.webp"
+      ],
+      "visual": "/media/generated/2026-08-13-fb-cabin-value.jpg",
+      "video": "",
+      "is_video": false
+    },
+    {
+      "id": "2026-08-13-ig-cabin-value",
+      "status": "Approved",
+      "channel": "instagram",
+      "format": "carousel",
+      "pillar": "buyer_seller_education",
+      "title": "Instagram Carousel — the value is in the cabin (concept)",
+      "aircraft_id": "",
+      "scheduled_for": "2026-08-21",
+      "hook": "Most people picture a private jet from the outside. The value is on the inside.",
+      "body": "You notice a jet from the ramp. You feel the difference in the four hours you spend inside it.\n\nStand-up cabin height, so you're not folding yourself into a seat. Quiet enough for a real conversation or a call. Room to work, eat, or sleep without negotiating for the space.\n\nCabins vary enormously between models. The right aircraft depends on how far you fly, how many people travel with you, and what you need to do onboard.\n\nTell us how you fly and we'll help you find the fit.",
+      "hashtags": [
+        "#privatejet",
+        "#privateaviation",
+        "#bizav",
+        "#businessaviation",
+        "#businessjet",
+        "#flyprivate",
+        "#privatejetlife",
+        "#aircraftbroker",
+        "#jetbrokerage",
+        "#cabincomfort"
+      ],
+      "cta": "Tell us how you fly and we'll help you find the fit.",
+      "media": [
+        "/uploads/1003.webp",
+        "/uploads/0990.webp",
+        "/uploads/4150.webp"
+      ],
+      "visual": "/media/generated/2026-08-13-ig-cabin-value.jpg",
+      "video": "",
+      "is_video": false
+    },
+    {
       "id": "2026-08-12-li-walk-away",
       "status": "Approved",
       "channel": "linkedin",
@@ -498,7 +522,7 @@
       "media": [
         "/uploads/77782e4d-d389-4fcc-b891-0ea5ee1de718.webp"
       ],
-      "visual": "",
+      "visual": "/media/generated/2026-08-12-li-walk-away.jpg",
       "video": "",
       "is_video": false
     }
