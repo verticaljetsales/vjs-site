@@ -1,5 +1,5 @@
 {
-  "status": "Draft",
+  "status": "Approved",
   "channel": "facebook",
   "format": "single_image",
   "layout": "framed",
@@ -7,7 +7,7 @@
   "title": "Facebook — the value is in the cabin (concept)",
   "id": "2026-08-13-fb-cabin-value",
   "aircraft_id": "",
-  "scheduled_for": "",
+  "scheduled_for": "2026-08-21",
   "hook": "Most people picture a private jet from the outside. The difference is on the inside.",
   "body": "It's easy to judge an aircraft by the ramp shot. But the part that changes your day is the cabin — the four hours you actually spend in it.\n\nA true stand-up cabin means you're not folding yourself into a seat. A quiet cabin means a real conversation, or a call that doesn't fall apart. Room to spread out means you can work, eat, or sleep without negotiating for the space.\n\nHere's the honest part: cabins vary enormously between models. The right aircraft depends on how far you fly, how many people travel with you, and what you need to get done onboard. That's the conversation we have with every client — before anyone talks about a specific airplane.\n\nTell us how you fly and we'll help you find the fit.",
   "script": [],
