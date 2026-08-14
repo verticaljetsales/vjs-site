@@ -83,28 +83,6 @@
       "is_video": true
     },
     {
-      "id": "2026-08-08-li-founder-both-sides",
-      "status": "Draft",
-      "channel": "linkedin",
-      "format": "text_post",
-      "pillar": "founder_team_pov",
-      "title": "LinkedIn — founder POV on representing both sides",
-      "aircraft_id": "",
-      "scheduled_for": "",
-      "hook": "People ask how we can represent buyers and sellers in the same market without it being a conflict.",
-      "body": "People ask how we can represent buyers and sellers in the same market without it being a conflict.\n\nHere's the honest answer: because the job isn't to win a side. It's to tell the truth about the airplane and the market, every time, to whoever we're sitting across from.\n\nWhen you've valued the same tail from both directions, you stop guessing. You know what a clean logbook is worth, what a deferred inspection really costs, and where the number lands when emotion leaves the room. That's not a conflict — that's the whole edge.\n\nRepresentation on every side of the deal, with the same data and the same standard. That's the firm we wanted to build.",
-      "hashtags": [
-        "#businessaviation",
-        "#leadership",
-        "#bizav"
-      ],
-      "cta": "Questions on value? That's the conversation we love to have.",
-      "media": [],
-      "visual": "/media/generated/2026-08-08-li-founder-both-sides.jpg",
-      "video": "",
-      "is_video": false
-    },
-    {
       "id": "2026-08-10-li-maintenance-premium",
       "status": "Draft",
       "channel": "linkedin",
@@ -179,37 +157,6 @@
       "is_video": false
     },
     {
-      "id": "2026-08-10-ig-lear31a-lowtime",
-      "status": "Scheduled",
-      "channel": "instagram",
-      "format": "reel",
-      "pillar": "inventory_spotlight",
-      "title": "Lear 31A — low-time light jet reel",
-      "aircraft_id": "lear-31a-232",
-      "scheduled_for": "2026-08-13",
-      "hook": "Low time is a light jet's best-kept secret.",
-      "body": "This 2001 Learjet 31A carries just 5,923 hours on the airframe — genuinely low time for the type — and the maintenance to match: a fresh Phase A–D, the 12-year complete, and engines enrolled on MSP Gold.\n\nThe 31A still climbs like a rocket and cruises with airplanes that cost far more to feed. When the logbook is this clean, the airplane makes its own case.\n\nFull spec and status reports on request.",
-      "hashtags": [
-        "#learjet",
-        "#lear31a",
-        "#lightjet",
-        "#privatejet",
-        "#bizav",
-        "#businessaviation",
-        "#jetforsale",
-        "#privateaviation"
-      ],
-      "cta": "DM us for the full spec and status reports.",
-      "media": [
-        "/uploads/sunset_cover_photo_web.webp",
-        "/uploads/1a0a6151-hdr_web.webp",
-        "/uploads/1a0a6211-hdr_web.webp"
-      ],
-      "visual": "/media/generated/2026-08-10-ig-lear31a-lowtime.jpg",
-      "video": "/media/generated/2026-08-10-ig-lear31a-lowtime.mp4",
-      "is_video": true
-    },
-    {
       "id": "2026-08-13-fb-beechjet-value",
       "status": "Posted",
       "channel": "facebook",
@@ -276,7 +223,7 @@
       "aircraft_id": "",
       "scheduled_for": "",
       "hook": "It comes due whether the aircraft flew 400 hours or 40.",
-      "body": "Some of the biggest inspections on business jets aren't triggered by hours flown — they're triggered by the calendar. The 48-month is one of those. It's scheduled, it's expensive, and time keeps moving toward it no matter how the aircraft was operated.\n\nThat means real downtime at a shop, on top of whatever the invoice runs. When you see a listing with a fresh 48-month, the buyer is inheriting a clean slate instead of that bill — typically around four years before it comes due again.\n\nHere's the part that trips people up: the asking price is only part of the true cost. Where an aircraft sits in its inspection cycle is the other part. Two aircraft priced almost identically can be worlds apart once you factor in what's coming due.\n\nBefore you compare listings side by side, ask where each one sits in its maintenance cycle. It's one of the first things we look at for every client, buyer or seller.",
+      "body": "Some of the biggest business jet inspections are calendar driven, including the 48 month inspection. No matter how much the aircraft flies, the clock keeps moving, bringing significant cost and downtime with it.\n\nA fresh 48 month inspection can give a buyer roughly four years before it comes due again. That is why asking price alone does not tell the full story. Two similarly priced aircraft can have very different ownership costs depending on where they sit in their maintenance cycles.\n\nMaintenance status is one of the first things we evaluate for every buyer and seller.",
       "hashtags": [
         "#privatejet",
         "#businessaviation",
@@ -288,7 +235,7 @@
       "media": [
         "/uploads/02dc2e06-c099-4bd2-a031-83859fe8642c.webp"
       ],
-      "visual": "",
+      "visual": "/media/generated/2026-08-13-fb-fresh-48-month-inspection.jpg",
       "video": "",
       "is_video": false
     },
@@ -317,7 +264,7 @@
       "media": [
         "/uploads/02dc2e06-c099-4bd2-a031-83859fe8642c.webp"
       ],
-      "visual": "",
+      "visual": "/media/generated/2026-08-13-ig-fresh-48-month-inspection.jpg",
       "video": "",
       "is_video": false
     },
@@ -417,34 +364,6 @@
       "is_video": true
     },
     {
-      "id": "2026-08-11-tt-three-numbers",
-      "status": "Needs Edit",
-      "channel": "tiktok",
-      "format": "short_video",
-      "pillar": "buyer_seller_education",
-      "title": "TikTok — three numbers that matter more than price",
-      "aircraft_id": "challenger-604",
-      "scheduled_for": "2026-08-17",
-      "hook": "Three numbers matter more than the price on a used jet.",
-      "body": "Price gets the attention. These three decide what you actually pay.",
-      "hashtags": [
-        "#bizav",
-        "#privatejet",
-        "#aircraftbroker",
-        "#aviationtiktok",
-        "#businessaviation"
-      ],
-      "cta": "Questions on value? That's the conversation we love to have.",
-      "media": [
-        "/uploads/Exterior - 944.jpg",
-        "/uploads/Cockpit - 810.jpg",
-        "/uploads/Exterior - 959.jpg"
-      ],
-      "visual": "/media/generated/2026-08-11-tt-three-numbers.jpg",
-      "video": "/media/generated/2026-08-11-tt-three-numbers.mp4",
-      "is_video": true
-    },
-    {
       "id": "2026-08-09-ig-premier-carousel",
       "status": "Approved",
       "channel": "instagram",
@@ -537,7 +456,7 @@
       "id": "2026-08-12-li-walk-away",
       "status": "Approved",
       "channel": "linkedin",
-      "format": "text_post",
+      "format": "single_image",
       "pillar": "founder_team_pov",
       "title": "LinkedIn — we tell buyers to walk away",
       "aircraft_id": "",
@@ -549,11 +468,35 @@
         "#leadership",
         "#bizav"
       ],
-      "cta": "Questions on value? That's the conversation we love to have.",
+      "cta": "Not every aircraft is the right deal. We help our clients know when to move forward and when to walk away.",
       "media": [
         "/uploads/77782e4d-d389-4fcc-b891-0ea5ee1de718.webp"
       ],
       "visual": "/media/generated/2026-08-12-li-walk-away.jpg",
+      "video": "",
+      "is_video": false
+    },
+    {
+      "id": "2026-08-08-li-founder-both-sides",
+      "status": "Approved",
+      "channel": "linkedin",
+      "format": "single_image",
+      "pillar": "founder_team_pov",
+      "title": "LinkedIn — founder POV on representing both sides",
+      "aircraft_id": "",
+      "scheduled_for": "2026-09-02",
+      "hook": "People ask how we can represent buyers and sellers in the same market without it being a conflict.",
+      "body": "People ask how we can represent buyers and sellers in the same market without it being a conflict.\n\nHere's the honest answer: because the job isn't to win a side. It's to tell the truth about the airplane and the market, every time, to whoever we're sitting across from.\n\nWhen you've valued the same tail from both directions, you stop guessing. You know what a clean logbook is worth, what a deferred inspection really costs, and where the number lands when emotion leaves the room. That's not a conflict — that's the whole edge.\n\nRepresentation on every side of the deal, with the same data and the same standard. That's the firm we wanted to build.",
+      "hashtags": [
+        "#businessaviation",
+        "#leadership",
+        "#bizav"
+      ],
+      "cta": "Questions on value? That's the conversation we love to have.",
+      "media": [
+        "/uploads/vertical-jet-instagram-post.webp"
+      ],
+      "visual": "/media/generated/2026-08-08-li-founder-both-sides.jpg",
       "video": "",
       "is_video": false
     }
