@@ -1,7 +1,7 @@
 {
   "status": "Approved",
   "channel": "linkedin",
-  "format": "text_post",
+  "format": "single_image",
   "layout": "framed",
   "pillar": "founder_team_pov",
   "title": "LinkedIn — we tell buyers to walk away",
@@ -17,12 +17,12 @@
     "#leadership",
     "#bizav"
   ],
-  "cta": "Questions on value? That's the conversation we love to have.",
+  "cta": "Not every aircraft is the right deal. We help our clients know when to move forward and when to walk away.",
   "media": [
     "/uploads/77782e4d-d389-4fcc-b891-0ea5ee1de718.webp"
   ],
   "media_notes": "",
-  "visual": "/media/generated/2026-08-12-li-walk-away.jpg",
+  "visual": "",
   "video": "",
   "visual_headline": "",
   "visual_subline": "",
