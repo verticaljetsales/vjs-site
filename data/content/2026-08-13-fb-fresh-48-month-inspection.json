@@ -1,14 +1,15 @@
 {
-  "id": "2026-08-13-fb-fresh-48-month-inspection",
   "status": "Draft",
   "channel": "facebook",
   "format": "single_image",
+  "layout": "framed",
   "pillar": "buyer_seller_education",
   "title": "What a Fresh 48-Month Inspection Really Means",
+  "id": "2026-08-13-fb-fresh-48-month-inspection",
   "aircraft_id": "",
   "scheduled_for": "",
   "hook": "It comes due whether the aircraft flew 400 hours or 40.",
-  "body": "Some of the biggest inspections on business jets aren't triggered by hours flown — they're triggered by the calendar. The 48-month is one of those. It's scheduled, it's expensive, and time keeps moving toward it no matter how the aircraft was operated.\n\nThat means real downtime at a shop, on top of whatever the invoice runs. When you see a listing with a fresh 48-month, the buyer is inheriting a clean slate instead of that bill — typically around four years before it comes due again.\n\nHere's the part that trips people up: the asking price is only part of the true cost. Where an aircraft sits in its inspection cycle is the other part. Two aircraft priced almost identically can be worlds apart once you factor in what's coming due.\n\nBefore you compare listings side by side, ask where each one sits in its maintenance cycle. It's one of the first things we look at for every client, buyer or seller.",
+  "body": "Some of the biggest business jet inspections are calendar driven, including the 48 month inspection. No matter how much the aircraft flies, the clock keeps moving, bringing significant cost and downtime with it.\n\nA fresh 48 month inspection can give a buyer roughly four years before it comes due again. That is why asking price alone does not tell the full story. Two similarly priced aircraft can have very different ownership costs depending on where they sit in their maintenance cycles.\n\nMaintenance status is one of the first things we evaluate for every buyer and seller.",
   "script": [],
   "shot_list": [],
   "hashtags": [
@@ -23,10 +24,11 @@
     "/uploads/02dc2e06-c099-4bd2-a031-83859fe8642c.webp"
   ],
   "media_notes": "Single evergreen image, no listing tie-in.",
+  "visual": "/media/generated/2026-08-13-fb-fresh-48-month-inspection.jpg",
+  "video": "",
   "visual_headline": "Fresh 48-Month, Explained",
   "visual_subline": "Calendar-driven. Not optional. Worth knowing before you compare prices.",
   "visual_kicker": "Buyer Education",
   "created_by": "vjs-content-studio",
-  "notes": "From inbox item 2026-08-13-fresh-48-month-inspection. Same core copy as IG, warmed up and lengthened per FB tone guidance; used the note's exact CTA since it fits the soft-CTA bank spirit.",
-  "visual": "/media/generated/2026-08-13-fb-fresh-48-month-inspection.jpg"
+  "notes": "From inbox item 2026-08-13-fresh-48-month-inspection. Same core copy as IG, warmed up and lengthened per FB tone guidance; used the note's exact CTA since it fits the soft-CTA bank spirit."
 }
