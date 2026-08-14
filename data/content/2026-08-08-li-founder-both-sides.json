@@ -1,12 +1,13 @@
 {
-  "id": "2026-08-08-li-founder-both-sides",
-  "status": "Draft",
+  "status": "Approved",
   "channel": "linkedin",
-  "format": "text_post",
+  "format": "single_image",
+  "layout": "framed",
   "pillar": "founder_team_pov",
   "title": "LinkedIn — founder POV on representing both sides",
+  "id": "2026-08-08-li-founder-both-sides",
   "aircraft_id": "",
-  "scheduled_for": "",
+  "scheduled_for": "2026-09-02",
   "hook": "People ask how we can represent buyers and sellers in the same market without it being a conflict.",
   "body": "People ask how we can represent buyers and sellers in the same market without it being a conflict.\n\nHere's the honest answer: because the job isn't to win a side. It's to tell the truth about the airplane and the market, every time, to whoever we're sitting across from.\n\nWhen you've valued the same tail from both directions, you stop guessing. You know what a clean logbook is worth, what a deferred inspection really costs, and where the number lands when emotion leaves the room. That's not a conflict — that's the whole edge.\n\nRepresentation on every side of the deal, with the same data and the same standard. That's the firm we wanted to build.",
   "script": [],
@@ -17,9 +18,15 @@
     "#bizav"
   ],
   "cta": "Questions on value? That's the conversation we love to have.",
-  "media": [],
-  "media_notes": "Optional: a team photo or Ben headshot performs well on founder POV posts. No aircraft photo needed.",
+  "media": [
+    "/uploads/vertical-jet-instagram-post.webp"
+  ],
+  "media_notes": "",
+  "visual": "",
+  "video": "",
+  "visual_headline": "",
+  "visual_subline": "",
+  "visual_kicker": "",
   "created_by": "vjs-content-studio",
-  "notes": "",
-  "visual": "/media/generated/2026-08-08-li-founder-both-sides.jpg"
+  "notes": ""
 }
