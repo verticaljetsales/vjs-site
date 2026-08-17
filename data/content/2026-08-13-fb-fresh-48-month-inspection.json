@@ -1,5 +1,5 @@
 {
-  "status": "Draft",
+  "status": "Approved",
   "channel": "facebook",
   "format": "single_image",
   "layout": "framed",
@@ -7,7 +7,7 @@
   "title": "What a Fresh 48-Month Inspection Really Means",
   "id": "2026-08-13-fb-fresh-48-month-inspection",
   "aircraft_id": "",
-  "scheduled_for": "",
+  "scheduled_for": "2026-08-27",
   "hook": "It comes due whether the aircraft flew 400 hours or 40.",
   "body": "Some of the biggest business jet inspections are calendar driven, including the 48 month inspection. No matter how much the aircraft flies, the clock keeps moving, bringing significant cost and downtime with it.\n\nA fresh 48 month inspection can give a buyer roughly four years before it comes due again. That is why asking price alone does not tell the full story. Two similarly priced aircraft can have very different ownership costs depending on where they sit in their maintenance cycles.\n\nMaintenance status is one of the first things we evaluate for every buyer and seller.",
   "script": [],
