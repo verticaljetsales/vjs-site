@@ -214,61 +214,6 @@
       "is_video": true
     },
     {
-      "id": "2026-08-13-fb-fresh-48-month-inspection",
-      "status": "Draft",
-      "channel": "facebook",
-      "format": "single_image",
-      "pillar": "buyer_seller_education",
-      "title": "What a Fresh 48-Month Inspection Really Means",
-      "aircraft_id": "",
-      "scheduled_for": "",
-      "hook": "It comes due whether the aircraft flew 400 hours or 40.",
-      "body": "Some of the biggest business jet inspections are calendar driven, including the 48 month inspection. No matter how much the aircraft flies, the clock keeps moving, bringing significant cost and downtime with it.\n\nA fresh 48 month inspection can give a buyer roughly four years before it comes due again. That is why asking price alone does not tell the full story. Two similarly priced aircraft can have very different ownership costs depending on where they sit in their maintenance cycles.\n\nMaintenance status is one of the first things we evaluate for every buyer and seller.",
-      "hashtags": [
-        "#privatejet",
-        "#businessaviation",
-        "#aircraftsales",
-        "#aviation",
-        "#privateaviation"
-      ],
-      "cta": "Talk to Vertical Jet Sales before you compare listings — we'll tell you what's actually due.",
-      "media": [
-        "/uploads/02dc2e06-c099-4bd2-a031-83859fe8642c.webp"
-      ],
-      "visual": "/media/generated/2026-08-13-fb-fresh-48-month-inspection.jpg",
-      "video": "",
-      "is_video": false
-    },
-    {
-      "id": "2026-08-13-ig-fresh-48-month-inspection",
-      "status": "Draft",
-      "channel": "instagram",
-      "format": "single_image",
-      "pillar": "buyer_seller_education",
-      "title": "What a Fresh 48-Month Inspection Really Means",
-      "aircraft_id": "",
-      "scheduled_for": "",
-      "hook": "The calendar doesn't care how much you flew.",
-      "body": "A lot of major inspections on business jets are calendar-driven, not hours-driven. The 48-month is one of the big ones — it comes due whether the aircraft flew 400 hours or 40. That means real downtime at a shop, on top of the invoice.\n\nWhen a listing shows a fresh 48-month, the next owner is inheriting a clean slate instead of a bill — roughly four years before that clock resets again.\n\nThe purchase price is only half the number. Where the aircraft sits in its inspection cycle is the other half. Two similar aircraft at similar asking prices can be very far apart in true cost depending on what's due.\n\nAsk where an aircraft sits in its maintenance cycle before you compare prices. It's one of the first things we look at for a client.",
-      "hashtags": [
-        "#privatejet",
-        "#bizav",
-        "#businessaviation",
-        "#aircraftsales",
-        "#aviation",
-        "#aircraftacquisition",
-        "#privateaviation",
-        "#aircraftbroker"
-      ],
-      "cta": "Thinking about this type? Let's talk market before you make a move.",
-      "media": [
-        "/uploads/02dc2e06-c099-4bd2-a031-83859fe8642c.webp"
-      ],
-      "visual": "/media/generated/2026-08-13-ig-fresh-48-month-inspection.jpg",
-      "video": "",
-      "is_video": false
-    },
-    {
       "id": "2026-08-13-ig-lear31a-inspections",
       "status": "Draft",
       "channel": "instagram",
@@ -473,6 +418,61 @@
         "/uploads/77782e4d-d389-4fcc-b891-0ea5ee1de718.webp"
       ],
       "visual": "/media/generated/2026-08-12-li-walk-away.jpg",
+      "video": "",
+      "is_video": false
+    },
+    {
+      "id": "2026-08-13-fb-fresh-48-month-inspection",
+      "status": "Approved",
+      "channel": "facebook",
+      "format": "single_image",
+      "pillar": "buyer_seller_education",
+      "title": "What a Fresh 48-Month Inspection Really Means",
+      "aircraft_id": "",
+      "scheduled_for": "2026-08-27",
+      "hook": "It comes due whether the aircraft flew 400 hours or 40.",
+      "body": "Some of the biggest business jet inspections are calendar driven, including the 48 month inspection. No matter how much the aircraft flies, the clock keeps moving, bringing significant cost and downtime with it.\n\nA fresh 48 month inspection can give a buyer roughly four years before it comes due again. That is why asking price alone does not tell the full story. Two similarly priced aircraft can have very different ownership costs depending on where they sit in their maintenance cycles.\n\nMaintenance status is one of the first things we evaluate for every buyer and seller.",
+      "hashtags": [
+        "#privatejet",
+        "#businessaviation",
+        "#aircraftsales",
+        "#aviation",
+        "#privateaviation"
+      ],
+      "cta": "Talk to Vertical Jet Sales before you compare listings — we'll tell you what's actually due.",
+      "media": [
+        "/uploads/02dc2e06-c099-4bd2-a031-83859fe8642c.webp"
+      ],
+      "visual": "/media/generated/2026-08-13-fb-fresh-48-month-inspection.jpg",
+      "video": "",
+      "is_video": false
+    },
+    {
+      "id": "2026-08-13-ig-fresh-48-month-inspection",
+      "status": "Approved",
+      "channel": "instagram",
+      "format": "single_image",
+      "pillar": "buyer_seller_education",
+      "title": "What a Fresh 48-Month Inspection Really Means",
+      "aircraft_id": "",
+      "scheduled_for": "2026-08-27",
+      "hook": "The calendar doesn't care how much you flew.",
+      "body": "A lot of major inspections on business jets are calendar-driven, not hours-driven. The 48-month is one of the big ones — it comes due whether the aircraft flew 400 hours or 40. That means real downtime at a shop, on top of the invoice.\n\nWhen a listing shows a fresh 48-month, the next owner is inheriting a clean slate instead of a bill — roughly four years before that clock resets again.\n\nThe purchase price is only half the number. Where the aircraft sits in its inspection cycle is the other half. Two similar aircraft at similar asking prices can be very far apart in true cost depending on what's due.\n\nAsk where an aircraft sits in its maintenance cycle before you compare prices. It's one of the first things we look at for a client.",
+      "hashtags": [
+        "#privatejet",
+        "#bizav",
+        "#businessaviation",
+        "#aircraftsales",
+        "#aviation",
+        "#aircraftacquisition",
+        "#privateaviation",
+        "#aircraftbroker"
+      ],
+      "cta": "Thinking about this type? Let's talk market before you make a move.",
+      "media": [
+        "/uploads/02dc2e06-c099-4bd2-a031-83859fe8642c.webp"
+      ],
+      "visual": "/media/generated/2026-08-13-ig-fresh-48-month-inspection.jpg",
       "video": "",
       "is_video": false
     },
