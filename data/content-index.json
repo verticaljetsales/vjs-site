@@ -340,30 +340,6 @@
       "is_video": false
     },
     {
-      "id": "2026-08-18-li-cj4-milestone-what-it-means",
-      "status": "Draft",
-      "channel": "linkedin",
-      "format": "text_post",
-      "pillar": "market_intelligence",
-      "title": "500th CJ4: What the Milestone Actually Tells Us",
-      "aircraft_id": "",
-      "scheduled_for": "",
-      "hook": "Textron Aviation just delivered its 500th Citation CJ4, according to Textron Aviation's own announcement — a quiet number that says more about the light jet market than most headlines do.",
-      "body": "Textron Aviation just delivered its 500th Citation CJ4, according to Textron Aviation's own announcement. That's not a splashy figure, but it's a telling one.\n\nA production run that consistent, over more than a decade, means one thing to us: the CJ4 solved a real problem for a real segment of buyers, and it kept solving it well enough that Textron never had to chase a redesign to stay relevant. In a category full of one-and-done variants, that's rare.\n\nFor anyone weighing charter, fractional, or ownership right now, the read isn't \"buy a CJ4.\" It's this: sustained production numbers are one of the clearest signals of a healthy resale market. Parts support, technician familiarity, and a deep pool of comparable sales all follow volume. That matters more to your total cost of ownership than almost any single spec on the sheet.\n\nWhat it doesn't mean is that the CJ4 is the default answer for every mission. Cabin size, range, and runway performance still have to fit how you actually fly — a production milestone doesn't change your mission profile.\n\nWhat we're seeing on our side lines up with the broader point, not the specific airplane: buyers are placing real value on types with long, uninterrupted production histories when they think about resale, not just acquisition cost.\n\nIf you're rethinking how you fly this year, we'll walk you through the tradeoffs.",
-      "hashtags": [
-        "#businessaviation",
-        "#privatejet",
-        "#aircraftacquisition"
-      ],
-      "cta": "If you're rethinking how you fly this year, we'll walk you through the tradeoffs.",
-      "media": [
-        "/uploads/textron-aviation-delivers-500th-cessna-citation-cj4.webp"
-      ],
-      "visual": "",
-      "video": "",
-      "is_video": false
-    },
-    {
       "id": "2026-08-13-fb-cabin-value",
       "status": "Approved",
       "channel": "facebook",
@@ -418,30 +394,6 @@
         "/uploads/4150.webp"
       ],
       "visual": "/media/generated/2026-08-13-ig-cabin-value.jpg",
-      "video": "",
-      "is_video": false
-    },
-    {
-      "id": "2026-08-12-li-walk-away",
-      "status": "Approved",
-      "channel": "linkedin",
-      "format": "single_image",
-      "pillar": "founder_team_pov",
-      "title": "LinkedIn — we tell buyers to walk away",
-      "aircraft_id": "",
-      "scheduled_for": "2026-08-26",
-      "hook": "We tell buyers to walk away more often than they expect.",
-      "body": "We tell buyers to walk away more often than they expect.\n\nIt surprises people that a brokerage would talk a client out of a deal. But representing the buyer means representing the buyer — not the transaction. If the pre-buy turns up a story the logbooks don't support, or the number stops making sense, the right call is sometimes 'not this one.'\n\nWe've walked clients away from airplanes they loved. Every time, the next deal was better for it.\n\nTrust is the only thing we actually sell. The airplane is just what's on the invoice.",
-      "hashtags": [
-        "#businessaviation",
-        "#leadership",
-        "#bizav"
-      ],
-      "cta": "Not every aircraft is the right deal. We help our clients know when to move forward and when to walk away.",
-      "media": [
-        "/uploads/77782e4d-d389-4fcc-b891-0ea5ee1de718.webp"
-      ],
-      "visual": "/media/generated/2026-08-12-li-walk-away.jpg",
       "video": "",
       "is_video": false
     },
@@ -521,6 +473,30 @@
         "/uploads/vertical-jet-instagram-post.webp"
       ],
       "visual": "/media/generated/2026-08-08-li-founder-both-sides.jpg",
+      "video": "",
+      "is_video": false
+    },
+    {
+      "id": "2026-08-12-li-walk-away",
+      "status": "Approved",
+      "channel": "linkedin",
+      "format": "single_image",
+      "pillar": "founder_team_pov",
+      "title": "LinkedIn — we tell buyers to walk away",
+      "aircraft_id": "",
+      "scheduled_for": "2026-09-09",
+      "hook": "We tell buyers to walk away more often than they expect.",
+      "body": "We tell buyers to walk away more often than they expect.\n\nIt surprises people that a brokerage would talk a client out of a deal. But representing the buyer means representing the buyer — not the transaction. If the pre-buy turns up a story the logbooks don't support, or the number stops making sense, the right call is sometimes 'not this one.'\n\nWe've walked clients away from airplanes they loved. Every time, the next deal was better for it.\n\nTrust is the only thing we actually sell. The airplane is just what's on the invoice.",
+      "hashtags": [
+        "#businessaviation",
+        "#leadership",
+        "#bizav"
+      ],
+      "cta": "Not every aircraft is the right deal. We help our clients know when to move forward and when to walk away.",
+      "media": [
+        "/uploads/77782e4d-d389-4fcc-b891-0ea5ee1de718.webp"
+      ],
+      "visual": "/media/generated/2026-08-12-li-walk-away.jpg",
       "video": "",
       "is_video": false
     }
