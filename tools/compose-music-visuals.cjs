@@ -284,6 +284,10 @@ async function main() {
     else if (item.layout === 'framed') { kind = 'framed'; html = framedTemplate(item, photo, sMeta, shMeta); }
     else { kind = 'full-bleed'; html = fullBleedTemplate(item, photo, sMeta, shMeta); }
 
+    // Aspect: default 4:5 (1080x1350); "9:16" (1080x1920) for TikTok/Reels/Shorts.
+    const H = item.aspect === '9:16' ? 1920 : 1350;
+    if (H !== 1350) { html = html.replace(/height:1350px/g, `height:${H}px`); kind += ':9x16'; }
+    await page.setViewportSize({ width: 1080, height: H });
     await page.setContent(html, { waitUntil: 'networkidle' });
     await page.waitForTimeout(150);
     const outRel = `/media/music/generated/${item.id}.jpg`;

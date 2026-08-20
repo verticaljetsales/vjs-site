@@ -286,7 +286,7 @@
       "show_id": "2026-08-28-track5-hard-rock",
       "scheduled_for": "",
       "hook": "live at track 5 this friday.",
-      "body": "live at track 5. friday, august 28. hard rock hotel & casino. 8pm.\n\ncome dance. bring your boots.\n\n[BEN: ticket link, if there is one]",
+      "body": "live at track 5. friday, august 28. hard rock hotel & casino, tulsa. 8pm.\n\ncome dance. bring your boots.\n\n[BEN: ticket link, if there is one]",
       "hashtags": [
         "#texascountry",
         "#livemusic",
@@ -302,6 +302,33 @@
       "visual": "/media/music/generated/2026-08-25-ig-track5-hard-rock-show.jpg",
       "video": "",
       "is_video": false
+    },
+    {
+      "id": "2026-08-25-tt-track5-hard-rock-reel",
+      "status": "Draft",
+      "channel": "tiktok",
+      "format": "short_video",
+      "pillar": "live_and_road",
+      "title": "Show reel — Track 5 @ Hard Rock Tulsa, Aug 28",
+      "song_id": "",
+      "show_id": "2026-08-28-track5-hard-rock",
+      "scheduled_for": "",
+      "hook": "tulsa — this friday.",
+      "body": "live at track 5 this friday. hard rock hotel & casino, tulsa. 8pm.\n\ncome dance.",
+      "hashtags": [
+        "#texascountry",
+        "#livemusic",
+        "#hardrock",
+        "#tulsa",
+        "#countrytiktok"
+      ],
+      "cta": "tickets in bio.",
+      "media": [
+        "/media/music/uploads/track5-live.jpg"
+      ],
+      "visual": "/media/music/generated/2026-08-25-tt-track5-hard-rock-reel.jpg",
+      "video": "",
+      "is_video": true
     },
     {
       "id": "idea-boat-dancefloor",

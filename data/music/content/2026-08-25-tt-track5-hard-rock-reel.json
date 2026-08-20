@@ -1,0 +1,60 @@
+{
+  "id": "2026-08-25-tt-track5-hard-rock-reel",
+  "status": "Draft",
+  "channel": "tiktok",
+  "format": "short_video",
+  "pillar": "live_and_road",
+  "song_id": "",
+  "show_id": "2026-08-28-track5-hard-rock",
+  "scheduled_for": "",
+  "aspect": "9:16",
+  "title": "Show reel — Track 5 @ Hard Rock Tulsa, Aug 28",
+  "hook": "tulsa — this friday.",
+  "body": "live at track 5 this friday. hard rock hotel & casino, tulsa. 8pm.\n\ncome dance.",
+  "script": [
+    {
+      "beat": "Hook (0 to 2s)",
+      "visual": "this vertical poster, or open on a live clip",
+      "line": "tulsa — friday night, track 5",
+      "onscreen": "TRACK 5 · HARD ROCK"
+    },
+    {
+      "beat": "Details (2 to 6s)",
+      "visual": "hold on the poster / live clip",
+      "line": "friday august 28, 8pm",
+      "onscreen": "FRI AUG 28 · 8PM"
+    },
+    {
+      "beat": "End (6 to 8s)",
+      "visual": "end card",
+      "line": "come dance",
+      "onscreen": "tickets in bio"
+    }
+  ],
+  "shot_list": [
+    "Simplest: post this 9:16 graphic as the reel (add a trending sound).",
+    "Better: lay it over an 8-15s live clip from a recent show, or your Reel 8 Cowboy Chorus clip."
+  ],
+  "hashtags": [
+    "#texascountry",
+    "#livemusic",
+    "#hardrock",
+    "#tulsa",
+    "#countrytiktok"
+  ],
+  "cta": "tickets in bio.",
+  "media": [
+    "/media/music/uploads/track5-live.jpg"
+  ],
+  "layout": "full-bleed",
+  "audio": "",
+  "media_notes": "Vertical 9:16 show poster from the live shot. Use as the reel, or as the cover over a live clip.",
+  "visual": "/media/music/generated/2026-08-25-tt-track5-hard-rock-reel.jpg",
+  "video": "",
+  "is_real_lyric": false,
+  "visual_headline": "Track 5 · Hard Rock",
+  "visual_subline": "FRI AUG 28 · 8PM · TULSA",
+  "visual_kicker": "Live",
+  "created_by": "music-content-studio",
+  "notes": "TikTok reel (9:16) companion to the IG show post."
+}
