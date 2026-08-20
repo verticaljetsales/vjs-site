@@ -180,7 +180,7 @@ function fullBleedTemplate(item, photo, sMeta, shMeta) {
       <div class="pborder" style="border-color:rgba(241,230,210,.22)"></div>
       <div class="badge">${esc(kicker)}</div>
       <div class="content">
-        <div class="wmwrap">${wordmark(96)}</div>
+        <div class="wmwrap">${wordmark(item.logo_size || 96)}</div>
         <h1 class="disp">${esc(headline)}</h1>
         ${sub ? `<div class="sub">${esc(sub)}</div>` : ''}
         <hr class="tick">
