@@ -276,6 +276,34 @@
       "is_video": false
     },
     {
+      "id": "2026-08-25-ig-track5-hard-rock-show",
+      "status": "Draft",
+      "channel": "instagram",
+      "format": "carousel",
+      "pillar": "live_and_road",
+      "title": "Show — Track 5 @ Hard Rock, Aug 28",
+      "song_id": "",
+      "show_id": "2026-08-28-track5-hard-rock",
+      "scheduled_for": "",
+      "hook": "live at track 5 this friday.",
+      "body": "live at track 5. friday, august 28. hard rock hotel & casino. 8pm.\n\ncome dance. bring your boots.\n\n[BEN: ticket link, if there is one]",
+      "hashtags": [
+        "#texascountry",
+        "#livemusic",
+        "#hardrock",
+        "#track5",
+        "#countrymusic"
+      ],
+      "cta": "tickets + details — link in bio.",
+      "media": [
+        "/media/music/uploads/track5-live.jpg",
+        "/media/music/uploads/track5-venue.png"
+      ],
+      "visual": "/media/music/generated/2026-08-25-ig-track5-hard-rock-show.jpg",
+      "video": "",
+      "is_video": false
+    },
+    {
       "id": "idea-boat-dancefloor",
       "status": "Idea",
       "channel": "tiktok",

@@ -1,6 +1,14 @@
 {
   "shows": [
     {
+      "id": "2026-08-28-track5-hard-rock",
+      "venue": "Track 5 · Hard Rock Hotel & Casino",
+      "city": "",
+      "state": "",
+      "date": "2026-08-28",
+      "confirmed": true
+    },
+    {
       "id": "circuit-11th-street-cowboy-bar",
       "venue": "11th Street Cowboy Bar",
       "city": "Bandera",
