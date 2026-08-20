@@ -81,7 +81,8 @@ function resolvePhotos(item, max){
 }
 
 // Transparent branded frame overlaid on every photo shot.
-function frameHTML(headline, sub, kicker){
+function frameHTML(headline, sub, kicker, item){
+  item = item || {};
   const hs=hSize(headline,58,48,40);
   return `<!doctype html><meta charset=utf-8><style>${FONT_CSS}
   *{margin:0;padding:0;box-sizing:border-box}
@@ -90,6 +91,10 @@ function frameHTML(headline, sub, kicker){
   .bot{position:absolute;bottom:0;left:0;right:0;height:780px;background:linear-gradient(0deg,rgba(26,23,18,.96) 22%,rgba(26,23,18,.7) 55%,rgba(26,23,18,0))}
   .wm{position:absolute;top:60px;left:64px}
   .badge{position:absolute;top:88px;right:64px;font-family:'AR';font-weight:700;font-size:30px;letter-spacing:.14em;text-transform:uppercase;color:#1A1712;background:#D69A3C;padding:14px 26px;border-radius:4px}
+  .cobrandtxt{position:absolute;top:64px;right:64px;text-align:right}
+  .cobrandtxt .e{font-size:24px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#D69A3C}
+  .cobrandtxt .n{font-family:'PF',serif;font-size:52px;font-weight:700;color:#F1E6D2;line-height:1.05;margin-top:6px}
+  .cobrandtxt .s{font-size:26px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#F1E6D2;opacity:.9;margin-top:6px}
   .cap{position:absolute;left:64px;right:64px;bottom:190px}
   h1{font-family:'PF',serif;font-size:${hs}px;line-height:1.06;letter-spacing:-.01em}
   .sub{font-size:34px;margin-top:22px;opacity:.94}
@@ -99,7 +104,7 @@ function frameHTML(headline, sub, kicker){
   </style>
   <div class="top"></div><div class="bot"></div>
   <div class="wm">${wordmark(112,false)}</div>
-  <div class="badge">${esc(kicker)}</div>
+  ${item.cobrand_text ? `<div class="cobrandtxt"><div class="e">Live at</div><div class="n">${esc(item.cobrand_text)}</div>${item.cobrand_sub?`<div class="s">${esc(item.cobrand_sub)}</div>`:''}</div>` : `<div class="badge">${esc(kicker)}</div>`}
   <div class="cap"><h1>${esc(headline)}</h1>${sub?`<div class="sub">${esc(sub)}</div>`:''}<div class="rule"></div></div>
   <div class="strip"><span>@benmcpeakmusic</span><span class="s">benmcpeakmusic.com</span></div>`;
 }
@@ -202,7 +207,7 @@ async function main(){
 
     const frame=path.join(tmp,item.id+'-frame.png');
     const endcard=path.join(tmp,item.id+'-end.png');
-    await renderPNG(page, frameHTML(headline,sub,kicker), frame, true);
+    await renderPNG(page, frameHTML(headline,sub,kicker,item), frame, true);
     await renderPNG(page, endHTML(headline,cta), endcard, false);
 
     const clips=[], durs=[];

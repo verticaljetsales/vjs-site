@@ -171,6 +171,10 @@ function fullBleedTemplate(item, photo, sMeta, shMeta) {
     .ph{position:absolute;inset:0;background:#0e0b08}
     .ph img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
     .cobrand{position:absolute;top:48px;right:54px;z-index:7;height:${item.cobrand_size || 92}px;width:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,.7))}
+    .cobrandtxt{position:absolute;top:52px;right:56px;z-index:7;text-align:right;text-shadow:0 2px 10px rgba(0,0,0,.75)}
+    .cobrandtxt .e{font-size:16px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--amber)}
+    .cobrandtxt .n{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--cream);line-height:1.05;margin-top:5px}
+    .cobrandtxt .s{font-size:17px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);opacity:.9;margin-top:5px}
     .grad{position:absolute;inset:0;z-index:2;background:
       linear-gradient(180deg,rgba(26,23,18,.55) 0%,rgba(26,23,18,.05) 22%,rgba(26,23,18,.14) 44%,rgba(26,23,18,.78) 72%,rgba(26,23,18,.99) 100%)}
     .grain{opacity:.14}
@@ -191,7 +195,8 @@ function fullBleedTemplate(item, photo, sMeta, shMeta) {
       <div class="grain"></div>
       <div class="pborder" style="border-color:rgba(241,230,210,.22)"></div>
       <div class="badge">${esc(kicker)}</div>
-      ${cobrand ? `<img class="cobrand" src="${cobrand}">` : ''}
+      ${cobrand ? `<img class="cobrand" src="${cobrand}">`
+        : item.cobrand_text ? `<div class="cobrandtxt"><div class="e">Live at</div><div class="n">${esc(item.cobrand_text)}</div>${item.cobrand_sub ? `<div class="s">${esc(item.cobrand_sub)}</div>` : ''}</div>` : ''}
       <div class="content">
         <div class="wmwrap">${wordmark(item.logo_size || 96)}</div>
         <h1 class="disp">${esc(headline)}</h1>

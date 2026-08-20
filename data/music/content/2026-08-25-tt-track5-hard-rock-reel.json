@@ -52,10 +52,12 @@
   "visual": "/media/music/generated/2026-08-25-tt-track5-hard-rock-reel.jpg",
   "video": "/media/music/generated/2026-08-25-tt-track5-hard-rock-reel.mp4",
   "is_real_lyric": false,
-  "visual_headline": "Track 5 · Hard Rock",
-  "visual_subline": "FRI AUG 28 · 8PM · TULSA",
+  "visual_headline": "Track 5",
+  "visual_subline": "FRIDAY, AUG 28 · 8PM",
   "visual_kicker": "Live",
   "created_by": "music-content-studio",
   "notes": "TikTok reel (9:16) companion to the IG show post.",
-  "logo_size": 230
+  "logo_size": 230,
+  "cobrand_text": "Hard Rock",
+  "cobrand_sub": "Hotel & Casino · Tulsa"
 }

@@ -30,10 +30,12 @@
   "visual": "/media/music/generated/2026-08-25-ig-track5-hard-rock-show.jpg",
   "video": "",
   "is_real_lyric": false,
-  "visual_headline": "Track 5 · Hard Rock",
-  "visual_subline": "FRIDAY, AUG 28 · 8PM · TULSA",
+  "visual_headline": "Track 5",
+  "visual_subline": "FRIDAY, AUG 28 · 8PM",
   "visual_kicker": "Live",
   "created_by": "music-content-studio",
   "notes": "Show announcement. City + ticket link left for Ben to confirm.",
-  "logo_size": 230
+  "logo_size": 230,
+  "cobrand_text": "Hard Rock",
+  "cobrand_sub": "Hotel & Casino · Tulsa"
 }
