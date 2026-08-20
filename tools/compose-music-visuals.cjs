@@ -39,6 +39,16 @@ const FONTS = {
 };
 const LOGO = fs.existsSync(LOGO_PATH) ? dataURI(LOGO_PATH, 'image/png') : '';
 
+// Resolve any asset path (e.g. a co-brand venue logo) to a data URI if it exists.
+function assetURI(rel) {
+  if (!rel || typeof rel !== 'string') return '';
+  const local = path.join(ROOT, rel.replace(/^\//, ''));
+  if (!fs.existsSync(local)) return '';
+  const ext = local.toLowerCase().endsWith('.png') ? 'png'
+    : local.toLowerCase().endsWith('.webp') ? 'webp' : 'jpeg';
+  return dataURI(local, 'image/' + ext);
+}
+
 const PILLAR_LABEL = {
   new_music_and_teasers: 'New Music',
   live_and_road: 'Live',
@@ -156,9 +166,11 @@ function photoFields(item, sMeta, shMeta) {
 function fullBleedTemplate(item, photo, sMeta, shMeta) {
   const { kicker, headline, sub } = photoFields(item, sMeta, shMeta);
   const hs = headlineSize(headline, 74, 62, 50, 42);
+  const cobrand = assetURI(item.cobrand_logo);
   return `<!doctype html><html><head><meta charset="utf-8"><style>${FONT_CSS}${BASE}
     .ph{position:absolute;inset:0;background:#0e0b08}
     .ph img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+    .cobrand{position:absolute;top:48px;right:54px;z-index:7;height:${item.cobrand_size || 92}px;width:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,.7))}
     .grad{position:absolute;inset:0;z-index:2;background:
       linear-gradient(180deg,rgba(26,23,18,.55) 0%,rgba(26,23,18,.05) 22%,rgba(26,23,18,.14) 44%,rgba(26,23,18,.78) 72%,rgba(26,23,18,.99) 100%)}
     .grain{opacity:.14}
@@ -179,6 +191,7 @@ function fullBleedTemplate(item, photo, sMeta, shMeta) {
       <div class="grain"></div>
       <div class="pborder" style="border-color:rgba(241,230,210,.22)"></div>
       <div class="badge">${esc(kicker)}</div>
+      ${cobrand ? `<img class="cobrand" src="${cobrand}">` : ''}
       <div class="content">
         <div class="wmwrap">${wordmark(item.logo_size || 96)}</div>
         <h1 class="disp">${esc(headline)}</h1>
