@@ -1,0 +1,65 @@
+name: Music Publer — push approved posts
+
+# Sends Approved Ben McPeak posts to Publer via the Publer API, on schedule.
+# Runs in GitHub Actions (the studio site can't reach Publer). Operates on the
+# music-studio-site branch (where the live music content lives).
+#
+# Setup (one time):
+#   Repo → Settings → Secrets and variables → Actions:
+#     PUBLER_API_KEY       (Publer: Settings → Access & Login → API Keys; Business plan)
+#     PUBLER_WORKSPACE_ID  (from the "discover" run output)
+#   Then map Ben's account ids into content/music/publer-accounts.json.
+
+on:
+  schedule:
+    - cron: "0 14 * * *"      # 14:00 UTC daily ≈ 9:00 AM US-Central
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "discover | dry-run | push"
+        required: true
+        default: "discover"
+        type: choice
+        options: [discover, dry-run, push]
+
+permissions:
+  contents: write
+
+jobs:
+  music-publer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: music-studio-site       # the branch the live music studio deploys from
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Determine mode
+        run: echo "MODE=${{ github.event.inputs.mode || 'push' }}" >> "$GITHUB_ENV"
+
+      - name: Run Publer tool
+        env:
+          PUBLER_API_KEY: ${{ secrets.PUBLER_API_KEY }}
+          PUBLER_WORKSPACE_ID: ${{ secrets.PUBLER_WORKSPACE_ID }}
+          MUSIC_SITE: "https://studio.benmcpeakmusic.com"
+        run: |
+          case "$MODE" in
+            discover) node tools/music-publer-push.cjs --discover ;;
+            dry-run)  node tools/music-publer-push.cjs --dry-run ;;
+            *)        node tools/music-publer-push.cjs ;;
+          esac
+
+      - name: Commit status changes (push mode only)
+        if: env.MODE == 'push'
+        run: |
+          if [ -n "$(git status --porcelain data/music/content)" ]; then
+            git config user.name  "benmcpeak-content-bot"
+            git config user.email "bot@benmcpeakmusic.com"
+            git add data/music/content
+            git commit -m "Publer: mark pushed posts as Scheduled"
+            git push
+          else
+            echo "No status changes to commit."
+          fi

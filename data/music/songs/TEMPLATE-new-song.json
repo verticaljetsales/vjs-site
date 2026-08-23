@@ -1,0 +1,18 @@
+{
+  "id": "TEMPLATE-new-song",
+  "title": "",
+  "type": "single",
+  "release_date": "",
+  "album": "",
+  "status": "Upcoming",
+  "theme": "",
+  "mood": "",
+  "signature_lyric": "",
+  "spotify_url": "",
+  "apple_url": "",
+  "youtube_url": "",
+  "cover_art": "",
+  "photo": "",
+  "notes": "Copy this file to add a song/release. Fill only what is TRUE. Leave unknowns blank — the studio never invents.",
+  "verified_facts": []
+}
