@@ -208,6 +208,52 @@ function fullBleedTemplate(item, photo, sMeta, shMeta) {
   </body></html>`;
 }
 
+// VENUE HERO: a wide venue/marquee banner becomes the backdrop — a darkened,
+// blown-up blur of it fills the frame, and a crisp full-width band shows the real
+// sign, with the branding + show details stacked beneath. Built for landscape
+// banners that would crop badly full-bleed.
+function venueHeroTemplate(item, photo, sMeta, shMeta) {
+  const { kicker, headline, sub } = photoFields(item, sMeta, shMeta);
+  const hs = headlineSize(headline, 82, 66, 52, 44);
+  return `<!doctype html><html><head><meta charset="utf-8"><style>${FONT_CSS}${BASE}
+    .bg{position:absolute;inset:-60px;z-index:0;background:#0e0b08}
+    .bg img{width:100%;height:100%;object-fit:cover;object-position:center;filter:blur(34px) brightness(.42) saturate(1.15)}
+    .bgtint{position:absolute;inset:0;z-index:1;background:
+      radial-gradient(1100px 900px at 50% 30%, rgba(214,154,60,.16), rgba(214,154,60,0) 62%),
+      linear-gradient(180deg,rgba(26,23,18,.72) 0%,rgba(26,23,18,.30) 30%,rgba(26,23,18,.62) 60%,rgba(26,23,18,.97) 100%)}
+    .badge{position:absolute;top:52px;left:52px;z-index:6;border:2px solid var(--amber);color:var(--cream);
+           background:rgba(18,15,11,.55);font-weight:700;font-size:21px;letter-spacing:.18em;text-transform:uppercase;padding:11px 18px}
+    .hero{position:absolute;top:238px;left:40px;right:40px;z-index:4}
+    .hero .glow{position:absolute;inset:-40px -10px;background:radial-gradient(60% 120% at 50% 40%,rgba(231,182,94,.32),rgba(231,182,94,0) 70%);z-index:-1}
+    .hero .frame{border:2px solid rgba(241,230,210,.30);box-shadow:0 24px 70px rgba(0,0,0,.6);overflow:hidden;background:#0e0b08}
+    .hero img{width:100%;display:block}
+    .content{position:absolute;left:56px;right:56px;bottom:58px;z-index:6}
+    .content .logo{filter:drop-shadow(0 3px 16px rgba(0,0,0,.7))}
+    .wmwrap{margin-bottom:22px}
+    h1{font-size:${hs}px;color:var(--cream);text-shadow:0 3px 22px rgba(0,0,0,.6);max-width:16ch}
+    .sub{font-size:26px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--amber-bright);margin-top:16px;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+    .tick{margin:26px 0 0}
+    .strip{display:flex;justify-content:space-between;align-items:center;margin-top:22px;font-size:24px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+    .strip .h{color:var(--cream);opacity:.9}.strip .s{color:var(--amber-bright)}
+  </style></head><body>
+    <div class="post">
+      <div class="bg"><img src="${photo}"></div>
+      <div class="bgtint"></div>
+      <div class="grain"></div>
+      <div class="pborder" style="border-color:rgba(241,230,210,.22)"></div>
+      <div class="badge">${esc(kicker)}</div>
+      <div class="hero"><div class="glow"></div><div class="frame"><img src="${photo}"></div></div>
+      <div class="content">
+        <div class="wmwrap">${wordmark(item.logo_size || 96)}</div>
+        <h1 class="disp">${esc(headline)}</h1>
+        ${sub ? `<div class="sub">${esc(sub)}</div>` : ''}
+        <hr class="tick">
+        <div class="strip"><span class="h">@benmcpeakmusic</span><span class="s">benmcpeakmusic.com</span></div>
+      </div>
+    </div>
+  </body></html>`;
+}
+
 // FRAMED: whole image in a top panel, poster band beneath. Good for cover art.
 function framedTemplate(item, photo, sMeta, shMeta) {
   const { kicker, headline, sub } = photoFields(item, sMeta, shMeta);
@@ -299,6 +345,7 @@ async function main() {
     let kind;
     let html;
     if (!photo) { kind = 'lyric'; html = lyricTemplate(item, sMeta, shMeta); }
+    else if (item.layout === 'venue') { kind = 'venue'; html = venueHeroTemplate(item, photo, sMeta, shMeta); }
     else if (item.layout === 'framed') { kind = 'framed'; html = framedTemplate(item, photo, sMeta, shMeta); }
     else { kind = 'full-bleed'; html = fullBleedTemplate(item, photo, sMeta, shMeta); }
 
