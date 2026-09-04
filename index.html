@@ -234,6 +234,11 @@
   .m-photo{aspect-ratio:1/1;overflow:hidden;background:var(--night-3)}
   .m-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%);transition:filter .6s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
   .member:hover .m-photo img{filter:grayscale(0%);transform:scale(1.035)}
+  .m-photo.ben-photo img{object-position:58% top;filter:grayscale(0%)}
+  @media(hover:hover) and (pointer:fine){
+    .member:hover .m-photo.ben-photo img,
+    .member:focus-within .m-photo.ben-photo img{filter:grayscale(100%);transform:scale(1.035)}
+  }
   .m-photo img.off-right{object-position:57% top}   /* Eric — head sits right of centre in source */
   .m-body{padding:24px 26px 28px}
   .member .m-name{font-family:"Playfair Display",serif;font-size:1.5rem;color:var(--bone);line-height:1.1}
@@ -441,7 +446,7 @@
     <div class="team-grid">
 
       <div class="member reveal" data-rev>
-        <div class="m-photo"><img src="/images/site/2e04b2719e.jpg" alt="Ben McPeak"></div>
+        <div class="m-photo ben-photo"><img src="/images/site/ben-mcpeak-color.jpg" alt="Ben McPeak" width="1600" height="1066"></div>
         <div class="m-body">
           <div class="m-name">Ben McPeak</div>
           <div class="m-role">President / CEO</div>
