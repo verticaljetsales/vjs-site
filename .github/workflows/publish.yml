@@ -14,9 +14,6 @@ name: Publish site (batched deploys)
 # The site ID below is public (it's in your Netlify URL) so it's fine in the file.
 
 on:
-  schedule:
-    - cron: "0 12 * * *"     # 12:00 UTC ≈ 7:00 AM US-Central — morning publish
-    - cron: "0 20 * * *"     # 20:00 UTC ≈ 3:00 PM US-Central — afternoon publish
   workflow_dispatch:          # the "Publish Now" button (Actions tab → Run workflow)
 
 jobs:
