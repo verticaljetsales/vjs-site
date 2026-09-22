@@ -1,0 +1,53 @@
+{
+  "id": "2026-08-13-yt-acoustic-session-longform",
+  "status": "Draft",
+  "channel": "youtube",
+  "format": "long_form",
+  "pillar": "live_and_road",
+  "song_id": "were-all-here",
+  "show_id": "",
+  "title": "Acoustic session, one take (long-form)",
+  "scheduled_for": "",
+  "hook": "three songs, one guitar, one take.",
+  "body": "sat down and played a few off the record the way they got written. no click, no fixing it.\n\n[BEN: which three songs, and any real note about them]\n\nfull record's in the description.",
+  "script": [
+    {
+      "beat": "Cold open",
+      "visual": "start mid-song on the best chorus, ~10s, then title card",
+      "line": "open on the strongest chorus",
+      "onscreen": "Acoustic Session"
+    },
+    {
+      "beat": "Songs",
+      "visual": "one warm setup, maybe a second angle",
+      "line": "[BEN: one honest sentence between songs about where each came from]",
+      "onscreen": "song titles lower-third"
+    },
+    {
+      "beat": "Outro",
+      "visual": "set the guitar down",
+      "line": "'thanks for listening'",
+      "onscreen": "full album in description"
+    }
+  ],
+  "shot_list": [
+    "one warm room, guitar and vocal, second angle for cutaways if you can",
+    "record clean audio, even a single mic beats phone audio for long-form",
+    "note which between-song stories are true before filming"
+  ],
+  "hashtags": [
+    "#texascountry",
+    "#acoustic",
+    "#countrymusic",
+    "#livemusic"
+  ],
+  "cta": "full record's in the description.",
+  "media": [],
+  "media_notes": "Evergreen long-form. Slice 4 to 6 Shorts out of it after.",
+  "visual_kicker": "acoustic session",
+  "visual_headline": "three songs, one take",
+  "layout": "",
+  "created_by": "music-content-studio",
+  "notes": "",
+  "visual": "/media/music/generated/2026-08-13-yt-acoustic-session-longform.jpg"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "2026-08-16-ig-boat-single",
+  "status": "Draft",
+  "channel": "instagram",
+  "format": "single_image",
+  "pillar": "new_music_and_teasers",
+  "song_id": "boat",
+  "show_id": "",
+  "title": "Boat — the single",
+  "scheduled_for": "",
+  "hook": "wrote a fun one.",
+  "body": "boat. me and steven nix wrote it to be a good time. uptempo, windows down, that 90s country sound.\n\nturn it up on the water this weekend.",
+  "script": [],
+  "shot_list": [],
+  "hashtags": [
+    "#texascountry",
+    "#countrymusic",
+    "#boat",
+    "#90scountry",
+    "#newmusic"
+  ],
+  "cta": "",
+  "media": [
+    "/media/music/uploads/boat-cover.jpg"
+  ],
+  "media_notes": "Uses the real Boat single cover art (pulled from Ben’s Drive).",
+  "visual_kicker": "New Single",
+  "visual_headline": "",
+  "layout": "framed",
+  "created_by": "music-content-studio",
+  "notes": "Real single co-written with Steven Nix (from Ben’s bio). Cover art exists in Drive.",
+  "visual": "/media/music/generated/2026-08-16-ig-boat-single.jpg"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "were-all-here",
+  "title": "We're All Here",
+  "type": "album",
+  "is_title_track": true,
+  "release_date": "2024-06-14",
+  "album": "We're All Here",
+  "track_count": 12,
+  "status": "Released",
+  "theme": "Title track of the 2024 album — a gather-round, everybody-made-it anthem. CONFIRM framing with Ben.",
+  "mood": "warm, communal, uptempo neo-traditional",
+  "signature_lyric": "",
+  "spotify_url": "https://open.spotify.com/album/0XSwvSct3lajX0CwmdjtHL",
+  "apple_url": "https://music.apple.com/us/album/were-all-here/1746524560",
+  "youtube_url": "",
+  "cover_art": "",
+  "photo": "",
+  "notes": "Flagship album (12 songs). Good evergreen catalog anchor.",
+  "verified_facts": [
+    "title",
+    "type",
+    "release_date",
+    "track_count"
+  ]
+}

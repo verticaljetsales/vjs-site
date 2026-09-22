@@ -1,0 +1,23 @@
+{
+  "id": "dont-tell-her-im-a-cowboy",
+  "title": "Don't Tell Her I'm a Cowboy",
+  "type": "single",
+  "release_date": "",
+  "album": "",
+  "status": "Released",
+  "theme": "",
+  "mood": "90s neo-traditional",
+  "signature_lyric": "There's a difference in this cowboy life",
+  "spotify_url": "",
+  "apple_url": "",
+  "youtube_url": "",
+  "cover_art": "/media/music/uploads/cowboy-cover.png",
+  "photo": "",
+  "notes": "Real single. Has a music video and a lyric video (in Ben's Drive Videos folder) and a YouTube ad campaign. Cover art: Cowboy - Grey ARTWORK.",
+  "verified_facts": [
+    "title",
+    "type",
+    "signature_lyric",
+    "cover_art"
+  ]
+}

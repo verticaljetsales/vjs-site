@@ -1,0 +1,36 @@
+{
+  "shows": [
+    {
+      "id": "2026-08-28-track5-hard-rock",
+      "venue": "Track 5 · Hard Rock Hotel & Casino",
+      "city": "Tulsa",
+      "state": "OK",
+      "date": "2026-08-28",
+      "confirmed": true
+    },
+    {
+      "id": "circuit-11th-street-cowboy-bar",
+      "venue": "11th Street Cowboy Bar",
+      "city": "Bandera",
+      "state": "TX",
+      "date": "",
+      "confirmed": false
+    },
+    {
+      "id": "circuit-freiheit-country-store",
+      "venue": "Freiheit Country Store",
+      "city": "New Braunfels",
+      "state": "TX",
+      "date": "",
+      "confirmed": false
+    },
+    {
+      "id": "circuit-house-pasture",
+      "venue": "House Pasture Cattle Company",
+      "city": "Concan",
+      "state": "TX",
+      "date": "",
+      "confirmed": false
+    }
+  ]
+}

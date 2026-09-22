@@ -1,0 +1,52 @@
+{
+  "id": "2026-08-12-tt-tailgate-talkin-singalong",
+  "status": "Draft",
+  "channel": "tiktok",
+  "format": "short_video",
+  "pillar": "personality_and_fans",
+  "song_id": "tailgate-talkin",
+  "show_id": "",
+  "title": "Tailgate Talkin', duet the hook",
+  "scheduled_for": "",
+  "hook": "you sing the tailgate part.",
+  "body": "tailgate talkin' is about the best memories happening right there on a tailgate. some folks' glory days were on a field or a stage. this one's for the tailgate crowd.\n\nduet this and sing it back at me. best ones get reposted.",
+  "script": [
+    {
+      "beat": "Hook (0 to 2s)",
+      "visual": "truck bed, phone propped, a buddy or two around",
+      "line": "you sing the tailgate part",
+      "onscreen": "duet this"
+    },
+    {
+      "beat": "The bit (2 to 12s)",
+      "visual": "sing the call line, leave a beat, point at camera",
+      "line": "sing your half of the hook, then point for their half",
+      "onscreen": "Tailgate Talkin'"
+    },
+    {
+      "beat": "End (12 to 15s)",
+      "visual": "grin, your turn gesture",
+      "line": "best ones get reposted",
+      "onscreen": ""
+    }
+  ],
+  "shot_list": [
+    "film the 'call' half of the Tailgate Talkin' hook with a clear pause for the fan's half. leave headroom in frame for the duet",
+    "tailgate or parking lot, a friend or two in shot reads real"
+  ],
+  "hashtags": [
+    "#texascountry",
+    "#tailgatetalkin",
+    "#countrytiktok",
+    "#duet"
+  ],
+  "cta": "",
+  "media": [],
+  "media_notes": "The pause for the duet response is the whole trick.",
+  "visual_kicker": "sing it back",
+  "visual_headline": "you sing the tailgate part",
+  "layout": "",
+  "created_by": "music-content-studio",
+  "notes": "Caption now grounded in the song's real meaning (from Ben's bio). Duet/participation format kept.",
+  "visual": "/media/music/generated/2026-08-12-tt-tailgate-talkin-singalong.jpg"
+}
