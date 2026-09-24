@@ -21,8 +21,18 @@ const SITE = 'https://verticaljetsales.com';
 const API = 'https://app.publer.com/api/v1';
 const DEFAULT_TIME = 'T14:00:00Z';      // 09:00 US-Central ≈ 14:00 UTC (adjust if needed)
 
+// Publer runs "media from URL" downloads one at a time per workspace: while one
+// download is still in flight, new ones are rejected with a 403 telling us to
+// wait. These settings make the script wait out that limit instead of dying.
+const MEDIA_BUSY_MAX_ATTEMPTS = 10;     // ~5 minutes of waiting per media URL
+const MEDIA_BUSY_WAIT_MS = 30000;
+const POLL_TRIES = 60;                  // 60 x 3s = up to 3 minutes per async job
+const POLL_INTERVAL_MS = 3000;
+
 const KEY = process.env.PUBLER_API_KEY || '';
 const WORKSPACE = process.env.PUBLER_WORKSPACE_ID || '';
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 function headers() {
   const h = { 'Authorization': `Bearer-API ${KEY}`, 'Content-Type': 'application/json' };
@@ -41,8 +51,21 @@ async function api(method, endpoint, body) {
   });
   const text = await res.text();
   let json; try { json = JSON.parse(text); } catch { json = text; }
-  if (!res.ok) throw new Error(`${method} ${endpoint} -> ${res.status}: ${text.slice(0, 500)}`);
+  if (!res.ok) {
+    const err = new Error(`${method} ${endpoint} -> ${res.status}: ${text.slice(0, 500)}`);
+    err.status = res.status;     // numeric HTTP status, for targeted retries
+    err.bodyText = text;         // full response body, for error matching
+    throw err;
+  }
   return json;
+}
+
+// True when Publer rejected a media download because another download is still
+// running in this workspace ("Please wait until your other download media from
+// URL jobs have finished"). Other 403s (e.g. auth problems) still fail fast.
+function isMediaBusyError(err) {
+  if (!err || err.status !== 403) return false;
+  return /other download media|wait until/i.test(String(err.bodyText || err.message || ''));
 }
 
 // ---- discover: list workspaces + accounts so we can map channel -> account id ----
@@ -100,10 +123,11 @@ function networkType(item) {
   if (mediaUrl(item)) return 'photo';
   return 'status';
 }
-// Poll a Publer async job until it finishes; return the final job object.
+// Poll a Publer async job until it finishes; return the final job object
+// (or null if it never reaches a terminal state within the timeout).
 async function pollJob(jobId, label) {
-  for (let i = 0; i < 20; i++) {
-    await new Promise(r => setTimeout(r, 2500));
+  for (let i = 0; i < POLL_TRIES; i++) {
+    await sleep(POLL_INTERVAL_MS);
     try {
       const s = await api('GET', `/job_status/${jobId}`);
       const status = String(s.status || s.state || '').toLowerCase();
@@ -111,6 +135,7 @@ async function pollJob(jobId, label) {
       if (['complete', 'completed', 'success', 'failed', 'failure', 'error'].includes(status)) return s;
     } catch (e) { console.log('  poll: ' + e.message); }
   }
+  console.log(`  ${label || 'job'} ${jobId}: still not finished after ${POLL_TRIES} polls — giving up on this job`);
   return null;
 }
 
@@ -137,8 +162,23 @@ function extractMediaIds(obj) {
 }
 
 // Upload a public media URL to Publer, return the resulting media id(s).
+// If Publer says another download is still running (403), wait and retry
+// instead of failing the whole run.
 async function uploadMediaIds(url) {
-  const resp = await api('POST', '/media/from-url', { media: [{ url }] });
+  let resp;
+  for (let attempt = 1; attempt <= MEDIA_BUSY_MAX_ATTEMPTS; attempt++) {
+    try {
+      resp = await api('POST', '/media/from-url', { media: [{ url }] });
+      break;
+    } catch (e) {
+      if (isMediaBusyError(e) && attempt < MEDIA_BUSY_MAX_ATTEMPTS) {
+        console.log(`  Publer media queue busy (attempt ${attempt}/${MEDIA_BUSY_MAX_ATTEMPTS}) — waiting ${MEDIA_BUSY_WAIT_MS / 1000}s for the in-flight download to finish`);
+        await sleep(MEDIA_BUSY_WAIT_MS);
+        continue;
+      }
+      throw e;
+    }
+  }
   console.log('  media resp: ' + JSON.stringify(resp).slice(0, 400));
   let obj = resp;
   if (resp && resp.job_id) {
@@ -147,6 +187,7 @@ async function uploadMediaIds(url) {
   }
   const ids = extractMediaIds(obj);
   console.log('  media ids: ' + JSON.stringify(ids));
+  if (!ids.length) console.log(`  WARNING: no media ids for ${url} — this media will be missing unless Publer finishes the download later`);
   return ids;
 }
 
