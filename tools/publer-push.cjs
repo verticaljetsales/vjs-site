@@ -24,6 +24,9 @@ const DEFAULT_TIME = 'T14:00:00Z';      // 09:00 US-Central ≈ 14:00 UTC (adjus
 // Publer runs "media from URL" downloads one at a time per workspace: while one
 // download is still in flight, new ones are rejected with a 403 telling us to
 // wait. These settings make the script wait out that limit instead of dying.
+// Safety: an item whose media produces no usable Publer media ids is skipped
+// loudly (never scheduled text-only/broken), and items are marked Scheduled
+// only after Publer's schedule job confirms success.
 const MEDIA_BUSY_MAX_ATTEMPTS = 10;     // ~5 minutes of waiting per media URL
 const MEDIA_BUSY_WAIT_MS = 30000;
 const POLL_TRIES = 60;                  // 60 x 3s = up to 3 minutes per async job
@@ -199,6 +202,15 @@ async function buildPost(item, accountId) {
     const ids = await uploadMediaIds(url);
     for (const id of ids) media.push({ id, type: mtype });
   }
+  // Never schedule a broken post: if Publer produced no usable media for an
+  // item that was designed with media, skip the item loudly instead of sending
+  // it text-only or missing slides.
+  if (urls.length && !media.length) {
+    throw new Error(`Publer returned no usable media for ${urls.length} media URL(s) — refusing to schedule a broken post`);
+  }
+  if (urls.length && media.length < urls.length) {
+    console.log(`::warning::${item.id}: only ${media.length}/${urls.length} media URL(s) produced usable media — post will be missing slides`);
+  }
   const net = {};
   net[item.channel] = { type: media.length ? mtype : 'status', text: caption(item), media };
   return { networks: net, accounts: [{ id: accountId, scheduled_at: scheduledAt(item) }] };
@@ -212,15 +224,26 @@ async function push({ dryRun }) {
 
   const posts = [];
   const used = [];
+  const skipped = [];
   for (const { file, data } of approved) {
     const acct = map[data.channel];
     if (!acct) { console.log(`skip ${data.id}: no account id mapped for "${data.channel}"`); continue; }
     if (!scheduledAt(data)) { console.log(`skip ${data.id}: no scheduled_for date`); continue; }
     console.log(`preparing ${data.id} (${data.channel})`);
-    posts.push(await buildPost(data, acct));
-    used.push({ file, data });
+    try {
+      posts.push(await buildPost(data, acct));
+      used.push({ file, data });
+    } catch (e) {
+      // Leave the item Approved (never mark Scheduled) so it can be fixed and
+      // retried; keep going with the remaining items.
+      console.log(`::error::skipping ${data.id}: ${e.message}`);
+      skipped.push(data.id);
+    }
   }
-  if (!posts.length) { console.log('Nothing to send after mapping/date checks.'); return; }
+  if (!posts.length) {
+    if (skipped.length) throw new Error(`${skipped.length} approved item(s) could not be prepared (see errors above) — nothing scheduled`);
+    console.log('Nothing to send after mapping/date checks.'); return;
+  }
 
   const payload = { bulk: { state: 'scheduled', posts } };
   if (dryRun) { console.log(JSON.stringify(payload, null, 2)); return; }
@@ -230,7 +253,13 @@ async function push({ dryRun }) {
   console.log(`Submitted ${posts.length} post(s). Job: ${jobId}`);
 
   const final = jobId ? await pollJob(jobId, 'schedule') : null;
-  if (final) console.log(JSON.stringify(final, null, 2));
+  if (!final) {
+    // Never mark items Scheduled without Publer's own confirmation — otherwise
+    // a silent failure looks like success and the posts never go out.
+    console.log('::error::Publer schedule job never reached a terminal state — NOT marking anything Scheduled. Verify in Publer before re-running to avoid duplicates.');
+    throw new Error('schedule job unconfirmed');
+  }
+  console.log(JSON.stringify(final, null, 2));
 
   // A job can be "complete" yet still contain per-post failures — check them.
   const failures = final && final.payload && final.payload.failures;
@@ -246,6 +275,9 @@ async function push({ dryRun }) {
     fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
   }
   console.log(`Success — scheduled ${used.length} post(s) in Publer.`);
+  if (skipped.length) {
+    console.log(`::error::${skipped.length} item(s) skipped and left as Approved (not scheduled): ${skipped.join(', ')}`);
+  }
 }
 
 (async () => {
