@@ -1,0 +1,52 @@
+{
+  "id": "2026-08-07-tt-hurry-up-whiskey-hook",
+  "status": "Draft",
+  "channel": "tiktok",
+  "format": "short_video",
+  "pillar": "new_music_and_teasers",
+  "song_id": "hurry-up-whiskey",
+  "show_id": "",
+  "title": "Hurry Up Whiskey, acoustic hook to camera",
+  "scheduled_for": "",
+  "hook": "hurry up whiskey. out now.",
+  "body": "playing this one the way it was written. [BEN: one true line about a night this song came from, or just leave it]\n\nout now. acoustic version too if that's more your speed.",
+  "script": [
+    {
+      "beat": "Hook (0 to 2s)",
+      "visual": "tailgate, golden hour, guitar in lap, straight to camera",
+      "line": "just start playing. no intro.",
+      "onscreen": "Hurry Up Whiskey"
+    },
+    {
+      "beat": "Chorus (2 to 12s)",
+      "visual": "hold the shot, sing the hook of the chorus",
+      "line": "the catchiest line of the chorus, real voice, no track behind it",
+      "onscreen": "acoustic"
+    },
+    {
+      "beat": "End (12 to 16s)",
+      "visual": "let the last note ring, small nod",
+      "line": "say nothing, or 'out now'",
+      "onscreen": "out now"
+    }
+  ],
+  "shot_list": [
+    "verse into chorus of Hurry Up Whiskey, ONE take, straight to camera, tailgate at golden hour",
+    "phone is fine. raw beats polished here"
+  ],
+  "hashtags": [
+    "#texascountry",
+    "#countrymusic",
+    "#hurryupwhiskey",
+    "#acoustic"
+  ],
+  "cta": "",
+  "media": [],
+  "media_notes": "Ben films the one-take hook (see shot list). Text card is the placeholder until then. Optional: fill the [BEN] line for a stronger caption.",
+  "visual_kicker": "out now",
+  "visual_headline": "Hurry Up Whiskey",
+  "layout": "",
+  "created_by": "music-content-studio",
+  "notes": "Caption has a [BEN] blank for a real detail. Fine to post without it too.",
+  "visual": "/media/music/generated/2026-08-07-tt-hurry-up-whiskey-hook.jpg"
+}

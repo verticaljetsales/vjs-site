@@ -1,0 +1,12 @@
+{
+  "id": "2026-08-05-example-how-this-works",
+  "status": "New",
+  "kind": "idea",
+  "from": "Ben",
+  "title": "Example: drop raw material here",
+  "note": "This is the Inbox. Drop anything here and the studio turns it into posts: a new song link, a photo/video from a show, a lyric you want to tease, a news moment, or a one-line idea. Set kind to one of: song_release | live_clip | photo_drop | lyric_tease | story_idea | news_moment | idea. Add channels (e.g. [\"tiktok\",\"instagram\"]) to steer it. Add source_url if there's a link. The studio reads status:New items and writes drafts, then flips this to 'Turned into posts'.",
+  "channels": [],
+  "source_url": "",
+  "media": [],
+  "notes": ""
+}

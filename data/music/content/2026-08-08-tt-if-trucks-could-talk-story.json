@@ -1,0 +1,58 @@
+{
+  "id": "2026-08-08-tt-if-trucks-could-talk-story",
+  "status": "Draft",
+  "channel": "tiktok",
+  "format": "short_video",
+  "pillar": "story_and_songwriter",
+  "song_id": "if-trucks-could-talk",
+  "show_id": "",
+  "title": "Story behind If Trucks Could Talk",
+  "scheduled_for": "",
+  "hook": "[BEN: the real reason you wrote this one]",
+  "body": "if trucks could talk. [BEN: the true story, even one sentence, is the whole post here]\n\nit's on the record.",
+  "script": [
+    {
+      "beat": "Hook (0 to 3s)",
+      "visual": "by the truck, talking to camera",
+      "line": "[BEN: open with the real detail. do not make one up.]",
+      "onscreen": "story behind it"
+    },
+    {
+      "beat": "Story (3 to 14s)",
+      "visual": "keep it plain, like telling a buddy",
+      "line": "[BEN: the rest of the real story]",
+      "onscreen": "If Trucks Could Talk"
+    },
+    {
+      "beat": "Into the hook (14 to 22s)",
+      "visual": "pick up the guitar, drop into the chorus",
+      "line": "sing the chorus hook",
+      "onscreen": ""
+    },
+    {
+      "beat": "End (22 to 25s)",
+      "visual": "nod",
+      "line": "'out now' or nothing",
+      "onscreen": ""
+    }
+  ],
+  "shot_list": [
+    "talk to camera by the truck for the story. confirm the real detail first, do not invent it",
+    "then a guitar drop into the chorus of If Trucks Could Talk, one take"
+  ],
+  "hashtags": [
+    "#texascountry",
+    "#storybehindthesong",
+    "#countrymusic",
+    "#iftruckscouldtalk"
+  ],
+  "cta": "",
+  "media": [],
+  "media_notes": "This post is built around Ben's real story. It should NOT be posted with a made-up origin. Fill the [BEN] blanks.",
+  "visual_kicker": "story behind it",
+  "visual_headline": "If Trucks Could Talk",
+  "layout": "",
+  "created_by": "music-content-studio",
+  "notes": "Held the origin for Ben on purpose. Needs his real story before posting.",
+  "visual": "/media/music/generated/2026-08-08-tt-if-trucks-could-talk-story.jpg"
+}

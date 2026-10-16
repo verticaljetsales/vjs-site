@@ -186,3 +186,152 @@ collections:
         field: { label: "File", name: "file", widget: "image" }
       - { label: "Suggested channels (optional)", name: "channels", widget: "string", required: false, hint: "e.g. 'LinkedIn + Instagram'. Blank = agent decides." }
       - { label: "Submitted by", name: "submitted_by", widget: "string", required: false, hint: "Your name — Ben or Kalene." }
+
+  # ===========================================================================
+  # BEN McPEAK — MUSIC CONTENT STUDIO
+  # A parallel content engine for Ben's music. The music-content-studio agent
+  # writes drafts here; a human reviews, edits, and sets Status to "Approved".
+  # Nothing is cleared to post until then. Media lives under media/music/.
+  # ===========================================================================
+  - name: "music_content"
+    label: "🎸 Music — Content Studio"
+    label_singular: "Music Content Item"
+    folder: "data/music/content"
+    extension: "json"
+    format: "json"
+    create: true
+    duplicate: true
+    slug: "{{fields.id}}"
+    identifier_field: "title"
+    media_folder: "/media/music/uploads"
+    public_folder: "/media/music/uploads"
+    summary: "[{{fields.status}}] {{fields.channel}} — {{fields.title}}"
+    sortable_fields: ["scheduled_for", "status", "channel", "pillar"]
+    description: "Review social posts the music agent drafted. Read it, edit anything, then set Status to Approved when it's cleared to post. Set a date in Scheduled For to slot it on the calendar."
+    fields:
+      - { label: "Status", name: "status", widget: "select", default: "Draft", options: ["Idea", "Draft", "Needs Edit", "Approved", "Scheduled", "Posted", "Archived"], hint: "Draft = agent wrote it, waiting on you. Approved = cleared to post. Nothing goes live until Approved." }
+      - { label: "Channel", name: "channel", widget: "select", options: ["tiktok", "instagram", "youtube", "facebook"] }
+      - { label: "Format", name: "format", widget: "select", required: false, options: ["short_video", "reel", "carousel", "single_image", "text_post", "link_post", "long_form"] }
+      - { label: "Visual Layout", name: "layout", widget: "select", required: false, default: "", options: ["", "full-bleed", "framed"], hint: "Blank = auto (full-bleed for photos, lyric card if none). full-bleed = photo fills the frame (default for music). framed = whole image shown with a branded band (good for cover art)." }
+      - { label: "Pillar", name: "pillar", widget: "select", required: false, options: ["new_music_and_teasers", "live_and_road", "story_and_songwriter", "faith_family_hometown", "personality_and_fans"] }
+      - { label: "Title (internal label)", name: "title", widget: "string", hint: "Just for the queue — never posted." }
+      - { label: "ID (URL-safe, unique)", name: "id", widget: "string", hint: "e.g. 2026-08-07-tt-hurry-up-whiskey-hook. Lowercase, dashes, no spaces." }
+      - { label: "Linked Song ID", name: "song_id", widget: "string", required: false, hint: "The song this is about, e.g. hurry-up-whiskey. Blank if none." }
+      - { label: "Linked Show ID", name: "show_id", widget: "string", required: false, hint: "For show posts — must be a CONFIRMED show. Blank if none." }
+      - { label: "Scheduled For", name: "scheduled_for", widget: "datetime", required: false, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", picker_utc: true, hint: "The day this should post. Leave blank until you've approved it." }
+      - { label: "Hook (first line / on-screen)", name: "hook", widget: "text", required: false, hint: "The scroll-stopper. Must earn the next second." }
+      - { label: "Body / Caption", name: "body", widget: "text", required: false, hint: "The post copy. This is what gets published." }
+      - label: "Video Script"
+        name: "script"
+        widget: "list"
+        required: false
+        label_singular: "Beat"
+        summary: "{{fields.beat}} — {{fields.onscreen}}"
+        hint: "Only for TikToks / Reels / Shorts. One row per beat."
+        fields:
+          - { label: "Beat", name: "beat", widget: "string", required: false }
+          - { label: "Visual direction", name: "visual", widget: "text", required: false }
+          - { label: "Spoken / sung line", name: "line", widget: "text", required: false }
+          - { label: "On-screen text", name: "onscreen", widget: "string", required: false }
+      - { label: "Recording / Shot List", name: "shot_list", widget: "list", required: false, hint: "For video: EXACTLY what Ben films — song, section, setting, framing. The studio can't generate a performance." }
+      - { label: "Hashtags", name: "hashtags", widget: "list", required: false, hint: "One per line. Include the #. Keep to ~4–6." }
+      - { label: "Call to Action", name: "cta", widget: "string", required: false }
+      - label: "Media"
+        name: "media"
+        widget: "list"
+        required: false
+        hint: "Photos/clips to use. Drag to reorder — first is the lead image."
+        field: { label: "File", name: "file", widget: "image" }
+      - { label: "Media Notes", name: "media_notes", widget: "text", required: false, hint: "e.g. 'needs a vertical one-take of the chorus'." }
+      - { label: "Finished Visual (auto-generated)", name: "visual", widget: "image", required: false, hint: "The branded graphic the studio composed. Regenerated by the compose-music-visuals tool." }
+      - { label: "Finished Video (auto-generated)", name: "video", widget: "file", required: false, hint: "For videos: the motion-from-photo clip the studio composed. Regenerated by the compose-music-video tool." }
+      - { label: "Audio bed (optional)", name: "audio", widget: "file", required: false, hint: "ONLY a cleared/original bed. Blank = silent clip you drop over the real song in-app." }
+      - { label: "Visual: Headline override", name: "visual_headline", widget: "string", required: false, hint: "Optional. Leave blank to use the Hook on the graphic." }
+      - { label: "Visual: Subline override", name: "visual_subline", widget: "string", required: false }
+      - { label: "Visual: Kicker / badge override", name: "visual_kicker", widget: "string", required: false, hint: "e.g. 'New Single', 'Live in Bandera'." }
+      - { label: "Created By", name: "created_by", widget: "string", required: false, default: "music-content-studio" }
+      - { label: "Review Notes", name: "notes", widget: "text", required: false, hint: "Your edits/feedback for the agent or the team." }
+
+  - name: "music_inbox"
+    label: "🎸 Music — Ideas & Inbox"
+    label_singular: "Music Idea"
+    folder: "data/music/inbox"
+    extension: "json"
+    format: "json"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    identifier_field: "title"
+    media_folder: "/media/music/uploads"
+    public_folder: "/media/music/uploads"
+    summary: "[{{fields.status}}] {{fields.title}}"
+    description: "Drop anything to turn into posts: a new song link, a clip/photo from a show, a lyric to tease, a news moment, a one-line idea. Set Status to 'New' and the music agent picks it up. Never posts on its own."
+    fields:
+      - { label: "Status", name: "status", widget: "select", default: "New", options: ["New", "Being worked on", "Turned into posts", "Archived"] }
+      - { label: "What is it?", name: "title", widget: "string" }
+      - { label: "Type", name: "kind", widget: "select", required: false, default: "idea", options: ["song_release", "live_clip", "photo_drop", "lyric_tease", "story_idea", "news_moment", "idea"] }
+      - { label: "Link / URL", name: "source_url", widget: "string", required: false }
+      - { label: "Notes", name: "note", widget: "text", required: false, hint: "Describe it. For a lyric tease, paste the REAL line only." }
+      - { label: "Suggested channels", name: "channels", widget: "list", required: false, hint: "e.g. tiktok, instagram. Blank = agent decides." }
+      - label: "Attach photos / clips"
+        name: "media"
+        widget: "list"
+        required: false
+        field: { label: "File", name: "file", widget: "image" }
+      - { label: "From", name: "from", widget: "string", required: false }
+
+  - name: "music_songs"
+    label: "🎸 Music — Songs & Releases"
+    label_singular: "Song"
+    folder: "data/music/songs"
+    extension: "json"
+    format: "json"
+    create: true
+    duplicate: true
+    slug: "{{fields.id}}"
+    identifier_field: "title"
+    media_folder: "/media/music/uploads"
+    public_folder: "/media/music/uploads"
+    summary: "{{fields.title}} — {{fields.type}} {{fields.release_date}}"
+    description: "The source of truth for Ben's catalog. The agent grounds every song post in these — it never invents facts. Fill only what's TRUE; leave unknowns blank. Only put a REAL line in Signature Lyric."
+    fields:
+      - { label: "ID (URL-safe)", name: "id", widget: "string", hint: "e.g. hurry-up-whiskey" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Type", name: "type", widget: "select", required: false, options: ["single", "album", "ep", "track"], default: "single" }
+      - { label: "Status", name: "status", widget: "select", required: false, options: ["Released", "Upcoming", "Unreleased"], default: "Released" }
+      - { label: "Release date", name: "release_date", widget: "string", required: false, hint: "YYYY or YYYY-MM-DD. Blank if unknown/unset." }
+      - { label: "On album", name: "album", widget: "string", required: false }
+      - { label: "Theme (for content — confirm before posting)", name: "theme", widget: "text", required: false }
+      - { label: "Mood", name: "mood", widget: "string", required: false }
+      - { label: "Signature lyric (REAL line only)", name: "signature_lyric", widget: "text", required: false, hint: "Only a genuine lyric. If blank, the studio won't fake a quote." }
+      - { label: "Spotify URL", name: "spotify_url", widget: "string", required: false }
+      - { label: "Apple Music URL", name: "apple_url", widget: "string", required: false }
+      - { label: "YouTube URL", name: "youtube_url", widget: "string", required: false }
+      - { label: "Cover art", name: "cover_art", widget: "image", required: false }
+      - { label: "Promo photo", name: "photo", widget: "image", required: false }
+      - { label: "Notes", name: "notes", widget: "text", required: false }
+
+  - name: "music_shows"
+    label: "🎸 Music — Shows & Tour"
+    label_singular: "Show"
+    folder: "data/music/shows"
+    extension: "json"
+    format: "json"
+    create: true
+    duplicate: true
+    slug: "{{fields.id}}"
+    identifier_field: "venue"
+    media_folder: "/media/music/uploads"
+    public_folder: "/media/music/uploads"
+    summary: "{{fields.date}} — {{fields.venue}}, {{fields.city}} [{{fields.confirmed}}]"
+    description: "Tour dates. IMPORTANT: the studio only announces a show when Confirmed is checked. Add the real date + ticket link, then check Confirmed to let it be posted."
+    fields:
+      - { label: "ID (URL-safe)", name: "id", widget: "string" }
+      - { label: "Venue", name: "venue", widget: "string" }
+      - { label: "City", name: "city", widget: "string", required: false }
+      - { label: "State", name: "state", widget: "string", required: false, default: "TX" }
+      - { label: "Date", name: "date", widget: "string", required: false, hint: "YYYY-MM-DD" }
+      - { label: "Time", name: "time", widget: "string", required: false }
+      - { label: "Ticket URL", name: "ticket_url", widget: "string", required: false }
+      - { label: "With (other acts)", name: "with_acts", widget: "string", required: false }
+      - { label: "Confirmed — OK to announce", name: "confirmed", widget: "boolean", default: false, hint: "The studio will NOT post this show unless this is on." }
+      - { label: "Notes", name: "notes", widget: "text", required: false }

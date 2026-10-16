@@ -1,0 +1,54 @@
+{
+  "created_by": "music-content-studio",
+  "id": "idea-why-1994",
+  "status": "Draft",
+  "channel": "tiktok",
+  "format": "short_video",
+  "pillar": "story_and_songwriter",
+  "song_id": "",
+  "show_id": "",
+  "scheduled_for": "",
+  "title": "Why I still sound like 1994",
+  "hook": "people ask why my stuff sounds old.",
+  "body": "grew up on waylon and merle. never grew out of it.\n\nnew record's got that 90s neo-traditional sound the whole way through. on purpose.",
+  "script": [
+    {
+      "beat": "Hook (0 to 3s)",
+      "visual": "drop the needle on a Waylon or Merle record",
+      "line": "people ask why my stuff sounds old.",
+      "onscreen": "why i still sound like 1994"
+    },
+    {
+      "beat": "The turn (3 to 10s)",
+      "visual": "record spinning, then HARD CUT to the band playing",
+      "line": "so i made a whole record that sounds like it.",
+      "onscreen": "the new EP"
+    },
+    {
+      "beat": "End (10 to 15s)",
+      "visual": "band locked into the neo-trad groove, nod",
+      "line": "boat’s the first one. out now.",
+      "onscreen": "Boat · out now"
+    }
+  ],
+  "shot_list": [
+    "turntable + record close-up (a real Waylon or Merle record) for the visual",
+    "hard cut to the band playing the EP groove. IMPORTANT: use YOUR music for the audio, the records are visual only"
+  ],
+  "hashtags": [
+    "#texascountry",
+    "#90scountry",
+    "#neotraditionalcountry",
+    "#countrymusic"
+  ],
+  "cta": "",
+  "media": [],
+  "layout": "",
+  "media_notes": "Poster graphic (no photo needed). The clip itself is Ben filmed to the shot list.",
+  "visual": "/media/music/generated/idea-why-1994.jpg",
+  "video": "",
+  "visual_headline": "why i still sound like 1994",
+  "visual_subline": "the new record. on purpose.",
+  "visual_kicker": "Neo-Traditional",
+  "notes": "Owns the 90s neo-trad identity (real: influences Waylon & Merle, per Ben’s bio)."
+}

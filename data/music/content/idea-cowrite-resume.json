@@ -1,0 +1,69 @@
+{
+  "created_by": "music-content-studio",
+  "id": "idea-cowrite-resume",
+  "status": "Draft",
+  "channel": "tiktok",
+  "format": "short_video",
+  "pillar": "story_and_songwriter",
+  "song_id": "",
+  "show_id": "",
+  "scheduled_for": "",
+  "title": "Co-write resume: the ones I kept",
+  "hook": "you've heard my songs. these are the ones i kept.",
+  "body": "wrote cuts for kyle park and michael salgado over the years. kept a few for myself too.\n\n[BEN: which two cuts do you want to show? name them]\n\nboat's the new one. out now.",
+  "script": [
+    {
+      "beat": "Hook (0 to 3s)",
+      "visual": "to camera, guitar in lap",
+      "line": "you've probably heard one of my songs and never knew it was mine.",
+      "onscreen": "songwriter"
+    },
+    {
+      "beat": "Cut 1 (3 to 8s)",
+      "visual": "play a few seconds of the Kyle Park cut",
+      "line": "wrote this one.",
+      "onscreen": "[BEN: Kyle Park song]"
+    },
+    {
+      "beat": "Cut 2 (8 to 13s)",
+      "visual": "a few seconds of the Michael Salgado cut",
+      "line": "and this one.",
+      "onscreen": "[BEN: Michael Salgado song]"
+    },
+    {
+      "beat": "The one I kept (13 to 20s)",
+      "visual": "pick up the guitar, drop into the Boat hook",
+      "line": "this one i kept for myself.",
+      "onscreen": "Boat"
+    },
+    {
+      "beat": "End (20 to 23s)",
+      "visual": "nod",
+      "line": "out now.",
+      "onscreen": "out now"
+    }
+  ],
+  "shot_list": [
+    "to-camera intro, guitar in lap",
+    "confirm the two co-writes you want to name, then screen-play a few seconds of each (make sure they’re public)",
+    "live drop into the Boat chorus, one take"
+  ],
+  "hashtags": [
+    "#texascountry",
+    "#songwriter",
+    "#countrymusic",
+    "#newmusic"
+  ],
+  "cta": "",
+  "media": [
+    "/media/music/uploads/press-portrait.jpg"
+  ],
+  "layout": "",
+  "media_notes": "Placeholder graphic uses the press portrait. The TikTok is Ben filmed to the shot list. Fill the [BEN] song names before posting.",
+  "visual": "/media/music/generated/idea-cowrite-resume.jpg",
+  "video": "",
+  "visual_headline": "the ones i kept",
+  "visual_subline": "",
+  "visual_kicker": "Songwriter",
+  "notes": "Built on real co-writes (Kyle Park, Michael Salgado). Names left blank for Ben to confirm what’s public."
+}

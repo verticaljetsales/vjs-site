@@ -1,0 +1,24 @@
+{
+  "id": "boat",
+  "title": "Boat",
+  "type": "single",
+  "release_date": "",
+  "album": "",
+  "status": "Released",
+  "theme": "Feel-good, fun, uptempo 90s country jam about boats, water, and the good times they bring. Lead single from the new EP. Title and idea brought in by co-writer Steven Nix.",
+  "mood": "uptempo, feel-good, in-your-face 90s country",
+  "signature_lyric": "",
+  "spotify_url": "",
+  "apple_url": "",
+  "youtube_url": "",
+  "cover_art": "/media/music/uploads/boat-cover.jpg",
+  "photo": "",
+  "co_writers": "Steven Nix",
+  "notes": "Real single. Existing 4000x4000 cover art is in Ben’s Drive brand folder (Ben McPeak - Boat Single Artwork). Pull it into media/music/uploads/boat-cover.jpg and set cover_art to use it.",
+  "verified_facts": [
+    "title",
+    "type",
+    "theme",
+    "co_writers"
+  ]
+}

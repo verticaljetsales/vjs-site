@@ -1,0 +1,7 @@
+{
+  "_comment": "Channel -> Publer account id for Ben McPeak's social accounts. Fill these from the `node tools/music-publer-push.cjs --discover` output (runs in GitHub Actions where Publer is reachable). Leave blank until known.",
+  "tiktok": "",
+  "instagram": "",
+  "youtube": "",
+  "facebook": ""
+}

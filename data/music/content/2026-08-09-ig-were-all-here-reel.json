@@ -1,0 +1,53 @@
+{
+  "id": "2026-08-09-ig-were-all-here-reel",
+  "status": "Draft",
+  "channel": "instagram",
+  "format": "reel",
+  "pillar": "new_music_and_teasers",
+  "song_id": "were-all-here",
+  "show_id": "",
+  "title": "We're All Here, title track reel",
+  "scheduled_for": "",
+  "hook": "the whole record's out.",
+  "body": "twelve songs. this is the one it's named after.\n\nstart here and let it run.",
+  "script": [
+    {
+      "beat": "Hook (0 to 2s)",
+      "visual": "a performance clip, or the room filling up before a set",
+      "line": "drop straight into the title-track chorus",
+      "onscreen": "We're All Here"
+    },
+    {
+      "beat": "Build (2 to 10s)",
+      "visual": "stay on the chorus, live or acoustic",
+      "line": "sing the hook",
+      "onscreen": ""
+    },
+    {
+      "beat": "End (10 to 13s)",
+      "visual": "wide of the stage or the crowd",
+      "line": "nothing needed",
+      "onscreen": "out now"
+    }
+  ],
+  "shot_list": [
+    "strongest performance clip you’ve got of the We're All Here chorus",
+    "a room-filling-up or crowd shot for the open if you have one"
+  ],
+  "hashtags": [
+    "#texascountry",
+    "#countrymusic",
+    "#werallhere",
+    "#newcountry",
+    "#livecountrymusic"
+  ],
+  "cta": "",
+  "media": [],
+  "media_notes": "Pull the strongest existing performance clip of the title track.",
+  "visual_kicker": "the album",
+  "visual_headline": "We're All Here",
+  "layout": "",
+  "created_by": "music-content-studio",
+  "notes": "",
+  "visual": "/media/music/generated/2026-08-09-ig-were-all-here-reel.jpg"
+}

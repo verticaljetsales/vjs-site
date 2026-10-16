@@ -1,0 +1,60 @@
+{
+  "id": "2026-08-15-tt-songwriter-cowrites",
+  "status": "Draft",
+  "channel": "tiktok",
+  "format": "short_video",
+  "pillar": "story_and_songwriter",
+  "song_id": "",
+  "show_id": "",
+  "title": "Songwriter POV — the cuts you didn’t know were mine",
+  "scheduled_for": "",
+  "hook": "you've probably heard one of my songs without knowing it.",
+  "body": "been writing for other folks a while. co-wrote cuts for kyle park and michael salgado. now i'm putting out my own.\n\n[BEN: name one line or song you're proudest of writing, if you want]",
+  "script": [
+    {
+      "beat": "Hook (0 to 3s)",
+      "visual": "to camera, guitar nearby",
+      "line": "you've probably heard one of my songs without knowing it.",
+      "onscreen": "songwriter"
+    },
+    {
+      "beat": "Reveal (3 to 12s)",
+      "visual": "keep it plain",
+      "line": "co-wrote cuts for Kyle Park and Michael Salgado. tell the real story of one if you want.",
+      "onscreen": "Kyle Park · Michael Salgado"
+    },
+    {
+      "beat": "Turn (12 to 20s)",
+      "visual": "pick up the guitar",
+      "line": "now i’m cutting my own. play a few seconds of one",
+      "onscreen": ""
+    },
+    {
+      "beat": "End",
+      "visual": "nod",
+      "line": "'more coming'",
+      "onscreen": ""
+    }
+  ],
+  "shot_list": [
+    "to-camera for the songwriter reveal, then a few seconds of one of your originals",
+    "confirm which co-writes you want to name publicly before posting"
+  ],
+  "hashtags": [
+    "#texascountry",
+    "#songwriter",
+    "#countrymusic",
+    "#nashville"
+  ],
+  "cta": "",
+  "media": [
+    "/media/music/uploads/press-portrait.jpg"
+  ],
+  "media_notes": "Placeholder graphic uses a real press portrait; the actual TikTok is Ben filmed to the shot list.",
+  "visual_kicker": "songwriter",
+  "visual_headline": "you've probably heard one of my songs without knowing it",
+  "layout": "",
+  "created_by": "music-content-studio",
+  "notes": "Grounded in real co-writing history. One optional [BEN] blank.",
+  "visual": "/media/music/generated/2026-08-15-tt-songwriter-cowrites.jpg"
+}
