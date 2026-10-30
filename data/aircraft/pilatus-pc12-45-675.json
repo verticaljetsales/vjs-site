@@ -1,0 +1,119 @@
+{
+  "order": 5,
+  "status": "For Sale",
+  "year": "2005",
+  "make_model": "Pilatus PC-12/45",
+  "id": "pilatus-pc12-45-675",
+  "registration": "N675CF",
+  "serial": "675",
+  "category": "Turboprop",
+  "total_time": "7,370.6 hrs",
+  "cycles": "5,044",
+  "passengers": "7",
+  "engines": "PT6A-67B",
+  "price": "Price on request",
+  "highlight": "2018 paint & interior, fresh annual, MT 5-blade composite prop 68.6 hrs since overhaul.",
+  "overview": "This 2005 Pilatus PC-12/45 has 7,370.6 total hours and 5,044 landings, with a fresh annual inspection completed September 2026. The Pratt & Whitney Canada PT6A-67B has 1,996.9 hours and 960 cycles since overhaul, and the MT 5-blade composite propeller was overhauled in September 2025 and has 68.6 hours since overhaul.\n\nShe wears 2018 paint in silver and blue with gold accent striping and has a 2018 refurbished interior. The seven-place executive cabin has a four-place club, a three-place bench seat, two stowable tables and a flushing lavatory. Equipment includes a cargo kit, vapor cycle cooling, a large capacity oxygen bottle and a Garmin GTN 625 GPS with WAAS. Based in Houston, TX.",
+  "photos": [
+    "/uploads/pilatus-pc12-45-675-1-exterior.webp",
+    "/uploads/pilatus-pc12-45-675-2-exterior.webp",
+    "/uploads/pilatus-pc12-45-675-3-cockpit.webp",
+    "/uploads/pilatus-pc12-45-675-4-cabin.webp",
+    "/uploads/pilatus-pc12-45-675-5-cabin.webp",
+    "/uploads/pilatus-pc12-45-675-6-cabin.webp",
+    "/uploads/pilatus-pc12-45-675-7-cabin.webp"
+  ],
+  "spec_sheet": "/uploads/2005-pilatus-pc-12-45-sn-675-spec-sheet.pdf",
+  "status_report": "",
+  "due_list": "",
+  "spec_groups": [
+    {
+      "group": "Airframe",
+      "rows": [
+        {
+          "label": "Total Time",
+          "value": "7,370.6 hrs"
+        },
+        {
+          "label": "Landings",
+          "value": "5,044"
+        }
+      ]
+    },
+    {
+      "group": "Engine - Pratt & Whitney Canada PT6A-67B",
+      "rows": [
+        {
+          "label": "Engine - SN PCE-PR0554 - TTSN",
+          "value": "7,370.6"
+        },
+        {
+          "label": "Engine - Cycles Since New",
+          "value": "5,044"
+        },
+        {
+          "label": "Engine - Time Since Overhaul",
+          "value": "1,996.9"
+        },
+        {
+          "label": "Engine - Cycles Since Overhaul",
+          "value": "960"
+        }
+      ]
+    },
+    {
+      "group": "Propeller - MT 5-Blade Composite (MTV-27)",
+      "rows": [
+        {
+          "label": "Propeller - SN 100251 - Total Time",
+          "value": "2,776.1"
+        },
+        {
+          "label": "Installed",
+          "value": "Sept 2018"
+        },
+        {
+          "label": "Overhauled",
+          "value": "Sept 2025"
+        },
+        {
+          "label": "Time Since Overhaul",
+          "value": "68.6"
+        }
+      ]
+    }
+  ],
+  "avionics": [
+    "Kannad 406 ELT",
+    "King KMH 820 IHAS",
+    "King KX 165A Radios",
+    "Garmin GTX-335 ADS-B Transponder",
+    "King KR 87 ADF",
+    "King KMA 24 Audio Panel",
+    "Honeywell AM 250 Digital Altimeter",
+    "Garmin GTN 625 GPS with WAAS",
+    "Pilot 5\" EFIS",
+    "Copilot 5\" EFIS",
+    "KMD 540 MFD",
+    "Dual LCR 92 AHRS",
+    "Dual Pitot Static System",
+    "ART 2000 WX Radar",
+    "WX 500 Storm Scope",
+    "KR21 Marker Beacon",
+    "KNI582-1 and KI204 Indicators"
+  ],
+  "features": [
+    "Emergency Power System",
+    "Recognition Lights",
+    "Canadian Certification Kit (Battery & Engine)",
+    "Cargo Kit",
+    "Dual Batteries",
+    "Cabin AC Power",
+    "Heater Polished",
+    "Large Capacity Oxygen Bottle",
+    "Vapor Cycle Cooling System"
+  ],
+  "exterior": "2018 paint. Silver and blue with gold accent striping.",
+  "interior": "2018 refurbished interior. Seven-place executive with a four-place club and three-place bench seat. Two stowable tables. Flushing lavatory. Veneer replaced 2017.",
+  "maintenance": "Annual Inspection - c/w September 2026. Times as of September 21, 2026, tracked on CAMP."
+}
