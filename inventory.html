@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet"><title>Aircraft for Sale | Vertical Jet Sales</title>
 <style>
@@ -369,7 +374,7 @@
   <div class="wrap inner">
     <div class="eyebrow rv">Current Inventory</div>
     <h1 class="rv rv-1">Aircraft for sale.</h1>
-    <p class="rv rv-2">A curated, actively-represented selection &mdash; each aircraft run personally by our team. Don't see the right tail? We source off-market every day.</p>
+    <p class="rv rv-2">A curated, actively-represented selection, each aircraft run personally by our team. Don't see the right tail? We source off-market every day.</p>
   </div>
 </section>
 
@@ -380,7 +385,7 @@
   </div>
   <div class="inv-grid" id="grid"></div>
   <p style="color:var(--muted);font-size:.98rem;padding:16px 0 90px">
-    Looking to buy something not listed here? We represent buyers on acquisitions across the full cabin-class market &mdash;
+    Looking to buy something not listed here? We represent buyers on acquisitions across the full cabin-class market:
     <a href="/acquisition.html" style="color:var(--gold);border-bottom:1px solid var(--line-gold)">tell us what you're after</a>.
   </p>
 </section>
@@ -441,14 +446,14 @@ function render(d){
   document.getElementById('cnt').textContent=active.filter(a=>a.status==='For Sale').length;
 
   // Fixed filter buttons. NOTE: strings must match the CMS "Category" values exactly.
-  const cats=['All','Light Jet','Mid-Size','Large Cabin'];
+  const cats=['All','Light Jet','Mid-Size','Large Cabin','Turboprop'];
   document.getElementById('chips').innerHTML=cats.map((c,i)=>`<button class="chip2 ${i===0?'active':''}" data-c="${c}">${c}</button>`).join('');
 
   // The CMS offers 6 categories; the filter shows 4. Map the extras into a bucket so no
   // listing is ever unreachable. The card still shows its true category label.
   const CAT_BUCKET={
     'Light Jet':'Light Jet',
-    'Turboprop':'Light Jet',
+    'Turboprop':'Turboprop',
     'Mid-Size':'Mid-Size',
     'Super-Mid':'Large Cabin',
     'Large Cabin':'Large Cabin',

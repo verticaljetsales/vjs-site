@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet"><title>Aircraft | Vertical Jet Sales</title>
 <style>
@@ -346,6 +351,16 @@
   .rv.in{opacity:1;transform:none}
   .rv-1{transition-delay:.06s}.rv-2{transition-delay:.12s}.rv-3{transition-delay:.18s}.rv-4{transition-delay:.24s}
   @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+  /* phone fix: stats row wraps to 2 columns, no sideways scroll */
+  .d-hero h1 .nw{white-space:nowrap}
+  @media(max-width:600px){
+    .qstats-grid{grid-template-columns:1fr 1fr}
+    .qstat{min-width:0;padding:20px 16px;border-left:none;border-top:1px solid var(--line-cool)}
+    .qstat:nth-child(even){border-left:1px solid var(--line-cool)}
+    .qstat:nth-child(-n+2){border-top:none}
+    .qstat .qv{font-size:1.1rem}
+    .d-hero h1{font-size:1.9rem}
+  }
 
 </style>
 <style>/* VJS-MOBILE-NAV */
@@ -429,7 +444,7 @@ fetch('/data/aircraft/'+encId+'.json').then(r=>{if(!r.ok)throw new Error('nf');r
   <section class="d-hero"><div class="d-hero-media">${hero?`<img src="${hero}" alt="${esc(name)}">`:''}</div>
     <div class="wrap d-hero-inner">
       <div class="crumb"><a href="/inventory.html">Inventory</a> &nbsp;/&nbsp; ${esc(a.category||'')}</div>
-      <h1>${esc(name)}</h1>
+      <h1>${esc(name).replace(/(\S*-\S*)/g,'<span class="nw">$1</span>')}</h1>
       <div class="tail">${esc(a.registration||'')}${a.registration&&a.serial?' &middot; ':''}${a.serial?'SN '+esc(a.serial):''}<span class="badge">${esc(a.status||'For Sale')}</span></div>
       <div class="d-cta"><a class="btn btn-gold" href="#inquire">Inquire on this aircraft</a>${docs?'<a class="btn btn-ghost" href="#documents">Documents &amp; specs</a>':''}</div>
     </div></section>
@@ -466,7 +481,7 @@ fetch('/data/aircraft/'+encId+'.json').then(r=>{if(!r.ok)throw new Error('nf');r
     <div class="closing-media">${hero?`<img src="${hero}" alt="">`:''}</div>
     <div class="wrap closing-inner"><div class="eyebrow">Aircraft Inquiry</div>
       <h2>Interested in this aircraft?</h2>
-      <p>Request the full specification, maintenance status, and pricing. We'll follow up personally &mdash; discreetly, and with the complete picture.</p>
+      <p>Request the full specification, maintenance status, and pricing. We'll follow up personally, discreetly, and with the complete picture.</p>
       <div class="cta-row"><a class="btn btn-gold" href="mailto:sales@verticaljetsales.com?subject=Inquiry: ${encodeURIComponent(name)}">Contact our team</a>
       <a class="btn btn-ghost" href="tel:2108652475">(210) 865-2475</a></div></div>
   </section>`;
