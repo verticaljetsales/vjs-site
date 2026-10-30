@@ -13,7 +13,7 @@
   "engines": "BR700-710A2-20",
   "price": "Price on request",
   "highlight": "Ultra-long-range. Engines enrolled on Rolls-Royce Corporate Care (RRCC), APU enrolled on MSP Gold.",
-  "overview": "This 2005 Global Express XRS is fully enrolled on Rolls-Royce Corporate Care, Smart Parts Plus, MSP Gold, and Collins CASP, with a major block of airframe and landing gear inspections completed in August 2025. She shows 8,842.7 hours and 4,672 landings, tracked on CAMP and operated Part 91.\n\nThe Honeywell Primus 2000XP flight deck features synthetic vision, HUD with EVS, and auto throttles, with FANS 1/A+, RNP-4, NAT HLA, RVSM, ADS-B Out, and increased MTOW. The 15-passenger cabin was refreshed in July 2020 and includes forward and aft lavatories, crew rest, and Starlink Wi-Fi.",
+  "overview": "This 2005 Global Express XRS is fully enrolled on Rolls-Royce Corporate Care, Smart Parts Plus, MSP Gold, and Collins CASP, with a major block of airframe and landing gear inspections completed in August 2025. It shows 8,842.7 hours and 4,672 landings, tracked on CAMP and operated Part 91.\n\nThe Honeywell Primus 2000XP flight deck features synthetic vision, HUD with EVS, and auto throttles, with FANS 1/A+, RNP-4, NAT HLA, RVSM, ADS-B Out, and increased MTOW. The 15-passenger cabin was refreshed in July 2020 and includes forward and aft lavatories, crew rest, and Starlink Wi-Fi.",
   "photos": [
     "/uploads/Twilight - 926.jpg",
     "/uploads/Cockpit - 737.jpg",
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "group": "Engines — Rolls Royce - BR700-710A2-20",
+      "group": "Engines - Rolls Royce - BR700-710A2-20",
       "rows": [
         {
           "label": "Engine 1- 12471 TTSN",
@@ -99,6 +99,6 @@
     "International Water-Guard water sterilizer system"
   ],
   "exterior": "Completed 2018.\nWater/Wave with PRC Desoto Aristo Blue",
-  "interior": "Completed 2014.\nInterior refresh: July 2020 — new Taiping carpet, new Techno Vinyl, minor cabin cabinetry, bulkheads, doors and surface refinish (Bombardier TUS)\n15 passengers, 2 crew, 1 crew jumpseat\nForward: 4-place club\nMid: (2) RH single club chairs opposite 4-place conference group\nAft: 3-place divan opposite 2-place club\nForward RH crew rest — 2-place 16G divan\nForward and aft lavatory\nCustom berthing cushions and bedding to berth the cabin for 6 passengers\nAdditional convertible seating included for installation: (1) forward LH 9G divan and (1) aft LH 9G divan, installable in multiple combinations per the original Bombardier completion STC",
+  "interior": "Completed 2014.\nInterior refresh: July 2020: new Taiping carpet, new Techno Vinyl, minor cabin cabinetry, bulkheads, doors and surface refinish (Bombardier TUS)\n15 passengers, 2 crew, 1 crew jumpseat\nForward: 4-place club\nMid: (2) RH single club chairs opposite 4-place conference group\nAft: 3-place divan opposite 2-place club\nForward RH crew rest: 2-place 16G divan\nForward and aft lavatory\nCustom berthing cushions and bedding to berth the cabin for 6 passengers\nAdditional convertible seating included for installation: (1) forward LH 9G divan and (1) aft LH 9G divan, installable in multiple combinations per the original Bombardier completion STC",
   "maintenance": "Airframe: Smart Parts Plus; Engines: Rolls-Royce Corporate Care; APU: MSP Gold; Spec and Status Report available above."
 }
