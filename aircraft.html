@@ -320,6 +320,8 @@
   .d-side .drow .k{color:var(--muted)}.d-side .drow .v{color:var(--bone)}
   .d-side .btn{width:100%;text-align:center;margin-top:8px}.d-side .btn+.btn{margin-top:10px}
   .specs-wrap{border-top:1px solid var(--line-cool);padding-top:56px;margin-top:60px}
+  .vid-frame{position:relative;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:#0a141e;border:1px solid var(--line-cool)}
+  .vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .spec-block{margin-bottom:42px}
   .spec-block h3{color:var(--gold);font-family:"Archivo",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:.8rem;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--line-gold)}
   .spec-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px 50px}
@@ -434,6 +436,14 @@ fetch('/data/aircraft/'+encId+'.json').then(r=>{if(!r.ok)throw new Error('nf');r
   const overview=(a.overview||'').split(/\n\s*\n/).filter(Boolean).map(p=>`<p>${esc(p)}</p>`).join('');
   const docs=[[enc(a.spec_sheet),'Full Spec Sheet'],[enc(a.status_report),'Maintenance Status Report'],[enc(a.due_list),'6-Month Due List']]
     .filter(x=>x[0]).map(x=>`<a class="doccard" href="${x[0]}" download>${DLIC}<span class="dc-t">${x[1]}</span><span class="dc-dl">Download &darr;</span></a>`).join('');
+  // Optional walkaround video: a Vimeo or YouTube link in the "video" field. Anything else is ignored.
+  const videoEmbed=(u=>{u=(u||'').trim();let m;
+    if((m=u.match(/player\.vimeo\.com\/video\/(\d+)(?:\?h=([0-9a-f]+))?/i))||(m=u.match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/([0-9a-f]+))?/i)))
+      return 'https://player.vimeo.com/video/'+m[1]+'?'+(m[2]?'h='+m[2]+'&':'')+'title=0&byline=0&portrait=0&color=B68A3E&dnt=1';
+    if((m=u.match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/i)))
+      return 'https://www.youtube-nocookie.com/embed/'+m[1]+'?rel=0';
+    return '';})(a.video);
+  const videoBlock=videoEmbed?`<div class="spec-block rv" id="video"><h3>Walkaround Video</h3><div class="vid-frame"><iframe src="${videoEmbed}" title="${esc(name)} walkaround video" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></div>`:'';
   const specBlocks=(a.spec_groups||[]).map(g=>`<div class="spec-block rv"><h3>${esc(g.group)}</h3><div class="spec-rows">${
     (g.rows||[]).map(r=>`<div class="sr"><span class="k">${esc(r.label)}</span><span class="v">${esc(r.value)}</span></div>`).join('')}</div></div>`).join('');
   const itemOf=i=>(typeof i==='string'?i:(i&&i.item)?i.item:'');
@@ -469,6 +479,7 @@ fetch('/data/aircraft/'+encId+'.json').then(r=>{if(!r.ok)throw new Error('nf');r
     </div>
     <div class="specs-wrap">
       ${docs?`<div class="spec-block rv" id="documents"><h3>Documents &amp; Downloads</h3><div class="docs-grid">${docs}</div></div>`:''}
+      ${videoBlock}
       ${specBlocks}
       ${listBlock('Avionics',a.avionics)}
       ${listBlock('Additional Features',a.features)}

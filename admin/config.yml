@@ -70,6 +70,7 @@ collections:
       - { label: "Spec Sheet (PDF)", name: "spec_sheet", widget: "file", required: false }
       - { label: "Maintenance Status Report (PDF)", name: "status_report", widget: "file", required: false }
       - { label: "6-Month Due List (PDF)", name: "due_list", widget: "file", required: false }
+      - { label: "Walkaround Video (Vimeo or YouTube link)", name: "video", widget: "string", required: false, hint: "Paste the Vimeo or YouTube page link, e.g. https://vimeo.com/123456789. Leave blank for no video." }
 
       - label: "Specification Groups"
         name: "spec_groups"
