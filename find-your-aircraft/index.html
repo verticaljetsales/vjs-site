@@ -146,11 +146,14 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid 
 .compare-card dd{margin:0;text-align:right;font-weight:600}
 .compare-card .src{margin-top:8px;font-size:12px;color:var(--ink-2)}
 .trade{margin-top:12px;font-size:14px;color:var(--ink-2)}
+.freshness{margin:0 0 14px;font-size:14px;color:var(--ink-2)}
 .print-sample{display:none}
 @media print{
   .print-sample{display:block;font-size:14px;margin:0 0 8px}
-  .brandbar,.hero,.mission,#notes,#list,#more,.lead,.summary{display:none !important}
+  .hero,.mission,#notes,#list,#more,.lead,.summary,.results > .panel > .freshness{display:none !important}
+  .brandbar{position:static;border-bottom:1px solid #C4935B}
   .results .panel{border:0;box-shadow:none}
+  .compare-card,.card{break-inside:avoid;page-break-inside:avoid}
   body{background:#fff;color:#141414}
 }
 
@@ -274,6 +277,7 @@ footer p{margin:0 0 6px;max-width:80ch}
     <div class="panel">
       <h2 id="res-h">Aircraft that fit</h2>
       <div class="summary" id="summary"></div>
+      <p class="freshness">Reference figures from the page’s dataset; not live market data. Request a current MIR to verify availability and pricing.</p>
       <div id="notes"></div>
       <div class="list" id="list"></div>
       <div class="more" id="more"></div>
@@ -282,6 +286,7 @@ footer p{margin:0 0 6px;max-width:80ch}
         <p class="print-sample">Sample mission comparison for review. Not a Market Intelligence Report.</p>
         <h2>Mission comparison</h2>
         <p class="note-plain">These figures are planning estimates from this page: reach, flight time, and operating cost for the trip you are using. This is not a Market Intelligence Report. A Market Intelligence Report is prepared by Vertical Jet Sales after you request it. It covers market availability, asking-price trends, and recent sales activity. This page does not produce that report.</p>
+        <p class="freshness">Reference figures from the page’s dataset; not live market data. Request a current MIR to verify availability and pricing.</p>
         <div id="compareBody"></div>
       </section>
 
@@ -772,10 +777,10 @@ function card(x, m, scale){
     '<div class="range" aria-label="Range ' + fmt(x.r*NM_TO_MI) + ' miles compared with your trip of ' + fmt(m.needNm*NM_TO_MI) + ' miles">' +
       '<div class="track"></div><div class="fill" style="width:0" data-w="' + fill + '"></div>' +
       '<div class="trip" style="left:' + trip + '%"><span>Your trip</span></div></div>' +
-    '<div class="range-legend"><span>Reach with ' + state.pax + ' aboard: <b>' + fmt(x.r*NM_TO_MI) + ' mi</b></span><span class="fs">' + (a.fs ? '<b>' + a.fs + '</b> for sale right now' : 'None listed right now') + '</span></div>' +
+    '<div class="range-legend"><span>Reach with ' + state.pax + ' aboard: <b>' + fmt(x.r*NM_TO_MI) + ' mi</b></span><span class="fs">' + (a.fs ? 'Reference inventory count <b>' + a.fs + '</b>' : 'No reference inventory count') + '</span></div>' +
     (x.sibs && x.sibs.length ? '<div class="facts"><span>Other versions that also fit: <b>' + esc(x.sibs.join(", ")) + '</b></span></div>' : '') +
     '<div class="facts"><span>Seats <b>' + a.s + '</b></span><span>Cruise <b>' + a.kt + ' kt</b></span><span>' + (a.oem && a.oem.to ? 'Takeoff (manufacturer) <b>' : 'Listed field length <b>') + fmt(toDist(a)) + ' ft</b></span><span>Trip time <b>' + hrs(m.plannedNm/a.kt) + '</b></span></div>' +
-    '<div class="money"><div>' + (a.p ? 'Typical market value <b>' + money(a.p[0]) + ' to ' + money(a.p[1]) + '</b>' : 'Too new for a market value yet. <b>Ask us for current pricing</b>') + '</div>' +
+    '<div class="money"><div>' + (a.p ? 'Reference market-value range <b>' + money(a.p[0]) + ' to ' + money(a.p[1]) + '</b>' : 'No reference market-value range in this dataset. <b>Ask us for current pricing</b>') + '</div>' +
     '<div>About ' + "$" + fmt(a.hr) + ' an hour to fly, roughly ' + "$" + fmt(annual) + ' a year at ' + state.hours + (state.hours===300?'+':'') + ' hours</div>' +
     (a.oem ? '<div class="src">Manufacturer figures' + (a.oem.pts ? ': range ' + a.oem.pts.map(function(q){ var c = crewFor(a), n = Math.max(0, paxAt(q, c)); return fmt(q[1]) + ' nm with ' + n + ' passenger' + (n===1?'':'s') + ' and ' + (c===1?'1 pilot':'2 pilots'); }).join(', ') + ' (' + esc(a.oem.rb) + ')' : '') + (a.oem.to ? (a.oem.pts ? '; ' : ': ') + 'takeoff ' + fmt(a.oem.to) + ' ft (' + esc(a.oem.tb) + ')' : '') + '. Source: <a href="' + esc(a.oem.src) + '" target="_blank" rel="noopener">' + esc(a.oem.sn) + '</a></div>' : '') +
     '<div class="src">' + (a.b === true ? "Range and costs from this model’s AviaCost sheet" : a.b ? "Range and costs from the " + esc(a.b) + " AviaCost sheet; model-specific figures pending" : "Range and costs from AviaCost family figures; model-specific figures pending") + '</div></div>' +
@@ -804,7 +809,7 @@ function compareItems(){
       reachMi: x.r * NM_TO_MI, seats: a.s, kt: a.kt, field: toDist(a),
       fieldLabel: a.oem && a.oem.to ? "Takeoff (manufacturer)" : "Listed field length",
       time: hrs(m.plannedNm / a.kt),
-      value: a.p ? money(a.p[0]) + " to " + money(a.p[1]) : "Too new for a market value yet",
+      value: a.p ? money(a.p[0]) + " to " + money(a.p[1]) : "No reference range in this dataset",
       hour: a.hr, year: a.hr * state.hours, fs: a.fs,
       source: a.b === true ? "Range and costs from this model’s AviaCost sheet" : a.b ? "Range and costs from the " + a.b + " AviaCost sheet; model-specific figures pending" : "Range and costs from AviaCost family figures; model-specific figures pending"
     };
@@ -849,10 +854,10 @@ function paintComparison(){
       '<dt>Cruise</dt><dd>' + it.kt + ' kt</dd>' +
       '<dt>' + esc(it.fieldLabel) + '</dt><dd>' + fmt(it.field) + ' ft</dd>' +
       '<dt>Trip time</dt><dd>' + esc(it.time) + '</dd>' +
-      '<dt>Typical market value</dt><dd>' + esc(it.value) + '</dd>' +
+      '<dt>Reference market-value range</dt><dd>' + esc(it.value) + '</dd>' +
       '<dt>Planning cost</dt><dd>$' + fmt(it.hour) + '/hr</dd>' +
       '<dt>About a year at ' + hoursLabel + ' hours</dt><dd>$' + fmt(it.year) + '</dd>' +
-      '<dt>For sale right now</dt><dd>' + (it.fs ? it.fs : "None listed") + '</dd>' +
+      '<dt>Reference inventory count</dt><dd>' + (it.fs ? it.fs : "None in this dataset") + '</dd>' +
       '</dl><div class="src">' + esc(it.source) + '</div></article>';
   }).join("");
   body.innerHTML = '<p class="note-plain">Trip used for these figures: <b>' + esc(m.desc) + '</b>, ' + fmt(m.needNm * NM_TO_MI) + ' mi (' + fmt(m.needNm) + ' nm), ' + state.pax + ' passenger' + (state.pax === 1 ? '' : 's') + '.</p>' +
