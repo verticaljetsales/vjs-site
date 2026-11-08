@@ -61,7 +61,8 @@ img{max-width:100%}
 .hero h1 + p::before{content:"";display:block;width:56px;height:2px;background:var(--leather);margin:0 0 18px;box-shadow:0 0 12px rgba(196,147,91,.6)}
 
 .wrap{max-width:1080px;margin:0 auto;padding:0 16px 48px;display:grid;gap:20px;grid-template-columns:1fr;margin-top:-24px}
-@media (min-width:900px){.wrap{grid-template-columns:360px 1fr;align-items:start}.mission{position:sticky;top:16px}}
+@media (min-width:900px){.wrap{grid-template-columns:360px 1fr;align-items:start}.mission{position:sticky;top:16px;z-index:6}}
+.panel,.field,.legs,.leg-main,.mission{overflow:visible}
 
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
 .mission h2,.results h2{font-family:var(--serif);font-weight:500;font-style:italic;font-size:30px;margin:0 0 4px}
@@ -83,6 +84,16 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid 
 .leg-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}
 .leg-row > button{border:1px solid var(--line);background:transparent;color:var(--ink-2);border-radius:10px;padding:0 12px;cursor:pointer;font:inherit;min-height:46px}
 .leg-main{display:grid;gap:4px}
+.airport-field{position:relative}
+.airport-list{position:absolute;z-index:40;left:0;right:0;top:calc(100% + 4px);max-height:280px;overflow:auto;background:#fff;border:1px solid #DCCDBA;border-radius:10px;box-shadow:0 16px 36px rgba(20,20,20,.18)}
+.airport-list[hidden]{display:none}
+.airport-list .airport-cap{position:sticky;top:0;background:#141414;color:#F2F0EE;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:8px 12px}
+.airport-list button{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;padding:12px;border:0;border-bottom:1px solid #F2F0EE;background:#fff;color:#141414;font:inherit;font-size:16px;cursor:pointer;min-height:48px}
+.airport-list button .code{color:#8C6233;font-weight:700;letter-spacing:.04em}
+.airport-list button[aria-selected="true"]{background:#263160;color:#F2F0EE}
+.airport-list button[aria-selected="true"] .code{color:#DCCDBA}
+.airport-list button:hover{background:#263160;color:#F2F0EE}
+.airport-list button:hover .code{color:#DCCDBA}
 .leg-meta{font-size:13px;color:var(--ink-2);min-height:1.2em}
 .use-leg{justify-self:start;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:8px 12px;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
 .use-leg[aria-pressed="true"]{background:var(--accent);color:#F2F0EE;border-color:var(--accent)}
@@ -147,14 +158,29 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid 
 .compare-card .src{margin-top:8px;font-size:12px;color:var(--ink-2)}
 .trade{margin-top:12px;font-size:14px;color:var(--ink-2)}
 .freshness{margin:0 0 14px;font-size:14px;color:var(--ink-2)}
+.print-compare{margin:0 0 16px;background:transparent;color:#8C6233;border:1px solid #C4935B;border-radius:4px;padding:10px 14px;font-family:var(--serif);font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
 .print-sample{display:none}
 @media print{
-  .print-sample{display:block;font-size:14px;margin:0 0 8px}
-  .hero,.mission,#notes,#list,#more,.lead,.summary,.results > .panel > .freshness{display:none !important}
-  .brandbar{position:static;border-bottom:1px solid #C4935B}
-  .results .panel{border:0;box-shadow:none}
-  .compare-card,.card{break-inside:avoid;page-break-inside:avoid}
-  body{background:#fff;color:#141414}
+  @page{size:letter;margin:0.55in}
+  .print-sample{display:block;font-family:"Ubuntu",sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#263160;margin:0 0 10px}
+  .print-compare,.hero,.mission,#notes,#list,#more,.lead,.summary,#res-h,.results > .panel > .freshness,.use-leg,.add-leg,.airport-list{display:none !important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#F2F0EE !important;color:#141414;font-family:"Ubuntu","Helvetica Neue",Arial,sans-serif}
+  .brandbar{background:#141414 !important;color:#F2F0EE;border-bottom:4px solid #C4935B;position:static}
+  .brandbar .logo img{height:78px}
+  .brandbar .contact a.site{color:#DCCDBA}
+  .brandbar .contact a.tel{color:#C4935B}
+  .wrap{display:block;margin:0;max-width:none;padding:18px 0 0}
+  .results .panel{background:#F2F0EE;border:0;padding:0}
+  .compare{border-top:0;margin:0;padding:0}
+  .compare h2,.compare-card h3{font-family:"Barlow","Helvetica Neue",Arial,sans-serif;color:#141414}
+  .compare h2{font-size:34px;border-bottom:2px solid #C4935B;padding-bottom:8px}
+  .compare .note-plain,.freshness,.trade{color:#263160;font-size:12px}
+  .compare-grid{display:block}
+  .compare-card{break-inside:avoid;page-break-inside:avoid;background:#fff;border:1px solid #DCCDBA;border-left:4px solid #C4935B;border-radius:0;margin:0 0 14px;padding:14px 16px}
+  .compare-card dl{font-size:13px;gap:6px 16px}
+  footer{background:#141414;color:#DCCDBA;padding:18px 20px;margin:18px 0 0}
+  footer a{color:#C4935B}
 }
 
 .lead{margin-top:24px;background:radial-gradient(ellipse 90% 100% at 85% 0%, rgba(38,49,96,.8), rgba(38,49,96,0) 70%),var(--hero-bg);color:var(--hero-ink);border-radius:14px;padding:22px}
@@ -218,7 +244,7 @@ footer p{margin:0 0 6px;max-width:80ch}
       <label for="from">Where you usually fly from</label>
       <input type="text" id="from" list="airports" autocomplete="off" placeholder="City or airport code">
       <div class="lbl" style="margin-top:14px">Where you go most often</div>
-      <div class="hint">Each city is a trip from your departure airport. Choose “Use this trip” to make that one drive the aircraft below. The longest trip is used until you choose.</div>
+      <div class="hint">Tap a city or airport field. A list opens. Tap a name, or type and press Enter. That choice becomes the trip immediately. With more than one city entered, “Use this trip” switches which one is used.</div>
       <div class="legs" id="legs"></div>
       <button type="button" class="add-leg" id="addLeg">Add another destination</button>
       <div class="or">or</div>
@@ -284,6 +310,7 @@ footer p{margin:0 0 6px;max-width:80ch}
 
       <section class="compare" id="compare" aria-live="polite">
         <p class="print-sample">Sample mission comparison for review. Not a Market Intelligence Report.</p>
+        <button type="button" class="print-compare" id="printCompare">Print or save this comparison</button>
         <h2>Mission comparison</h2>
         <p class="note-plain">These figures are planning estimates from this page: reach, flight time, and operating cost for the trip you are using. This is not a Market Intelligence Report. A Market Intelligence Report is prepared by Vertical Jet Sales after you request it. It covers market availability, asking-price trends, and recent sales activity. This page does not produce that report.</p>
         <p class="freshness">Reference figures from the page’s dataset; not live market data. Request a current MIR to verify availability and pricing.</p>
@@ -522,6 +549,21 @@ function findAirport(v){
   for (var i=0;i<AIRPORTS.length;i++){ if(AIRPORTS[i][1].toLowerCase().indexOf(v)===0) return AIRPORTS[i]; }
   return null;
 }
+function strictAirport(v){
+  v = (v||"").trim().toLowerCase(); if(!v) return null;
+  var a = byKey[v]; if(!a) return null;
+  var label = (a[1] + " (" + a[0] + ")").toLowerCase();
+  if (v === label || v === a[0].toLowerCase() || v === a[1].toLowerCase()) return a;
+  return null;
+}
+function appliedAirport(inp){
+  var live = strictAirport(inp.value);
+  if (live) return { airport: live, pending: false };
+  var saved = strictAirport(inp.dataset.committed || "");
+  if (saved && inp.value.trim() && inp.value.trim().toLowerCase() !== (inp.dataset.committed || "").toLowerCase()) return { airport: saved, pending: true };
+  if (saved && !inp.value.trim()) return { airport: null, pending: false };
+  return { airport: saved, pending: false };
+}
 function label(a){ return a[1] + " (" + a[0] + ")"; }
 function gcNm(a,b){
   var R=3440.065, t=Math.PI/180;
@@ -556,32 +598,111 @@ setCrew(2);
 
 // legs
 var legsEl = document.getElementById("legs");
+function airportChoices(q){
+  q = (q||"").trim().toLowerCase();
+  var exact = findAirport(q);
+  var exactLabel = exact ? (exact[1] + " (" + exact[0] + ")").toLowerCase() : "";
+  if (!q || q === exactLabel || (exact && (q === exact[0].toLowerCase() || q === exact[1].toLowerCase()))) return AIRPORTS.slice();
+  return AIRPORTS.filter(function(a){
+    return (a[1] + " " + a[0]).toLowerCase().indexOf(q) !== -1;
+  });
+}
+function attachPicker(inp, onCommit){
+  inp.removeAttribute("list");
+  inp.setAttribute("role","combobox");
+  inp.setAttribute("aria-autocomplete","list");
+  inp.setAttribute("aria-expanded","false");
+  var wrap = document.createElement("div");
+  wrap.className = "airport-field";
+  if (inp.parentNode) inp.parentNode.insertBefore(wrap, inp);
+  wrap.appendChild(inp);
+  var list = document.createElement("div");
+  list.className = "airport-list";
+  list.hidden = true;
+  list.setAttribute("role","listbox");
+  wrap.appendChild(list);
+  var cursor = 0;
+  var choices = [];
+  function hide(){ list.hidden = true; inp.setAttribute("aria-expanded","false"); }
+  function paint(){
+    choices = airportChoices(inp.value);
+    list.innerHTML = "";
+    var cap = document.createElement("div");
+    cap.className = "airport-cap";
+    cap.textContent = choices.length ? "Choose an airport" : "No matching airport";
+    list.appendChild(cap);
+    if (cursor >= choices.length) cursor = 0;
+    choices.forEach(function(a, i){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("role","option");
+      b.setAttribute("aria-selected", i === cursor ? "true" : "false");
+      b.innerHTML = "<span>" + esc(a[1]) + "</span><span class=\"code\">" + esc(a[0]) + "</span>";
+      b.onmousedown = function(ev){ ev.preventDefault(); };
+      b.onclick = function(){ commit(a); };
+      list.appendChild(b);
+    });
+    var marked = list.querySelector("[aria-selected='true']");
+    if (marked && marked.scrollIntoView) marked.scrollIntoView({block:"nearest"});
+  }
+  function open(){ paint(); list.hidden = false; inp.setAttribute("aria-expanded","true"); }
+  function commit(a){
+    inp.value = a[1] + " (" + a[0] + ")";
+    inp.dataset.committed = inp.value;
+    hide();
+    if (onCommit) onCommit(a);
+    render();
+  }
+  function showChoices(){
+    inp.select();
+    choices = airportChoices(inp.value);
+    cursor = 0;
+    var current = findAirport(inp.value);
+    if (current){ for (var i=0;i<choices.length;i++) if (choices[i][0] === current[0]) { cursor = i; break; } }
+    open();
+  }
+  inp.addEventListener("focus", showChoices);
+  inp.addEventListener("click", showChoices);
+  inp.addEventListener("input", function(){ cursor = 0; open(); });
+  inp.addEventListener("keydown", function(e){
+    if (e.key === "ArrowDown" || e.key === "ArrowUp"){
+      e.preventDefault();
+      if (list.hidden) open();
+      cursor += e.key === "ArrowDown" ? 1 : -1;
+      if (cursor < 0) cursor = Math.max(0, choices.length - 1);
+      if (cursor >= choices.length) cursor = 0;
+      paint();
+    } else if (e.key === "Enter"){
+      if (!list.hidden && choices[cursor]){ e.preventDefault(); commit(choices[cursor]); }
+    } else if (e.key === "Escape"){ hide(); }
+  });
+  inp.addEventListener("blur", function(){ setTimeout(hide, 180); });
+  return wrap;
+}
 function addLeg(val){
   if (legsEl.children.length >= 4) return;
   var row = document.createElement("div"); row.className = "leg-row";
   var main = document.createElement("div"); main.className = "leg-main";
-  var inp = document.createElement("input"); inp.type="text"; inp.setAttribute("list","airports"); inp.autocomplete="off";
-  inp.placeholder = "City or airport code"; inp.setAttribute("aria-label","Destination"); if(val) inp.value = val;
+  var inp = document.createElement("input"); inp.type="text"; inp.autocomplete="off";
+  inp.placeholder = "Tap to choose a city or airport"; inp.setAttribute("aria-label","Destination"); if(val) inp.value = val;
   var meta = document.createElement("div"); meta.className = "leg-meta";
   var use = document.createElement("button"); use.type="button"; use.className = "use-leg"; use.hidden = true;
   use.textContent = "Use this trip";
-  function followThisField(){
-    var a = findAirport(inp.value);
-    if (a) state.activeCode = a[0];
-    else if (!inp.value.trim()){
-      var still = false;
-      Array.prototype.forEach.call(legsEl.querySelectorAll("input"), function(other){
-        var b = findAirport(other.value);
-        if (b && b[0] === state.activeCode) still = true;
-      });
-      if (!still) state.activeCode = null;
-    }
-  }
-  inp.addEventListener("focus", function(){ inp.select(); });
-  inp.addEventListener("input", function(){ followThisField(); });
-  inp.addEventListener("change", function(){ followThisField(); render(); });
-  inp.addEventListener("input", debounce(render,350));
-  use.onclick = function(){ followThisField(); if (findAirport(inp.value)) render(); else inp.focus(); };
+  if (val) inp.dataset.committed = val;
+  attachPicker(inp, function(a){ state.activeCode = a[0]; inp.dataset.committed = a[1] + " (" + a[0] + ")"; });
+  inp.addEventListener("change", function(){
+    var a = strictAirport(inp.value);
+    if (a) { state.activeCode = a[0]; inp.dataset.committed = a[1] + " (" + a[0] + ")"; inp.value = inp.dataset.committed; }
+    render();
+  });
+  use.onclick = function(){
+    var a = strictAirport(inp.value) || strictAirport(inp.dataset.committed || "");
+    if (!a) { inp.focus(); return; }
+    inp.value = a[1] + " (" + a[0] + ")";
+    inp.dataset.committed = inp.value;
+    state.activeCode = a[0];
+    render();
+  };
   var rm = document.createElement("button"); rm.type="button"; rm.textContent="Remove"; rm.setAttribute("aria-label","Remove destination");
   rm.onclick = function(){
     var removed = findAirport(inp.value);
@@ -596,7 +717,7 @@ function addLeg(val){
     }
     render();
   };
-  main.appendChild(inp); main.appendChild(meta); main.appendChild(use);
+  main.appendChild(inp.parentNode); main.appendChild(meta); main.appendChild(use);
   row.appendChild(main); row.appendChild(rm); legsEl.appendChild(row);
   document.getElementById("addLeg").hidden = legsEl.children.length >= 4;
   return inp;
@@ -607,23 +728,29 @@ function debounce(fn,ms){ var t; return function(){ clearTimeout(t); t=setTimeou
 
 var fromEl = document.getElementById("from"), distEl = document.getElementById("dist");
 fromEl.value = "San Antonio (KSAT)";
+fromEl.dataset.committed = fromEl.value;
+fromEl.placeholder = "Tap to choose a city or airport";
+attachPicker(fromEl, function(a){ fromEl.dataset.committed = a[1] + " (" + a[0] + ")"; });
 addLeg("Aspen (KASE)"); addLeg("Nashville (KBNA)");
-[fromEl, distEl].forEach(function(el){ el.addEventListener("change", render); el.addEventListener("input", debounce(render,350)); });
+distEl.addEventListener("change", render);
+distEl.addEventListener("input", debounce(render,350));
 document.getElementById("budget").onchange = render;
 document.getElementById("runway").onchange = render;
 
 function mission(){
-  var errs = [], from = findAirport(fromEl.value), legs = [], high = [];
-  var dests = Array.prototype.map.call(legsEl.querySelectorAll("input"), function(i){ return i.value.trim(); }).filter(Boolean);
+  var errs = [], fromPick = appliedAirport(fromEl), from = fromPick.airport, legs = [], high = [];
   if (from && from[4]) high.push(from[1]);
-  if (from) dests.forEach(function(d){
-    var a = findAirport(d);
-    if (!a) { errs.push("Couldn’t find “" + d + "”. Pick it from the list or enter the trip length instead."); return; }
-    var nm = gcNm(from,a);
-    legs.push({to:a, nm:nm});
-    if (a[4]) high.push(a[1]);
+  if (!from && fromEl.value.trim()) errs.push("Departure is not applied. Choose a city from the list.");
+  if (from) Array.prototype.forEach.call(legsEl.querySelectorAll("input"), function(inp){
+    var pick = appliedAirport(inp);
+    if (!pick.airport) {
+      if (inp.value.trim()) errs.push("“" + inp.value.trim() + "” is not applied. Choose a city from the list.");
+      return;
+    }
+    var nm = gcNm(from, pick.airport);
+    legs.push({to:pick.airport, nm:nm, pending:pick.pending});
+    if (pick.airport[4]) high.push(pick.airport[1]);
   });
-  else if (fromEl.value.trim()) errs.push("Couldn’t find “" + fromEl.value.trim() + "”. Pick it from the list or enter the trip length instead.");
   var miles = parseFloat(distEl.value);
   var longest = null;
   legs.forEach(function(l){ if(!longest || l.nm > longest.nm) longest = l; });
@@ -639,22 +766,24 @@ function mission(){
   return { needNm: needNm, plannedNm: needNm*1.10, desc: desc, errs: errs, high: high, legs: legs, active: active, others: others, explicit: !!(state.activeCode && active && active.to[0] === state.activeCode) };
 }
 function paintLegs(m){
-  var from = findAirport(fromEl.value);
+  var from = appliedAirport(fromEl).airport;
   Array.prototype.forEach.call(legsEl.querySelectorAll(".leg-row"), function(row){
     var inp = row.querySelector("input");
     var meta = row.querySelector(".leg-meta");
     var use = row.querySelector(".use-leg");
     if (!inp || !meta || !use) return;
-    var a = findAirport(inp.value);
+    var pick = appliedAirport(inp);
+    var a = pick.airport;
     if (a && from){
       var nm = gcNm(from, a);
-      var on = m && m.active && m.active.to[0] === a[0];
-      meta.textContent = from[1] + " to " + a[1] + " · " + fmt(nm * NM_TO_MI) + " mi (" + fmt(nm) + " nm)";
-      use.hidden = false;
+      var on = m && m.active && m.active.to[0] === a[0] && !pick.pending;
+      if (pick.pending) meta.textContent = "Not applied yet. Results still use " + a[1] + ".";
+      else meta.textContent = from[1] + " to " + a[1] + " · " + fmt(nm * NM_TO_MI) + " mi (" + fmt(nm) + " nm)";
+      use.hidden = pick.pending;
       use.setAttribute("aria-pressed", on ? "true" : "false");
       use.textContent = on ? "Using this trip" : "Use this trip";
     } else if (inp.value.trim()){
-      meta.textContent = "Not in the airport list. Use the city name or code, such as Nashville or KBNA.";
+      meta.textContent = "Not applied. Choose a city from the list.";
       use.hidden = true;
       use.setAttribute("aria-pressed", "false");
     } else {
@@ -893,6 +1022,7 @@ function updateChosen(){
 }
 
 document.getElementById("lt").addEventListener("change", updateChosen);
+document.getElementById("printCompare").onclick = function(){ window.print(); };
 
 document.getElementById("leadForm").addEventListener("submit", function(e){
   e.preventDefault();
