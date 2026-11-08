@@ -132,6 +132,28 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid 
 .more{margin-top:22px}
 .more h3{font-size:16px;font-weight:600;margin:0 0 4px}
 
+.compare{margin-top:28px;padding-top:18px;border-top:1px solid var(--line)}
+.compare h2{font-family:var(--serif);font-weight:500;font-style:italic;font-size:30px;margin:0 0 8px}
+.compare .note-plain{color:var(--ink-2);font-size:14px;margin:0 0 14px}
+.compare-grid{display:grid;gap:12px}
+@media(min-width:800px){.compare-grid{grid-template-columns:1fr 1fr}}
+.compare-card{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--surface)}
+.compare-card h3{font-family:var(--serif);font-weight:500;font-style:italic;font-size:22px;margin:0}
+.compare-card .cat{color:var(--ink-2);font-size:14px;margin-top:2px}
+.compare-card .fit{margin-top:8px;font-size:14px;font-weight:600}
+.compare-card dl{display:grid;grid-template-columns:1fr auto;gap:4px 12px;margin:10px 0 0;font-size:14px}
+.compare-card dt{color:var(--ink-2)}
+.compare-card dd{margin:0;text-align:right;font-weight:600}
+.compare-card .src{margin-top:8px;font-size:12px;color:var(--ink-2)}
+.trade{margin-top:12px;font-size:14px;color:var(--ink-2)}
+.print-sample{display:none}
+@media print{
+  .print-sample{display:block;font-size:14px;margin:0 0 8px}
+  .brandbar,.hero,.mission,#notes,#list,#more,.lead,.summary{display:none !important}
+  .results .panel{border:0;box-shadow:none}
+  body{background:#fff;color:#141414}
+}
+
 .lead{margin-top:24px;background:radial-gradient(ellipse 90% 100% at 85% 0%, rgba(38,49,96,.8), rgba(38,49,96,0) 70%),var(--hero-bg);color:var(--hero-ink);border-radius:14px;padding:22px}
 .lead h2{font-family:var(--serif);font-weight:500;font-style:italic;font-size:30px;margin:0 0 6px;color:var(--hero-ink)}
 .lead p{color:var(--hero-ink-2);margin:0 0 16px}
@@ -143,7 +165,7 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid 
 .lead .row{display:grid;gap:12px;grid-template-columns:1fr}
 @media (min-width:560px){.lead .row{grid-template-columns:1fr 1fr}}
 .lead .f{margin-bottom:12px}
-.btn{display:block;width:100%;margin-top:6px;background:var(--leather);color:var(--cloud);border:0;border-radius:4px;padding:15px;font-family:var(--serif);font-weight:600;font-size:16px;text-transform:uppercase;letter-spacing:.14em;cursor:pointer;box-shadow:0 0 18px rgba(196,147,91,.35)}
+.btn{display:block;width:100%;margin-top:6px;background:var(--leather);color:var(--cloud);border:0;border-radius:4px;padding:15px;font-family:var(--serif);font-weight:600;font-size:16px;line-height:1.3;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;box-shadow:0 0 18px rgba(196,147,91,.35);white-space:normal}
 .btn:hover{background:var(--leather-hi)}
 .btn:disabled{opacity:.6;cursor:wait}
 .lead .small{font-size:13px;color:var(--hero-ink-2);margin:10px 0 0}
@@ -256,13 +278,23 @@ footer p{margin:0 0 6px;max-width:80ch}
       <div class="list" id="list"></div>
       <div class="more" id="more"></div>
 
+      <section class="compare" id="compare" aria-live="polite">
+        <p class="print-sample">Sample mission comparison for review. Not a Market Intelligence Report.</p>
+        <h2>Mission comparison</h2>
+        <p class="note-plain">These figures are planning estimates from this page: reach, flight time, and operating cost for the trip you are using. This is not a Market Intelligence Report. A Market Intelligence Report is prepared by Vertical Jet Sales after you request it. It covers market availability, asking-price trends, and recent sales activity. This page does not produce that report.</p>
+        <div id="compareBody"></div>
+      </section>
+
       <form class="lead" id="leadForm" name="find-your-aircraft" method="POST" action="/find-your-aircraft/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
         <input type="hidden" name="form-name" value="find-your-aircraft">
         <p hidden>
           <label>Don’t fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
         </p>
-        <h2>Get the current market on these aircraft</h2>
-        <p>A VJS broker will send you what’s for sale right now, what recently sold, and where pricing is headed for <span class="chosen" id="chosenNames">the aircraft you checked</span>. No obligation.</p>
+        <h2>Request a Market Intelligence Report</h2>
+        <p>Request a Market Intelligence Report for the aircraft models you’re considering, including market availability, asking-price trends and recent sales activity.</p>
+        <p>Selected models: <span class="chosen" id="chosenNames">none yet</span>.</p>
+        <p>Vertical Jet Sales prepares that report after receiving this request. Sending the form does not deliver it automatically. The mission comparison above stays a planning estimate.</p>
+        <p class="small">We use your name, email, and phone only to respond to this request. Submitting does not add you to a marketing list.</p>
         <div class="row">
           <div class="f"><label for="fn">First name</label><input type="text" id="fn" name="firstname" autocomplete="given-name" required aria-describedby="leadErr"></div>
           <div class="f"><label for="ln">Last name</label><input type="text" id="ln" name="lastname" autocomplete="family-name" required aria-describedby="leadErr"></div>
@@ -276,7 +308,7 @@ footer p{margin:0 0 6px;max-width:80ch}
         <div class="f"><label for="messageField">Mission details</label>
           <textarea id="messageField" name="message" readonly aria-readonly="true"></textarea></div>
         <div class="err" id="leadErr" role="alert" hidden></div>
-        <button class="btn" type="submit">Send me the market report</button>
+        <button class="btn" type="submit">Request a Market Intelligence Report</button>
         <p class="small">Prefer to talk? Call Vertical Jet Sales at 210-865-2475.</p>
       </form>
     </div>
@@ -498,7 +530,8 @@ function money(m){ return m < 1 ? "$" + Math.round(m*1000) + "K" : "$" + (Math.r
 function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
 
 
-var state = { pax:6, hours:100, crew:2, picked:{}, activeCode:null };
+var state = { pax:6, hours:100, crew:2, picked:{}, activeCode:null, userChose:false };
+var lastShown = [], lastMission = null;
 
 // passengers
 var paxOut = document.getElementById("paxOut");
@@ -666,7 +699,7 @@ function render(){
   if (!m.needNm){
     sum.innerHTML = ""; notes.innerHTML = ""; more.innerHTML = "";
     list.innerHTML = '<div class="empty">Add where you fly from and where you go, or enter your longest trip in miles, and matching aircraft will appear here.</div>';
-    updateChosen([]); return;
+    lastShown = []; lastMission = m; updateChosen(); return;
   }
 
   var others = (m.others || []).map(function(l){ return esc(l.to[1]) + " " + fmt(l.nm*NM_TO_MI) + " mi"; }).join("; ");
@@ -696,18 +729,23 @@ function render(){
 
   var scale = Math.max(m.plannedNm*1.6, Math.max.apply(null, best.concat(alt).map(function(x){return x.r;}).concat([1])));
 
+  lastShown = best.concat(alt);
+  lastMission = m;
+  var shown = {};
+  lastShown.forEach(function(x){ shown[x.a.n] = true; });
+  Object.keys(state.picked).forEach(function(name){ if (!shown[name]) delete state.picked[name]; });
+  if (!state.userChose && Object.keys(state.picked).length === 0) {
+    best.slice(0,3).forEach(function(x){ state.picked[x.a.n] = true; });
+  }
   if (!best.length){
     list.innerHTML = '<div class="empty">Nothing in our list makes this trip nonstop with ' + state.pax + ' passengers' + (budget<999?' inside this budget':'') + '. Try fewer passengers, a higher budget, or check the options below. A VJS broker can also look at aircraft beyond this list.</div>';
   } else {
-    if (Object.keys(state.picked).length === 0 || !best.some(function(x){ return state.picked[x.a.n]; })){
-      state.picked = {}; best.slice(0,3).forEach(function(x){ state.picked[x.a.n] = true; });
-    }
     list.innerHTML = best.map(function(x){ return card(x, m, scale); }).join("");
   }
-  more.innerHTML = alt.length ? '<h3>Also worth a look</h3><p class="sub">These need one fuel stop on your longest trip, or sit just above your budget.</p><div class="list">' + alt.map(function(x){ return card(x, m, scale); }).join("") + '</div>' : "";
+  more.innerHTML = alt.length ? '<h3>Also worth a look</h3><p class="sub">These need one fuel stop on this trip, or sit just above your budget.</p><div class="list">' + alt.map(function(x){ return card(x, m, scale); }).join("") + '</div>' : "";
 
   document.querySelectorAll(".pick input").forEach(function(cb){
-    cb.onchange = function(){ if(cb.checked) state.picked[cb.value] = true; else delete state.picked[cb.value]; updateChosen(); };
+    cb.onchange = function(){ state.userChose = true; if(cb.checked) state.picked[cb.value] = true; else delete state.picked[cb.value]; updateChosen(); };
   });
   updateChosen();
   requestAnimationFrame(function(){ document.querySelectorAll(".range .fill").forEach(function(f){ f.style.width = f.dataset.w; }); });
@@ -718,8 +756,8 @@ function card(x, m, scale){
   var verdict = x.nonstop
     ? '<span class="verdict v-ok">Nonstop' + (spare >= 10 ? ', ' + spare + '% range to spare' : ', with little to spare') + '</span>'
     : x.border
-      ? '<span class="verdict v-stop">Borderline on your longest trip, ask us</span>'
-      : '<span class="verdict v-stop">One fuel stop on your longest trip</span>';
+      ? '<span class="verdict v-stop">Borderline on this trip, ask us</span>'
+      : '<span class="verdict v-stop">One fuel stop on this trip</span>';
   if ((x.nonstop || x.border) && !x.inBudget) verdict += ' <span class="verdict v-stop">Just over budget</span>';
   if (state.crew === 1 && a.sp) verdict += ' <span class="verdict v-ok">Single-pilot figures</span>';
   if (x.rwyFlag) verdict += ' <span class="verdict v-stop">Check runway for your weight and conditions</span>';
@@ -729,7 +767,7 @@ function card(x, m, scale){
   var checked = state.picked[a.n] ? " checked" : "";
   return '<article class="card">' +
     '<div class="card-top"><div><h3>' + esc(a.n) + '</h3><div class="cat">' + esc(a.c) + '</div></div>' +
-    '<label class="pick"><input type="checkbox" value="' + esc(a.n) + '"' + checked + '> Add to report</label></div>' +
+    '<label class="pick"><input type="checkbox" value="' + esc(a.n) + '" aria-label="Include ' + esc(a.n) + ' in the mission comparison"' + checked + '> Compare</label></div>' +
     verdict +
     '<div class="range" aria-label="Range ' + fmt(x.r*NM_TO_MI) + ' miles compared with your trip of ' + fmt(m.needNm*NM_TO_MI) + ' miles">' +
       '<div class="track"></div><div class="fill" style="width:0" data-w="' + fill + '"></div>' +
@@ -745,12 +783,90 @@ function card(x, m, scale){
 }
 function hrs(h){ if (h > 0 && isFinite(h)) { var H = Math.floor(h), M = Math.round((h-H)*60); if (M===60){H++;M=0;} return (H? H + " h " : "") + M + " min"; } return "n/a"; }
 
+function fitPlain(x, m){
+  var spare = Math.round((x.r / m.plannedNm - 1) * 100);
+  var parts = [];
+  if (x.nonstop) parts.push(spare >= 10 ? "Nonstop, " + spare + "% range to spare" : "Nonstop, with little to spare");
+  else if (x.border) parts.push("Borderline on this trip");
+  else parts.push("One fuel stop on this trip");
+  if ((x.nonstop || x.border) && !x.inBudget) parts.push("Just over budget");
+  if (state.crew === 1 && x.a.sp) parts.push("Single-pilot figures");
+  if (x.rwyFlag) parts.push("Check runway for your weight and conditions");
+  return parts.join("; ");
+}
+function compareItems(){
+  var m = lastMission;
+  if (!m) return [];
+  return lastShown.filter(function(x){ return state.picked[x.a.n]; }).map(function(x){
+    var a = x.a;
+    return {
+      name: a.n, cat: a.c, fit: fitPlain(x, m), nonstop: !!x.nonstop,
+      reachMi: x.r * NM_TO_MI, seats: a.s, kt: a.kt, field: toDist(a),
+      fieldLabel: a.oem && a.oem.to ? "Takeoff (manufacturer)" : "Listed field length",
+      time: hrs(m.plannedNm / a.kt),
+      value: a.p ? money(a.p[0]) + " to " + money(a.p[1]) : "Too new for a market value yet",
+      hour: a.hr, year: a.hr * state.hours, fs: a.fs,
+      source: a.b === true ? "Range and costs from this model’s AviaCost sheet" : a.b ? "Range and costs from the " + a.b + " AviaCost sheet; model-specific figures pending" : "Range and costs from AviaCost family figures; model-specific figures pending"
+    };
+  });
+}
+function tradeoffText(items){
+  if (!items.length) return "";
+  if (items.length === 1) return items[0].name + " is the only aircraft in this comparison. " + items[0].fit + ".";
+  function pick(fn){ return items.slice().sort(fn)[0]; }
+  var reach = pick(function(a,b){ return b.reachMi - a.reachMi; });
+  var fast = pick(function(a,b){ return b.kt - a.kt; });
+  var cheap = pick(function(a,b){ return a.hour - b.hour; });
+  var field = pick(function(a,b){ return a.field - b.field; });
+  var bits = [
+    reach.name + " shows the longest reach in this comparison, " + fmt(reach.reachMi) + " miles with " + state.pax + " aboard.",
+    fast.name + " has the highest cruise speed here, " + fast.kt + " kt.",
+    cheap.name + " has the lowest planning cost here, about $" + fmt(cheap.hour) + " an hour.",
+    field.name + " has the shortest " + field.fieldLabel.toLowerCase() + " here, " + fmt(field.field) + " ft."
+  ];
+  var stops = items.filter(function(i){ return !i.nonstop; });
+  if (stops.length) bits.push(stops.map(function(i){ return i.name; }).join(" and ") + (stops.length > 1 ? " are" : " is") + " not shown as nonstop on this trip.");
+  return bits.join(" ");
+}
+function paintComparison(){
+  var body = document.getElementById("compareBody");
+  if (!body) return;
+  var items = compareItems();
+  var m = lastMission;
+  if (!m || !m.needNm){
+    body.innerHTML = '<div class="empty">Enter a trip to compare aircraft on it.</div>';
+    return;
+  }
+  if (!items.length){
+    body.innerHTML = '<div class="empty">No aircraft selected. Check Compare on the aircraft you want in this planning comparison.</div>';
+    return;
+  }
+  var hoursLabel = state.hours + (state.hours === 300 ? "+" : "");
+  var cards = items.map(function(it){
+    return '<article class="compare-card"><h3>' + esc(it.name) + '</h3><div class="cat">' + esc(it.cat) + '</div><div class="fit">' + esc(it.fit) + '</div><dl>' +
+      '<dt>Reach with ' + state.pax + ' aboard</dt><dd>' + fmt(it.reachMi) + ' mi</dd>' +
+      '<dt>Seats</dt><dd>' + it.seats + '</dd>' +
+      '<dt>Cruise</dt><dd>' + it.kt + ' kt</dd>' +
+      '<dt>' + esc(it.fieldLabel) + '</dt><dd>' + fmt(it.field) + ' ft</dd>' +
+      '<dt>Trip time</dt><dd>' + esc(it.time) + '</dd>' +
+      '<dt>Typical market value</dt><dd>' + esc(it.value) + '</dd>' +
+      '<dt>Planning cost</dt><dd>$' + fmt(it.hour) + '/hr</dd>' +
+      '<dt>About a year at ' + hoursLabel + ' hours</dt><dd>$' + fmt(it.year) + '</dd>' +
+      '<dt>For sale right now</dt><dd>' + (it.fs ? it.fs : "None listed") + '</dd>' +
+      '</dl><div class="src">' + esc(it.source) + '</div></article>';
+  }).join("");
+  body.innerHTML = '<p class="note-plain">Trip used for these figures: <b>' + esc(m.desc) + '</b>, ' + fmt(m.needNm * NM_TO_MI) + ' mi (' + fmt(m.needNm) + ' nm), ' + state.pax + ' passenger' + (state.pax === 1 ? '' : 's') + '.</p>' +
+    '<div class="compare-grid">' + cards + '</div><p class="trade">' + esc(tradeoffText(items)) + '</p>';
+}
+function selectedNames(){ return Object.keys(state.picked); }
 function missionNote(){
-  var names = Object.keys(state.picked);
+  var names = selectedNames();
   var m = mission();
   var sel = function(id){ var s = document.getElementById(id); return s.options[s.selectedIndex].text; };
   return [
-    "Find Your Aircraft lead",
+    "Find Your Aircraft inquiry",
+    "MIR requested: yes",
+    "Models for Market Intelligence Report: " + (names.length ? names.join(", ") : "none"),
     "Passengers: " + state.pax,
     "Pilots: " + (state.crew === 1 ? "One, where certified" : "Two"),
     "Hours per year: " + state.hours,
@@ -758,15 +874,17 @@ function missionNote(){
     "Budget: " + sel("budget"),
     "Shortest runway: " + sel("runway"),
     "Timeline: " + document.getElementById("lt").value,
-    "Aircraft checked: " + (names.length ? names.join(", ") : "none")
+    "Aircraft in this comparison: " + (names.length ? names.join(", ") : "none")
   ].join("\n");
 }
 
 function updateChosen(){
-  var names = Object.keys(state.picked);
-  document.getElementById("chosenNames").textContent = names.length ? names.join(", ") : "the aircraft you checked";
+  var names = selectedNames();
+  var chosen = document.getElementById("chosenNames");
+  if (chosen) chosen.textContent = names.length ? names.join(", ") : "none yet";
   var msg = document.getElementById("messageField");
   if (msg) msg.value = missionNote();
+  paintComparison();
 }
 
 document.getElementById("lt").addEventListener("change", updateChosen);
@@ -790,6 +908,7 @@ document.getElementById("leadForm").addEventListener("submit", function(e){
     }
   });
   var bad = checks.filter(function(c){ return c.bad; });
+  if (!selectedNames().length) bad.push({el:firstEl, msg:"Select at least one aircraft to request a Market Intelligence Report."});
   if (bad.length){
     err.hidden = false;
     err.textContent = bad.map(function(c){ return c.msg; }).join(" ");
@@ -812,9 +931,9 @@ document.getElementById("leadForm").addEventListener("submit", function(e){
     body:new URLSearchParams(new FormData(form)).toString()
   }).then(function(r){
     if (!r.ok) throw new Error("HTTP " + r.status);
-    form.innerHTML = '<h2>Thanks, ' + esc(first) + '.</h2><p class="thanks">We received your request. A VJS broker will follow up with the current market on ' + esc(names.length ? names.join(", ") : "the aircraft that fit your mission") + ' within one business day. If it’s urgent, call 210-865-2475.</p>';
+    form.innerHTML = '<h2>Thanks, ' + esc(first) + '.</h2><p class="thanks">We received your request for a Market Intelligence Report on ' + esc(names.join(", ")) + '. A VJS broker will follow up. The comparison on this page is a planning estimate, not that report. If it’s urgent, call 210-865-2475.</p>';
   }).catch(function(){
-    btn.disabled = false; btn.textContent = "Send me the market report";
+    btn.disabled = false; btn.textContent = "Request a Market Intelligence Report";
     err.hidden = false; err.textContent = "Your request didn’t go through. Try again, or call Vertical Jet Sales at 210-865-2475.";
   });
 });
