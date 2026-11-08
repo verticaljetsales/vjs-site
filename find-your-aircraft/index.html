@@ -79,9 +79,13 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid 
 .stepper output{font-family:var(--serif);font-weight:600;font-size:36px;min-width:2ch;text-align:center;line-height:1}
 .stepper span{color:var(--ink-2);font-size:15px}
 
-.legs{display:grid;gap:8px}
-.leg-row{display:grid;grid-template-columns:1fr auto;gap:8px}
-.leg-row button{border:1px solid var(--line);background:transparent;color:var(--ink-2);border-radius:10px;padding:0 12px;cursor:pointer;font:inherit}
+.legs{display:grid;gap:12px}
+.leg-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}
+.leg-row > button{border:1px solid var(--line);background:transparent;color:var(--ink-2);border-radius:10px;padding:0 12px;cursor:pointer;font:inherit;min-height:46px}
+.leg-main{display:grid;gap:4px}
+.leg-meta{font-size:13px;color:var(--ink-2);min-height:1.2em}
+.use-leg{justify-self:start;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:8px 12px;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.use-leg[aria-pressed="true"]{background:var(--accent);color:#F2F0EE;border-color:var(--accent)}
 .add-leg{border:1px dashed var(--line);background:transparent;color:var(--ink);border-radius:10px;padding:10px;font:inherit;cursor:pointer;width:100%}
 .or{display:flex;align-items:center;gap:10px;color:var(--ink-2);font-size:13px;margin:12px 0 8px}
 .or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
@@ -189,6 +193,7 @@ footer p{margin:0 0 6px;max-width:80ch}
       <label for="from">Where you usually fly from</label>
       <input type="text" id="from" list="airports" autocomplete="off" placeholder="City or airport code">
       <div class="lbl" style="margin-top:14px">Where you go most often</div>
+      <div class="hint">Each city is a trip from your departure airport. Choose “Use this trip” to make that one drive the aircraft below. The longest trip is used until you choose.</div>
       <div class="legs" id="legs"></div>
       <button type="button" class="add-leg" id="addLeg">Add another destination</button>
       <div class="or">or</div>
@@ -493,7 +498,7 @@ function money(m){ return m < 1 ? "$" + Math.round(m*1000) + "K" : "$" + (Math.r
 function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
 
 
-var state = { pax:6, hours:100, crew:2, picked:{} };
+var state = { pax:6, hours:100, crew:2, picked:{}, activeCode:null };
 
 // passengers
 var paxOut = document.getElementById("paxOut");
@@ -516,12 +521,45 @@ var legsEl = document.getElementById("legs");
 function addLeg(val){
   if (legsEl.children.length >= 4) return;
   var row = document.createElement("div"); row.className = "leg-row";
+  var main = document.createElement("div"); main.className = "leg-main";
   var inp = document.createElement("input"); inp.type="text"; inp.setAttribute("list","airports"); inp.autocomplete="off";
   inp.placeholder = "City or airport code"; inp.setAttribute("aria-label","Destination"); if(val) inp.value = val;
-  inp.addEventListener("change", render); inp.addEventListener("input", debounce(render,350));
+  var meta = document.createElement("div"); meta.className = "leg-meta";
+  var use = document.createElement("button"); use.type="button"; use.className = "use-leg"; use.hidden = true;
+  use.textContent = "Use this trip";
+  function followThisField(){
+    var a = findAirport(inp.value);
+    if (a) state.activeCode = a[0];
+    else if (!inp.value.trim()){
+      var still = false;
+      Array.prototype.forEach.call(legsEl.querySelectorAll("input"), function(other){
+        var b = findAirport(other.value);
+        if (b && b[0] === state.activeCode) still = true;
+      });
+      if (!still) state.activeCode = null;
+    }
+  }
+  inp.addEventListener("focus", function(){ inp.select(); });
+  inp.addEventListener("input", function(){ followThisField(); });
+  inp.addEventListener("change", function(){ followThisField(); render(); });
+  inp.addEventListener("input", debounce(render,350));
+  use.onclick = function(){ followThisField(); if (findAirport(inp.value)) render(); else inp.focus(); };
   var rm = document.createElement("button"); rm.type="button"; rm.textContent="Remove"; rm.setAttribute("aria-label","Remove destination");
-  rm.onclick = function(){ if(legsEl.children.length>1){ row.remove(); } else { inp.value=""; } render(); };
-  row.appendChild(inp); row.appendChild(rm); legsEl.appendChild(row);
+  rm.onclick = function(){
+    var removed = findAirport(inp.value);
+    if(legsEl.children.length>1){ row.remove(); } else { inp.value=""; }
+    if (removed && state.activeCode === removed[0]){
+      var still = false;
+      Array.prototype.forEach.call(legsEl.querySelectorAll("input"), function(other){
+        var b = findAirport(other.value);
+        if (b && b[0] === state.activeCode) still = true;
+      });
+      if (!still) state.activeCode = null;
+    }
+    render();
+  };
+  main.appendChild(inp); main.appendChild(meta); main.appendChild(use);
+  row.appendChild(main); row.appendChild(rm); legsEl.appendChild(row);
   document.getElementById("addLeg").hidden = legsEl.children.length >= 4;
   return inp;
 }
@@ -551,10 +589,42 @@ function mission(){
   var miles = parseFloat(distEl.value);
   var longest = null;
   legs.forEach(function(l){ if(!longest || l.nm > longest.nm) longest = l; });
+  var active = null;
+  if (state.activeCode) {
+    for (var i=0;i<legs.length;i++) if (legs[i].to[0] === state.activeCode) active = legs[i];
+  }
+  if (!active) active = longest;
   var needNm = 0, desc = "";
   if (!isNaN(miles) && miles > 0) { needNm = miles / NM_TO_MI; desc = "Trip of " + fmt(miles) + " mi"; }
-  if (longest && longest.nm > needNm) { needNm = longest.nm; desc = from[1] + " to " + longest.to[1]; }
-  return { needNm: needNm, plannedNm: needNm*1.10, desc: desc, errs: errs, high: high };
+  if (active && active.nm > needNm) { needNm = active.nm; desc = from[1] + " to " + active.to[1]; }
+  var others = active ? legs.filter(function(l){ return l.to[0] !== active.to[0]; }) : legs.slice();
+  return { needNm: needNm, plannedNm: needNm*1.10, desc: desc, errs: errs, high: high, legs: legs, active: active, others: others, explicit: !!(state.activeCode && active && active.to[0] === state.activeCode) };
+}
+function paintLegs(m){
+  var from = findAirport(fromEl.value);
+  Array.prototype.forEach.call(legsEl.querySelectorAll(".leg-row"), function(row){
+    var inp = row.querySelector("input");
+    var meta = row.querySelector(".leg-meta");
+    var use = row.querySelector(".use-leg");
+    if (!inp || !meta || !use) return;
+    var a = findAirport(inp.value);
+    if (a && from){
+      var nm = gcNm(from, a);
+      var on = m && m.active && m.active.to[0] === a[0];
+      meta.textContent = from[1] + " to " + a[1] + " · " + fmt(nm * NM_TO_MI) + " mi (" + fmt(nm) + " nm)";
+      use.hidden = false;
+      use.setAttribute("aria-pressed", on ? "true" : "false");
+      use.textContent = on ? "Using this trip" : "Use this trip";
+    } else if (inp.value.trim()){
+      meta.textContent = "Not in the airport list. Use the city name or code, such as Nashville or KBNA.";
+      use.hidden = true;
+      use.setAttribute("aria-pressed", "false");
+    } else {
+      meta.textContent = "";
+      use.hidden = true;
+      use.setAttribute("aria-pressed", "false");
+    }
+  });
 }
 
 function px(a){ return a.p ? a.p[0]+a.p[1] : 999; }
@@ -589,6 +659,7 @@ function render(){
   var maxRwy = +document.getElementById("runway").value;
   var errEl = document.getElementById("routeErr");
   errEl.hidden = !m.errs.length; errEl.textContent = m.errs.join(" ");
+  paintLegs(m);
 
   var sum = document.getElementById("summary"), notes = document.getElementById("notes");
   var list = document.getElementById("list"), more = document.getElementById("more");
@@ -598,7 +669,8 @@ function render(){
     updateChosen([]); return;
   }
 
-  sum.innerHTML = "<span>Longest trip <b>" + esc(m.desc) + "</b></span><span><b>" + fmt(m.needNm*NM_TO_MI) + " mi</b> (" + fmt(m.needNm) + " nm)</span><span><b>" + state.pax + "</b> passenger" + (state.pax===1?"":"s") + "</span>";
+  var others = (m.others || []).map(function(l){ return esc(l.to[1]) + " " + fmt(l.nm*NM_TO_MI) + " mi"; }).join("; ");
+  sum.innerHTML = "<span>" + (m.explicit ? "Trip used" : "Longest trip") + " <b>" + esc(m.desc) + "</b></span><span><b>" + fmt(m.needNm*NM_TO_MI) + " mi</b> (" + fmt(m.needNm) + " nm)</span><span><b>" + state.pax + "</b> passenger" + (state.pax===1?"":"s") + "</span>" + (others ? "<span>Also entered: " + others + "</span>" : "");
   var nh = "";
   if (m.high.length) nh += '<p class="note">Your trips include high-elevation airports (' + esc(Array.from(new Set(m.high)).join(", ")) + '). On hot summer days these can call for a longer runway or a lighter load than the figures below show. Ask us about specific airports.</p>';
   notes.innerHTML = nh;
