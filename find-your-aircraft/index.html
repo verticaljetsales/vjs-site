@@ -818,7 +818,9 @@ var CAT_FROM = {
   "Midsize jet":"midsize", "Super-midsize jet":"super",
   "Large jet":"large", "Long-range jet":"large", "Ultra-long-range jet":"large"
 };
-function categoryOf(a){ return CAT_FROM[a.c] || ""; }
+// Excel and XLS are grouped with midsize for the selector. Their dataset class stays Super light jet.
+var MIDSIZE_NAMES = {"Citation Excel":1, "Citation XLS":1, "Citation XLS+":1, "Citation XLS Gen 2":1};
+function categoryOf(a){ return MIDSIZE_NAMES[a.n] ? "midsize" : (CAT_FROM[a.c] || ""); }
 function categoryLabel(){
   if (!state.cats.length) return "Any";
   return CATS.filter(function(c){ return state.cats.indexOf(c.id) >= 0; }).map(function(c){ return c.label; }).join(", ");
