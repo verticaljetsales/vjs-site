@@ -106,6 +106,17 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid 
 .seg2{grid-template-columns:1fr 1fr}
 .seg button[aria-pressed="true"]{background:var(--accent);color:#F2F0EE;border-color:var(--accent)}
 
+.filters{grid-column:1 / -1;display:grid;gap:16px 28px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+@media (min-width:800px){.filters{grid-template-columns:1.7fr .8fr;align-items:start}}
+.filters .field{margin-bottom:0}
+.seg.cats{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:720px){.seg.cats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:980px){.seg.cats{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.seg.cats button{padding:10px 8px;font-size:14px;font-weight:600;line-height:1.2}
+.airport-group{position:sticky;top:33px;background:#F2F0EE;color:#263160;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-bottom:1px solid #DCCDBA}
+.airport-list button small{display:block;font-size:11px;font-weight:500;letter-spacing:.03em;color:#8C6233}
+.airport-list button[aria-selected="true"] small,.airport-list button:hover small{color:#DCCDBA}
+
 .summary{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0 0 6px;font-size:15px;color:var(--ink-2)}
 .summary b{color:var(--ink);font-weight:600}
 .note{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:10px 12px;font-size:14px;margin:12px 0 0}
@@ -163,7 +174,7 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid 
 @media print{
   @page{size:letter;margin:0.55in}
   .print-sample{display:block;font-family:"Ubuntu",sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#263160;margin:0 0 10px}
-  .print-compare,.hero,.mission,#notes,#list,#more,.lead,.summary,#res-h,.results > .panel > .freshness,.use-leg,.add-leg,.airport-list{display:none !important}
+  .print-compare,.hero,.mission,.filters,#notes,#list,#more,.lead,.summary,#res-h,.results > .panel > .freshness,.use-leg,.add-leg,.airport-list{display:none !important}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   body{background:#F2F0EE !important;color:#141414;font-family:"Ubuntu","Helvetica Neue",Arial,sans-serif}
   .brandbar{background:#141414 !important;color:#F2F0EE;border-bottom:4px solid #C4935B;position:static}
@@ -226,6 +237,34 @@ footer p{margin:0 0 6px;max-width:80ch}
 </header>
 
 <main class="wrap">
+
+  <section class="filters" aria-label="Aircraft filters">
+    <div class="field">
+      <span class="lbl" id="cat-l">Aircraft category</span>
+      <div class="seg cats" id="cats" role="group" aria-labelledby="cat-l">
+        <button type="button" data-cat="any" aria-pressed="true">Any</button>
+        <button type="button" data-cat="turboprop" aria-pressed="false">Turboprop</button>
+        <button type="button" data-cat="light" aria-pressed="false">Light jet</button>
+        <button type="button" data-cat="midsize" aria-pressed="false">Midsize</button>
+        <button type="button" data-cat="super" aria-pressed="false">Super midsize</button>
+        <button type="button" data-cat="large" aria-pressed="false">Large cabin</button>
+      </div>
+      <div class="hint">Choose one or more. Any shows every category.</div>
+    </div>
+    <div class="field">
+      <label for="budget">Proposed acquisition budget</label>
+      <select id="budget">
+        <option value="any" selected>Not sure</option>
+        <option value="0-2">Under $2M</option>
+        <option value="2-5">$2-5M</option>
+        <option value="5-10">$5-10M</option>
+        <option value="10-20">$10-20M</option>
+        <option value="20-35">$20-35M</option>
+        <option value="35+">$35M+</option>
+      </select>
+      <div class="hint">Matched to the reference market-value range on this page, not a live asking price. Aircraft with no reference range stay visible when this is Not sure.</div>
+    </div>
+  </section>
   <section class="panel mission" aria-labelledby="mission-h">
     <h2 id="mission-h">Your mission</h2>
     <p class="sub">Results update as you go.</p>
@@ -242,9 +281,9 @@ footer p{margin:0 0 6px;max-width:80ch}
 
     <div class="field">
       <label for="from">Where you usually fly from</label>
-      <input type="text" id="from" list="airports" autocomplete="off" placeholder="City or airport code">
+      <input type="text" id="from" list="airports" autocomplete="off" placeholder="City, airport, or code">
       <div class="lbl" style="margin-top:14px">Where you go most often</div>
-      <div class="hint">Tap a city or airport field. A list opens. Tap a name, or type and press Enter. That choice becomes the trip immediately. With more than one city entered, “Use this trip” switches which one is used.</div>
+      <div class="hint">Tap a city or airport field. A list opens. Type a city, airport name, or code, then tap a result. That choice becomes the trip immediately. With more than one city entered, “Use this trip” switches which one is used.</div>
       <div class="legs" id="legs"></div>
       <button type="button" class="add-leg" id="addLeg">Add another destination</button>
       <div class="or">or</div>
@@ -270,19 +309,6 @@ footer p{margin:0 0 6px;max-width:80ch}
         <button type="button" data-v="1">One, where certified</button>
       </div>
       <div class="hint">Single-pilot figures apply only to aircraft certified for it, such as the Phenom 100 and 300, Citation CJ series and M2, Mustang, PC-12, PC-24, and King Air. A second pilot takes a seat and weight that would otherwise go to a passenger.</div>
-    </div>
-
-    <div class="field">
-      <label for="budget">Purchase budget</label>
-      <select id="budget">
-        <option value="2">Up to $2 million</option>
-        <option value="4">Up to $4 million</option>
-        <option value="7">Up to $7 million</option>
-        <option value="12">Up to $12 million</option>
-        <option value="20">Up to $20 million</option>
-        <option value="35">Up to $35 million</option>
-        <option value="999" selected>Not sure yet</option>
-      </select>
     </div>
 
     <div class="field">
@@ -513,47 +539,34 @@ function paxAt(q, crew){ var p = q[0] - crew; return q[2] == null ? p : Math.min
 
 
 
-// code, label, lat, lon, high (elevation/performance flag)
-var AIRPORTS = [
- ["KSAT","San Antonio",29.5337,-98.4698],["5C1","Boerne Stage Field",29.7233,-98.6946],["KERV","Kerrville",29.9767,-99.0854],
- ["KAUS","Austin",30.1945,-97.6699],["KHOU","Houston Hobby",29.6454,-95.2789],["KIAH","Houston Intercontinental",29.9902,-95.3368],
- ["KDAL","Dallas Love Field",32.8471,-96.8518],["KADS","Dallas Addison",32.9686,-96.8364],["KAFW","Fort Worth Alliance",32.9876,-97.3188],
- ["KMAF","Midland",31.9425,-102.2019],["KELP","El Paso",31.8072,-106.3778],["KOKC","Oklahoma City",35.3931,-97.6007],["KTUL","Tulsa",36.1984,-95.8881],
- ["KASE","Aspen",39.2232,-106.8688,1],["KEGE","Vail / Eagle",39.6426,-106.9177,1],["KTEX","Telluride",37.9538,-107.9085,1],
- ["KAPA","Denver Centennial",39.5701,-104.8493,1],["KJAC","Jackson Hole",43.6073,-110.7377,1],["KBZN","Bozeman",45.7775,-111.1530,1],
- ["KSUN","Sun Valley",43.5044,-114.2962,1],["KSDL","Scottsdale",33.6229,-111.9105],["KLAS","Las Vegas",36.0840,-115.1537],
- ["KVNY","Los Angeles Van Nuys",34.2098,-118.4898],["KSAN","San Diego",32.7336,-117.1897],["KAPC","Napa",38.2132,-122.2807],
- ["KSFO","San Francisco",37.6213,-122.3790],["KSEA","Seattle",47.4502,-122.3088],["KMSY","New Orleans",29.9934,-90.2580],
- ["KBNA","Nashville",36.1245,-86.6782],["KPDK","Atlanta Peachtree",33.8756,-84.3020],["KMDW","Chicago Midway",41.7868,-87.7522],
- ["KMSP","Minneapolis",44.8848,-93.2223],["KTEB","New York Teterboro",40.8501,-74.0608],["KHPN","White Plains",41.0670,-73.7076],
- ["KDCA","Washington DC",38.8512,-77.0402],["KBOS","Boston",42.3656,-71.0096],["KACK","Nantucket",41.2531,-70.0602],
- ["KPBI","Palm Beach",26.6832,-80.0956],["KOPF","Miami Opa-locka",25.9070,-80.2784],["KAPF","Naples",26.1526,-81.7753],["KMCO","Orlando",28.4312,-81.3081],
- ["MMSD","Cabo San Lucas",23.1518,-109.7215],["MMUN","Cancun",21.0365,-86.8771],["MMPR","Puerto Vallarta",20.6801,-105.2541],
- ["MMMX","Mexico City",19.4363,-99.0721,1],["MMMY","Monterrey",25.7785,-100.1069],["MYNN","Nassau, Bahamas",25.0390,-77.4662],
- ["MBPV","Turks and Caicos",21.7736,-72.2659],["TNCM","St. Maarten",18.0410,-63.1089],["TJSJ","San Juan",18.4394,-66.0018],
- ["MROC","San Jose, Costa Rica",9.9939,-84.2088],["PHNL","Honolulu",21.3187,-157.9225],["CYYZ","Toronto",43.6777,-79.6248],
- ["EGGW","London Luton",51.8747,-0.3683],["LFPB","Paris Le Bourget",48.9694,2.4414],["LSGG","Geneva",46.2381,6.1089],["EINN","Shannon, Ireland",52.7020,-8.9248]
-];
-
-var byKey = {};
-var dl = document.getElementById("airports");
-AIRPORTS.forEach(function(a){
-  var label = a[1] + " (" + a[0] + ")";
-  byKey[label.toLowerCase()] = a; byKey[a[0].toLowerCase()] = a; byKey[a[1].toLowerCase()] = a;
-  var o = document.createElement("option"); o.value = label; dl.appendChild(o);
+// Coordinates, names, and codes from the public-domain OurAirports dataset.
+// [code, label, lat, lon, high, iata, name, region, extra]
+var AIRPORTS = "KBHM|Birmingham|33.5629|-86.7507|0|BHM|Birmingham-Shuttlesworth International Airport|Alabama|BHM\nKHSV|Huntsville|34.6362|-86.7744|0|HSV|Huntsville International Airport|Alabama|HSV Carl T. Jones Field\nKMDQ|Huntsville Executive|34.8614|-86.5575|0||Madison County Executive Airport-Tom Sharp Jr Field|Alabama|MDQ M82\nPANC|Anchorage|61.1790|-149.9926|0|ANC|Ted Stevens Anchorage International Airport|Alaska|ANC Anchorage\nPAMR|Anchorage Merrill|61.2128|-149.8440|0|MRI|Merrill Field|Alaska|MRI\nPAFA|Fairbanks|64.8151|-147.8560|0|FAI|Fairbanks International Airport|Alaska|FAI\nPAJN|Juneau|58.3549|-134.5744|0|JNU|Juneau International Airport|Alaska|JNU\nKPHX|Phoenix|33.4353|-112.0059|0|PHX|Phoenix Sky Harbor International Airport|Arizona|PHX\nKDVT|Phoenix Deer Valley|33.6883|-112.0830|0|DVT|Phoenix Deer Valley Airport|Arizona|DVT\nKSDL|Scottsdale|33.6229|-111.9110|0|SCF|Scottsdale Airport|Arizona|SDL SCF Thunderbird Field #2\nKFSM|Fort Smith|35.3366|-94.3674|0|FSM|Fort Smith Regional Airport|Arkansas|FSM\nKLIT|Little Rock|34.7292|-92.2236|0|LIT|Bill & Hillary Clinton National Airport/Adams Field|Arkansas|LIT\nKXNA|Northwest Arkansas|36.2819|-94.3068|0|XNA|Northwest Arkansas National Airport|Arkansas|XNA Bentonville, Rogers Fayetteville/Springdale/Rogers\nKLAX|Los Angeles|33.9425|-118.4080|0|LAX|Los Angeles International Airport|California|LAX Tom Bradley\nKVNY|Los Angeles Van Nuys|34.2098|-118.4900|0|VNY|Van Nuys Airport|California|VNY\nKAPC|Napa|38.2132|-122.2810|0|APC|Napa County Airport|California|APC\nKSNA|Orange County|33.6751|-117.8693|0|SNA|John Wayne Orange County International Airport|California|SNA Disney, Disneyland, Orange County Santa Ana\nKSAN|San Diego|32.7336|-117.1900|0|SAN|San Diego International Airport|California|SAN Lindbergh Field\nKSFO|San Francisco|37.6198|-122.3748|0|SFO|San Francisco International Airport|California|SFO QSF, QBA\nKTRK|Truckee|39.3186|-120.1406|1|TKF|Truckee Tahoe Airport|California|TRK TKF\nKASE|Aspen|39.2232|-106.8690|1|ASE|Aspen-Pitkin County Airport (Sardy Field)|Colorado|ASE\nKDEN|Denver|39.8600|-104.6738|1|DEN|Denver International Airport|Colorado|DEN DVX, KVDX\nKAPA|Denver Centennial|39.5701|-104.8490|1|APA|Centennial Airport|Colorado|APA Arapahoe County Airport\nKBJC|Denver Rocky Mountain|39.9088|-105.1170|1|BJC|Rocky Mountain Metropolitan Airport|Colorado|BJC Jefferson County Airport, Jeffco Airport\nKTEX|Telluride|37.9538|-107.9080|1|TEX|Telluride Regional Airport|Colorado|TEX\nKEGE|Vail / Eagle|39.6426|-106.9180|1|EGE|Eagle County Regional Airport|Colorado|EGE\nKBDL|Hartford Bradley|41.9386|-72.6880|0|BDL|Bradley International Airport|Connecticut|BDL HFD, Hartford\nKHFD|Hartford Brainard|41.7367|-72.6494|0|HFD|Hartford Brainard Airport|Connecticut|HFD\nKOXC|Oxford|41.4786|-73.1352|0|OXC|Waterbury Oxford Airport|Connecticut|OXC\nKILG|Wilmington|39.6787|-75.6065|0|ILG|Wilmington Airport|Delaware|ILG New Castle\nKBCT|Boca Raton|26.3785|-80.1077|0|BCT|Boca Raton Airport|Florida|BCT Boca Raton AAF\nKFLL|Fort Lauderdale|26.0726|-80.1527|0|FLL|Fort Lauderdale Hollywood International Airport|Florida|FLL MFW, South Florida\nKMIA|Miami|25.7960|-80.2898|0|MIA|Miami International Airport|Florida|MIA MFW, South Florida, Wilcox Field, Pan American Field\nKOPF|Miami Opa-locka|25.9070|-80.2784|0|OPF|Miami-Opa Locka Executive Airport|Florida|OPF\nKAPF|Naples|26.1526|-81.7753|0|APF|Naples Municipal Airport|Florida|APF\nKMCO|Orlando|28.4294|-81.3090|0|MCO|Orlando International Airport|Florida|MCO Disney World,Epcot Center\nKPBI|Palm Beach|26.6832|-80.0956|0|PBI|President Donald J. Trump International Airport|Florida|KDJT DJT PBI, KPBI, MFW, South Florida West Palm Beach\nKATL|Atlanta|33.6367|-84.4281|0|ATL|Hartsfield Jackson Atlanta International Airport|Georgia|ATL\nKFTY|Atlanta Fulton County|33.7791|-84.5214|0|FTY|Fulton County Airport Brown Field|Georgia|FTY\nKPDK|Atlanta Peachtree|33.8763|-84.3021|0|PDK|DeKalb Peachtree Airport|Georgia|PDK\nPHNL|Honolulu|21.3184|-157.9257|0|HNL|Daniel K. Inouye International Airport|Hawaii|HNL Hickam Air Force Base, HIK, PHIK, KHNL, Honolulu International Honolulu, Oahu\nPHKO|Kona|19.7388|-156.0456|0|KOA|Ellison Onizuka Kona International Airport at Ke\u0101hole|Hawaii|KOA Kailua-Kona\nPHOG|Maui|20.8963|-156.4318|0|OGG|Kahului International Airport|Hawaii|OGG Kahului\nKBOI|Boise|43.5644|-116.2230|0|BOI|Boise Air Terminal/Gowen Field|Idaho|BOI Boise Air Terminal, Gowen Field\nKSUN|Sun Valley|43.5044|-114.2960|1|SUN|Friedman Memorial Airport|Idaho|SUN Hailey\nKTWF|Twin Falls|42.4818|-114.4880|1|TWF|Joslin Field Magic Valley Regional Airport|Idaho|TWF\nKDPA|Chicago DuPage|41.9078|-88.2486|0|DPA|Dupage Airport|Illinois|DPA Chicago/West Chicago\nKPWK|Chicago Executive|42.1142|-87.9015|0|PWK|Chicago Executive Airport|Illinois|PWK Chicago/Prospect Heights/Wheeling\nKMDW|Chicago Midway|41.7860|-87.7524|0|MDW|Chicago Midway International Airport|Illinois|MDW CHI\nKIND|Indianapolis|39.7173|-86.2944|0|IND|Indianapolis International Airport|Indiana|IND\nKTYQ|Indianapolis Executive|40.0307|-86.2514|0||Indianapolis Executive Airport|Indiana|TYQ\nKSBN|South Bend|41.7083|-86.3169|0|SBN|South Bend International Airport|Indiana|SBN\nKCID|Cedar Rapids|41.8847|-91.7108|0|CID|The Eastern Iowa Airport|Iowa|CID Cedar Rapids Municipal\nKDSM|Des Moines|41.5340|-93.6567|0|DSM|Des Moines International Airport|Iowa|DSM\nKALO|Waterloo|42.5571|-92.4003|0|ALO|Waterloo Regional Airport|Iowa|ALO\nKFOE|Topeka|38.9509|-95.6636|0|FOE|Topeka Regional Airport|Kansas|FOE Topeka Army Airfield, Forbes AFB, Forbes Field\nKAAO|Wichita Colonel James Jabara|37.7476|-97.2211|0||Colonel James Jabara Airport|Kansas|AAO\nKICT|Wichita Dwight D. Eisenhower|37.6503|-97.4286|0|ICT|Wichita Dwight D. Eisenhower National Airport|Kansas|ICT Mid-Continent Airport\nKLEX|Lexington|38.0351|-84.6067|0|LEX|Blue Grass Airport|Kentucky|LEX\nKLOU|Louisville Bowman|38.2280|-85.6637|0|LOU|Bowman Field|Kentucky|LOU\nKSDF|Louisville Muhammad Ali|38.1706|-85.7351|0|SDF|Louisville Muhammad Ali International Airport|Kentucky|SDF Louisville International, Standiford Field\nKBTR|Baton Rouge|30.5332|-91.1496|0|BTR|Baton Rouge Metropolitan Airport|Louisiana|BTR\nKMSY|New Orleans|29.9934|-90.2647|0|MSY|Louis Armstrong New Orleans International Airport|Louisiana|MSY\nKNEW|New Orleans Lakefront|30.0424|-90.0283|0|NEW|Lakefront Airport|Louisiana|NEW\nKBGR|Bangor|44.8064|-68.8267|0|BGR|Bangor International Airport|Maine|BGR\nKPWM|Portland, Maine|43.6462|-70.3093|0|PWM|Portland International Jetport|Maine|PWM\nKBWI|Baltimore|39.1754|-76.6683|0|BWI|Baltimore/Washington International Thurgood Marshall Airport|Maryland|BWI WAS, Friendship International\nKFDK|Frederick|39.4176|-77.3743|0|FDK|Frederick Municipal Airport|Maryland|FDK\nKMTN|Martin State|39.3257|-76.4138|0|MTN|Martin State Airport|Maryland|MTN Baltimore\nKBOS|Boston|42.3620|-71.0079|0|BOS|Boston Logan International Airport|Massachusetts|BOS General Edward Lawrence Logan International Airport\nKBED|Boston Hanscom|42.4700|-71.2890|0|BED|Laurence G Hanscom Field|Massachusetts|BED Hanscom Air Force Base Bedford\nKHYA|Hyannis|41.6693|-70.2804|0|HYA|Cape Cod Gateway Airport|Massachusetts|HYA Barnstable, Boardman Polando\nKMVY|Martha's Vineyard|41.3931|-70.6143|0|MVY|Martha's Vineyard Airport|Massachusetts|MVY\nKACK|Nantucket|41.2531|-70.0602|0|ACK|Nantucket Memorial Airport|Massachusetts|ACK\nKDTW|Detroit|42.2138|-83.3538|0|DTW|Detroit Metropolitan Wayne County Airport|Michigan|DTW DTT, Detroit Metro Airport\nKPTK|Detroit Pontiac|42.6655|-83.4201|0|PTK|Oakland County International Airport|Michigan|PTK Pontiac Municipal Airport, Oakland-Pontiac Airport\nKGRR|Grand Rapids|42.8808|-85.5228|0|GRR|Gerald R. Ford International Airport|Michigan|GRR\nKMSP|Minneapolis|44.8801|-93.2217|0|MSP|Minneapolis\u2013Saint Paul International Airport / Wold\u2013Chamberlain Field|Minnesota|MSP\nKFCM|Minneapolis Flying Cloud|44.8272|-93.4571|0|FCM|Flying Cloud Airport|Minnesota|FCM\nKSTP|St. Paul|44.9348|-93.0600|0|STP|Saint Paul Downtown Holman Field|Minnesota|STP St Paul Saint Paul\nKGPT|Gulfport|30.4056|-89.0698|0|GPT|Gulfport Biloxi International Airport|Mississippi|GPT\nKJAN|Jackson|32.3112|-90.0759|0|JAN|Jackson-Medgar Wiley Evers International Airport|Mississippi|JAN\nKMCI|Kansas City|39.3017|-94.7139|0|MCI|Kansas City International Airport|Missouri|MCI\nKSTL|St. Louis|38.7487|-90.3700|0|STL|St. Louis Lambert International Airport|Missouri|STL Lambert St Louis St Louis\nKSUS|St. Louis Spirit|38.6621|-90.6520|0|SUS|Spirit of St Louis Airport|Missouri|SUS St Louis\nKBIL|Billings|45.8089|-108.5412|0|BIL|Billings Logan International Airport|Montana|BIL\nKBZN|Bozeman|45.7789|-111.1537|1|BZN|Bozeman Yellowstone International Airport|Montana|BZN Gallatin Field\nKGTF|Great Falls|47.4820|-111.3710|0|GTF|Great Falls International Airport|Montana|GTF\nKGRI|Grand Island|40.9675|-98.3096|0|GRI|Central Nebraska Regional Airport|Nebraska|GRI\nKLNK|Lincoln|40.8449|-96.7618|0|LNK|Lincoln Airport|Nebraska|LNK Lincoln Army Air Field, Lincoln Air Force Base, 155th Air Refueling Wing, Lincoln Municpal\nKOMA|Omaha|41.3032|-95.8941|0|OMA|Eppley Airfield|Nebraska|OMA\nKLAS|Las Vegas|36.0834|-115.1518|0|LAS|Harry Reid International Airport|Nevada|LAS McCarran International Airport\nKHND|Las Vegas Henderson|35.9728|-115.1340|0|HSH|Henderson Executive Airport|Nevada|HND HSH L15, Sky Harbor Airport\nKRNO|Reno|39.4991|-119.7680|1|RNO|Reno Tahoe International Airport|Nevada|RNO\nKCON|Concord KCON|43.2027|-71.5023|0|CON|Concord Municipal Airport|New Hampshire|CON\nKMHT|Manchester|42.9326|-71.4357|0|MHT|Manchester-Boston Regional Airport|New Hampshire|MHT Manchester Airport\nKPSM|Portsmouth|43.0779|-70.8233|0|PSM|Portsmouth International Airport at Pease|New Hampshire|PSM\nKACY|Atlantic City|39.4562|-74.5775|0|ACY|Atlantic City International Airport|New Jersey|ACY\nKMMU|Morristown|40.7991|-74.4149|0|MMU|Morristown Municipal Airport|New Jersey|MMU Manhattan, New York City, NYC\nKEWR|Newark|40.6894|-74.1705|0|EWR|Newark Liberty International Airport|New Jersey|EWR Manhattan, New York City, NYC\nKTEB|Teterboro|40.8501|-74.0608|0|TEB|Teterboro Airport|New Jersey|TEB Manhattan, New York City, NYC\nKABQ|Albuquerque|35.0400|-106.6089|1|ABQ|Albuquerque International Sunport|New Mexico|ABQ\nKAEG|Albuquerque Double Eagle II|35.1452|-106.7950|1||Double Eagle II Airport|New Mexico|AEG\nKSAF|Santa Fe|35.6171|-106.0890|1|SAF|Santa Fe Municipal Airport|New Mexico|SAF\nKJFK|New York JFK|40.6394|-73.7793|0|JFK|John F. Kennedy International Airport|New York|JFK Manhattan, New York City, NYC, Idlewild, IDL, KIDL\nKLGA|New York LaGuardia|40.7772|-73.8726|0|LGA|LaGuardia Airport|New York|LGA Manhattan, New York City, NYC, Glenn H. Curtiss Airport, North Beach Airport, La Guardia\nKHPN|White Plains|41.0670|-73.7076|0|HPN|Westchester County Airport|New York|HPN Manhattan, New York City, NYC\nKCLT|Charlotte|35.2140|-80.9431|0|CLT|Charlotte Douglas International Airport|North Carolina|CLT\nKJQF|Concord KJQF|35.3878|-80.7091|0|USA|Concord-Padgett Regional Airport|North Carolina|JQF USA 3N8, \"NASCAR's Airport\"\nKRDU|Raleigh-Durham|35.8787|-78.7873|0|RDU|Raleigh-Durham International Airport|North Carolina|RDU Raleigh/Durham\nKBIS|Bismarck|46.7727|-100.7469|0|BIS|Bismarck Municipal Airport|North Dakota|BIS Burleigh County Airport\nKFAR|Fargo|46.9207|-96.8158|0|FAR|Hector International Airport|North Dakota|FAR 119th Wing, Happy Hooligans\nKGFK|Grand Forks|47.9493|-97.1761|0|GFK|Grand Forks International Airport|North Dakota|GFK\nKCLE|Cleveland|41.4117|-81.8498|0|CLE|Cleveland Hopkins International Airport|Ohio|CLE\nKCMH|Columbus|39.9980|-82.8919|0|CMH|John Glenn Columbus International Airport|Ohio|CMH\nKOSU|Columbus Ohio State|40.0798|-83.0730|0|OSU|The Ohio State University Airport - Don Scott Field|Ohio|OSU\nKOKC|Oklahoma City|35.3934|-97.5982|0|OKC|OKC Will Rogers World Airport|Oklahoma|OKC\nKPWA|Oklahoma City Wiley Post|35.5342|-97.6471|0|PWA|Wiley Post Airport|Oklahoma|PWA\nKTUL|Tulsa|36.1971|-95.8862|0|TUL|Tulsa International Airport|Oklahoma|TUL\nKEUG|Eugene|44.1246|-123.2120|0|EUG|Eugene Airport|Oregon|EUG Mahlon Sweet Field\nKHIO|Portland|45.5404|-122.9500|0|HIO|Portland Hillsboro Airport|Oregon|HIO\nKPDX|Portland, Oregon|45.5887|-122.5980|0|PDX|Portland International Airport|Oregon|PDX\nKABE|Allentown|40.6518|-75.4428|0|ABE|Lehigh Valley International Airport|Pennsylvania|ABE Allentown\u2013Bethlehem\u2013Easton International Airport Allentown/Bethlehem\nKPHL|Philadelphia|39.8719|-75.2411|0|PHL|Philadelphia International Airport|Pennsylvania|PHL\nKPNE|Philadelphia Northeast|40.0824|-75.0106|0|PNE|Northeast Philadelphia Airport|Pennsylvania|PNE\nKOQU|North Kingstown|41.5971|-71.4121|0|NCO|Quonset State Airport|Rhode Island|OQU NCO Quonset Point NAS\nKPVD|Providence|41.7250|-71.4257|0|PVD|Rhode Island T. F. Green International Airport|Rhode Island|PVD Providence/Warwick\nKWST|Westerly|41.3496|-71.8034|0|WST|Westerly State Airport|Rhode Island|WST\nKCHS|Charleston|32.8962|-80.0382|0|CHS|Charleston International Airport|South Carolina|CHS Charleston Air Force Base\nKCAE|Columbia|33.9382|-81.1230|0|CAE|Columbia Metropolitan Airport|South Carolina|CAE\nKGSP|Greenville-Spartanburg|34.8957|-82.2189|0|GSP|Greenville-Spartanburg International Airport|South Carolina|GSP Roger Milliken Field Greenville/Greer/Spartanburg\nKPIR|Pierre|44.3827|-100.2860|0|PIR|Pierre Regional Airport|South Dakota|PIR\nKRAP|Rapid City|44.0453|-103.0570|0|RAP|Rapid City Regional Airport|South Dakota|RAP\nKFSD|Sioux Falls|43.5855|-96.7412|0|FSD|Sioux Falls Regional Airport|South Dakota|FSD Joe Foss Field, Fighting Lobos, Sioux Falls Army Air Base, 114th Fighter Wing, Sioux Falls Regional Airport\nKTYS|Knoxville|35.8110|-83.9940|0|TYS|McGhee Tyson Airport|Tennessee|TYS Knoxville Knoxville/Maryville\nKMEM|Memphis|35.0438|-89.9763|0|MEM|Frederick W. Smith International Airport|Tennessee|MEM\nKBNA|Nashville|36.1245|-86.6782|0|BNA|Nashville International Airport|Tennessee|BNA\nKAUS|Austin|30.1975|-97.6620|0|AUS|Austin Bergstrom International Airport|Texas|AUS BSM, KBSM, Bergstrom AFB\n5C1|Boerne Stage Field|29.7239|-98.6946|0||Boerne Stage Field|Texas|San Antonio\nKADS|Dallas Addison|32.9686|-96.8364|0|ADS|Addison Airport|Texas|ADS\nKDFW|Dallas Fort Worth|32.8968|-97.0380|0|DFW|Dallas Fort Worth International Airport|Texas|DFW QDF Dallas-Fort Worth\nKDAL|Dallas Love Field|32.8448|-96.8477|0|DAL|Dallas Love Field|Texas|DAL QDF\nKELP|El Paso|31.8099|-106.3756|0|ELP|El Paso International Airport|Texas|ELP\nKAFW|Fort Worth Alliance|32.9904|-97.3195|0|AFW|Perot Field/Fort Worth Alliance Airport|Texas|AFW\nKHOU|Houston Hobby|29.6453|-95.2768|0|HOU|William P. Hobby Airport|Texas|HOU QHO\nKIAH|Houston Intercontinental|29.9844|-95.3414|0|IAH|George Bush Intercontinental Airport|Texas|IAH QHO\nKERV|Kerrville|29.9767|-99.0857|0|ERV|Kerrville / Kerr County Airport at Louis Schreiner Field|Texas|ERV Kerrville Municipal Airport\nKMAF|Midland|31.9425|-102.2020|0|MAF|Midland International Air and Space Port|Texas|MAF Midland International Airport\nKSAT|San Antonio|29.5337|-98.4698|0|SAT|San Antonio International Airport|Texas|SAT\nKSSF|San Antonio Stinson|29.3370|-98.4711|0|SSF|Stinson Municipal Airport|Texas|SSF\nKSGR|Sugar Land|29.6223|-95.6565|0|SGR|Sugar Land Regional Airport|Texas|SGR Hull Field Houston\nKCDC|Cedar City|37.7010|-113.0990|1|CDC|Cedar City Regional Airport|Utah|CDC\nKPVU|Provo|40.2189|-111.7224|1|PVU|Provo Municipal Airport|Utah|PVU\nKSLC|Salt Lake City|40.7889|-111.9799|1|SLC|Salt Lake City International Airport|Utah|SLC\nKBTV|Burlington|44.4719|-73.1533|0|BTV|Patrick Leahy Burlington International Airport|Vermont|BTV\nKMPV|Montpelier|44.2035|-72.5623|0|MPV|Edward F Knapp State Airport|Vermont|MPV Barre/Montpelier\nKORF|Norfolk|36.8953|-76.2010|0|ORF|Norfolk International Airport|Virginia|ORF\nKRIC|Richmond|37.5052|-77.3197|0|RIC|Richmond International Airport|Virginia|RIC\nKIAD|Washington Dulles|38.9445|-77.4558|0|IAD|Washington Dulles International Airport|Virginia|IAD WAS\nKSEA|Seattle|47.4479|-122.3103|0|SEA|Seattle\u2013Tacoma International Airport|Washington|SEA Sea-Tac Airport, SeaTac Airport\nKBFI|Seattle Boeing Field|47.5270|-122.2999|0|BFI|King County International Airport - Boeing Field|Washington|BFI Boeing Field\nKRNT|Seattle Renton|47.4931|-122.2160|0|RNT|Renton Municipal Airport|Washington|RNT Scott Field\nKCKB|Bridgeport|39.2966|-80.2281|0|CKB|North Central West Virginia Airport|West Virginia|CKB\nKCRW|Charleston Yeager|38.3731|-81.5932|0|CRW|Yeager Airport|West Virginia|CRW\nKHTS|Huntington|38.3667|-82.5580|0|HTS|Tri-State Airport / Milton J. Ferguson Field|West Virginia|HTS\nKMSN|Madison|43.1399|-89.3375|0|MSN|Dane County Regional Truax Field|Wisconsin|MSN\nKMKE|Milwaukee|42.9472|-87.8966|0|MKE|General Mitchell International Airport|Wisconsin|MKE\nKMWC|Milwaukee Timmerman|43.1104|-88.0344|0|MWC|Lawrence J Timmerman Airport|Wisconsin|MWC\nKCPR|Casper|42.9074|-106.4616|1|CPR|Casper-Natrona County International Airport|Wyoming|CPR\nKCOD|Cody|44.5202|-109.0240|1|COD|Yellowstone Regional Airport|Wyoming|COD\nKJAC|Jackson Hole|43.6073|-110.7380|1|JAC|Jackson Hole Airport|Wyoming|JAC\nKDCA|Washington DC|38.8521|-77.0377|0|DCA|Ronald Reagan Washington National Airport|District of Columbia|DCA WAS\nCYKF|Breslau|43.4608|-80.3786|0|YKF|Region of Waterloo International Airport|Canada|YKF Breslau, Kitchener, Waterloo, Cambridge, YKF\nCYYC|Calgary|51.1188|-114.0099|0|YYC|Calgary International Airport|Canada|YYC McCall Field\nCYBW|Calgary Springbank|51.1040|-114.3694|0||Calgary / Springbank Airport|Canada|YBW\nCYEG|Edmonton|53.3097|-113.5800|0|YEG|Edmonton International Airport|Canada|YEG\nCYHZ|Halifax|44.8808|-63.5086|0|YHZ|Halifax / Stanfield International Airport|Canada|YHZ Robert L. Stanfield International Airport\nCYLW|Kelowna|49.9561|-119.3780|0|YLW|Kelowna International Airport|Canada|YLW Kelowna, Okanagan\nCYQM|Moncton|46.1132|-64.6772|0|YQM|Greater Moncton Rom\u00e9o LeBlanc International Airport|Canada|YQM CYQM, YQM, Moncton\nCYUL|Montreal|45.4678|-73.7423|0|YUL|Montreal / Pierre Elliott Trudeau International Airport|Canada|YUL YMQ, Dorval Airport Montr\u00e9al\nCYHU|Montreal St-Hubert|45.5175|-73.4169|0|YHU|Montr\u00e9al / Saint-Hubert Metropolitan Airport|Canada|YHU Montr\u00e9al\nCYOW|Ottawa|45.3225|-75.6692|0|YOW|Ottawa Macdonald-Cartier International Airport|Canada|YOW Uplands, UUP, CUUP\nCYQB|Quebec|46.7911|-71.3933|0|YQB|Quebec Jean Lesage International Airport|Canada|YQB Quebec City\nCYYT|St. John's|47.6186|-52.7519|0|YYT|St. John's International Airport|Canada|YYT\nCYYZ|Toronto|43.6759|-79.6294|0|YYZ|Toronto Pearson International Airport|Canada|YYZ YTO, Toronto International Airport, Malton\nCYTZ|Toronto Billy Bishop|43.6279|-79.3955|0|YTZ|Billy Bishop Toronto City Airport|Canada|YTZ YTO, Toronto Island Airport\nCYVR|Vancouver|49.1939|-123.1840|0|YVR|Vancouver International Airport|Canada|YVR\nCZBB|Vancouver Boundary Bay|49.0743|-123.0069|0|YDT|Boundary Bay Airport|Canada|YDT ZBB Delta\nCYYJ|Victoria|48.6472|-123.4278|0|YYJ|Victoria International Airport|Canada|YYJ\nCYXY|Whitehorse|60.7085|-135.0657|0|YXY|Whitehorse / Erik Nielsen International Airport|Canada|YXY\nCYWG|Winnipeg|49.9100|-97.2399|0|YWG|Winnipeg / James Armstrong Richardson International Airport|Canada|YWG CFB Winnipeg\nMMUN|Cancun|21.0408|-86.8735|0|CUN|Canc\u00fan International Airport|Mexico|CUN Canc\u00fan\nMMGL|Guadalajara|20.5233|-103.3101|1|GDL|Guadalajara International Airport|Mexico|GDL Miguel Hidalgo y Costilla Guadalajara\nMMHO|Hermosillo|29.0928|-111.0530|0|HMO|General Ignacio L. Pesqueira International Airport|Mexico|HMO\nMMSD|Los Cabos|23.1519|-109.7207|0|SJD|Los Cabos International Airport|Mexico|SJD San Jos\u00e9 del Cabo\nMMZO|Manzanillo|19.1448|-104.5590|0|ZLO|Playa de Oro International Airport|Mexico|ZLO Manzanillo Costalegre, Aeropuerto Internacional Playa de Oro\nMMMD|Merida|20.9305|-89.6455|0|MID|Manuel Crescencio Rej\u00f3n International Airport|Mexico|MID M\u00e9rida\nMMMX|Mexico City|19.4358|-99.0703|1|MEX|Mexico City Benito Ju\u00e1rez International Airport|Mexico|ME1 MEX AICM, Ciudad de M\u00e9xico\nMMMY|Monterrey|25.7785|-100.1070|0|MTY|Monterrey International Airport|Mexico|MTY General Mariano Escobedo, Apodaca\nMMPR|Puerto Vallarta|20.6799|-105.2544|0|PVR|Puerto Vallarta International Airport|Mexico|PVR Licenciado Gustavo D\u00edaz Ordaz\nMMLO|Silao|20.9927|-101.4803|1|BJX|Guanajuato International Airport|Mexico|BJ1 BJX Del Baj\u00edo International Airport, Le\u00f3n/Baj\u00edo International Airport\nMMTJ|Tijuana|32.5410|-116.9700|0|TIJ|General Abelardo L. Rodriguez International Airport|Mexico|TIJ\nMMTO|Toluca|19.3369|-99.5658|1|TLC|Adolfo L\u00f3pez Mateos International Airport|Mexico|TLC Aeropuerto Internacional Adolfo L\u00f3pez Mateos\nTAPA|Antigua|17.1367|-61.7927|0|ANU|V. C. Bird International Airport|Caribbean & Bahamas|ANU St. John's Osbourn\nTBPB|Barbados|13.0747|-59.4910|0|BGI|Grantley Adams International Airport|Caribbean & Bahamas|BGI Seawell Bridgetown\nTKPK|Basseterre|17.3108|-62.7191|0|SKB|Robert L. Bradshaw International Airport|Caribbean & Bahamas|SKB\nMYEF|Exuma|23.5626|-75.8780|0|GGT|Exuma International Airport|Caribbean & Bahamas|GGT Moss Town\nMYGF|Freeport|26.5580|-78.6956|0|FPO|Grand Bahama International Airport|Caribbean & Bahamas|FPO\nMWCR|Grand Cayman|19.2928|-81.3577|0|GCM|Owen Roberts International Airport|Caribbean & Bahamas|GCM Grand Cayman, George Town George Town\nMKJP|Kingston|17.9357|-76.7875|0|KIN|Norman Manley International Airport|Caribbean & Bahamas|KIN\nMDLR|La Romana|18.4522|-68.9111|0|LRM|Casa De Campo International Airport|Caribbean & Bahamas|LRM\nMYAM|Marsh Harbour|26.5107|-77.0843|0|MHH|Leonard M. Thompson International Airport|Caribbean & Bahamas|MHH Marsh Harbour International Airport\nMKJS|Montego Bay|18.5034|-77.9132|0|MBJ|Sangster International Airport|Caribbean & Bahamas|MBJ Montego Bay\nMYNN|Nassau|25.0390|-77.4662|0|NAS|Lynden Pindling International Airport|Caribbean & Bahamas|NAS Windsor Field, Nassau International Airport\nMYEH|North Eleuthera|25.4758|-76.6808|0|ELH|North Eleuthera Airport|Caribbean & Bahamas|ELH\nTFFR|Pointe-\u00e0-Pitre|16.2654|-61.5328|0|PTP|Maryse Cond\u00e9 International Airport|Caribbean & Bahamas|PTP Le Raizet, Les Abymes\nMDPC|Punta Cana|18.5671|-68.3646|0|PUJ|Punta Cana International Airport|Caribbean & Bahamas|PUJ\nTJSJ|San Juan|18.4394|-66.0018|0|SJU|Luis Munoz Marin International Airport|Caribbean & Bahamas|SJU Isla Verde\nMDSD|Santo Domingo|18.4297|-69.6689|0|SDQ|Las Am\u00e9ricas International Airport|Caribbean & Bahamas|SDQ Aeropuerto Internacional de Las Am\u00e9ricas, Jos\u00e9 Francisco Pe\u00f1a G\u00f3mez Intl\nTNCM|St. Maarten|18.0410|-63.1089|0|SXM|Princess Juliana International Airport|Caribbean & Bahamas|SXM Saint Martin, Maho Beach, Simpson Bay Sint Maarten\nTIST|St. Thomas|18.3371|-64.9773|0|STT|Cyril E. King Airport|Caribbean & Bahamas|STT Harry S. Truman Airport Charlotte Amalie\nMBPV|Turks and Caicos|21.7737|-72.2683|0|PLS|Providenciales International Airport|Caribbean & Bahamas|PLS Providenciales\nMGGT|Guatemala City|14.5829|-90.5275|1|GUA|La Aurora International Airport|Central America|GUA\nMRLB|Liberia, Costa Rica|10.5933|-85.5444|0|LIR|Daniel Oduber Quir\u00f3s International Airport|Central America|LIR Guanacaste, Liberia International\nMPTO|Panama City|9.0714|-79.3835|0|PTY|Tocumen International Airport|Central America|PTY La Joya No 1 Tocumen\nMPMG|Panama Pacifico|8.9733|-79.5556|0|PAC|Marcos A. Gelabert International Airport|Central America|PAC Balboa. Albrook AFS. MPLB Albrook\nMROC|San Jose, Costa Rica|9.9939|-84.2088|0|SJO|Juan Santamar\u00eda International Airport|Central America|SJO San Jos\u00e9 (Alajuela)\nMHTG|Tegucigalpa|14.0609|-87.2172|0|TGU|Toncont\u00edn Airport|Central America|TGU Teniente Coronel Hern\u00e1n Acosta Mej\u00eda Airport\nSKBO|Bogota|4.7016|-74.1469|1|BOG|El Dorado International Airport|South America|BOG Cundinamarca\nSBBR|Brasilia|-15.8692|-47.9208|0|BSB|Presidente Juscelino Kubitschek International Airport|South America|DF0001 BSB Bras\u00edlia\nSABE|Buenos Aires Aeroparque|-34.5594|-58.4155|0|AEP|Aeroparque Jorge Newbery|South America|AER AEP\nSAEZ|Buenos Aires Ezeiza|-34.8222|-58.5358|0|EZE|Ezeiza International Airport - Ministro Pistarini|South America|EZE BUE, Ezeiza International Airport Buenos Aires (Ezeiza)\nSVMI|Caracas|10.6022|-66.9912|0|CCS|Maiquet\u00eda Sim\u00f3n Bol\u00edvar International Airport|South America|CCS Caracas Maiquet\u00eda\nSKCG|Cartagena|10.4424|-75.5130|0|CTG|Rafael Nu\u00f1ez International Airport|South America|CTG\nSEGU|Guayaquil|-2.1574|-79.8836|0|GYE|Jos\u00e9 Joaqu\u00edn de Olmedo International Airport|South America|GYE Simon Bolivar International Airport\nSPIM|Lima|-12.0219|-77.1143|0|LIM|Jorge Ch\u00e1vez International Airport|South America|SPJC LIM SPIM\nSUMU|Montevideo|-34.8356|-56.0265|0|MVD|Carrasco General Ces\u00e1reo L. Berisso International Airport|South America|MVD Montevideo Ciudad de la Costa\nSEQM|Quito|-0.1254|-78.3543|1|UIO|Mariscal Sucre International Airport|South America|UIO Nuevo Aeropuerto Internacional Mariscal Sucre\nSBGL|Rio de Janeiro Galeao|-22.8100|-43.2506|0|GIG|Rio de Janeiro Gale\u00e3o \u2013 Tom Jobim International Airport|South America|RJ0001 GIG Gale\u00e3o - Ant\u00f4nio Carlos Jobim International Airport\nSBRJ|Rio de Janeiro Santos Dumont|-22.9104|-43.1628|0|SDU|Santos Dumont Airport|South America|RJ0002 SDU RIO\nSLVR|Santa Cruz|-17.6448|-63.1354|0|VVI|Viru Viru International Airport|South America|VVI\nSCEL|Santiago|-33.3930|-70.7858|0|SCL|Comodoro Arturo Merino Ben\u00edtez International Airport|South America|SCL\nSBSP|Sao Paulo Congonhas|-23.6277|-46.6546|0|CGH|Congonhas\u2013Deputado Freitas Nobre Airport|South America|SP0001 CGH S\u00e3o Paulo\nSBGR|Sao Paulo Guarulhos|-23.4313|-46.4700|0|GRU|S\u00e3o Paulo/Guarulhos\u2013Governor Andr\u00e9 Franco Montoro International Airport|South America|SP0002 GRU Cumbica S\u00e3o Paulo\nEHAM|Amsterdam|52.3086|4.7639|0|AMS|Amsterdam Airport Schiphol|Europe|AMS\nLGAV|Athens|37.9364|23.9445|0|ATH|Athens Eleftherios Venizelos International Airport|Europe|ATH Spata-Artemida\nLEBL|Barcelona|41.2971|2.0785|0|BCN|Josep Tarradellas Barcelona-El Prat Airport|Europe|BCN El Prat Airport,Barcelona International,Josep Tarradellas Barcelona-El Prat Airport\nEDDB|Berlin|52.3617|13.5023|0|BER|Berlin Brandenburg Airport|Europe|BER Willy Brandt\nEBBR|Brussels|50.9014|4.4844|0|BRU|Brussels Airport|Europe|BRU Brussels National, Zaventem, EBMB Zaventem\nLHBP|Budapest|47.4302|19.2624|0|BUD|Budapest Liszt Ferenc International Airport|Europe|BUD Ferihegyi nemzetk\u00f6zi rep\u00fcl\u0151t\u00e9r, Budapest Liszt Ferenc international Airport\nEKCH|Copenhagen|55.6179|12.6560|0|CPH|Copenhagen Kastrup Airport|Europe|CPH K\u00f8benhavn, Malm\u00f6\nEIDW|Dublin|53.4287|-6.2621|0|DUB|Dublin Airport|Europe|DUB Aerfort Bhaile \u00c1tha Cliath\nEDDL|D\u00fcsseldorf|51.2895|6.7668|0|DUS|D\u00fcsseldorf Airport|Europe|DUS\nEGLF|Farnborough|51.2758|-0.7763|0|FAB|Farnborough Airport|Europe|FAB TAG London Farnborough Airport, RAE Farnborough, EGUF Farnborough, Hampshire\nEDDF|Frankfurt|50.0267|8.5584|0|FRA|Frankfurt Main Airport|Europe|FRA EDAF, Frankfurt am Main, Frankfurt Main, Rhein-Main Air Base, Zeppelinheim Frankfurt am Main\nLSGG|Geneva|46.2381|6.1090|0|GVA|Geneva International Airport|Europe|GVA Cointrin Airport\nEFHK|Helsinki|60.3184|24.9633|0|HEL|Helsinki Vantaa Airport|Europe|HEL Helsinki (Vantaa)\nLTFM|Istanbul|41.2749|28.7321|0|IST|\u0130stanbul Airport|Europe|IST Arnavutk\u00f6y\nLPPT|Lisbon|38.7813|-9.1359|0|LIS|Lisbon Humberto Delgado Airport|Europe|LIS Lisboa, Portela\nEGKB|London Biggin Hill|51.3308|0.0325|0|BQH|London Biggin Hill Airport|Europe|BQH LON, RAF Biggin Hill\nEGLC|London City|51.5053|0.0553|0|LCY|London City Airport|Europe|LCY LON\nEGLL|London Heathrow|51.4707|-0.4599|0|LHR|London Heathrow Airport|Europe|LHR LON, Londres\nEGGW|London Luton|51.8747|-0.3683|0|LTN|London Luton Airport|Europe|LTN LON Luton, Luton\nEGSS|London Stansted|51.8850|0.2350|0|STN|London Stansted Airport|Europe|STN LON London, Essex\nELLX|Luxembourg|49.6268|6.2121|0|LUX|Luxembourg-Findel International Airport|Europe|LUX\nLEMD|Madrid|40.4934|-3.5722|0|MAD|Adolfo Su\u00e1rez Madrid\u2013Barajas Airport|Europe|MAD Legan\u00e9s, Madrid Barajas International Airport\nLFML|Marignane|43.4381|5.2125|0|MRS|Marseille Provence Airport|Europe|MRS Marignane, Bouches-du-Rh\u00f4ne\nLIML|Milan Linate|45.4451|9.2767|0|LIN|Milano Linate Airport|Europe|MI11 LIN E Forlanini Segrate (MI)\nLIMC|Milan Malpensa|45.6306|8.7281|0|MXP|Milan Malpensa International Airport|Europe|MI12 MXP MIL, Silvio Berlusconi Ferno (VA)\nEDDM|Munich|48.3538|11.7861|0|MUC|Munich Airport|Europe|MUC Franz Josef Strauss Airport, Flughafen M\u00fcnchen Franz Josef Strau\u00df\nLFMN|Nice|43.6584|7.2159|0|NCE|Nice-C\u00f4te d'Azur Airport|Europe|NCE Nice, Alpes-Maritimes\nENGM|Oslo|60.1939|11.1004|0|OSL|Oslo-Gardermoen International Airport|Europe|OSL Oslo (Gardermoen)\nLEPA|Palma de Mallorca|39.5517|2.7388|0|PMI|Palma de Mallorca Airport|Europe|PMI Son Sant Joan Airport, LESJ\nLFPG|Paris Charles de Gaulle|49.0090|2.5541|0|CDG|Charles de Gaulle International Airport|Europe|CDG PAR, A\u00e9roport Roissy-Charles de Gaulle, Roissy Airport Paris (Roissy-en-France, Val-d'Oise)\nLFPB|Paris Le Bourget|48.9623|2.4365|0|LBG|Paris-Le Bourget International Airport|Europe|LBG PAR\nLFPO|Paris Orly|48.7295|2.3590|0|ORY|Paris-Orly Airport|Europe|ORY Paris (Orly, Val-de-Marne)\nLKPR|Prague|50.1009|14.2599|0|PRG|V\u00e1clav Havel Airport Prague|Europe|PRG Leti\u0161t\u011b Praha-Ruzyn\u011b, Ruzyn\u011b International Airport, Leti\u0161t\u011b V\u00e1clava Havla Praha\nLIRF|Rome Fiumicino|41.8045|12.2520|0|FCO|Rome\u2013Fiumicino Leonardo da Vinci International Airport|Europe|RM11 FCO ROM, Rome Fiumicino Airport, Fiumicino Airport\nEINN|Shannon|52.7020|-8.9248|0|SNN|Shannon Airport|Europe|SNN\nLSZS|St. Moritz|46.5341|9.8841|1|SMV|Engadin Airport|Europe|SMV Engadin Samedan\nESSA|Stockholm|59.6485|17.9288|0|ARN|Stockholm-Arlanda Airport|Europe|ARN\nLIPZ|Venezia (VE)|45.5053|12.3519|0|VCE|Venice Marco Polo Airport|Europe|VE05 VCE Venezia-Tessera, Venice-Tessera\nLOWW|Vienna|48.1103|16.5697|0|VIE|Vienna International Airport|Europe|VIE\nLSZH|Zurich|47.4581|8.5481|0|ZRH|Z\u00fcrich Airport|Europe|ZRH\nOJAI|Amman|31.7226|35.9932|0|AMM|Queen Alia International Airport|Middle East|AMM\nOBBI|Bahrain|26.2673|50.6376|0|BAH|Bahrain International Airport|Middle East|BAH \u0645\u0637\u0627\u0631 \u0627\u0644\u0628\u062d\u0631\u064a\u0646 \u0627\u0644\u062f\u0648\u0644\u064a, EGYR, RAF Bahrain, RAF Muharraq Manama\nOTHH|Doha|25.2731|51.6081|0|DOH|Hamad International Airport|Middle East|DOH New Doha International Airport\nOMDB|Dubai|25.2498|55.3710|0|DXB|Dubai International Airport|Middle East|DXB \u0645\u0637\u0627\u0631 \u062f\u0628\u064a \u0627\u0644\u062f\u0648\u0644\u064a\u200e\nOMDW|Dubai Al Maktoum|24.8962|55.1624|0|DWC|Al Maktoum International Airport|Middle East|DWC Dubai World Central Dubai(Jebel Ali)\nOEJN|Jeddah|21.6802|39.1574|0|JED|King Abdulaziz International Airport|Middle East|JED Mecca, Hajj\nOKKK|Kuwait City|29.2245|47.9698|0|KWI|Kuwait International Airport|Middle East|KWI OKBK, Al Mubarak Air Base, \u0645\u0637\u0627\u0631 \u0627\u0644\u0643\u0648\u064a\u062a \u0627\u0644\u062f\u0648\u0644\u064a\nOOMS|Muscat|23.6002|58.2853|0|MCT|Muscat International Airport|Middle East|MCT Seeb International Airport, Masqat, Seeb Muscat/Seeb\nOERK|Riyadh|24.9576|46.6988|0|RUH|King Khalid International Airport|Middle East|RUH Riyad\nLLBG|Tel Aviv|32.0114|34.8867|0|TLV|Ben Gurion International Airport|Middle East|TLV\nVTBS|Bangkok|13.6811|100.7470|0|BKK|Suvarnabhumi Airport|Asia|BKK\nZBAA|Beijing|40.0773|116.5967|0|PEK|Beijing Capital International Airport|Asia|PEK BJS, Beijing, Peking, \u5317\u4eac, \u5317\u4eac\u9996\u90fd\u56fd\u9645\u673a\u573a, \u5317\u4eac\u9996\u90fd\u673a\u573a, \u5317\u4eac\u673a\u573a\nVIDP|Delhi|28.5556|77.0952|0|DEL|Indira Gandhi International Airport|Asia|DEL Palam Air Force Station New Delhi\nVHHH|Hong Kong|22.3118|113.9149|0|HKG|Hong Kong International Airport|Asia|HKG Chek Lap Kok Airport, \u8d64\u9c72\u89d2\u6a5f\u5834\nWMKK|Kuala Lumpur|2.7456|101.7100|0|KUL|Kuala Lumpur International Airport|Asia|KUL KLIA Sepang\nVABB|Mumbai|19.0887|72.8679|0|BOM|Chhatrapati Shivaji Maharaj International Airport|Asia|BOM Bombay, Sahar International Airport\nRJBB|Osaka|34.4273|135.2440|0|KIX|Kansai International Airport|Asia|KIX OSA\nRKSI|Seoul Incheon|37.4691|126.4510|0|ICN|Incheon International Airport|Asia|ICN\nZSPD|Shanghai Pudong|31.1434|121.8050|0|PVG|Shanghai Pudong International Airport|Asia|PVG \u4e0a\u6d77, \u4e0a\u6d77\u6d66\u4e1c\u56fd\u9645\u673a\u573a, \u6d66\u4e1c Shanghai (Pudong)\nWSSS|Singapore|1.3502|103.9940|0|SIN|Singapore Changi Airport|Asia|SIN RAF Changi\nRCTP|Taoyuan|25.0777|121.2330|0|TPE|Taiwan Taoyuan International Airport|Asia|TPE Taoyuan County, Dayuan District. \u81fa\u7063\u6843\u5712\u570b\u969b\u6a5f\u5834\nRJTT|Tokyo Haneda|35.5497|139.7870|0|HND|Tokyo Haneda International Airport|Asia|HND TYO, Haneda, \u7fbd\u7530\u7a7a\u6e2f, \u6771\u4eac\u56fd\u969b\u7a7a\u6e2f, \u6771\u4eac, \u6771\u4eac\u90fd\nRJAA|Tokyo Narita|35.7686|140.3887|0|NRT|Narita International Airport|Asia|NRT TYO, Tokyo, Tokyo Narita Airport, New Tokyo International Airport, \u6210\u7530\u56fd\u969b\u7a7a\u6e2f, \u6210\u7530\u7a7a\u6e2f, \u6771\u4eac\u90fd, \u6771\u4eac\u6210\u7530\nNZAA|Auckland|-37.0120|174.7863|0|AKL|Auckland International Airport|Pacific|AKL\nPGUM|Guam|13.4850|144.7973|0|GUM|Antonio B. Won Pat International Airport|Pacific|GUM NGM, NAS Agana Hag\u00e5t\u00f1a\nYSSY|Sydney|-33.9461|151.1770|0|SYD|Sydney Kingsford Smith International Airport|Pacific|SYD Kingsford Smith, Mascot, RAAF Station Mascot Sydney (Mascot)".trim().split("\n").map(function(line){
+  var p = line.split("|");
+  return [p[0], p[1], +p[2], +p[3], +p[4], p[5] || "", p[6] || "", p[7] || "", p[8] || ""];
 });
-function findAirport(v){
-  v = (v||"").trim().toLowerCase(); if(!v) return null;
-  if(byKey[v]) return byKey[v];
-  var m = v.match(/\(([a-z0-9]{3,4})\)/); if(m && byKey[m[1]]) return byKey[m[1]];
-  for (var i=0;i<AIRPORTS.length;i++){ if(AIRPORTS[i][1].toLowerCase().indexOf(v)===0) return AIRPORTS[i]; }
-  return null;
+
+var codeKey = {}, labelKey = {};
+function rememberCode(key, airport){
+  key = (key || "").trim().toLowerCase();
+  if (!/^[a-z0-9]{3,5}$/.test(key) || codeKey[key]) return;
+  codeKey[key] = airport;
 }
+AIRPORTS.forEach(function(a){
+  var full = (a[1] + " (" + a[0] + ")").toLowerCase();
+  if (!labelKey[full]) labelKey[full] = a;
+  if (!labelKey[a[1].toLowerCase()]) labelKey[a[1].toLowerCase()] = a;
+  rememberCode(a[0], a);
+  rememberCode(a[5], a);
+  a._hay = (a[0] + " " + a[1] + " " + a[5] + " " + a[6] + " " + a[7] + " " + a[8]).toLowerCase();
+});
+function findAirport(v){ return strictAirport(v); }
 function strictAirport(v){
   v = (v||"").trim().toLowerCase(); if(!v) return null;
-  var a = byKey[v]; if(!a) return null;
-  var label = (a[1] + " (" + a[0] + ")").toLowerCase();
-  if (v === label || v === a[0].toLowerCase() || v === a[1].toLowerCase()) return a;
+  if (codeKey[v]) return codeKey[v];
+  if (labelKey[v]) return labelKey[v];
+  var m = v.match(/\(([a-z0-9]{3,5})\)/);
+  if (m && codeKey[m[1]]) return codeKey[m[1]];
   return null;
 }
 function appliedAirport(inp){
@@ -577,7 +590,7 @@ function money(m){ return m < 1 ? "$" + Math.round(m*1000) + "K" : "$" + (Math.r
 function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
 
 
-var state = { pax:6, hours:100, crew:2, picked:{}, activeCode:null, userChose:false };
+var state = { pax:6, hours:100, crew:2, picked:{}, activeCode:null, userChose:false, cats:[] };
 var lastShown = [], lastMission = null;
 
 // passengers
@@ -598,14 +611,28 @@ setCrew(2);
 
 // legs
 var legsEl = document.getElementById("legs");
+function airportRank(a, q){
+  var code = a[0].toLowerCase(), iata = (a[5] || "").toLowerCase();
+  var label = a[1].toLowerCase(), name = (a[6] || "").toLowerCase();
+  if (q === code || q === iata) return 0;
+  if (label.indexOf(q) === 0 || name.indexOf(q) === 0) return 1;
+  if (label.indexOf(q) >= 0) return 2;
+  return 3;
+}
 function airportChoices(q){
   q = (q||"").trim().toLowerCase();
-  var exact = findAirport(q);
-  var exactLabel = exact ? (exact[1] + " (" + exact[0] + ")").toLowerCase() : "";
-  if (!q || q === exactLabel || (exact && (q === exact[0].toLowerCase() || q === exact[1].toLowerCase()))) return AIRPORTS.slice();
-  return AIRPORTS.filter(function(a){
-    return (a[1] + " " + a[0]).toLowerCase().indexOf(q) !== -1;
+  if (!q) return AIRPORTS.slice();
+  var exact = strictAirport(q);
+  if (exact){
+    var lab = (exact[1] + " (" + exact[0] + ")").toLowerCase();
+    if (q === lab) return AIRPORTS.slice();
+  }
+  var words = q.split(/\s+/).filter(Boolean);
+  var hits = AIRPORTS.filter(function(a){
+    return words.every(function(w){ return a._hay.indexOf(w) !== -1; });
   });
+  hits.sort(function(a,b){ return airportRank(a, q) - airportRank(b, q) || a[1].localeCompare(b[1]); });
+  return hits;
 }
 function attachPicker(inp, onCommit){
   inp.removeAttribute("list");
@@ -632,27 +659,42 @@ function attachPicker(inp, onCommit){
     cap.textContent = choices.length ? "Choose an airport" : "No matching airport";
     list.appendChild(cap);
     if (cursor >= choices.length) cursor = 0;
+    var grouped = choices.length === AIRPORTS.length;
+    var lastRegion = "";
     choices.forEach(function(a, i){
+      if (grouped && a[7] !== lastRegion){
+        lastRegion = a[7];
+        var g = document.createElement("div");
+        g.className = "airport-group";
+        g.textContent = a[7];
+        list.appendChild(g);
+      }
       var b = document.createElement("button");
       b.type = "button";
       b.setAttribute("role","option");
       b.setAttribute("aria-selected", i === cursor ? "true" : "false");
-      b.innerHTML = "<span>" + esc(a[1]) + "</span><span class=\"code\">" + esc(a[0]) + "</span>";
+      if (a[6]) b.title = a[6];
+      var sub = !grouped && a[7] ? "<small>" + esc(a[7]) + "</small>" : "";
+      b.innerHTML = "<span>" + esc(a[1]) + sub + "</span><span class=\"code\">" + esc(a[0]) + "</span>";
       b.onmousedown = function(ev){ ev.preventDefault(); };
       b.onclick = function(){ commit(a); };
       list.appendChild(b);
     });
+    var marked = list.querySelector("[aria-selected='true']");
+    if (marked && list.clientHeight) list.scrollTop = Math.max(0, marked.offsetTop - list.clientHeight / 2);
   }
   function place(){
     var rect = inp.getBoundingClientRect();
     var gap = 6;
-    var maxH = 280;
+    var maxH = 320;
     var below = window.innerHeight - rect.bottom - gap - 12;
     var above = rect.top - gap - 12;
     var openUp = below < 220 && above > below;
     var room = Math.max(160, Math.min(maxH, openUp ? above : below));
-    list.style.left = Math.max(8, rect.left) + "px";
-    list.style.width = Math.max(240, rect.width) + "px";
+    var width = Math.min(Math.max(rect.width, 280), window.innerWidth - 16);
+    var left = Math.max(8, Math.min(rect.left, window.innerWidth - width - 8));
+    list.style.left = left + "px";
+    list.style.width = width + "px";
     list.style.maxHeight = room + "px";
     if (openUp) {
       list.style.top = "auto";
@@ -761,6 +803,65 @@ addLeg("Aspen (KASE)"); addLeg("Nashville (KBNA)");
 distEl.addEventListener("change", render);
 distEl.addEventListener("input", debounce(render,350));
 document.getElementById("budget").onchange = render;
+
+var CATS = [
+  {id:"turboprop", label:"Turboprop"},
+  {id:"light", label:"Light jet"},
+  {id:"midsize", label:"Midsize"},
+  {id:"super", label:"Super midsize"},
+  {id:"large", label:"Large cabin"}
+];
+// Coarser groups for the selector. Each aircraft keeps its own class label in the dataset.
+var CAT_FROM = {
+  "Twin turboprop":"turboprop", "Single turboprop":"turboprop",
+  "Very light jet":"light", "Light jet":"light", "Super light jet":"light",
+  "Midsize jet":"midsize", "Super-midsize jet":"super",
+  "Large jet":"large", "Long-range jet":"large", "Ultra-long-range jet":"large"
+};
+// Excel and XLS are grouped with midsize for the selector. Their dataset class stays Super light jet.
+var MIDSIZE_NAMES = {"Citation Excel":1, "Citation XLS":1, "Citation XLS+":1, "Citation XLS Gen 2":1};
+function categoryOf(a){ return MIDSIZE_NAMES[a.n] ? "midsize" : (CAT_FROM[a.c] || ""); }
+function categoryLabel(){
+  if (!state.cats.length) return "Any";
+  return CATS.filter(function(c){ return state.cats.indexOf(c.id) >= 0; }).map(function(c){ return c.label; }).join(", ");
+}
+function catAllowed(a){ return !state.cats.length || state.cats.indexOf(categoryOf(a)) >= 0; }
+function paintCats(){
+  var any = state.cats.length === 0;
+  document.querySelectorAll("#cats button").forEach(function(b){
+    var id = b.getAttribute("data-cat");
+    b.setAttribute("aria-pressed", id === "any" ? (any ? "true" : "false") : (state.cats.indexOf(id) >= 0 ? "true" : "false"));
+  });
+}
+function budgetBand(){
+  var bands = {"0-2":[0,2], "2-5":[2,5], "5-10":[5,10], "10-20":[10,20], "20-35":[20,35], "35+":[35, Infinity]};
+  return bands[document.getElementById("budget").value] || null;
+}
+function budgetLabel(){ var s = document.getElementById("budget"); return s.options[s.selectedIndex].text; }
+function priceInBudget(a){
+  var band = budgetBand();
+  if (!band) return true;
+  if (!a.p) return false;
+  return a.p[0] < band[1] && a.p[1] >= band[0];
+}
+function priceNearBudget(a){
+  var band = budgetBand();
+  if (!band || !a.p || !isFinite(band[1])) return false;
+  return a.p[0] >= band[1] && a.p[0] <= band[1] * 1.25;
+}
+document.getElementById("cats").addEventListener("click", function(e){
+  var btn = e.target.closest("button");
+  if (!btn) return;
+  var id = btn.getAttribute("data-cat");
+  if (id === "any") state.cats = [];
+  else {
+    var i = state.cats.indexOf(id);
+    if (i >= 0) state.cats.splice(i, 1); else state.cats.push(id);
+  }
+  paintCats();
+  render();
+});
+
 document.getElementById("runway").onchange = render;
 
 function mission(){
@@ -848,7 +949,6 @@ function toDist(a){ return a.oem && a.oem.to ? a.oem.to : a.rwy; }
 
 function render(){
   var m = mission();
-  var budget = +document.getElementById("budget").value;
   var maxRwy = +document.getElementById("runway").value;
   var errEl = document.getElementById("routeErr");
   errEl.hidden = !m.errs.length; errEl.textContent = m.errs.join(" ");
@@ -863,18 +963,18 @@ function render(){
   }
 
   var others = (m.others || []).map(function(l){ return esc(l.to[1]) + " " + fmt(l.nm*NM_TO_MI) + " mi"; }).join("; ");
-  sum.innerHTML = "<span>" + (m.explicit ? "Trip used" : "Longest trip") + " <b>" + esc(m.desc) + "</b></span><span><b>" + fmt(m.needNm*NM_TO_MI) + " mi</b> (" + fmt(m.needNm) + " nm)</span><span><b>" + state.pax + "</b> passenger" + (state.pax===1?"":"s") + "</span>" + (others ? "<span>Also entered: " + others + "</span>" : "");
+  sum.innerHTML = "<span>" + (m.explicit ? "Trip used" : "Longest trip") + " <b>" + esc(m.desc) + "</b></span><span><b>" + fmt(m.needNm*NM_TO_MI) + " mi</b> (" + fmt(m.needNm) + " nm)</span><span><b>" + state.pax + "</b> passenger" + (state.pax===1?"":"s") + "</span><span>Categories <b>" + esc(categoryLabel()) + "</b></span><span>Proposed acquisition budget <b>" + esc(budgetLabel()) + "</b></span>" + (others ? "<span>Also entered: " + others + "</span>" : "");
   var nh = "";
   if (m.high.length) nh += '<p class="note">Your trips include high-elevation airports (' + esc(Array.from(new Set(m.high)).join(", ")) + '). On hot summer days these can call for a longer runway or a lighter load than the figures below show. Ask us about specific airports.</p>';
   notes.innerHTML = nh;
 
   // Interim rule (Nov 2026): runway and range flag aircraft, they do not hide them, until
   // variants are split and runway / payload-range bases are validated.
-  var rows = AIRCRAFT.filter(function(a){ return a.s >= state.pax; }).map(function(a){
+  var rows = AIRCRAFT.filter(function(a){ return a.s >= state.pax && catAllowed(a); }).map(function(a){
     var r = effRange(a, state.pax);
     var nonstop = r >= m.plannedNm;
     return { a:a, r:r, nonstop: nonstop, border: !nonstop && r >= m.plannedNm*0.85, oneStop: r*2 >= m.plannedNm,
-      rwyFlag: toDist(a) > maxRwy, inBudget: a.p ? a.p[0] <= budget : budget >= 999, nearBudget: a.p ? a.p[0] <= budget*1.25 : false };
+      rwyFlag: toDist(a) > maxRwy, inBudget: priceInBudget(a), nearBudget: priceNearBudget(a) };
   });
 
   var fits = rows.filter(function(x){ return (x.nonstop || x.border) && x.inBudget; })
@@ -898,7 +998,12 @@ function render(){
     best.slice(0,3).forEach(function(x){ state.picked[x.a.n] = true; });
   }
   if (!best.length){
-    list.innerHTML = '<div class="empty">Nothing in our list makes this trip nonstop with ' + state.pax + ' passengers' + (budget<999?' inside this budget':'') + '. Try fewer passengers, a higher budget, or check the options below. A VJS broker can also look at aircraft beyond this list.</div>';
+    var scope = [];
+    if (state.cats.length) scope.push(categoryLabel());
+    if (budgetBand()) scope.push("a proposed acquisition budget of " + budgetLabel());
+    var scoped = scope.length ? " in " + scope.join(" and ") : "";
+    var next = alt.length ? " Try fewer passengers, widen the category or budget, or check the options below." : " Nothing in this view matches. Choose Any, widen the proposed acquisition budget, or try fewer passengers.";
+    list.innerHTML = '<div class="empty">Nothing in our list makes this trip nonstop with ' + state.pax + ' passengers' + scoped + '.' + next + ' A VJS broker can also look at aircraft beyond this list.</div>';
   } else {
     list.innerHTML = best.map(function(x){ return card(x, m, scale); }).join("");
   }
@@ -998,7 +1103,9 @@ function paintComparison(){
     return;
   }
   if (!items.length){
-    body.innerHTML = '<div class="empty">No aircraft selected. Check Compare on the aircraft you want in this planning comparison.</div>';
+    body.innerHTML = lastShown.length
+      ? '<div class="empty">No aircraft selected. Check Compare on the aircraft you want in this planning comparison.</div>'
+      : '<div class="empty">No aircraft match these categories and this proposed acquisition budget, so there is nothing to compare.</div>';
     return;
   }
   var hoursLabel = state.hours + (state.hours === 300 ? "+" : "");
@@ -1015,7 +1122,7 @@ function paintComparison(){
       '<dt>Reference inventory count</dt><dd>' + (it.fs ? it.fs : "None in this dataset") + '</dd>' +
       '</dl><div class="src">' + esc(it.source) + '</div></article>';
   }).join("");
-  body.innerHTML = '<p class="note-plain">Trip used for these figures: <b>' + esc(m.desc) + '</b>, ' + fmt(m.needNm * NM_TO_MI) + ' mi (' + fmt(m.needNm) + ' nm), ' + state.pax + ' passenger' + (state.pax === 1 ? '' : 's') + '.</p>' +
+  body.innerHTML = '<p class="note-plain">Trip used for these figures: <b>' + esc(m.desc) + '</b>, ' + fmt(m.needNm * NM_TO_MI) + ' mi (' + fmt(m.needNm) + ' nm), ' + state.pax + ' passenger' + (state.pax === 1 ? '' : 's') + '. Categories: <b>' + esc(categoryLabel()) + '</b>. Proposed acquisition budget: <b>' + esc(budgetLabel()) + '</b>.</p>' +
     '<div class="compare-grid">' + cards + '</div><p class="trade">' + esc(tradeoffText(items)) + '</p>';
 }
 function selectedNames(){ return Object.keys(state.picked); }
@@ -1031,7 +1138,8 @@ function missionNote(){
     "Pilots: " + (state.crew === 1 ? "One, where certified" : "Two"),
     "Hours per year: " + state.hours,
     "Trip: " + (m.desc || "not entered") + (m.needNm ? " (about " + Math.round(m.needNm) + " nm)" : ""),
-    "Budget: " + sel("budget"),
+    "Aircraft categories: " + categoryLabel(),
+    "Proposed acquisition budget: " + budgetLabel(),
     "Shortest runway: " + sel("runway"),
     "Timeline: " + document.getElementById("lt").value,
     "Aircraft in this comparison: " + (names.length ? names.join(", ") : "none")
