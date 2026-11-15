@@ -998,7 +998,16 @@ function render(){
 
   var alt = rows.filter(function(x){ return best.indexOf(x) < 0 && ((x.oneStop && !x.nonstop && !x.border && x.inBudget) || ((x.nonstop || x.border) && !x.inBudget && x.nearBudget)); })
     .sort(function(x,y){ return y.r - x.r; })
-    .filter(function(x){ var k = famKey(x.a.n); if (seen[k]) return false; seen[k] = x; x.sibs = []; return true; });
+    .filter(function(x){
+      var k = famKey(x.a.n), prior = seen[k];
+      if (prior && best.indexOf(prior) < 0) { prior.sibs.push(x.a.n); return false; }
+      if (prior) {
+        var ak = k + "#alt";
+        if (seen[ak]) { seen[ak].sibs.push(x.a.n); return false; }
+        x.sibs = []; seen[ak] = x; return true;
+      }
+      x.sibs = []; seen[k] = x; return true;
+    });
 
   var visible = state.showAll ? best : best.slice(0,6);
   var visibleAlt = state.showAll ? alt : alt.slice(0,3);
