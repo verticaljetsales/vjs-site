@@ -536,6 +536,10 @@ var SP = /^(Citation Mustang|Citation M2|Citation CJ|Phenom 100|Phenom 300|Honda
 AIRCRAFT.forEach(function(a){ a.sp = SP.test(a.n); });
 function crewFor(a){ return (state.crew === 1 && a.sp) ? 1 : 2; }
 function paxAt(q, crew){ var p = q[0] - crew; return q[2] == null ? p : Math.min(q[2], p); }
+// Single-pilot fix (Nov 2026): with one pilot in a certified type, the right cockpit seat can take a passenger,
+// and the planning model carries one fewer occupant's weight than its two-pilot baseline.
+function seatsFor(a){ return a.s + (crewFor(a) === 1 ? 1 : 0); }
+function loadPax(a, pax){ return Math.max(0, pax - (2 - crewFor(a))); }
 
 
 
@@ -933,7 +937,7 @@ function famKey(n){ for (var i=0;i<FAMS.length;i++){ if (FAMS[i].test(n)) return
 
 function effRange(a, pax){
   // Planning model: ferry range with nobody aboard down to the AviaCost seats-full range.
-  var r = Math.max(0, a.fer - (a.fer - a.sfr) * (pax / a.pt));
+  var r = Math.max(0, a.fer - (a.fer - a.sfr) * (loadPax(a, pax) / a.pt));
   var pts = a.oem && a.oem.pts;
   if (pts){
     // A manufacturer point at the same or a heavier load is the validated number; never exceed the lightest-load point.
@@ -963,14 +967,14 @@ function render(){
   }
 
   var others = (m.others || []).map(function(l){ return esc(l.to[1]) + " " + fmt(l.nm*NM_TO_MI) + " mi"; }).join("; ");
-  sum.innerHTML = "<span>" + (m.explicit ? "Trip used" : "Longest trip") + " <b>" + esc(m.desc) + "</b></span><span><b>" + fmt(m.needNm*NM_TO_MI) + " mi</b> (" + fmt(m.needNm) + " nm)</span><span><b>" + state.pax + "</b> passenger" + (state.pax===1?"":"s") + "</span><span>Categories <b>" + esc(categoryLabel()) + "</b></span><span>Proposed acquisition budget <b>" + esc(budgetLabel()) + "</b></span>" + (others ? "<span>Also entered: " + others + "</span>" : "");
+  sum.innerHTML = "<span>" + (m.explicit ? "Trip used" : "Longest trip") + " <b>" + esc(m.desc) + "</b></span><span><b>" + fmt(m.needNm*NM_TO_MI) + " mi</b> (" + fmt(m.needNm) + " nm)</span><span><b>" + state.pax + "</b> passenger" + (state.pax===1?"":"s") + "</span><span><b>" + (state.crew === 1 ? "1 pilot" : "2 pilots") + "</b>" + (state.crew === 1 ? " where certified" : "") + "</span><span>Categories <b>" + esc(categoryLabel()) + "</b></span><span>Proposed acquisition budget <b>" + esc(budgetLabel()) + "</b></span>" + (others ? "<span>Also entered: " + others + "</span>" : "");
   var nh = "";
   if (m.high.length) nh += '<p class="note">Your trips include high-elevation airports (' + esc(Array.from(new Set(m.high)).join(", ")) + '). On hot summer days these can call for a longer runway or a lighter load than the figures below show. Ask us about specific airports.</p>';
   notes.innerHTML = nh;
 
   // Interim rule (Nov 2026): runway and range flag aircraft, they do not hide them, until
   // variants are split and runway / payload-range bases are validated.
-  var rows = AIRCRAFT.filter(function(a){ return a.s >= state.pax && catAllowed(a); }).map(function(a){
+  var rows = AIRCRAFT.filter(function(a){ return seatsFor(a) >= state.pax && catAllowed(a); }).map(function(a){
     var r = effRange(a, state.pax);
     var nonstop = r >= m.plannedNm;
     return { a:a, r:r, nonstop: nonstop, border: !nonstop && r >= m.plannedNm*0.85, oneStop: r*2 >= m.plannedNm,
@@ -1024,7 +1028,7 @@ function card(x, m, scale){
       ? '<span class="verdict v-stop">Borderline on this trip, ask us</span>'
       : '<span class="verdict v-stop">One fuel stop on this trip</span>';
   if ((x.nonstop || x.border) && !x.inBudget) verdict += ' <span class="verdict v-stop">Just over budget</span>';
-  if (state.crew === 1 && a.sp) verdict += ' <span class="verdict v-ok">Single-pilot figures</span>';
+  if (state.crew === 1 && a.sp) verdict += ' <span class="verdict v-ok">Single pilot: right seat open for a passenger</span>';
   if (x.rwyFlag) verdict += ' <span class="verdict v-stop">Check runway for your weight and conditions</span>';
   var fill = Math.min(100, x.r/scale*100).toFixed(1) + "%";
   var trip = Math.min(100, m.plannedNm/scale*100).toFixed(1);
