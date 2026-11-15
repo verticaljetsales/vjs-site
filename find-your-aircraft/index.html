@@ -98,6 +98,8 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid 
 .use-leg{justify-self:start;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:8px 12px;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
 .use-leg[aria-pressed="true"]{background:var(--accent);color:#F2F0EE;border-color:var(--accent)}
 .add-leg{border:1px dashed var(--line);background:transparent;color:var(--ink);border-radius:10px;padding:10px;font:inherit;cursor:pointer;width:100%}
+.show-more{display:block;width:100%;margin-top:4px;border:1px dashed var(--line);background:transparent;color:var(--ink);border-radius:10px;padding:12px 14px;min-height:46px;font:inherit;font-weight:600;font-size:15px;cursor:pointer}
+.show-more:hover{border-color:var(--leather);color:var(--gold-ink)}
 .or{display:flex;align-items:center;gap:10px;color:var(--ink-2);font-size:13px;margin:12px 0 8px}
 .or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
 
@@ -595,7 +597,7 @@ function money(m){ return m < 1 ? "$" + Math.round(m*1000) + "K" : "$" + (Math.r
 function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
 
 
-var state = { pax:6, hours:100, crew:2, picked:{}, activeCode:null, userChose:false, cats:[] };
+var state = { pax:6, hours:100, crew:2, picked:{}, activeCode:null, userChose:false, cats:[], showAll:false, resultsKey:"" };
 var lastShown = [], lastMission = null;
 
 // passengers
@@ -962,10 +964,17 @@ function render(){
   var sum = document.getElementById("summary"), notes = document.getElementById("notes");
   var list = document.getElementById("list"), more = document.getElementById("more");
   if (!m.needNm){
+    state.showAll = false; state.resultsKey = "";
     sum.innerHTML = ""; notes.innerHTML = ""; more.innerHTML = "";
     list.innerHTML = '<div class="empty">Add where you fly from and where you go, or enter your longest trip in miles, and matching aircraft will appear here.</div>';
     lastShown = []; lastMission = m; updateChosen(); return;
   }
+  var resultsKey = [state.pax, state.crew, state.hours, state.cats.join(","),
+    document.getElementById("budget").value, document.getElementById("runway").value,
+    m.desc || "", String(Math.round(m.needNm || 0)),
+    (m.legs || []).map(function(l){ return l.to[0]; }).join(","),
+    state.activeCode || ""].join("|");
+  if (resultsKey !== state.resultsKey){ state.showAll = false; state.resultsKey = resultsKey; }
 
   var others = (m.others || []).map(function(l){ return esc(l.to[1]) + " " + fmt(l.nm*NM_TO_MI) + " mi"; }).join("; ");
   sum.innerHTML = "<span>" + (m.explicit ? "Trip used" : "Longest trip") + " <b>" + esc(m.desc) + "</b></span><span><b>" + fmt(m.needNm*NM_TO_MI) + " mi</b> (" + fmt(m.needNm) + " nm)</span><span><b>" + state.pax + "</b> passenger" + (state.pax===1?"":"s") + "</span><span><b>" + (state.crew === 1 ? "1 pilot" : "2 pilots") + "</b>" + (state.crew === 1 ? " where certified" : "") + "</span><span>Categories <b>" + esc(categoryLabel()) + "</b></span><span>Proposed acquisition budget <b>" + esc(budgetLabel()) + "</b></span>" + (others ? "<span>Also entered: " + others + "</span>" : "");
@@ -986,12 +995,14 @@ function render(){
     .sort(function(x,y){ return ((x.rwyFlag?2:0)+(x.border?1:0)) - ((y.rwyFlag?2:0)+(y.border?1:0)) || (px(x.a) - px(y.a)); });
   var seen = {}, best = [];
   fits.forEach(function(x){ var k = famKey(x.a.n); if (seen[k]) { seen[k].sibs.push(x.a.n); return; } x.sibs = []; seen[k] = x; best.push(x); });
-  best = best.slice(0,6);
 
   var alt = rows.filter(function(x){ return best.indexOf(x) < 0 && ((x.oneStop && !x.nonstop && !x.border && x.inBudget) || ((x.nonstop || x.border) && !x.inBudget && x.nearBudget)); })
     .sort(function(x,y){ return y.r - x.r; })
-    .filter(function(x){ var k = famKey(x.a.n); if (seen[k]) return false; seen[k] = x; x.sibs = []; return true; }).slice(0,3);
+    .filter(function(x){ var k = famKey(x.a.n); if (seen[k]) return false; seen[k] = x; x.sibs = []; return true; });
 
+  var visible = state.showAll ? best : best.slice(0,6);
+  var visibleAlt = state.showAll ? alt : alt.slice(0,3);
+  var hidden = (best.length - visible.length) + (alt.length - visibleAlt.length);
   var scale = Math.max(m.plannedNm*1.6, Math.max.apply(null, best.concat(alt).map(function(x){return x.r;}).concat([1])));
 
   lastShown = best.concat(alt);
@@ -1002,17 +1013,23 @@ function render(){
   if (!state.userChose && Object.keys(state.picked).length === 0) {
     best.slice(0,3).forEach(function(x){ state.picked[x.a.n] = true; });
   }
+  var moreBtn = (state.showAll || hidden) ? '<button type="button" class="show-more" id="showMore" aria-expanded="' + (state.showAll ? "true" : "false") + '">' + (state.showAll ? "Show fewer aircraft" : "Show " + hidden + " more aircraft") + "</button>" : "";
   if (!best.length){
     var scope = [];
     if (state.cats.length) scope.push(categoryLabel());
     if (budgetBand()) scope.push("a proposed acquisition budget of " + budgetLabel());
     var scoped = scope.length ? " in " + scope.join(" and ") : "";
     var next = alt.length ? " Try fewer passengers, widen the category or budget, or check the options below." : " Nothing in this view matches. Choose Any, widen the proposed acquisition budget, or try fewer passengers.";
-    list.innerHTML = '<div class="empty">Nothing in our list makes this trip nonstop with ' + state.pax + ' passengers' + scoped + '.' + next + ' A VJS broker can also look at aircraft beyond this list.</div>';
+    list.innerHTML = '<div class="empty">Nothing in our list makes this trip nonstop with ' + state.pax + ' passengers' + scoped + '.' + next + ' A VJS broker can also look at aircraft beyond this list.</div>' + moreBtn;
   } else {
-    list.innerHTML = best.map(function(x){ return card(x, m, scale); }).join("");
+    list.innerHTML = visible.map(function(x){ return card(x, m, scale); }).join("") + moreBtn;
   }
-  more.innerHTML = alt.length ? '<h3>Also worth a look</h3><p class="sub">These need one fuel stop on this trip, or sit just above your budget.</p><div class="list">' + alt.map(function(x){ return card(x, m, scale); }).join("") + '</div>' : "";
+  more.innerHTML = visibleAlt.length ? '<h3>Also worth a look</h3><p class="sub">These need one fuel stop on this trip, or sit just above your budget.</p><div class="list">' + visibleAlt.map(function(x){ return card(x, m, scale); }).join("") + '</div>' : "";
+  var showMore = document.getElementById("showMore");
+  if (showMore){
+    showMore.onmousedown = function(e){ e.preventDefault(); };
+    showMore.onclick = function(){ state.showAll = !state.showAll; render(); };
+  }
 
   document.querySelectorAll(".pick input").forEach(function(cb){
     cb.onchange = function(){ state.userChose = true; if(cb.checked) state.picked[cb.value] = true; else delete state.picked[cb.value]; updateChosen(); };
