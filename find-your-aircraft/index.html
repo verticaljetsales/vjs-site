@@ -958,7 +958,7 @@ var FAMS = [/^King Air C90/, /^King Air (200|B200|250|260)/, /^King Air 3[56]/, 
   /^Phenom 100/, /^HondaJet/, /^Citation CJ1/, /^Citation CJ2/, /^Premier/, /^Citation M2/, /^Citation CJ3/, /^Citation CJ4/,
   /^Citation Encore/, /^Phenom 300/, /^Learjet 45/, /^Citation (Excel|XLS)$/, /^Citation XLS(\+| Gen)/, /^Learjet 75/,
   /^Learjet 60/, /^Hawker (8|9)/, /^Citation Sovereign/, /^Citation X/, /^Falcon 50/, /^Challenger 3/, /^Falcon 2000( |EX|$)/,
-  /^Falcon 2000L/, /^Challenger 60/, /^Falcon 900/, /^Gulfstream G-IV/, /^Global Express/, /^Gulfstream G650/];
+  /^Falcon 2000L/, /^Challenger 60|^Challenger 650/, /^Falcon 900/, /^Gulfstream G-IV/, /^Global Express/, /^Gulfstream G650/];
 function famKey(n){ for (var i=0;i<FAMS.length;i++){ if (FAMS[i].test(n)) return "f"+i; } return n; }
 
 function effRange(a, pax){
