@@ -7,8 +7,8 @@
   "registration": "N61GB",
   "serial": "RK-341",
   "category": "Light Jet",
-  "total_time": "6,870 hrs",
-  "cycles": "5,456",
+  "total_time": "7,068.4 hrs",
+  "cycles": "5,627",
   "passengers": "7",
   "engines": "JT15D-5R",
   "price": "Price on request",
@@ -29,11 +29,11 @@
       "rows": [
         {
           "label": "Total Time",
-          "value": "6,870 hrs"
+          "value": "7,068.4 hrs"
         },
         {
           "label": "Total Cycles",
-          "value": "5,456"
+          "value": "5,627"
         }
       ]
     },
@@ -42,27 +42,27 @@
       "rows": [
         {
           "label": "Engine 1 · SN PCE-JA0457 - TTSN",
-          "value": "6,675.9"
+          "value": "6,874.3"
         },
         {
           "label": "Engine 2 · SN PCE-JA0460 - TTSN",
-          "value": "6,643.9"
+          "value": "6,842.3"
         },
         {
           "label": "Engine 1 · Cycles Since New",
-          "value": "5,293"
+          "value": "5,464"
         },
         {
           "label": "Engine 2 · Cycles Since New",
-          "value": "5,151"
+          "value": "5,322"
         },
         {
           "label": "Engine 1 · TSOH (5,400 TBO)",
-          "value": "3,112.7"
+          "value": "3,344.3"
         },
         {
           "label": "Engine 2 · TSOH (5,400 TBO)",
-          "value": "3,863.8"
+          "value": "4,095.4"
         }
       ]
     }
