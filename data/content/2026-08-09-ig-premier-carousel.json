@@ -1,5 +1,5 @@
 {
-  "status": "Approved",
+  "status": "Scheduled",
   "channel": "instagram",
   "format": "carousel",
   "pillar": "inventory_spotlight",
@@ -30,5 +30,6 @@
   "media_notes": "Carousel order: exterior hero, cabin, cockpit. Keep to 3-5 strongest frames.",
   "visual": "/media/generated/2026-08-09-ig-premier-carousel.jpg",
   "created_by": "vjs-content-studio",
-  "notes": ""
+  "notes": "",
+  "publer_job": "6b04dab2adcd3b44fe5bf2ae"
 }

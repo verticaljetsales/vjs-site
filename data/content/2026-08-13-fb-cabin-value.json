@@ -1,5 +1,5 @@
 {
-  "status": "Approved",
+  "status": "Scheduled",
   "channel": "facebook",
   "format": "single_image",
   "layout": "framed",
@@ -29,5 +29,6 @@
   "visual_subline": "Where you actually spend the most time.",
   "visual_kicker": "Inside the Cabin",
   "created_by": "vjs-content-studio",
-  "notes": "From Inbox item 'Luxury Cabin' (Kalene). Facebook cut — warmer/longer than the IG carousel. Not a listing."
+  "notes": "From Inbox item 'Luxury Cabin' (Kalene). Facebook cut — warmer/longer than the IG carousel. Not a listing.",
+  "publer_job": "6b04dab2adcd3b44fe5bf2ae"
 }

@@ -1,5 +1,5 @@
 {
-  "status": "Approved",
+  "status": "Scheduled",
   "channel": "linkedin",
   "format": "single_image",
   "layout": "framed",
@@ -28,5 +28,6 @@
   "visual_subline": "",
   "visual_kicker": "From the Team",
   "created_by": "vjs-content-studio",
-  "notes": ""
+  "notes": "",
+  "publer_job": "6b04dab2adcd3b44fe5bf2ae"
 }

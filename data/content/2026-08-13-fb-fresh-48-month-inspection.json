@@ -1,5 +1,5 @@
 {
-  "status": "Approved",
+  "status": "Scheduled",
   "channel": "facebook",
   "format": "single_image",
   "layout": "framed",
@@ -30,5 +30,6 @@
   "visual_subline": "Calendar-driven. Not optional. Worth knowing before you compare prices.",
   "visual_kicker": "Buyer Education",
   "created_by": "vjs-content-studio",
-  "notes": "From inbox item 2026-08-13-fresh-48-month-inspection. Same core copy as IG, warmed up and lengthened per FB tone guidance; used the note's exact CTA since it fits the soft-CTA bank spirit."
+  "notes": "From inbox item 2026-08-13-fresh-48-month-inspection. Same core copy as IG, warmed up and lengthened per FB tone guidance; used the note's exact CTA since it fits the soft-CTA bank spirit.",
+  "publer_job": "6b04dab2adcd3b44fe5bf2ae"
 }

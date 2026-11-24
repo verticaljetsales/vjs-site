@@ -1,5 +1,5 @@
 {
-  "status": "Approved",
+  "status": "Scheduled",
   "channel": "instagram",
   "format": "carousel",
   "layout": "framed",
@@ -37,5 +37,6 @@
   "visual_subline": "Where you actually spend the most time.",
   "visual_kicker": "Inside the Cabin",
   "created_by": "vjs-content-studio",
-  "notes": "From Inbox item 'Luxury Cabin' (Kalene). Aspirational/education, not a listing. No prices, no tails, no 'available'. Warm-confident, no clichés or exclamation points."
+  "notes": "From Inbox item 'Luxury Cabin' (Kalene). Aspirational/education, not a listing. No prices, no tails, no 'available'. Warm-confident, no clichés or exclamation points.",
+  "publer_job": "6b04dab2adcd3b44fe5bf2ae"
 }

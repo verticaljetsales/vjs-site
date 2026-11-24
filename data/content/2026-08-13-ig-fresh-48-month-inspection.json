@@ -1,5 +1,5 @@
 {
-  "status": "Approved",
+  "status": "Scheduled",
   "channel": "instagram",
   "format": "single_image",
   "layout": "framed",
@@ -33,5 +33,6 @@
   "visual_subline": "Calendar-driven. Not optional. Worth knowing before you compare prices.",
   "visual_kicker": "Buyer Education",
   "created_by": "vjs-content-studio",
-  "notes": "From inbox item 2026-08-13-fresh-48-month-inspection. Kept general per brief — no scope, cost, or downtime specifics; no aircraft tie-in."
+  "notes": "From inbox item 2026-08-13-fresh-48-month-inspection. Kept general per brief — no scope, cost, or downtime specifics; no aircraft tie-in.",
+  "publer_job": "6b04dab2adcd3b44fe5bf2ae"
 }
