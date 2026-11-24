@@ -310,7 +310,7 @@
     },
     {
       "id": "2026-08-09-ig-premier-carousel",
-      "status": "Approved",
+      "status": "Scheduled",
       "channel": "instagram",
       "format": "carousel",
       "pillar": "inventory_spotlight",
@@ -341,7 +341,7 @@
     },
     {
       "id": "2026-08-13-fb-cabin-value",
-      "status": "Approved",
+      "status": "Scheduled",
       "channel": "facebook",
       "format": "single_image",
       "pillar": "buyer_seller_education",
@@ -366,7 +366,7 @@
     },
     {
       "id": "2026-08-13-ig-cabin-value",
-      "status": "Approved",
+      "status": "Scheduled",
       "channel": "instagram",
       "format": "carousel",
       "pillar": "buyer_seller_education",
@@ -399,7 +399,7 @@
     },
     {
       "id": "2026-08-13-fb-fresh-48-month-inspection",
-      "status": "Approved",
+      "status": "Scheduled",
       "channel": "facebook",
       "format": "single_image",
       "pillar": "buyer_seller_education",
@@ -425,7 +425,7 @@
     },
     {
       "id": "2026-08-13-ig-fresh-48-month-inspection",
-      "status": "Approved",
+      "status": "Scheduled",
       "channel": "instagram",
       "format": "single_image",
       "pillar": "buyer_seller_education",
@@ -454,7 +454,7 @@
     },
     {
       "id": "2026-08-08-li-founder-both-sides",
-      "status": "Approved",
+      "status": "Scheduled",
       "channel": "linkedin",
       "format": "single_image",
       "pillar": "founder_team_pov",
@@ -478,7 +478,7 @@
     },
     {
       "id": "2026-08-12-li-walk-away",
-      "status": "Approved",
+      "status": "Scheduled",
       "channel": "linkedin",
       "format": "single_image",
       "pillar": "founder_team_pov",
